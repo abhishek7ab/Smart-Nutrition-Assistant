@@ -1,0 +1,92 @@
+{
+  "user_id": "12345",
+  "date": "2023-04-01",
+  "target_calories": 2500,
+  "meals": [
+    {
+      "name": "Breakfast: Scrambled Eggs and Avocado Toast",
+      "ingredients": [
+        "2 eggs",
+        "1 slice of whole grain bread",
+        "1/2 avocado",
+        "1 tsp olive oil",
+        "Salt and pepper"
+      ],
+      "approx_calories": 350,
+      "reason": "High protein and healthy fats for energy and muscle recovery",
+      "swaps": [
+        "Swap avocado with 1 tbsp hummus for a different flavor profile"
+      ]
+    },
+    {
+      "name": "Mid-Morning Snack: Greek Yogurt with Berries",
+      "ingredients": [
+        "1 cup plain Greek yogurt",
+        "1/2 cup mixed berries",
+        "1 tbsp honey",
+        "1/4 cup granola"
+      ],
+      "approx_calories": 200,
+      "reason": "Protein and antioxidants to support overall health",
+      "swaps": [
+        "Replace honey with maple syrup for a different sweetener"
+      ]
+    },
+    {
+      "name": "Lunch: Grilled Chicken Salad",
+      "ingredients": [
+        "4 oz grilled chicken breast",
+        "2 cups mixed greens",
+        "1/2 cup cherry tomatoes",
+        "1/4 cup cucumber",
+        "1/4 cup shredded carrots",
+        "1 tbsp olive oil",
+        "1 tbsp balsamic vinaigrette"
+      ],
+      "approx_calories": 400,
+      "reason": "Lean protein and fiber-rich vegetables for satiety and muscle recovery",
+      "swaps": [
+        "Swap chicken for tofu for a plant-based option"
+      ]
+    },
+    {
+      "name": "Afternoon Snack: Apple Slices with Almond Butter",
+      "ingredients": [
+        "1 medium apple",
+        "2 tbsp almond butter"
+      ],
+      "approx_calories": 250,
+      "reason": "Fiber and healthy fats for sustained energy",
+      "swaps": [
+        "Swap almond butter with sunflower seed butter for a nut-free alternative"
+      ]
+    },
+    {
+      "name": "Dinner: Baked Salmon with Quinoa and Steamed Broccoli",
+      "ingredients": [
+        "4 oz baked salmon",
+        "1/2 cup cooked quinoa",
+        "1 cup steamed broccoli",
+        "1 tsp olive oil",
+        "Salt and pepper"
+      ],
+      "approx_calories": 500,
+      "reason": "Omega-3 fatty acids and complex carbohydrates for muscle recovery and energy",
+      "swaps": [
+        "Swap salmon for tofu for a plant-based option"
+      ]
+    },
+    {
+      "name": "Evening Snack: Cottage Cheese with Pineapple",
+      "ingredients": [
+        "1/2 cup cottage cheese",
+        "1/2 cup diced pineapple"
+      ],
+      "approx_calories": 150,
+      "reason": "Protein and vitamin C for muscle recovery and immune support",
+      "swaps": [
+        "Replace pineapple with mango for a different tropical flavor"
+      ]
+    }
+  ]
+}

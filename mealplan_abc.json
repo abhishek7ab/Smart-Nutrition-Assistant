@@ -1,0 +1,62 @@
+{
+  "user_id": "abc",
+  "date": "2023-03-21",
+  "target_calories": 2200,
+  "meals": [
+    {
+      "name": "Breakfast: Protein Pancakes",
+      "ingredients": [
+        "whole grain oats, banana, egg, protein powder, almond milk"
+      ],
+      "approx_calories": 350,
+      "reason": "High in protein and complex carbs for muscle recovery and energy",
+      "swaps": [
+        "use Greek yogurt instead of almond milk for extra protein"
+      ]
+    },
+    {
+      "name": "Lunch: Grilled Chicken Salad",
+      "ingredients": [
+        "mixed greens, grilled chicken breast, cherry tomatoes, cucumber, olive oil, lemon, feta cheese"
+      ],
+      "approx_calories": 400,
+      "reason": "Lean protein and veggies for muscle growth and recovery",
+      "swaps": [
+        "use avocado instead of feta cheese for healthy fats"
+      ]
+    },
+    {
+      "name": "Snack: Cottage Cheese and Fruit",
+      "ingredients": [
+        "cottage cheese, mixed berries"
+      ],
+      "approx_calories": 150,
+      "reason": "Great source of casein protein for muscle repair",
+      "swaps": [
+        "swap mixed berries for sliced peaches"
+      ]
+    },
+    {
+      "name": "Dinner: Baked Salmon with Quinoa and Veggies",
+      "ingredients": [
+        "salmon, quinoa, broccoli, carrots, olive oil, lemon, salt, pepper"
+      ],
+      "approx_calories": 550,
+      "reason": "Omega-3 fatty acids, lean protein, and complex carbs for muscle growth",
+      "swaps": [
+        "use brown rice instead of quinoa for more carbs"
+      ]
+    },
+    {
+      "name": "Evening Snack: Greek Yogurt with Honey",
+      "ingredients": [
+        "Greek yogurt, honey, mixed nuts"
+      ],
+      "approx_calories": 200,
+      "reason": "Protein-rich snack before bed for muscle recovery",
+      "swaps": [
+        "swap mixed nuts for chia seeds for more omega-3 fatty acids"
+      ]
+    }
+  ]
+}
