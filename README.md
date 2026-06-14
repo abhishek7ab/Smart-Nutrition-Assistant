@@ -262,17 +262,16 @@ POST /generate_plan
 
 ---
 
-# Author
+## Author
 
 **Gargey Mahajan**
+**Abhishek Badave**
 
-Computer Engineering Student
+B.Tech Computer Engineering  
+Vishwakarma University, Pune
 
-LinkedIn:
-(Add your LinkedIn URL here)
+## Connect With Me
 
----
+- [LinkedIn](https://www.linkedin.com/in/gargey-mahajan-624a56346/)
+- [GitHub](https://github.com/gargey2275)
 
-# License
-
-This project is licensed under the MIT License.
