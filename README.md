@@ -47,7 +47,7 @@ Built using:
 
 ## User Input Form
 
-![Input Form](screenshots/input-form.png)
+![Input Form](screenshots/input-form-1.png)
 
 ---
 
@@ -59,13 +59,13 @@ Built using:
 
 ## Muscle Gain Meal Plan
 
-![Muscle Gain Plan](screenshots/meal-plan-2.png)
+![Muscle Gain Plan](screenshots/input-form-1.png)
 
 ---
 
 ## Responsive Modern UI
 
-![Responsive UI](screenshots/ui-showcase.png)
+![Responsive UI](screenshots/meal-plan-2.png)
 
 ---
 
