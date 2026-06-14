@@ -265,7 +265,6 @@ POST /generate_plan
 ## Author
 
 **Gargey Mahajan**
-**Abhishek Badave**
 
 B.Tech Computer Engineering  
 Vishwakarma University, Pune
