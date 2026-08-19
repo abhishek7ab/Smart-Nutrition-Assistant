@@ -1,0 +1,103 @@
+{
+  "user_id": "Aarav",
+  "date": "2026-08-19",
+  "target_calories": 2490,
+  "total_macros": {
+    "protein_g": 155,
+    "carbs_g": 311,
+    "fats_g": 69
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Masala Omelette with Multigrain Roti",
+      "ingredients": [
+        "2 whole eggs",
+        "2 multigrain rotis",
+        "onion, tomato, and coriander",
+        "1 cup seasonal fruit"
+      ],
+      "approx_calories": 622,
+      "reason": "A balanced breakfast with complete protein, whole grains, and fruit for steady energy.",
+      "macros": {
+        "protein_g": 38,
+        "carbs_g": 77,
+        "fats_g": 17
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "2 whole eggs",
+          "swap_option": "Chia pudding",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Lunch: Grilled Chicken with Dal, Rice & Salad",
+      "ingredients": [
+        "120g grilled chicken",
+        "3/4 cup moong dal",
+        "3/4 cup brown rice",
+        "1 cup cucumber-carrot salad"
+      ],
+      "approx_calories": 871,
+      "reason": "Combines lean animal protein with dal, whole grains, and vegetables for a complete meal.",
+      "macros": {
+        "protein_g": 54,
+        "carbs_g": 108,
+        "fats_g": 24
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "120g grilled chicken",
+          "swap_option": "Edamame / Tofu",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Dinner: Paneer Tikka with Roti & Mixed Vegetables",
+      "ingredients": [
+        "100g paneer tikka",
+        "2 whole-wheat rotis",
+        "1 cup mixed vegetables",
+        "1/2 cup plain curd"
+      ],
+      "approx_calories": 747,
+      "reason": "A lighter vegetarian dinner with dairy protein, vegetables, and controlled portions of whole grains.",
+      "macros": {
+        "protein_g": 46,
+        "carbs_g": 93,
+        "fats_g": 20
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "100g paneer tikka",
+          "swap_option": "White fish or Lentil stew",
+          "calorie_diff": -40
+        }
+      }
+    },
+    {
+      "name": "Snack: Roasted Chana & Buttermilk",
+      "ingredients": [
+        "35g roasted chana",
+        "1 glass unsalted buttermilk",
+        "cumin and coriander"
+      ],
+      "approx_calories": 249,
+      "reason": "A flexible Indian snack with plant protein, hydration, and gut-friendly dairy.",
+      "macros": {
+        "protein_g": 15,
+        "carbs_g": 31,
+        "fats_g": 6
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "35g roasted chana",
+          "swap_option": "Mixed seeds",
+          "calorie_diff": 10
+        }
+      }
+    }
+  ]
+}

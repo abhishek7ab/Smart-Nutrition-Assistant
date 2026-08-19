@@ -1,0 +1,73 @@
+{
+  "user_id": "12345",
+  "date": "2023-03-15",
+  "target_calories": 2200,
+  "meals": [
+    {
+      "name": "Breakfast - Protein Packed Pancakes",
+      "ingredients": [
+        "oats, banana, eggs, protein powder, almond milk"
+      ],
+      "approx_calories": 450,
+      "reason": "High in protein for muscle growth and complex carbs for sustained energy",
+      "swaps": [
+        "use whole grain oats for added fiber"
+      ]
+    },
+    {
+      "name": "Mid-Morning Snack - Greek Yogurt with Berries",
+      "ingredients": [
+        "greek yogurt, mixed berries, honey"
+      ],
+      "approx_calories": 200,
+      "reason": "Protein and antioxidants to support recovery and overall health",
+      "swaps": [
+        "swap honey with a sugar-free alternative for lower calories"
+      ]
+    },
+    {
+      "name": "Lunch - Grilled Chicken and Quinoa Salad",
+      "ingredients": [
+        "grilled chicken, quinoa, mixed greens, cherry tomatoes, cucumber, olive oil, lemon juice"
+      ],
+      "approx_calories": 600,
+      "reason": "Lean protein and complex carbs for muscle recovery and energy",
+      "swaps": [
+        "use avocado instead of olive oil for healthy fats"
+      ]
+    },
+    {
+      "name": "Afternoon Snack - Cottage Cheese and Pineapple",
+      "ingredients": [
+        "cottage cheese, pineapple chunks"
+      ],
+      "approx_calories": 250,
+      "reason": "High in protein and low in calories, good for muscle growth and energy",
+      "swaps": [
+        "swap fresh pineapple with canned pineapple for lower calories"
+      ]
+    },
+    {
+      "name": "Dinner - Baked Salmon with Sweet Potato and Steamed Broccoli",
+      "ingredients": [
+        "salmon fillet, sweet potato, broccoli, olive oil, lemon"
+      ],
+      "approx_calories": 700,
+      "reason": "Lean protein, complex carbs, and healthy fats for muscle recovery and energy",
+      "swaps": [
+        "use avocado oil instead of olive oil for cooking"
+      ]
+    },
+    {
+      "name": "Evening Snack - Protein Shake",
+      "ingredients": [
+        "protein powder, almond milk, banana"
+      ],
+      "approx_calories": 300,
+      "reason": "High in protein for muscle growth and recovery",
+      "swaps": [
+        "swap banana with a lower-calorie fruit like berries"
+      ]
+    }
+  ]
+}

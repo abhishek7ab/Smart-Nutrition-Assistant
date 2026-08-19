@@ -1,0 +1,101 @@
+{
+  "user_id": "Subrata",
+  "date": "2026-08-19",
+  "target_calories": 2868,
+  "total_macros": {
+    "protein_g": 215,
+    "carbs_g": 358,
+    "fats_g": 63
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Scrambled Eggs with Avocado & Toast",
+      "ingredients": [
+        "3 large eggs",
+        "1/2 sliced avocado",
+        "2 slices whole wheat toast",
+        "1 cup spinach"
+      ],
+      "approx_calories": 717,
+      "reason": "High protein and healthy fats to start the day with stable blood sugar.",
+      "macros": {
+        "protein_g": 53,
+        "carbs_g": 89,
+        "fats_g": 15
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "3 large eggs",
+          "swap_option": "Chia pudding",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Lunch: Grilled Chicken Breast with Quinoa & Asparagus",
+      "ingredients": [
+        "150g grilled chicken breast",
+        "1 cup cooked quinoa",
+        "1 cup steamed asparagus",
+        "1 tbsp olive oil"
+      ],
+      "approx_calories": 1003,
+      "reason": "Lean protein source paired with complex carbs for optimal metabolic rate.",
+      "macros": {
+        "protein_g": 75,
+        "carbs_g": 125,
+        "fats_g": 22
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "150g grilled chicken breast",
+          "swap_option": "Edamame / Tofu",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Dinner: Pan-Seared Salmon with Sweet Potato & Broccoli",
+      "ingredients": [
+        "150g Atlantic salmon fillet",
+        "1 medium baked sweet potato",
+        "1.5 cups steamed broccoli"
+      ],
+      "approx_calories": 860,
+      "reason": "Rich in Omega-3 fatty acids and lean protein for anti-inflammatory muscle recovery.",
+      "macros": {
+        "protein_g": 64,
+        "carbs_g": 107,
+        "fats_g": 19
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "150g Atlantic salmon fillet",
+          "swap_option": "White fish or Lentil stew",
+          "calorie_diff": -40
+        }
+      }
+    },
+    {
+      "name": "Snack: Boiled Egg White & Almonds",
+      "ingredients": [
+        "2 boiled egg whites",
+        "15 raw almonds"
+      ],
+      "approx_calories": 286,
+      "reason": "Quick, low-carbohydrate protein booster.",
+      "macros": {
+        "protein_g": 21,
+        "carbs_g": 35,
+        "fats_g": 6
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "2 boiled egg whites",
+          "swap_option": "Mixed seeds",
+          "calorie_diff": 10
+        }
+      }
+    }
+  ]
+}

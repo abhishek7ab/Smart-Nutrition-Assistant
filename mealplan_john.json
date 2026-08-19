@@ -1,0 +1,141 @@
+{
+  "day": "Today",
+  "user_id": "John",
+  "date": "2026-08-20",
+  "bmr": 1678,
+  "tdee": 2434,
+  "target_calories": 1934,
+  "total_macros": {
+    "protein_g": 169,
+    "carbs_g": 169,
+    "fats_g": 64
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Moong Dal Chilla with Mint Chutney & Curd",
+      "ingredients": [
+        "2 moong dal chillas",
+        "75g fresh paneer filling",
+        "1 tbsp mint chutney",
+        "1 cup low-fat curd"
+      ],
+      "approx_calories": 483,
+      "reason": "High-protein vegetarian breakfast rich in bioavailable plant protein, iron, and gut-friendly probiotics.",
+      "prep_time": "10 mins",
+      "cook_time": "15 mins",
+      "difficulty": "Easy",
+      "instructions": [
+        "Soak split yellow moong dal for 30 mins, then grind into a smooth batter with ginger and green chillies.",
+        "Heat a non-stick pan with minimal oil spray and spread a ladle of batter thinly.",
+        "Sprinkle crumbled paneer and fresh coriander on top, flip gently, and cook both sides until golden brown.",
+        "Serve warm with fresh mint-coriander chutney and 1 cup of curd."
+      ],
+      "macros": {
+        "protein_g": 42,
+        "carbs_g": 42,
+        "fats_g": 16
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Paneer filling",
+          "swap_option": "Tofu & sprout stuffing",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Lunch: Paneer Tikka with Yellow Tadka Dal & Brown Rice",
+      "ingredients": [
+        "120g grilled paneer tikka",
+        "3/4 cup yellow tadka dal",
+        "3/4 cup brown rice",
+        "1 cup kachumber salad (cucumber, tomato, onion)"
+      ],
+      "approx_calories": 676,
+      "reason": "Complete amino acid profile pairing legumes with brown rice, balanced with high-calcium dairy.",
+      "prep_time": "15 mins",
+      "cook_time": "20 mins",
+      "difficulty": "Medium",
+      "instructions": [
+        "Marinate paneer cubes with curd, turmeric, cumin, garam masala, and lemon juice for 15 mins.",
+        "Grill paneer on a skillet or air fryer for 8 mins until charred at the edges.",
+        "Serve with freshly prepared yellow dal tadka, steamed brown rice, and fresh lemon kachumber."
+      ],
+      "macros": {
+        "protein_g": 59,
+        "carbs_g": 59,
+        "fats_g": 22
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Brown rice",
+          "swap_option": "2 Whole-wheat phulkas",
+          "calorie_diff": -20
+        }
+      }
+    },
+    {
+      "name": "Dinner: Palak Paneer with Whole Wheat Phulkas & Salad",
+      "ingredients": [
+        "100g paneer cubes",
+        "1.5 cups blanched spinach pur\u00e9e",
+        "2 whole wheat phulkas (no oil)",
+        "1 cup cucumber salad"
+      ],
+      "approx_calories": 580,
+      "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
+      "prep_time": "12 mins",
+      "cook_time": "15 mins",
+      "difficulty": "Easy",
+      "instructions": [
+        "Blanch washed spinach leaves in boiling water for 2 mins, then plunge into cold water and blend with green chilli.",
+        "Saut\u00e9 garlic, cumin seeds, and chopped onion in 1 tsp ghee, then pour in spinach pur\u00e9e.",
+        "Stir in soft paneer cubes and a pinch of garam masala. Simmer on low heat for 4 mins.",
+        "Serve warm with hot oil-free phulkas."
+      ],
+      "macros": {
+        "protein_g": 50,
+        "carbs_g": 50,
+        "fats_g": 19
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Paneer",
+          "swap_option": "Firm organic tofu",
+          "calorie_diff": -45
+        }
+      }
+    },
+    {
+      "name": "Snack: Sprouted Moong Chaat with Pomegranate & Lemon",
+      "ingredients": [
+        "1 cup boiled/raw sprouted moong",
+        "1/4 cup diced onion & tomato",
+        "2 tbsp pomegranate pearls",
+        "1 tsp chaat masala & lemon juice"
+      ],
+      "approx_calories": 193,
+      "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
+      "prep_time": "5 mins",
+      "cook_time": "0 mins",
+      "difficulty": "Easy",
+      "instructions": [
+        "Toss sprouted moong with diced onions, tomatoes, green chillies, and sweet pomegranate pearls.",
+        "Season with black salt, roasted cumin powder, chaat masala, and fresh lemon juice.",
+        "Garnish with fresh cilantro."
+      ],
+      "macros": {
+        "protein_g": 16,
+        "carbs_g": 16,
+        "fats_g": 6
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Moong sprouts",
+          "swap_option": "Roasted makhana & almonds",
+          "calorie_diff": 20
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "user_id": "Vegan",
+  "date": "2026-08-19",
+  "target_calories": 1926,
+  "total_macros": {
+    "protein_g": 168,
+    "carbs_g": 168,
+    "fats_g": 64
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Vegetable Poha with Peanuts & Lemon",
+      "ingredients": [
+        "1.5 cups vegetable poha",
+        "1 tbsp roasted peanuts",
+        "1/2 cup peas",
+        "curry leaves",
+        "lemon juice"
+      ],
+      "approx_calories": 481,
+      "reason": "A familiar Indian breakfast with steady carbohydrates, fiber, and plant protein.",
+      "macros": {
+        "protein_g": 42,
+        "carbs_g": 42,
+        "fats_g": 16
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "1.5 cups vegetable poha",
+          "swap_option": "Chia pudding",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Lunch: Rajma Brown Rice Bowl with Kachumber",
+      "ingredients": [
+        "1 cup rajma",
+        "1 cup brown rice",
+        "1 cup cucumber-tomato kachumber",
+        "1 tbsp coriander chutney"
+      ],
+      "approx_calories": 674,
+      "reason": "Combines beans and rice for complementary protein with fiber-rich vegetables.",
+      "macros": {
+        "protein_g": 58,
+        "carbs_g": 58,
+        "fats_g": 22
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "1 cup rajma",
+          "swap_option": "Edamame / Tofu",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Dinner: Tofu Tikka with Roti & Mixed Vegetables",
+      "ingredients": [
+        "150g tofu tikka",
+        "2 whole-wheat rotis",
+        "1 cup roasted cauliflower and bell peppers",
+        "1 tsp mustard oil"
+      ],
+      "approx_calories": 577,
+      "reason": "A dairy-free Indian dinner with iron-rich tofu and balanced plant-based protein.",
+      "macros": {
+        "protein_g": 50,
+        "carbs_g": 50,
+        "fats_g": 19
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "150g tofu tikka",
+          "swap_option": "White fish or Lentil stew",
+          "calorie_diff": -40
+        }
+      }
+    },
+    {
+      "name": "Snack: Roasted Chana & Fresh Guava",
+      "ingredients": [
+        "40g roasted chana",
+        "1 medium guava",
+        "chaat masala and lemon"
+      ],
+      "approx_calories": 192,
+      "reason": "A high-fiber, protein-rich snack using affordable Indian staples.",
+      "macros": {
+        "protein_g": 16,
+        "carbs_g": 16,
+        "fats_g": 6
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "40g roasted chana",
+          "swap_option": "Mixed seeds",
+          "calorie_diff": 10
+        }
+      }
+    }
+  ]
+}

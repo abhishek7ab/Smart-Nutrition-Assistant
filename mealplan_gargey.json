@@ -1,0 +1,86 @@
+{
+  "user_id": "Gargey",
+  "date": "2023-03-15",
+  "target_calories": 2500,
+  "meals": [
+    {
+      "name": "Breakfast: Scrambled Eggs and Whole Grain Toast",
+      "ingredients": [
+        "2 large eggs",
+        "1 slice of whole grain bread",
+        "1 tbsp olive oil",
+        "1 cup mixed vegetables (spinach, bell pepper, onion)"
+      ],
+      "approx_calories": 350,
+      "reason": "High in protein and fiber, providing sustained energy for morning activities.",
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Whole grain bread",
+          "swap_option": "Rye bread",
+          "calorie_diff": 20
+        },
+        "swap2": {
+          "original_ingredient": "Olive oil",
+          "swap_option": "Avocado oil",
+          "calorie_diff": 10
+        }
+      }
+    },
+    {
+      "name": "Lunch: Grilled Chicken Salad",
+      "ingredients": [
+        "3 oz grilled chicken breast",
+        "2 cups mixed greens",
+        "1/2 cup cherry tomatoes",
+        "1/4 cup cucumber",
+        "1 tbsp olive oil and lemon dressing",
+        "1 tbsp almonds"
+      ],
+      "approx_calories": 400,
+      "reason": "Low in calories, rich in protein and vitamins, promoting feelings of fullness.",
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Almonds",
+          "swap_option": "Sunflower seeds",
+          "calorie_diff": -20
+        }
+      }
+    },
+    {
+      "name": "Dinner: Baked Salmon with Quinoa and Steamed Broccoli",
+      "ingredients": [
+        "4 oz baked salmon",
+        "1/2 cup cooked quinoa",
+        "1 cup steamed broccoli",
+        "1 tbsp lemon butter sauce",
+        "salt, pepper to taste"
+      ],
+      "approx_calories": 500,
+      "reason": "Provides essential omega-3 fatty acids, lean protein, and fiber-rich quinoa.",
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Lemon butter sauce",
+          "swap_option": "Lemon and garlic sauce",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Snack: Greek Yogurt with Berries and Honey",
+      "ingredients": [
+        "6 oz non-fat Greek yogurt",
+        "1/2 cup mixed berries",
+        "1 tsp honey"
+      ],
+      "approx_calories": 200,
+      "reason": "Good source of protein and antioxidants, supports digestion and immune function.",
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Honey",
+          "swap_option": "Agave syrup",
+          "calorie_diff": -5
+        }
+      }
+    }
+  ]
+}

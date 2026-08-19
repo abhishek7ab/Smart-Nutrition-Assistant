@@ -1,0 +1,104 @@
+{
+  "user_id": "Veg",
+  "date": "2026-08-19",
+  "target_calories": 1905,
+  "total_macros": {
+    "protein_g": 119,
+    "carbs_g": 238,
+    "fats_g": 52
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Moong Dal Chilla with Paneer & Mint Chutney",
+      "ingredients": [
+        "2 moong dal chillas",
+        "75g paneer filling",
+        "1 tbsp mint chutney",
+        "1 cup plain curd"
+      ],
+      "approx_calories": 476,
+      "reason": "High-protein vegetarian Indian breakfast with lentils, paneer, and probiotic curd.",
+      "macros": {
+        "protein_g": 29,
+        "carbs_g": 59,
+        "fats_g": 13
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "2 moong dal chillas",
+          "swap_option": "Chia pudding",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Lunch: Paneer Tikka with Roti & Dal",
+      "ingredients": [
+        "120g paneer tikka",
+        "2 whole-wheat rotis",
+        "1 cup moong dal",
+        "1 cup seasonal vegetables"
+      ],
+      "approx_calories": 666,
+      "reason": "Provides complete protein and sustained energy from paneer, dal, and whole grains.",
+      "macros": {
+        "protein_g": 41,
+        "carbs_g": 83,
+        "fats_g": 18
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "120g paneer tikka",
+          "swap_option": "Edamame / Tofu",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Dinner: Vegetable Khichdi with Curd & Salad",
+      "ingredients": [
+        "1.5 cups moong dal khichdi",
+        "1 cup plain curd",
+        "1 cup cucumber-carrot salad",
+        "1 tsp ghee"
+      ],
+      "approx_calories": 571,
+      "reason": "A comforting, balanced Indian meal with protein, vegetables, and easy-to-digest grains.",
+      "macros": {
+        "protein_g": 35,
+        "carbs_g": 71,
+        "fats_g": 15
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "1.5 cups moong dal khichdi",
+          "swap_option": "White fish or Lentil stew",
+          "calorie_diff": -40
+        }
+      }
+    },
+    {
+      "name": "Snack: Sprouted Moong Chaat",
+      "ingredients": [
+        "1 cup sprouted moong",
+        "1/2 cup tomato and onion",
+        "1 tbsp roasted peanuts",
+        "lemon and coriander"
+      ],
+      "approx_calories": 190,
+      "reason": "A nutrient-dense vegetarian snack rich in plant protein, vitamin C, and fiber.",
+      "macros": {
+        "protein_g": 11,
+        "carbs_g": 23,
+        "fats_g": 5
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "1 cup sprouted moong",
+          "swap_option": "Mixed seeds",
+          "calorie_diff": 10
+        }
+      }
+    }
+  ]
+}

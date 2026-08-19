@@ -1,0 +1,103 @@
+{
+  "user_id": "NonVeg",
+  "date": "2026-08-19",
+  "target_calories": 3459,
+  "total_macros": {
+    "protein_g": 259,
+    "carbs_g": 432,
+    "fats_g": 76
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Masala Omelette with Roti & Curd",
+      "ingredients": [
+        "3-egg masala omelette",
+        "2 whole-wheat rotis",
+        "1/2 cup plain curd",
+        "onion, tomato, and coriander"
+      ],
+      "approx_calories": 864,
+      "reason": "A protein-forward Indian breakfast with eggs and whole grains for lasting fullness.",
+      "macros": {
+        "protein_g": 64,
+        "carbs_g": 108,
+        "fats_g": 19
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "3-egg masala omelette",
+          "swap_option": "Chia pudding",
+          "calorie_diff": -30
+        }
+      }
+    },
+    {
+      "name": "Lunch: Chicken Tikka with Jeera Rice & Salad",
+      "ingredients": [
+        "150g grilled chicken tikka",
+        "1 cup jeera rice",
+        "1 cup cucumber-onion salad",
+        "1 tbsp mint chutney"
+      ],
+      "approx_calories": 1210,
+      "reason": "Lean chicken paired with rice and fresh vegetables for a balanced Indian lunch.",
+      "macros": {
+        "protein_g": 90,
+        "carbs_g": 151,
+        "fats_g": 26
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "150g grilled chicken tikka",
+          "swap_option": "Edamame / Tofu",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Dinner: Fish Curry with Roti & Bhindi",
+      "ingredients": [
+        "160g rohu or salmon fish curry",
+        "2 whole-wheat rotis",
+        "1 cup bhindi",
+        "1/2 cup cucumber raita"
+      ],
+      "approx_calories": 1037,
+      "reason": "Provides lean protein and healthy fats with familiar Indian vegetables and whole grains.",
+      "macros": {
+        "protein_g": 77,
+        "carbs_g": 129,
+        "fats_g": 23
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "160g rohu or salmon fish curry",
+          "swap_option": "White fish or Lentil stew",
+          "calorie_diff": -40
+        }
+      }
+    },
+    {
+      "name": "Snack: Boiled Eggs with Roasted Makhana",
+      "ingredients": [
+        "2 boiled eggs",
+        "25g roasted makhana",
+        "black pepper and chaat masala"
+      ],
+      "approx_calories": 345,
+      "reason": "A practical high-protein Indian snack with a light, crunchy source of carbohydrates.",
+      "macros": {
+        "protein_g": 25,
+        "carbs_g": 43,
+        "fats_g": 7
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "2 boiled eggs",
+          "swap_option": "Mixed seeds",
+          "calorie_diff": 10
+        }
+      }
+    }
+  ]
+}
