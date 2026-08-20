@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./app.css";
 
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://127.0.0.1:8000"
+  : "/api";
+
 // SVG Circular / Donut Macro Chart Component
 function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories }) {
   const p = Number(protein_g) || 120;
@@ -321,7 +325,7 @@ function NutritionistChat({ profile }) {
         }
       };
 
-      const res = await fetch("http://127.0.0.1:8000/chat_nutritionist", {
+      const res = await fetch(`${API_BASE}/chat_nutritionist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -939,7 +943,7 @@ function App() {
           : [],
       };
 
-      const endpoint = type === "7day" ? "http://127.0.0.1:8000/generate_weekly_plan" : "http://127.0.0.1:8000/generate_plan";
+      const endpoint = type === "7day" ? `${API_BASE}/generate_weekly_plan` : `${API_BASE}/generate_plan`;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -980,7 +984,7 @@ function App() {
         meal_name: mealName,
       };
 
-      const res = await fetch("http://127.0.0.1:8000/swap_meal", {
+      const res = await fetch(`${API_BASE}/swap_meal`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
