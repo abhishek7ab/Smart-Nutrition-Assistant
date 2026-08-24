@@ -1,130 +1,426 @@
-/* styles/responsive.css - Media Queries & Mobile / Tablet Optimizations */
+/* styles/responsive.css - Comprehensive Mobile & Tablet Responsive Optimizations */
 
-@media (max-width: 768px) {
+/* Tablets & Small Laptops (<= 992px) */
+@media (max-width: 992px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 36px 0 40px 0;
+  }
+
+  .hero-left-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-subdescription {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions-group {
+    justify-content: center;
+  }
+
+  .evidence-split-section {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
   .macro-dashboard-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .stat-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .water-dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cup-container {
+    margin-bottom: 4px;
   }
 }
 
-@media (max-width: 700px) {
+/* Standard Mobile & Phablet Screens (<= 768px) */
+@media (max-width: 768px) {
   body {
-    align-items: flex-start;
-    padding: 16px 10px 90px;
-  }
-
-  .app,
-  .container {
-    min-width: 0;
-    width: 100%;
+    padding: 0 0 40px 0;
   }
 
   .container {
-    padding: 24px 16px;
-    border-radius: 18px;
-  }
-
-  .top-header {
-    align-items: flex-start;
-  }
-
-  h1 {
-    font-size: 1.85rem;
-    line-height: 1.15;
-  }
-
-  .subtitle {
-    max-width: 270px;
-    line-height: 1.45;
-  }
-
-  .header-actions,
-  .form-toolbar,
-  .btn-actions-row,
-  .field-row {
+    padding: 0 16px;
     width: 100%;
   }
 
-  .header-actions,
-  .form-toolbar {
-    flex-wrap: wrap;
+  /* 1. Header & Topbar */
+  .clinical-topbar {
+    font-size: 0.74rem;
+    padding: 6px 0;
   }
 
-  .header-actions button,
-  .form-toolbar button {
-    flex: 1;
+  .topbar-left {
+    gap: 8px;
   }
 
-  .field-row,
-  .btn-actions-row {
+  .topbar-badge {
+    display: none; /* Hide badge on mobile to prevent overflow */
+  }
+
+  .header-inner {
+    padding: 10px 14px;
+  }
+
+  .nav-links-list {
+    display: none;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
+  .theme-toggle-btn {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+  }
+
+  .btn-primary-blueprint {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* 2. Hero Section */
+  .hero-main-heading {
+    font-size: 1.95rem;
+    line-height: 1.18;
+  }
+
+  .hero-subdescription {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .hero-actions-group {
+    width: 100%;
     flex-direction: column;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 3. Archetype Circle Strip */
+  .archetypes-circle-grid {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .archetype-circle-btn {
+    min-width: 80px;
+  }
+
+  .archetype-circle-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 1.7rem;
+  }
+
+  .archetype-circle-name {
+    font-size: 0.85rem;
+  }
+
+  /* 4. Evidence / About Section */
+  .evidence-title {
+    font-size: 1.6rem;
+  }
+
+  .evidence-checklist {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* 5. 3-Step Process & Promo Cards */
+  .steps-cards-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .split-promo-banners-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .promo-banner-card {
+    padding: 24px 20px;
+    min-height: auto;
+  }
+
+  .promo-banner-title {
+    font-size: 1.5rem;
+  }
+
+  /* 6. Showcase Tabs & Grid */
+  .showcase-main-title {
+    font-size: 1.8rem;
+  }
+
+  .showcase-tabs-row {
+    gap: 12px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+
+  .showcase-tabs-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .showcase-tab-btn {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+
+  .showcase-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* 7. Profile Form */
+  .generator-header-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .generator-main-title {
+    font-size: 1.4rem;
+  }
+
+  .generator-actions {
+    width: 100%;
+  }
+
+  .btn-demo-quick,
+  .btn-reset-quick {
+    flex: 1;
+    justify-content: center;
   }
 
   .floating-form {
-    padding: 18px 14px;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .field-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .live-health-bar {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .btn-actions-row {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .generate-btn {
-    min-height: 50px;
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 0.95rem;
   }
 
-  .water-tracker-card,
-  .result-card {
-    padding: 18px 14px;
+  /* 8. Hydration Tracker */
+  .water-tracker-card {
+    padding: 20px 16px;
+    border-radius: 20px;
   }
 
-  .water-header,
-  .water-progress-text {
-    align-items: flex-start;
-    gap: 10px;
+  .water-header {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .water-controls {
-    min-width: 0;
+  .water-pct-badge {
+    align-self: flex-start;
+  }
+
+  .water-metrics-tiles {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .water-metric-box {
+    padding: 8px;
+  }
+
+  .water-metric-val {
+    font-size: 0.95rem;
+  }
+
+  .water-btn-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .water-quick-btn {
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+
+  /* 9. Nutrition Results & Meal Cards */
+  .result-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .title-row h2 {
+    font-size: 1.3rem;
+  }
+
+  .print-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .day-pills {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .stat-tiles {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .macro-chart-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .macro-breakdown-details {
     width: 100%;
   }
 
-  .water-btn {
-    flex: 1 1 140px;
+  .meal-item {
+    padding: 18px 14px;
+    border-radius: 18px;
   }
 
-  .view-tabs {
-    overflow-x: auto;
+  .meal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .tab-btn {
-    white-space: nowrap;
-    padding-inline: 12px;
+  .meal-title-group {
+    width: 100%;
+  }
+
+  .meal-title {
+    font-size: 1.1rem;
   }
 
   .meal-header-actions {
     width: 100%;
-    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
-  .meal-header-actions .recipe-btn,
-  .meal-header-actions .swap-meal-btn {
+  .cal-badge {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .recipe-btn,
+  .swap-meal-btn {
     flex: 1;
+    justify-content: center;
   }
 
-  .chat-bubble-btn {
-    padding: 11px 15px;
-  }
-
-  .floating-chat-container {
-    right: 12px;
-    bottom: 12px;
-  }
-}
-
-@media (max-width: 640px) {
   .meal-body {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* 10. Recipe Modal */
+  .recipe-modal {
+    width: 95%;
+    max-height: 90vh;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .recipe-meta-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* 11. Footer */
+  .footer-simple-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
 }
 
-@media (max-width: 480px) {
-  .recipe-meta-row {
-    grid-template-columns: repeat(2, 1fr);
+/* Extra Small Phones (<= 420px) */
+@media (max-width: 420px) {
+  .hero-main-heading {
+    font-size: 1.7rem;
+  }
+
+  .topbar-inner {
+    padding: 0 12px;
+  }
+
+  .topbar-left {
+    font-size: 0.7rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .water-metrics-tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .water-btn-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meal-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cal-badge {
+    text-align: center;
   }
 }
