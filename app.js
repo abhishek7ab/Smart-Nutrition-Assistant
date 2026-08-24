@@ -1236,8 +1236,8 @@ function App() {
     setStatusMessage("Form cleared. Start again with your latest profile details.");
   };
 
-  const loadDemoProfile = () => {
-    setForm({
+  const loadDemoProfile = (autoGenerate = false) => {
+    const demo = {
       name: "Aarav Sharma",
       age: "28",
       sex: "male",
@@ -1247,8 +1247,13 @@ function App() {
       goal: "maintain",
       diet: "indian vegetarian",
       allergies: "nuts",
-    });
-    setStatusMessage("Demo profile loaded. Generate a meal plan to preview the experience.");
+    };
+    setForm(demo);
+    if (autoGenerate) {
+      handleGeneratePlan("1day", demo);
+    } else {
+      setStatusMessage("Demo profile loaded. Click 'Generate 1-Day Plan' or 'Generate 7-Day Plan' below.");
+    }
   };
 
   useEffect(() => {
@@ -1303,8 +1308,9 @@ function App() {
 
   const liveMetrics = calculateLiveMetrics();
 
-  const handleGeneratePlan = async (type = "1day") => {
-    if (!form.name.trim() || !form.age || !form.height_cm || !form.weight_kg) {
+  const handleGeneratePlan = async (type = "1day", customProfile = null) => {
+    const activeForm = customProfile || form;
+    if (!activeForm.name.trim() || !activeForm.age || !activeForm.height_cm || !activeForm.weight_kg) {
       setStatusMessage("Please complete the required profile details (Name, Age, Height, Weight) before generating your meal plan.");
       return;
     }
@@ -1314,13 +1320,13 @@ function App() {
     setStatusMessage(type === "7day" ? "Generating full 7-day varied weekly nutrition plan..." : "Building your personalized daily nutrition plan...");
 
     const payload = {
-      ...form,
-      name: form.name.trim(),
-      age: parseInt(form.age, 10) || 25,
-      height_cm: parseFloat(form.height_cm) || 175,
-      weight_kg: parseFloat(form.weight_kg) || 70,
-      allergies: form.allergies
-        ? (Array.isArray(form.allergies) ? form.allergies : form.allergies.split(",").map((a) => a.trim()).filter(Boolean))
+      ...activeForm,
+      name: activeForm.name.trim(),
+      age: parseInt(activeForm.age, 10) || 25,
+      height_cm: parseFloat(activeForm.height_cm) || 175,
+      weight_kg: parseFloat(activeForm.weight_kg) || 70,
+      allergies: activeForm.allergies
+        ? (Array.isArray(activeForm.allergies) ? activeForm.allergies : activeForm.allergies.split(",").map((a) => a.trim()).filter(Boolean))
         : [],
     };
 
@@ -1538,8 +1544,9 @@ function App() {
             }
           }}
           onExploreDemo={() => {
-            loadDemoProfile();
-            handleGeneratePlan("1day");
+            loadDemoProfile(true);
+            const el = document.getElementById("protocol-engine");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
           }}
         />
 
@@ -1582,8 +1589,8 @@ function App() {
             </div>
 
             <div className="generator-actions">
-              <button className="btn-demo-quick" type="button" onClick={loadDemoProfile}>
-                <span>⚡</span> Fill Demo Profile
+              <button className="btn-demo-quick" type="button" onClick={() => loadDemoProfile(true)}>
+                <span>⚡</span> Fill & Generate Demo
               </button>
               <button className="btn-reset-quick" type="button" onClick={resetForm}>
                 <span>↺</span> Reset
