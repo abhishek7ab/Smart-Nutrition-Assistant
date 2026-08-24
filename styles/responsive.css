@@ -424,3 +424,52 @@
     text-align: center;
   }
 }
+
+/* Print View Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+  }
+
+  .container {
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .floating-form,
+  .water-tracker-card,
+  .form-toolbar,
+  .print-btn,
+  .recipe-btn,
+  .swap-meal-btn,
+  .status-banner,
+  .clinical-topbar,
+  .global-header,
+  .hero-section,
+  .archetypes-section,
+  .evidence-split-section,
+  .steps-workflow-section,
+  .showcase-matrix-section,
+  .institutional-footer {
+    display: none !important;
+  }
+
+  .result-card,
+  .meal-item,
+  .grocery-card {
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  h1, h2, h3, h4 {
+    -webkit-text-fill-color: initial !important;
+    color: #000000 !important;
+  }
+}

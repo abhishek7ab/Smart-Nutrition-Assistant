@@ -1,58 +1,26 @@
-/* styles/index.css - Master Modular Stylesheet Entrypoint */
+/* styles/index.css - Master Stylesheet */
 
-/* 1. Tokens, Themes, and Keyframe Animations */
+/* Core Design System & Global Layout */
 @import "./variables.css";
-
-/* 2. Global Resets, Typography & App Layout */
 @import "./base.css";
-
-/* 3. Header, Toolbar, Theme Toggler */
 @import "./header.css";
-
-/* 4. Hero Section */
-@import "./hero.css";
-
-/* 5. Dietary Framework Archetype Circles */
-@import "./archetypes.css";
-
-/* 6. About The Platform Split Section */
-@import "./evidence.css";
-
-/* 7. 3-Step Process & Promo Cards */
-@import "./steps.css";
-
-/* 8. Featured Recipe Showcase Grid */
-@import "./protocol-grid.css";
-
-/* 9. Profile Form & Live Health Metrics */
-@import "./form.css";
-
-/* 10. Hydration Tracker & Animated Cup */
-@import "./water-tracker.css";
-
-/* 11. Results Dashboard & Day Switcher */
-@import "./result-card.css";
-
-/* 12. SVG Donut Macro Chart & Nutrient Breakdown */
-@import "./macro-chart.css";
-
-/* 13. Meal Cards, Ingredient Chips, Swaps & Badges */
-@import "./meal-card.css";
-
-/* 14. Categorized Grocery Checklist & WhatsApp Export */
-@import "./grocery.css";
-
-/* 15. Cooking Instructions & Recipe Modal */
-@import "./recipe-modal.css";
-
-/* 16. Welcome Empty States & Feature Highlights */
-@import "./empty-state.css";
-
-/* 17. Clean Footer */
 @import "./footer.css";
 
-/* 18. Responsive Mobile & Tablet Layouts */
-@import "./responsive.css";
+/* Landing Page Sections */
+@import "./hero.css";
+@import "./archetypes.css";
+@import "./evidence.css";
+@import "./steps.css";
+@import "./protocol-grid.css";
 
-/* 19. Dedicated Print View Styles */
-@import "./print.css";
+/* Interactive Application Modules */
+@import "./form.css";
+@import "./water-tracker.css";
+@import "./result-card.css";
+@import "./macro-chart.css";
+@import "./meal-card.css";
+@import "./grocery.css";
+@import "./recipe-modal.css";
+
+/* Responsive & Print */
+@import "./responsive.css";
