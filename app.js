@@ -477,7 +477,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
   const targetCal = currentDayData.target_calories || plan.target_calories || 2000;
 
   return (
-    <div className="result-card">
+    <div id="results-dashboard" className="result-card">
       <div className="result-header">
         <div className="title-row">
           <div>
@@ -1365,6 +1365,12 @@ function App() {
         console.error(e);
       }
       setStatusMessage(type === "7day" ? "🎉 Your 7-Day Weekly Nutrition Plan is ready!" : "🎉 Your personalized daily nutrition plan is ready!");
+      setTimeout(() => {
+        const resEl = document.getElementById("results-dashboard");
+        if (resEl) {
+          resEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
     } else {
       setStatusMessage("Could not generate plan. Please verify your age, height, and weight inputs.");
     }
