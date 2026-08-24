@@ -953,13 +953,13 @@ function StepsSection({ onStep1Click }) {
         </div>
       </div>
 
-      {/* Single High-Impact Unified Promo Banner */}
+      {/* Single Weekly Meal Planner Card */}
       <div className="single-promo-banner">
         <div className="single-promo-content">
-          <span className="promo-badge-tag">7-Day Variety & Smart Grocery</span>
-          <h3 className="promo-banner-title">Weekly Meal Planner & Aisle-Sorted Checklist</h3>
+          <span className="promo-badge-tag">7-Day Variety</span>
+          <h3 className="promo-banner-title">Weekly Meal Planner</h3>
           <p className="promo-banner-desc">
-            Generate a full 7-day personalized nutrition routine from Monday to Sunday with step-by-step recipes and an instant categorized shopping list.
+            Get varied daily recipes from Monday to Sunday matching your exact caloric target.
           </p>
         </div>
         <button type="button" className="promo-cta-btn" onClick={onStep1Click}>
