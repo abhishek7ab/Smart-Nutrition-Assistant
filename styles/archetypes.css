@@ -1,0 +1,95 @@
+/* styles/archetypes.css - Horizontal Round Category Icons matching Screenshot 2 */
+
+.archetypes-section {
+  padding: 32px 0 48px 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 48px;
+}
+
+.archetypes-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.archetypes-tag {
+  color: var(--accent-orange);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.archetypes-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.archetypes-circle-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.archetype-circle-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  group: hover;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.archetype-circle-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--accent-green-light);
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(112, 179, 67, 0.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archetype-circle-btn:hover .archetype-circle-icon {
+  transform: translateY(-4px) scale(1.05);
+  border-color: var(--accent-green);
+  box-shadow: 0 8px 20px rgba(112, 179, 67, 0.25);
+}
+
+.archetype-circle-btn.active .archetype-circle-icon {
+  background: var(--accent-green);
+  border-color: var(--accent-green-dark);
+  box-shadow: 0 8px 24px rgba(112, 179, 67, 0.4);
+  transform: translateY(-4px);
+}
+
+.archetype-circle-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.archetype-circle-btn:hover .archetype-circle-name,
+.archetype-circle-btn.active .archetype-circle-name {
+  color: var(--accent-green-dark);
+}
+
+.archetype-circle-split {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}

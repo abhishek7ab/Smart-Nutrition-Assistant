@@ -1,0 +1,74 @@
+/* styles/variables.css - Sleek Dark Theme (Default) & Light Theme */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
+
+:root {
+  /* Default Theme: Sleek, Rich Dark Mode */
+  --bg-color: #0b1411;
+  --bg-gradient: #0b1411;
+  --card-bg: #13221c;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-light: #6b7280;
+  
+  /* Luminous Organic Accents */
+  --accent-green: #84cc16;
+  --accent-green-dark: #65a30d;
+  --accent-green-light: rgba(132, 204, 22, 0.14);
+  --accent-orange: #f97316;
+  --accent-orange-light: rgba(249, 115, 22, 0.14);
+  --accent-cyan: #10b981;
+  --accent-yellow: #f59e0b;
+  
+  --input-bg: #08100d;
+  --input-border: rgba(255, 255, 255, 0.12);
+  --inner-card-bg: #1a2c24;
+  --inner-card-border: rgba(255, 255, 255, 0.06);
+  --box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --box-shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.65);
+}
+
+.theme-light {
+  --bg-color: #fdfbf7;
+  --bg-gradient: #fdfbf7;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.06);
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --text-light: #9ca3af;
+  
+  --accent-green: #70b343;
+  --accent-green-dark: #589632;
+  --accent-green-light: #eef7e8;
+  --accent-orange: #ea580c;
+  --accent-orange-light: #fff7ed;
+  --accent-cyan: #10b981;
+  --accent-yellow: #f59e0b;
+  
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+  --inner-card-bg: #f9fafb;
+  --inner-card-border: #f3f4f6;
+  --box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --box-shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* Global Keyframe Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}

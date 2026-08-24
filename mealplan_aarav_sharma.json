@@ -1,14 +1,14 @@
 {
   "day": "Today",
   "user_id": "Aarav Sharma",
-  "date": "2026-08-19",
-  "bmr": 1717,
-  "tdee": 2490,
-  "target_calories": 2890,
+  "date": "2026-08-24",
+  "bmr": 1708,
+  "tdee": 2477,
+  "target_calories": 2877,
   "total_macros": {
-    "protein_g": 216,
-    "carbs_g": 361,
-    "fats_g": 64
+    "protein_g": 215,
+    "carbs_g": 359,
+    "fats_g": 63
   },
   "meals": [
     {
@@ -19,7 +19,7 @@
         "1 tbsp mint chutney",
         "1 cup low-fat curd"
       ],
-      "approx_calories": 722,
+      "approx_calories": 719,
       "reason": "High-protein vegetarian breakfast rich in bioavailable plant protein, iron, and gut-friendly probiotics.",
       "prep_time": "10 mins",
       "cook_time": "15 mins",
@@ -31,9 +31,9 @@
         "Serve warm with fresh mint-coriander chutney and 1 cup of curd."
       ],
       "macros": {
-        "protein_g": 54,
-        "carbs_g": 90,
-        "fats_g": 16
+        "protein_g": 53,
+        "carbs_g": 89,
+        "fats_g": 15
       },
       "swaps": {
         "swap1": {
@@ -51,7 +51,7 @@
         "3/4 cup brown rice",
         "1 cup kachumber salad (cucumber, tomato, onion)"
       ],
-      "approx_calories": 1011,
+      "approx_calories": 1006,
       "reason": "Complete amino acid profile pairing legumes with brown rice, balanced with high-calcium dairy.",
       "prep_time": "15 mins",
       "cook_time": "20 mins",
@@ -63,7 +63,7 @@
       ],
       "macros": {
         "protein_g": 75,
-        "carbs_g": 126,
+        "carbs_g": 125,
         "fats_g": 22
       },
       "swaps": {
@@ -82,7 +82,7 @@
         "2 whole wheat phulkas (no oil)",
         "1 cup cucumber salad"
       ],
-      "approx_calories": 867,
+      "approx_calories": 863,
       "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
       "prep_time": "12 mins",
       "cook_time": "15 mins",
@@ -94,8 +94,8 @@
         "Serve warm with hot oil-free phulkas."
       ],
       "macros": {
-        "protein_g": 65,
-        "carbs_g": 108,
+        "protein_g": 64,
+        "carbs_g": 107,
         "fats_g": 19
       },
       "swaps": {
@@ -114,7 +114,7 @@
         "2 tbsp pomegranate pearls",
         "1 tsp chaat masala & lemon juice"
       ],
-      "approx_calories": 289,
+      "approx_calories": 287,
       "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
       "prep_time": "5 mins",
       "cook_time": "0 mins",
@@ -126,7 +126,7 @@
       ],
       "macros": {
         "protein_g": 21,
-        "carbs_g": 36,
+        "carbs_g": 35,
         "fats_g": 6
       },
       "swaps": {

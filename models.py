@@ -16,7 +16,3 @@ class SwapRequest(BaseModel):
     profile: Profile
     meal_index: int
     meal_name: str
-
-class ChatRequest(BaseModel):
-    message: str
-    profile: Profile

@@ -1,27 +1,27 @@
 {
   "user_id": "Aarav Sharma",
-  "date": "2026-08-19",
+  "date": "2026-08-24",
   "bmr": 1717,
   "tdee": 2490,
-  "target_calories": 2890,
+  "target_calories": 2490,
   "total_macros": {
-    "protein_g": 216,
-    "carbs_g": 361,
-    "fats_g": 64
+    "protein_g": 155,
+    "carbs_g": 311,
+    "fats_g": 69
   },
   "is_weekly": true,
   "days": {
     "Monday": {
       "day": "Monday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -32,7 +32,7 @@
             "1 tbsp mint chutney",
             "1 cup low-fat curd"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "High-protein vegetarian breakfast rich in bioavailable plant protein, iron, and gut-friendly probiotics.",
           "prep_time": "10 mins",
           "cook_time": "15 mins",
@@ -44,9 +44,9 @@
             "Serve warm with fresh mint-coriander chutney and 1 cup of curd."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -64,7 +64,7 @@
             "3/4 cup brown rice",
             "1 cup kachumber salad (cucumber, tomato, onion)"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Complete amino acid profile pairing legumes with brown rice, balanced with high-calcium dairy.",
           "prep_time": "15 mins",
           "cook_time": "20 mins",
@@ -75,9 +75,9 @@
             "Serve with freshly prepared yellow dal tadka, steamed brown rice, and fresh lemon kachumber."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -95,7 +95,7 @@
             "2 whole wheat phulkas (no oil)",
             "1 cup cucumber salad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
           "prep_time": "12 mins",
           "cook_time": "15 mins",
@@ -107,9 +107,9 @@
             "Serve warm with hot oil-free phulkas."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -127,7 +127,7 @@
             "2 tbsp pomegranate pearls",
             "1 tsp chaat masala & lemon juice"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
@@ -138,8 +138,8 @@
             "Garnish with fresh cilantro."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {
@@ -155,14 +155,14 @@
     "Tuesday": {
       "day": "Tuesday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -174,7 +174,7 @@
             "1/2 cup boiled moong sprouts",
             "1 tsp mustard seeds and curry leaves"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "High in beta-glucan fiber for cholesterol control and sustained glycemic release.",
           "prep_time": "10 mins",
           "cook_time": "12 mins",
@@ -186,9 +186,9 @@
             "Add 2 cups of hot water and roasted oats, simmering for 4 minutes until thick and fluffy."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -206,7 +206,7 @@
             "1 cup steamed french beans & carrots",
             "1 cup plain raita"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Dense in plant protein, dietary fiber, magnesium, and resistant starch.",
           "prep_time": "15 mins",
           "cook_time": "25 mins",
@@ -217,9 +217,9 @@
             "Serve over fluffy cooked quinoa with lightly spiced cucumber raita and steamed vegetables."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -237,7 +237,7 @@
             "1/2 cup curd",
             "1 roasted papad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Light, highly digestible dinner promoting gut restoration and optimal recovery.",
           "prep_time": "10 mins",
           "cook_time": "20 mins",
@@ -248,9 +248,9 @@
             "Serve steaming khichdi with a dash of pure ghee, spiced baingan bharta, and curd."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -267,7 +267,7 @@
             "12 raw almonds",
             "1 cup green tea with lemon"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Rich in magnesium and antioxidants, perfect for satisfying crunch without extra calories.",
           "prep_time": "2 mins",
           "cook_time": "5 mins",
@@ -277,8 +277,8 @@
             "Pair with raw almonds and a hot cup of unsweetened green tea."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {
@@ -294,14 +294,14 @@
     "Wednesday": {
       "day": "Wednesday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -312,7 +312,7 @@
             "1 cup probiotic curd",
             "1/2 cup cucumber slices"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "Wholesome complex carbohydrates paired with slow-digesting casein protein.",
           "prep_time": "12 mins",
           "cook_time": "15 mins",
@@ -324,9 +324,9 @@
             "Enjoy with probiotic plain curd and cooling cucumber slices."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -345,7 +345,7 @@
             "1 cup mixed vegetable salad",
             "1/2 cup curd"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Massive plant protein concentration (over 25g protein from soya alone) with low fat.",
           "prep_time": "10 mins",
           "cook_time": "18 mins",
@@ -357,9 +357,9 @@
             "Serve hot with warm multigrain rotis and cooling salad."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -377,7 +377,7 @@
             "2 whole wheat phulkas (no oil)",
             "1 cup cucumber salad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
           "prep_time": "12 mins",
           "cook_time": "15 mins",
@@ -389,9 +389,9 @@
             "Serve warm with hot oil-free phulkas."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -409,7 +409,7 @@
             "2 tbsp pomegranate pearls",
             "1 tsp chaat masala & lemon juice"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
@@ -420,8 +420,8 @@
             "Garnish with fresh cilantro."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {
@@ -437,14 +437,14 @@
     "Thursday": {
       "day": "Thursday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -455,7 +455,7 @@
             "1 tbsp mint chutney",
             "1 cup low-fat curd"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "High-protein vegetarian breakfast rich in bioavailable plant protein, iron, and gut-friendly probiotics.",
           "prep_time": "10 mins",
           "cook_time": "15 mins",
@@ -467,9 +467,9 @@
             "Serve warm with fresh mint-coriander chutney and 1 cup of curd."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -487,7 +487,7 @@
             "3/4 cup brown rice",
             "1 cup kachumber salad (cucumber, tomato, onion)"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Complete amino acid profile pairing legumes with brown rice, balanced with high-calcium dairy.",
           "prep_time": "15 mins",
           "cook_time": "20 mins",
@@ -498,9 +498,9 @@
             "Serve with freshly prepared yellow dal tadka, steamed brown rice, and fresh lemon kachumber."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -518,7 +518,7 @@
             "1/2 cup curd",
             "1 roasted papad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Light, highly digestible dinner promoting gut restoration and optimal recovery.",
           "prep_time": "10 mins",
           "cook_time": "20 mins",
@@ -529,9 +529,9 @@
             "Serve steaming khichdi with a dash of pure ghee, spiced baingan bharta, and curd."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -548,7 +548,7 @@
             "12 raw almonds",
             "1 cup green tea with lemon"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Rich in magnesium and antioxidants, perfect for satisfying crunch without extra calories.",
           "prep_time": "2 mins",
           "cook_time": "5 mins",
@@ -558,8 +558,8 @@
             "Pair with raw almonds and a hot cup of unsweetened green tea."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {
@@ -575,14 +575,14 @@
     "Friday": {
       "day": "Friday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -594,7 +594,7 @@
             "1/2 cup boiled moong sprouts",
             "1 tsp mustard seeds and curry leaves"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "High in beta-glucan fiber for cholesterol control and sustained glycemic release.",
           "prep_time": "10 mins",
           "cook_time": "12 mins",
@@ -606,9 +606,9 @@
             "Add 2 cups of hot water and roasted oats, simmering for 4 minutes until thick and fluffy."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -626,7 +626,7 @@
             "1 cup steamed french beans & carrots",
             "1 cup plain raita"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Dense in plant protein, dietary fiber, magnesium, and resistant starch.",
           "prep_time": "15 mins",
           "cook_time": "25 mins",
@@ -637,9 +637,9 @@
             "Serve over fluffy cooked quinoa with lightly spiced cucumber raita and steamed vegetables."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -657,7 +657,7 @@
             "2 whole wheat phulkas (no oil)",
             "1 cup cucumber salad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
           "prep_time": "12 mins",
           "cook_time": "15 mins",
@@ -669,9 +669,9 @@
             "Serve warm with hot oil-free phulkas."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -689,7 +689,7 @@
             "2 tbsp pomegranate pearls",
             "1 tsp chaat masala & lemon juice"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
@@ -700,8 +700,8 @@
             "Garnish with fresh cilantro."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {
@@ -717,14 +717,14 @@
     "Saturday": {
       "day": "Saturday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -735,7 +735,7 @@
             "1 cup probiotic curd",
             "1/2 cup cucumber slices"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "Wholesome complex carbohydrates paired with slow-digesting casein protein.",
           "prep_time": "12 mins",
           "cook_time": "15 mins",
@@ -747,9 +747,9 @@
             "Enjoy with probiotic plain curd and cooling cucumber slices."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -768,7 +768,7 @@
             "1 cup mixed vegetable salad",
             "1/2 cup curd"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Massive plant protein concentration (over 25g protein from soya alone) with low fat.",
           "prep_time": "10 mins",
           "cook_time": "18 mins",
@@ -780,9 +780,9 @@
             "Serve hot with warm multigrain rotis and cooling salad."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -800,7 +800,7 @@
             "1/2 cup curd",
             "1 roasted papad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Light, highly digestible dinner promoting gut restoration and optimal recovery.",
           "prep_time": "10 mins",
           "cook_time": "20 mins",
@@ -811,9 +811,9 @@
             "Serve steaming khichdi with a dash of pure ghee, spiced baingan bharta, and curd."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -830,7 +830,7 @@
             "12 raw almonds",
             "1 cup green tea with lemon"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Rich in magnesium and antioxidants, perfect for satisfying crunch without extra calories.",
           "prep_time": "2 mins",
           "cook_time": "5 mins",
@@ -840,8 +840,8 @@
             "Pair with raw almonds and a hot cup of unsweetened green tea."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {
@@ -857,14 +857,14 @@
     "Sunday": {
       "day": "Sunday",
       "user_id": "Aarav Sharma",
-      "date": "2026-08-19",
+      "date": "2026-08-24",
       "bmr": 1717,
       "tdee": 2490,
-      "target_calories": 2890,
+      "target_calories": 2490,
       "total_macros": {
-        "protein_g": 216,
-        "carbs_g": 361,
-        "fats_g": 64
+        "protein_g": 155,
+        "carbs_g": 311,
+        "fats_g": 69
       },
       "meals": [
         {
@@ -875,7 +875,7 @@
             "1 tbsp mint chutney",
             "1 cup low-fat curd"
           ],
-          "approx_calories": 722,
+          "approx_calories": 622,
           "reason": "High-protein vegetarian breakfast rich in bioavailable plant protein, iron, and gut-friendly probiotics.",
           "prep_time": "10 mins",
           "cook_time": "15 mins",
@@ -887,9 +887,9 @@
             "Serve warm with fresh mint-coriander chutney and 1 cup of curd."
           ],
           "macros": {
-            "protein_g": 54,
-            "carbs_g": 90,
-            "fats_g": 16
+            "protein_g": 38,
+            "carbs_g": 77,
+            "fats_g": 17
           },
           "swaps": {
             "swap1": {
@@ -907,7 +907,7 @@
             "3/4 cup brown rice",
             "1 cup kachumber salad (cucumber, tomato, onion)"
           ],
-          "approx_calories": 1011,
+          "approx_calories": 871,
           "reason": "Complete amino acid profile pairing legumes with brown rice, balanced with high-calcium dairy.",
           "prep_time": "15 mins",
           "cook_time": "20 mins",
@@ -918,9 +918,9 @@
             "Serve with freshly prepared yellow dal tadka, steamed brown rice, and fresh lemon kachumber."
           ],
           "macros": {
-            "protein_g": 75,
-            "carbs_g": 126,
-            "fats_g": 22
+            "protein_g": 54,
+            "carbs_g": 108,
+            "fats_g": 24
           },
           "swaps": {
             "swap1": {
@@ -938,7 +938,7 @@
             "2 whole wheat phulkas (no oil)",
             "1 cup cucumber salad"
           ],
-          "approx_calories": 867,
+          "approx_calories": 747,
           "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
           "prep_time": "12 mins",
           "cook_time": "15 mins",
@@ -950,9 +950,9 @@
             "Serve warm with hot oil-free phulkas."
           ],
           "macros": {
-            "protein_g": 65,
-            "carbs_g": 108,
-            "fats_g": 19
+            "protein_g": 46,
+            "carbs_g": 93,
+            "fats_g": 20
           },
           "swaps": {
             "swap1": {
@@ -970,7 +970,7 @@
             "2 tbsp pomegranate pearls",
             "1 tsp chaat masala & lemon juice"
           ],
-          "approx_calories": 289,
+          "approx_calories": 249,
           "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
@@ -981,8 +981,8 @@
             "Garnish with fresh cilantro."
           ],
           "macros": {
-            "protein_g": 21,
-            "carbs_g": 36,
+            "protein_g": 15,
+            "carbs_g": 31,
             "fats_g": 6
           },
           "swaps": {

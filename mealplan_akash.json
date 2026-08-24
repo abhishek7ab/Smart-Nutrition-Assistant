@@ -1,0 +1,138 @@
+{
+  "day": "Today",
+  "user_id": "Akash",
+  "date": "2026-08-24",
+  "bmr": 1586,
+  "tdee": 2300,
+  "target_calories": 2300,
+  "total_macros": {
+    "protein_g": 143,
+    "carbs_g": 287,
+    "fats_g": 63
+  },
+  "meals": [
+    {
+      "name": "Breakfast: Protein Oatmeal Bowl with Chia Seeds, Almond Butter & Berries",
+      "ingredients": [
+        "1 cup rolled oats",
+        "1.5 cups unsweetened almond/soy milk",
+        "1 tbsp chia seeds",
+        "1 tbsp natural almond butter",
+        "1/2 cup fresh blueberries"
+      ],
+      "approx_calories": 575,
+      "reason": "High-fiber complex carbohydrates with healthy plant fats for continuous cognitive energy.",
+      "prep_time": "5 mins",
+      "cook_time": "8 mins",
+      "difficulty": "Easy",
+      "instructions": [
+        "Simmer rolled oats with plant milk on low heat for 5 minutes until creamy.",
+        "Stir in chia seeds, remove from heat, and transfer to a bowl.",
+        "Top with fresh blueberries and a swirl of creamy almond butter."
+      ],
+      "macros": {
+        "protein_g": 35,
+        "carbs_g": 71,
+        "fats_g": 15
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Almond butter",
+          "swap_option": "Peanut butter / Hemp seeds",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Lunch: High-Protein Chickpea & Tofu Buddha Bowl with Tahini",
+      "ingredients": [
+        "1 cup roasted chickpeas",
+        "120g grilled tofu cubes",
+        "3/4 cup brown rice or quinoa",
+        "1 cup steamed broccoli & shredded purple cabbage",
+        "1.5 tbsp lemon-tahini dressing"
+      ],
+      "approx_calories": 805,
+      "reason": "Synergistic plant proteins with calcium, iron, and healthy sesame fats.",
+      "prep_time": "15 mins",
+      "cook_time": "20 mins",
+      "difficulty": "Medium",
+      "instructions": [
+        "Toss boiled chickpeas and tofu cubes in cumin, paprika, and garlic powder; roast in pan or oven until crispy.",
+        "Arrange warm quinoa, steamed broccoli, and shredded cabbage in a bowl.",
+        "Place roasted protein on top and drizzle with lemon tahini dressing."
+      ],
+      "macros": {
+        "protein_g": 50,
+        "carbs_g": 100,
+        "fats_g": 22
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Quinoa",
+          "swap_option": "Millet / Brown rice",
+          "calorie_diff": 0
+        }
+      }
+    },
+    {
+      "name": "Dinner: Black Bean & Sweet Potato Power Bowl with Guacamole",
+      "ingredients": [
+        "1 cup seasoned black beans",
+        "1 medium roasted sweet potato",
+        "1 cup steamed kale & corn",
+        "2 tbsp homemade guacamole"
+      ],
+      "approx_calories": 690,
+      "reason": "Rich in anthocyanins, resistant starch, and potassium for cardiovascular vitality.",
+      "prep_time": "12 mins",
+      "cook_time": "18 mins",
+      "difficulty": "Easy",
+      "instructions": [
+        "Warm black beans with cumin, lime juice, and smoked paprika.",
+        "Roast sweet potato cubes until tender inside and caramelized on edges.",
+        "Assemble kale, corn, sweet potato, and beans in a bowl topped with fresh guacamole."
+      ],
+      "macros": {
+        "protein_g": 43,
+        "carbs_g": 86,
+        "fats_g": 19
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Black beans",
+          "swap_option": "Edamame beans",
+          "calorie_diff": -20
+        }
+      }
+    },
+    {
+      "name": "Snack: Roasted Edamame & Fresh Apple Slices",
+      "ingredients": [
+        "1/2 cup lightly salted roasted edamame",
+        "1 crisp green/red apple",
+        "1 cup green tea"
+      ],
+      "approx_calories": 230,
+      "reason": "Complete plant protein snack with pectin fiber for hunger control.",
+      "prep_time": "2 mins",
+      "cook_time": "0 mins",
+      "difficulty": "Easy",
+      "instructions": [
+        "Snack on crunchy roasted edamame beans alongside freshly sliced apple."
+      ],
+      "macros": {
+        "protein_g": 14,
+        "carbs_g": 28,
+        "fats_g": 6
+      },
+      "swaps": {
+        "swap1": {
+          "original_ingredient": "Edamame",
+          "swap_option": "Roasted chickpeas",
+          "calorie_diff": 10
+        }
+      }
+    }
+  ]
+}

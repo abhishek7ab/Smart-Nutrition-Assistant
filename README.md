@@ -18,7 +18,6 @@ Built using:
 ✅ **Dynamic Macro Donut Charts**: Live visual breakdown of Protein, Carbs, and Healthy Fats.
 ✅ **Interactive Daily Hydration Tracker**: Personalized water targets with animated water cup logging.
 ✅ **Step-by-Step Cooking Recipes**: Cook times, prep times, difficulty tags, and full instructions modal.
-✅ **Floating AI Nutritionist Chatbot**: Real-time Q&A assistant for pre/post workout nutrition and supplements.
 ✅ **Dark & Light Mode Switcher**: Seamless toggle between sleek Dark Glassmorphism and clean Light mode.
 ✅ **Categorized Grocery Checklist with WhatsApp Export**: One-click checklist copying for WhatsApp or Notes.
 ✅ **Supports Multiple Fitness Goals**: Weight Loss (Deficit), Muscle Gain (Surplus), Weight Maintenance.

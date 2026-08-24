@@ -1,0 +1,130 @@
+/* styles/responsive.css - Media Queries & Mobile / Tablet Optimizations */
+
+@media (max-width: 768px) {
+  .macro-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  body {
+    align-items: flex-start;
+    padding: 16px 10px 90px;
+  }
+
+  .app,
+  .container {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .container {
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+
+  .top-header {
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    max-width: 270px;
+    line-height: 1.45;
+  }
+
+  .header-actions,
+  .form-toolbar,
+  .btn-actions-row,
+  .field-row {
+    width: 100%;
+  }
+
+  .header-actions,
+  .form-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .header-actions button,
+  .form-toolbar button {
+    flex: 1;
+  }
+
+  .field-row,
+  .btn-actions-row {
+    flex-direction: column;
+  }
+
+  .floating-form {
+    padding: 18px 14px;
+  }
+
+  .generate-btn {
+    min-height: 50px;
+  }
+
+  .water-tracker-card,
+  .result-card {
+    padding: 18px 14px;
+  }
+
+  .water-header,
+  .water-progress-text {
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .water-controls {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .water-btn {
+    flex: 1 1 140px;
+  }
+
+  .view-tabs {
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    white-space: nowrap;
+    padding-inline: 12px;
+  }
+
+  .meal-header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .meal-header-actions .recipe-btn,
+  .meal-header-actions .swap-meal-btn {
+    flex: 1;
+  }
+
+  .chat-bubble-btn {
+    padding: 11px 15px;
+  }
+
+  .floating-chat-container {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .meal-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-meta-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

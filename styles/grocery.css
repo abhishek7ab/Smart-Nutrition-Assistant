@@ -1,0 +1,91 @@
+/* styles/grocery.css - Categorized Grocery Checklist & Clipboard Export */
+
+.grocery-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.grocery-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.grocery-toolbar h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.copy-grocery-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-grocery-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.6);
+}
+
+.grocery-feedback {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--accent-green);
+  color: var(--accent-green);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.grocery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.grocery-card {
+  background: var(--card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.grocery-card h4 {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--inner-card-border);
+  padding-bottom: 6px;
+}
+
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.checklist li.checked span {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  opacity: 0.6;
+}

@@ -1,0 +1,56 @@
+/* styles/footer.css - Minimal, Clean Footer matching Reference Site */
+
+.institutional-footer {
+  margin-top: 56px;
+  padding: 32px 0 24px 0;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.footer-brand-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-brand-title span {
+  color: var(--accent-green);
+}
+
+.footer-simple-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-simple-links button,
+.footer-simple-links a {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-simple-links button:hover,
+.footer-simple-links a:hover {
+  color: var(--accent-green);
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

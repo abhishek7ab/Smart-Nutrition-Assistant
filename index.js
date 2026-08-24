@@ -2,7 +2,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./app.js";   // loads your existing app.js (keeps extension unchanged)
-import "./app.css";          // only if you have this file; otherwise remove
+import "./styles/index.css";
 
 const rootEl = document.getElementById("root");
 if (!rootEl) {

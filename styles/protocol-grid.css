@@ -1,0 +1,154 @@
+/* styles/protocol-grid.css - Tabbed Showcase Grid matching Screenshot 4 */
+
+.showcase-matrix-section {
+  padding: 48px 0;
+  margin-bottom: 48px;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.showcase-subtitle-tag {
+  color: var(--accent-orange);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.showcase-main-title {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.showcase-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 28px auto;
+  line-height: 1.5;
+}
+
+/* Category Underline Tabs */
+.showcase-tabs-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.showcase-tab-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px 4px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.showcase-tab-btn:hover {
+  color: var(--text-main);
+}
+
+.showcase-tab-btn.active {
+  color: var(--text-main);
+}
+
+.showcase-tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-orange);
+  border-radius: 2px;
+}
+
+/* 4 Product / Meal Cards Grid */
+.showcase-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.showcase-item-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 0.25s ease;
+}
+
+.showcase-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.showcase-item-visual {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.showcase-item-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.showcase-item-meta {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  margin-bottom: 16px;
+}
+
+.showcase-item-btn {
+  background: transparent;
+  color: var(--text-main);
+  border: 1.5px solid var(--accent-green);
+  padding: 7px 20px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.showcase-item-btn:hover {
+  background: var(--accent-green);
+  color: #ffffff;
+}
+
+@media (max-width: 960px) {
+  .showcase-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .showcase-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

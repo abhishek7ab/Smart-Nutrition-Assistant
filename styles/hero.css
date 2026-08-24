@@ -1,0 +1,177 @@
+/* styles/hero.css - Clean, Fresh Hero Section matching Sleek Dark Layout */
+
+.hero-section {
+  padding: 56px 0 48px 0;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-eyebrow-pill {
+  color: var(--accent-orange);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+
+.hero-main-heading {
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.hero-main-heading span {
+  color: var(--accent-green);
+}
+
+.hero-subdescription {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 540px;
+}
+
+.hero-actions-group {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+  background: var(--accent-green);
+  color: #0b1411;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 28px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 18px rgba(132, 204, 22, 0.35);
+}
+
+.btn-hero-primary:hover {
+  background: #a3e635;
+  transform: translateY(-2px);
+}
+
+.btn-hero-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 1.5px solid var(--card-border);
+  padding: 12px 24px;
+  border-radius: 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-hero-secondary:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  background: var(--accent-orange-light);
+}
+
+/* Right Side Hero Visual Card */
+.hero-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-produce-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: var(--box-shadow-hover);
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card-banner-bg {
+  background: linear-gradient(135deg, var(--accent-green-light) 0%, rgba(249, 115, 22, 0.12) 100%);
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.hero-basket-icon {
+  font-size: 4rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.hero-card-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.hero-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.hero-macro-pill-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.hero-macro-box {
+  background: var(--inner-card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.hero-macro-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.hero-macro-val {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding: 36px 0;
+    gap: 32px;
+  }
+}

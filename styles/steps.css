@@ -1,0 +1,156 @@
+/* styles/steps.css - 3-Step Process & Split Promo Cards matching Screenshot 3 */
+
+.steps-workflow-section {
+  padding: 48px 0;
+  margin-bottom: 48px;
+}
+
+.steps-intro-text {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px auto;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.steps-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.step-flow-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.step-icon-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--accent-orange-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 16px rgba(234, 88, 12, 0.12);
+}
+
+.step-title-num {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.step-title-num span.num {
+  color: var(--accent-orange);
+  margin-right: 4px;
+}
+
+.step-description-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+/* 2 Large Side-by-Side Split Promo Cards (Green & Orange) */
+.split-promo-banners-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.promo-banner-card {
+  border-radius: 24px;
+  padding: 36px 32px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  box-shadow: var(--box-shadow-hover);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.promo-banner-card:hover {
+  transform: translateY(-3px);
+}
+
+.promo-banner-card.green-card {
+  background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+}
+
+.promo-banner-card.orange-card {
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+}
+
+.promo-badge-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.promo-banner-title {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.promo-banner-desc {
+  font-size: 0.92rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  max-width: 360px;
+  line-height: 1.4;
+}
+
+.promo-cta-btn {
+  background: #ffffff;
+  color: var(--text-main);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.promo-banner-card.green-card .promo-cta-btn {
+  color: #2d6a4f;
+}
+
+.promo-banner-card.orange-card .promo-cta-btn {
+  color: #ea580c;
+}
+
+.promo-cta-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 860px) {
+  .steps-cards-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .split-promo-banners-grid {
+    grid-template-columns: 1fr;
+  }
+}
