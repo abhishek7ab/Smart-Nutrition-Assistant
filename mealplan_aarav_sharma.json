@@ -2,13 +2,13 @@
   "day": "Today",
   "user_id": "Aarav Sharma",
   "date": "2026-08-24",
-  "bmr": 1708,
-  "tdee": 2477,
-  "target_calories": 2877,
+  "bmr": 1717,
+  "tdee": 2490,
+  "target_calories": 2490,
   "total_macros": {
-    "protein_g": 215,
-    "carbs_g": 359,
-    "fats_g": 63
+    "protein_g": 155,
+    "carbs_g": 311,
+    "fats_g": 69
   },
   "meals": [
     {
@@ -19,7 +19,7 @@
         "1 tbsp mint chutney",
         "1 cup low-fat curd"
       ],
-      "approx_calories": 719,
+      "approx_calories": 622,
       "reason": "High-protein vegetarian breakfast rich in bioavailable plant protein, iron, and gut-friendly probiotics.",
       "prep_time": "10 mins",
       "cook_time": "15 mins",
@@ -31,9 +31,9 @@
         "Serve warm with fresh mint-coriander chutney and 1 cup of curd."
       ],
       "macros": {
-        "protein_g": 53,
-        "carbs_g": 89,
-        "fats_g": 15
+        "protein_g": 38,
+        "carbs_g": 77,
+        "fats_g": 17
       },
       "swaps": {
         "swap1": {
@@ -51,7 +51,7 @@
         "3/4 cup brown rice",
         "1 cup kachumber salad (cucumber, tomato, onion)"
       ],
-      "approx_calories": 1006,
+      "approx_calories": 871,
       "reason": "Complete amino acid profile pairing legumes with brown rice, balanced with high-calcium dairy.",
       "prep_time": "15 mins",
       "cook_time": "20 mins",
@@ -62,9 +62,9 @@
         "Serve with freshly prepared yellow dal tadka, steamed brown rice, and fresh lemon kachumber."
       ],
       "macros": {
-        "protein_g": 75,
-        "carbs_g": 125,
-        "fats_g": 22
+        "protein_g": 54,
+        "carbs_g": 108,
+        "fats_g": 24
       },
       "swaps": {
         "swap1": {
@@ -82,7 +82,7 @@
         "2 whole wheat phulkas (no oil)",
         "1 cup cucumber salad"
       ],
-      "approx_calories": 863,
+      "approx_calories": 747,
       "reason": "Rich in lutein, iron, and magnesium to promote restful sleep and night muscle synthesis.",
       "prep_time": "12 mins",
       "cook_time": "15 mins",
@@ -94,9 +94,9 @@
         "Serve warm with hot oil-free phulkas."
       ],
       "macros": {
-        "protein_g": 64,
-        "carbs_g": 107,
-        "fats_g": 19
+        "protein_g": 46,
+        "carbs_g": 93,
+        "fats_g": 20
       },
       "swaps": {
         "swap1": {
@@ -114,7 +114,7 @@
         "2 tbsp pomegranate pearls",
         "1 tsp chaat masala & lemon juice"
       ],
-      "approx_calories": 287,
+      "approx_calories": 249,
       "reason": "Low glycemic load, high dietary fiber, and active digestive enzymes.",
       "prep_time": "5 mins",
       "cook_time": "0 mins",
@@ -125,8 +125,8 @@
         "Garnish with fresh cilantro."
       ],
       "macros": {
-        "protein_g": 21,
-        "carbs_g": 35,
+        "protein_g": 15,
+        "carbs_g": 31,
         "fats_g": 6
       },
       "swaps": {
