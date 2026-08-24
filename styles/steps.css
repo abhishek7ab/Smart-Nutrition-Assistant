@@ -1,4 +1,4 @@
-/* styles/steps.css - 3-Step Process & Split Promo Cards matching Screenshot 3 */
+/* styles/steps.css - 3-Step Process & Single High-Impact Promo Banner */
 
 .steps-workflow-section {
   padding: 48px 0;
@@ -27,6 +27,17 @@
   align-items: center;
   text-align: center;
   padding: 20px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  transition: all 0.25s ease;
+}
+
+.step-flow-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(132, 204, 22, 0.4);
+  box-shadow: var(--box-shadow-hover);
 }
 
 .step-icon-badge {
@@ -61,96 +72,101 @@
   max-width: 280px;
 }
 
-/* 2 Large Side-by-Side Split Promo Cards (Green & Orange) */
-.split-promo-banners-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.promo-banner-card {
-  border-radius: 24px;
-  padding: 36px 32px;
+/* Single High-Impact Unified Promo Banner Card */
+.single-promo-banner {
+  background: linear-gradient(135deg, #12281e 0%, #17382a 60%, #204e3b 100%);
+  border: 1.5px solid rgba(132, 204, 22, 0.3);
+  border-radius: 26px;
+  padding: 36px 44px;
   color: #ffffff;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  min-height: 220px;
-  box-shadow: var(--box-shadow-hover);
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
 }
 
-.promo-banner-card:hover {
+.single-promo-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-orange), #38bdf8);
+}
+
+.single-promo-banner:hover {
   transform: translateY(-3px);
+  border-color: rgba(132, 204, 22, 0.5);
 }
 
-.promo-banner-card.green-card {
-  background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
-}
-
-.promo-banner-card.orange-card {
-  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+.single-promo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 650px;
 }
 
 .promo-badge-tag {
-  font-size: 0.85rem;
-  font-weight: 700;
-  opacity: 0.9;
-  margin-bottom: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--accent-green);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 .promo-banner-title {
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-  font-weight: 800;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 900;
   color: #ffffff;
-  margin-bottom: 12px;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .promo-banner-desc {
   font-size: 0.92rem;
-  opacity: 0.9;
-  margin-bottom: 20px;
-  max-width: 360px;
-  line-height: 1.4;
+  color: #cbd5e1;
+  line-height: 1.5;
 }
 
 .promo-cta-btn {
-  background: #ffffff;
-  color: var(--text-main);
+  background: var(--accent-green);
+  color: #0b1411;
   border: none;
-  padding: 10px 20px;
+  padding: 14px 28px;
   border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.88rem;
+  font-weight: 800;
+  font-size: 0.95rem;
   cursor: pointer;
-  width: fit-content;
+  white-space: nowrap;
   transition: all 0.2s ease;
-}
-
-.promo-banner-card.green-card .promo-cta-btn {
-  color: #2d6a4f;
-}
-
-.promo-banner-card.orange-card .promo-cta-btn {
-  color: #ea580c;
+  box-shadow: 0 6px 18px rgba(132, 204, 22, 0.35);
+  flex-shrink: 0;
 }
 
 .promo-cta-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  background: #a3e635;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 860px) {
   .steps-cards-row {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .single-promo-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 22px;
     gap: 20px;
   }
-  .split-promo-banners-grid {
-    grid-template-columns: 1fr;
+
+  .promo-cta-btn {
+    width: 100%;
+    text-align: center;
   }
 }

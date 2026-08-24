@@ -953,33 +953,18 @@ function StepsSection({ onStep1Click }) {
         </div>
       </div>
 
-      {/* 2 Split Promo Cards */}
-      <div className="split-promo-banners-grid">
-        <div className="promo-banner-card green-card">
-          <div>
-            <span className="promo-badge-tag">7-Day Variety</span>
-            <h3 className="promo-banner-title">Weekly Meal Planner</h3>
-            <p className="promo-banner-desc">
-              Get varied daily recipes from Monday to Sunday matching your exact caloric target.
-            </p>
-          </div>
-          <button type="button" className="promo-cta-btn" onClick={onStep1Click}>
-            Generate 7-Day Plan →
-          </button>
+      {/* Single High-Impact Unified Promo Banner */}
+      <div className="single-promo-banner">
+        <div className="single-promo-content">
+          <span className="promo-badge-tag">7-Day Variety & Smart Grocery</span>
+          <h3 className="promo-banner-title">Weekly Meal Planner & Aisle-Sorted Checklist</h3>
+          <p className="promo-banner-desc">
+            Generate a full 7-day personalized nutrition routine from Monday to Sunday with step-by-step recipes and an instant categorized shopping list.
+          </p>
         </div>
-
-        <div className="promo-banner-card orange-card">
-          <div>
-            <span className="promo-badge-tag">Smart Grocery</span>
-            <h3 className="promo-banner-title">Aisle-Sorted Checklist</h3>
-            <p className="promo-banner-desc">
-              Instant organized shopping list categorized into produce, proteins, and pantry essentials.
-            </p>
-          </div>
-          <button type="button" className="promo-cta-btn" onClick={onStep1Click}>
-            View Grocery List →
-          </button>
-        </div>
+        <button type="button" className="promo-cta-btn" onClick={onStep1Click}>
+          Generate 7-Day Plan →
+        </button>
       </div>
     </section>
   );
