@@ -1,11 +1,17 @@
-/* styles/responsive.css - Comprehensive Mobile & Tablet Responsive Optimizations */
+/* styles/responsive.css - Pixel-Perfect Mobile, Phablet & Tablet Optimizations */
 
-/* Tablets & Small Laptops (<= 992px) */
+/* ==========================================================================
+   1. TABLETS & SMALL LAPTOPS (<= 992px)
+   ========================================================================== */
 @media (max-width: 992px) {
+  .app {
+    padding: 0 16px 40px 16px;
+  }
+
   .hero-section {
     grid-template-columns: 1fr;
-    gap: 36px;
-    padding: 36px 0 40px 0;
+    gap: 32px;
+    padding: 32px 0 36px 0;
   }
 
   .hero-left-content {
@@ -24,7 +30,7 @@
 
   .evidence-split-section {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
   }
 
   .macro-dashboard-grid {
@@ -44,35 +50,68 @@
   .cup-container {
     margin-bottom: 4px;
   }
+
+  .single-promo-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+    gap: 20px;
+  }
+
+  .promo-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
-/* Standard Mobile & Phablet Screens (<= 768px) */
+/* ==========================================================================
+   2. STANDARD SMARTPHONES & PHABLETS (<= 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
-    padding: 0 0 40px 0;
+    padding: 0 0 36px 0;
+  }
+
+  .app {
+    padding: 0 12px 32px 12px;
   }
 
   .container {
-    padding: 0 16px;
+    padding: 0;
     width: 100%;
   }
 
-  /* 1. Header & Topbar */
+  /* --- Topbar & Header --- */
   .clinical-topbar {
-    font-size: 0.74rem;
-    padding: 6px 0;
+    font-size: 0.72rem;
+    padding: 5px 0;
+  }
+
+  .topbar-inner {
+    padding: 0 12px;
   }
 
   .topbar-left {
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .topbar-badge {
-    display: none; /* Hide badge on mobile to prevent overflow */
+    display: none;
+  }
+
+  .global-header {
+    top: 0;
   }
 
   .header-inner {
-    padding: 10px 14px;
+    padding: 8px 12px;
   }
 
   .nav-links-list {
@@ -80,7 +119,7 @@
   }
 
   .brand-title {
-    font-size: 1.15rem;
+    font-size: 1.12rem;
   }
 
   .brand-icon-wrapper {
@@ -89,100 +128,291 @@
     font-size: 1.1rem;
   }
 
+  .nav-action-matrix {
+    gap: 8px;
+  }
+
   .theme-toggle-btn {
     padding: 6px 10px;
-    font-size: 0.76rem;
+    font-size: 0.75rem;
+    border-radius: 14px;
   }
 
   .btn-primary-blueprint {
-    padding: 7px 14px;
-    font-size: 0.8rem;
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    border-radius: 14px;
   }
 
-  /* 2. Hero Section */
+  /* --- Hero Section --- */
+  .hero-section {
+    padding: 24px 0 32px 0;
+    gap: 24px;
+  }
+
+  .hero-eyebrow-pill {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
   .hero-main-heading {
-    font-size: 1.95rem;
-    line-height: 1.18;
+    font-size: clamp(1.85rem, 6.5vw, 2.4rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
   }
 
   .hero-subdescription {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1.5;
+    margin-bottom: 20px;
   }
 
   .hero-actions-group {
     width: 100%;
     flex-direction: column;
+    gap: 10px;
   }
 
   .btn-hero-primary,
   .btn-hero-secondary {
     width: 100%;
+    min-height: 48px;
     justify-content: center;
+    font-size: 0.95rem;
+    border-radius: 16px;
   }
 
-  /* 3. Archetype Circle Strip */
+  .hero-produce-card {
+    padding: 20px 16px;
+    border-radius: 22px;
+    max-width: 100%;
+  }
+
+  .hero-card-banner-bg {
+    padding: 16px 12px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+  }
+
+  .hero-basket-icon {
+    font-size: 3rem;
+    margin-bottom: 4px;
+  }
+
+  .hero-card-title {
+    font-size: 1.05rem;
+  }
+
+  .hero-card-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .hero-macro-pill-row {
+    gap: 6px;
+  }
+
+  .hero-macro-box {
+    padding: 8px 4px;
+    border-radius: 10px;
+  }
+
+  .hero-macro-label {
+    font-size: 0.68rem;
+  }
+
+  .hero-macro-val {
+    font-size: 0.88rem;
+  }
+
+  /* --- Dietary Framework Strip (Swipeable Carousel) --- */
+  .archetypes-section {
+    padding: 24px 0 32px 0;
+    margin-bottom: 32px;
+  }
+
+  .archetypes-title {
+    font-size: 1.25rem;
+  }
+
   .archetypes-circle-grid {
-    gap: 16px;
-    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 8px 4px 14px 4px;
+    justify-content: flex-start;
+    scrollbar-width: none;
+  }
+
+  .archetypes-circle-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .archetype-circle-btn {
-    min-width: 80px;
+    scroll-snap-align: start;
+    min-width: 82px;
+    flex-shrink: 0;
   }
 
   .archetype-circle-icon {
-    width: 64px;
-    height: 64px;
-    font-size: 1.7rem;
+    width: 60px;
+    height: 60px;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
   }
 
   .archetype-circle-name {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
-  /* 4. Evidence / About Section */
+  .archetype-circle-split {
+    font-size: 0.66rem;
+  }
+
+  /* --- About Section --- */
+  .evidence-split-section {
+    padding: 28px 0;
+    margin-bottom: 32px;
+    gap: 24px;
+  }
+
+  .evidence-visual-col {
+    gap: 10px;
+  }
+
+  .evidence-img-card {
+    height: 180px;
+    padding: 14px 10px;
+    border-radius: 16px;
+  }
+
+  .evidence-img-card.tall {
+    height: 180px;
+    margin-top: 0;
+  }
+
+  .evidence-card-emoji {
+    font-size: 2.4rem;
+    margin-bottom: 6px;
+  }
+
+  .evidence-card-title {
+    font-size: 0.9rem;
+  }
+
+  .evidence-card-desc {
+    font-size: 0.72rem;
+  }
+
   .evidence-title {
-    font-size: 1.6rem;
+    font-size: 1.45rem;
+  }
+
+  .evidence-lead {
+    font-size: 0.88rem;
+    margin-bottom: 16px;
   }
 
   .evidence-checklist {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 8px;
+    margin-bottom: 16px;
   }
 
-  /* 5. 3-Step Process & Promo Cards */
+  .evidence-check-item {
+    font-size: 0.84rem;
+    gap: 8px;
+  }
+
+  .evidence-footnote {
+    font-size: 0.78rem;
+  }
+
+  /* --- 3-Step Process & Promo Banner --- */
+  .steps-workflow-section {
+    padding: 28px 0;
+    margin-bottom: 32px;
+  }
+
+  .steps-intro-text {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
   .steps-cards-row {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
+    margin-bottom: 24px;
   }
 
-  .split-promo-banners-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .step-flow-card {
+    padding: 16px 14px;
+    border-radius: 16px;
   }
 
-  .promo-banner-card {
-    padding: 24px 20px;
-    min-height: auto;
+  .step-icon-badge {
+    width: 56px;
+    height: 56px;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  .step-title-num {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .step-description-text {
+    font-size: 0.82rem;
+  }
+
+  .single-promo-banner {
+    padding: 22px 18px;
+    border-radius: 20px;
+    gap: 16px;
   }
 
   .promo-banner-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 
-  /* 6. Showcase Tabs & Grid */
+  .promo-banner-desc {
+    font-size: 0.84rem;
+  }
+
+  .promo-cta-btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 0.92rem;
+    border-radius: 16px;
+  }
+
+  /* --- Featured Recipes Showcase --- */
+  .showcase-matrix-section {
+    padding: 28px 0;
+    margin-bottom: 32px;
+  }
+
   .showcase-main-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+  }
+
+  .showcase-desc {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
   }
 
   .showcase-tabs-row {
-    gap: 12px;
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 10px;
     justify-content: flex-start;
     padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
+    margin-bottom: 20px;
     scrollbar-width: none;
   }
 
@@ -192,49 +422,108 @@
 
   .showcase-tab-btn {
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 6px 4px;
+    flex-shrink: 0;
   }
 
   .showcase-cards-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  /* 7. Profile Form */
-  .generator-header-bar {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 14px;
   }
 
+  .showcase-item-card {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .showcase-item-visual {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .showcase-item-name {
+    font-size: 1rem;
+  }
+
+  .showcase-item-btn {
+    min-height: 42px;
+  }
+
+  /* --- Generator Profile Form --- */
+  .generator-section {
+    padding-top: 24px;
+  }
+
+  .generator-header-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
   .generator-main-title {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+  }
+
+  .generator-subtitle {
+    font-size: 0.84rem;
   }
 
   .generator-actions {
     width: 100%;
+    display: flex;
+    gap: 8px;
   }
 
   .btn-demo-quick,
   .btn-reset-quick {
     flex: 1;
+    min-height: 42px;
     justify-content: center;
+    font-size: 0.8rem;
+    border-radius: 12px;
   }
 
   .floating-form {
-    padding: 20px 16px;
+    padding: 18px 14px;
     border-radius: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
   }
 
   .field-row {
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .field label {
+    font-size: 0.78rem;
+  }
+
+  .field input,
+  .field select {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+    padding: 12px 14px;
+    border-radius: 12px;
+    min-height: 46px;
   }
 
   .live-health-bar {
     grid-template-columns: 1fr;
-    padding: 14px;
-    gap: 10px;
+    padding: 12px 14px;
+    gap: 8px;
+    border-radius: 14px;
+  }
+
+  .stat-title {
+    font-size: 0.68rem;
+  }
+
+  .stat-val {
+    font-size: 1rem;
   }
 
   .btn-actions-row {
@@ -244,37 +533,72 @@
 
   .generate-btn {
     width: 100%;
-    padding: 14px 18px;
+    min-height: 50px;
     font-size: 0.95rem;
+    border-radius: 16px;
   }
 
-  /* 8. Hydration Tracker */
+  /* --- Hydration Tracker --- */
   .water-tracker-card {
-    padding: 20px 16px;
+    padding: 18px 14px;
     border-radius: 20px;
+    margin-bottom: 24px;
   }
 
   .water-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .water-icon-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+
+  .water-title-wrap h3 {
+    font-size: 1.05rem;
+  }
+
+  .water-subtitle {
+    font-size: 0.78rem;
   }
 
   .water-pct-badge {
-    align-self: flex-start;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+  }
+
+  .water-dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .glass-cup {
+    width: 70px;
+    height: 95px;
   }
 
   .water-metrics-tiles {
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
 
   .water-metric-box {
-    padding: 8px;
+    padding: 8px 6px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .water-metric-lbl {
+    font-size: 0.66rem;
   }
 
   .water-metric-val {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
 
   .water-btn-grid {
@@ -285,52 +609,122 @@
   .water-quick-btn {
     padding: 10px 8px;
     font-size: 0.8rem;
+    min-height: 42px;
+    border-radius: 12px;
   }
 
-  /* 9. Nutrition Results & Meal Cards */
+  /* --- Results Dashboard & Meal Cards --- */
   .result-card {
-    padding: 20px 16px;
+    padding: 18px 14px;
     border-radius: 20px;
+    margin-top: 20px;
+  }
+
+  .result-header {
+    padding-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .title-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    margin-bottom: 16px;
   }
 
   .title-row h2 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+  }
+
+  .plan-subtitle {
+    font-size: 0.8rem;
   }
 
   .print-btn {
     width: 100%;
     justify-content: center;
+    min-height: 42px;
+  }
+
+  .view-tabs {
+    gap: 8px;
+  }
+
+  .tab-btn {
+    padding: 8px 14px;
+    font-size: 0.84rem;
+    border-radius: 12px;
+  }
+
+  .day-selector-row {
+    padding: 10px 12px;
+    border-radius: 14px;
+    margin-bottom: 16px;
   }
 
   .day-pills {
     -webkit-overflow-scrolling: touch;
+    gap: 6px;
     scrollbar-width: none;
   }
 
-  .stat-tiles {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .day-pill {
+    padding: 6px 12px;
+    min-width: 60px;
+    border-radius: 10px;
+  }
+
+  .day-pill .day-name {
+    font-size: 0.8rem;
+  }
+
+  .day-pill .day-cal {
+    font-size: 0.66rem;
   }
 
   .macro-chart-wrapper {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 16px;
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .donut-chart-box {
+    width: 110px;
+    height: 110px;
   }
 
   .macro-breakdown-details {
     width: 100%;
+    gap: 6px;
+  }
+
+  .macro-detail-pill {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  .stat-tiles {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .stat-tile {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .stat-tile-val {
+    font-size: 1.15rem;
+  }
+
+  .meals-list {
+    gap: 14px;
   }
 
   .meal-item {
-    padding: 18px 14px;
+    padding: 16px 12px;
     border-radius: 18px;
   }
 
@@ -338,70 +732,199 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
   }
 
   .meal-title-group {
     width: 100%;
+    gap: 12px;
+  }
+
+  .meal-emoji-badge {
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+    border-radius: 12px;
+  }
+
+  .meal-slot-tag {
+    font-size: 0.68rem;
   }
 
   .meal-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+  }
+
+  .meal-meta-tags {
+    gap: 6px;
+  }
+
+  .meal-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
   }
 
   .meal-header-actions {
     width: 100%;
-    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .cal-badge {
+    font-size: 0.82rem;
     padding: 6px 10px;
-    font-size: 0.85rem;
+    border-radius: 10px;
   }
 
   .recipe-btn,
   .swap-meal-btn {
     flex: 1;
     justify-content: center;
+    padding: 7px 10px;
+    font-size: 0.78rem;
+    border-radius: 10px;
+    min-height: 38px;
   }
 
   .meal-body {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
-  /* 10. Recipe Modal */
+  .ingr-chips-wrap {
+    gap: 6px;
+  }
+
+  .ingr-chip {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    border-radius: 8px;
+  }
+
+  .reason-box {
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+
+  .reason-text {
+    font-size: 0.78rem;
+  }
+
+  .meal-mini-macros {
+    gap: 6px;
+  }
+
+  .macro-mini-pill {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* --- Grocery Section --- */
+  .grocery-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .copy-grocery-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 42px;
+  }
+
+  .grocery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* --- Step-by-Step Recipe Modal --- */
   .recipe-modal {
     width: 95%;
     max-height: 90vh;
     padding: 20px 16px;
-    border-radius: 20px;
+    border-radius: 22px;
+  }
+
+  .recipe-modal-header h2 {
+    font-size: 1.15rem;
   }
 
   .recipe-meta-row {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    margin-bottom: 16px;
   }
 
-  /* 11. Footer */
+  .meta-item {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .meta-label {
+    font-size: 0.68rem;
+  }
+
+  .meta-item strong {
+    font-size: 0.85rem;
+  }
+
+  .cooking-steps-list {
+    gap: 10px;
+  }
+
+  .step-item {
+    gap: 10px;
+  }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .step-text {
+    font-size: 0.82rem;
+  }
+
+  /* --- Minimal Footer --- */
+  .institutional-footer {
+    padding: 24px 0 12px 0;
+  }
+
   .footer-simple-links {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .footer-simple-links button {
+    font-size: 0.82rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.72rem;
   }
 }
 
-/* Extra Small Phones (<= 420px) */
+/* ==========================================================================
+   3. EXTRA SMALL PHONES (<= 420px)
+   ========================================================================== */
 @media (max-width: 420px) {
   .hero-main-heading {
     font-size: 1.7rem;
   }
 
   .topbar-inner {
-    padding: 0 12px;
+    padding: 0 10px;
   }
 
   .topbar-left {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 2px;
@@ -423,9 +946,16 @@
   .cal-badge {
     text-align: center;
   }
+
+  .recipe-btn,
+  .swap-meal-btn {
+    width: 100%;
+  }
 }
 
-/* Print View Styles */
+/* ==========================================================================
+   4. DEDICATED PRINT STYLES
+   ========================================================================== */
 @media print {
   body {
     background: #ffffff !important;
