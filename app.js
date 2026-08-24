@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./styles/index.css";
+import {
+  generateClientSingleDayPlan,
+  generateClientWeeklyPlan,
+  generateClientMealSwap
+} from "./nutritionEngineClient.js";
 
 const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://127.0.0.1:8000"
-  : "/api";
+  : `http://${window.location.hostname}:8000`;
 
 // SVG Circular / Donut Macro Chart Component
 function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories }) {
@@ -1300,7 +1305,7 @@ function App() {
 
   const handleGeneratePlan = async (type = "1day") => {
     if (!form.name.trim() || !form.age || !form.height_cm || !form.weight_kg) {
-      setStatusMessage("Please complete the required profile details before generating your meal plan.");
+      setStatusMessage("Please complete the required profile details (Name, Age, Height, Weight) before generating your meal plan.");
       return;
     }
 
@@ -1308,18 +1313,21 @@ function App() {
     setGeneratingType(type);
     setStatusMessage(type === "7day" ? "Generating full 7-day varied weekly nutrition plan..." : "Building your personalized daily nutrition plan...");
 
-    try {
-      const payload = {
-        ...form,
-        name: form.name.trim(),
-        age: parseInt(form.age) || 25,
-        height_cm: parseFloat(form.height_cm) || 175,
-        weight_kg: parseFloat(form.weight_kg) || 70,
-        allergies: form.allergies
-          ? form.allergies.split(",").map((a) => a.trim()).filter(Boolean)
-          : [],
-      };
+    const payload = {
+      ...form,
+      name: form.name.trim(),
+      age: parseInt(form.age, 10) || 25,
+      height_cm: parseFloat(form.height_cm) || 175,
+      weight_kg: parseFloat(form.weight_kg) || 70,
+      allergies: form.allergies
+        ? (Array.isArray(form.allergies) ? form.allergies : form.allergies.split(",").map((a) => a.trim()).filter(Boolean))
+        : [],
+    };
 
+    let result = null;
+
+    // 1. Try fetching from FastAPI backend server
+    try {
       const endpoint = type === "7day" ? `${API_BASE}/generate_weekly_plan` : `${API_BASE}/generate_plan`;
       const res = await fetch(endpoint, {
         method: "POST",
@@ -1327,36 +1335,53 @@ function App() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error(`The nutrition service returned ${res.status}.`);
+      if (res.ok) {
+        result = await res.json();
+      }
+    } catch (e) {
+      console.log("Backend offline or inaccessible, using built-in client engine:", e);
+    }
 
-      const result = await res.json();
+    // 2. Seamless Client-Side Fallback Engine if backend unavailable
+    if (!result || result.error) {
+      result = type === "7day"
+        ? generateClientWeeklyPlan(payload)
+        : generateClientSingleDayPlan(payload);
+    }
+
+    if (result && !result.error) {
       setMealPlan(result);
-
-      if (result && !result.error) {
+      try {
         const updatedHistory = [result, ...history.filter((h) => h.date !== result.date || h.user_id !== result.user_id)].slice(0, 10);
         setHistory(updatedHistory);
         localStorage.setItem("smart_nutrition_history", JSON.stringify(updatedHistory));
-        setStatusMessage(type === "7day" ? "Your 7-Day Weekly Nutrition Plan is ready!" : "Your personalized nutrition plan is ready!");
-      } else {
-        setStatusMessage("The plan could not be generated. Please check your inputs.");
+      } catch (e) {
+        console.error(e);
       }
-    } catch (error) {
-      setStatusMessage("We hit a server issue while generating your plan. Please ensure backend is running.");
-    } finally {
-      setLoading(false);
+      setStatusMessage(type === "7day" ? "🎉 Your 7-Day Weekly Nutrition Plan is ready!" : "🎉 Your personalized daily nutrition plan is ready!");
+    } else {
+      setStatusMessage("Could not generate plan. Please verify your age, height, and weight inputs.");
     }
+
+    setLoading(false);
   };
 
   const handleSwapMeal = async (idx, mealName, dayName) => {
+    const profilePayload = {
+      ...form,
+      name: form.name.trim() || "User",
+      age: parseInt(form.age, 10) || 25,
+      height_cm: parseFloat(form.height_cm) || 175,
+      weight_kg: parseFloat(form.weight_kg) || 70,
+      allergies: form.allergies ? (Array.isArray(form.allergies) ? form.allergies : form.allergies.split(",").map((a) => a.trim()).filter(Boolean)) : [],
+    };
+
+    let newMeal = null;
+
+    // Try backend swap
     try {
       const payload = {
-        profile: {
-          ...form,
-          age: parseInt(form.age) || 25,
-          height_cm: parseFloat(form.height_cm) || 175,
-          weight_kg: parseFloat(form.weight_kg) || 70,
-          allergies: form.allergies ? form.allergies.split(",").map((a) => a.trim()).filter(Boolean) : [],
-        },
+        profile: profilePayload,
         meal_index: idx,
         meal_name: mealName,
       };
@@ -1367,27 +1392,34 @@ function App() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error(`The meal swap service returned ${res.status}.`);
-      const newMeal = await res.json();
-
-      if (newMeal && !newMeal.error) {
-        setMealPlan((prev) => {
-          if (!prev) return prev;
-          if (prev.is_weekly && prev.days && dayName && prev.days[dayName]) {
-            const updatedDays = { ...prev.days };
-            const dayMeals = [...updatedDays[dayName].meals];
-            dayMeals[idx] = newMeal;
-            updatedDays[dayName] = { ...updatedDays[dayName], meals: dayMeals };
-            return { ...prev, days: updatedDays };
-          } else {
-            const newMeals = [...prev.meals];
-            newMeals[idx] = newMeal;
-            return { ...prev, meals: newMeals };
-          }
-        });
+      if (res.ok) {
+        newMeal = await res.json();
       }
-    } catch (error) {
-      setStatusMessage(error.message || "Unable to swap this meal right now.");
+    } catch (e) {
+      console.log("Using client swap fallback:", e);
+    }
+
+    // Client fallback swap
+    if (!newMeal || newMeal.error) {
+      newMeal = generateClientMealSwap(profilePayload, idx, mealName);
+    }
+
+    if (newMeal && !newMeal.error) {
+      setMealPlan((prev) => {
+        if (!prev) return prev;
+        if (prev.is_weekly && prev.days && dayName && prev.days[dayName]) {
+          const updatedDays = { ...prev.days };
+          const dayMeals = [...updatedDays[dayName].meals];
+          dayMeals[idx] = newMeal;
+          updatedDays[dayName] = { ...updatedDays[dayName], meals: dayMeals };
+          return { ...prev, days: updatedDays };
+        } else {
+          const newMeals = [...prev.meals];
+          newMeals[idx] = newMeal;
+          return { ...prev, meals: newMeals };
+        }
+      });
+      setStatusMessage(`🔄 Swapped meal to: ${newMeal.name}`);
     }
   };
 
