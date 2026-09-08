@@ -8,12 +8,14 @@ import os
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 try:
-    from slowapi import Limiter, _rate_limit_exceeded_handler  # pyrefly: ignore [missing-import]
-    from slowapi.util import get_remote_address  # pyrefly: ignore [missing-import]
-    from slowapi.errors import RateLimitExceeded  # pyrefly: ignore [missing-import]
-    limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
+    import slowapi  # pyrefly: ignore [missing-import]
+    import slowapi.util  # pyrefly: ignore [missing-import]
+    import slowapi.errors  # pyrefly: ignore [missing-import]
+    limiter = slowapi.Limiter(key_func=slowapi.util.get_remote_address, default_limits=["200/minute"])
+    RateLimitExceeded = slowapi.errors.RateLimitExceeded
+    _rate_limit_exceeded_handler = slowapi._rate_limit_exceeded_handler
     HAS_SLOWAPI = True
-except (ImportError, ModuleNotFoundError):
+except Exception:
     HAS_SLOWAPI = False
     class _NoOpLimiter:
         def limit(self, *args, **kwargs):
