@@ -3,10 +3,12 @@
   "python.pythonPath": "C:\\Users\\Abhishek\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
   "pyrefly.pythonPath": "C:\\Users\\Abhishek\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
   "python.analysis.extraPaths": [
-    "${workspaceFolder}"
+    "${workspaceFolder}",
+    "C:\\Users\\Abhishek\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages"
   ],
   "python.autoComplete.extraPaths": [
-    "${workspaceFolder}"
+    "${workspaceFolder}",
+    "C:\\Users\\Abhishek\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages"
   ],
   "python.analysis.diagnosticMode": "openFilesOnly",
   "javascript.validate.enable": false,

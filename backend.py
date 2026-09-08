@@ -7,9 +7,22 @@ import json
 import os
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
+try:
+    from slowapi import Limiter, _rate_limit_exceeded_handler  # pyrefly: ignore [missing-import]
+    from slowapi.util import get_remote_address  # pyrefly: ignore [missing-import]
+    from slowapi.errors import RateLimitExceeded  # pyrefly: ignore [missing-import]
+    limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
+    HAS_SLOWAPI = True
+except (ImportError, ModuleNotFoundError):
+    HAS_SLOWAPI = False
+    class _NoOpLimiter:
+        def limit(self, *args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
+    limiter = _NoOpLimiter()
+    RateLimitExceeded = Exception
+    _rate_limit_exceeded_handler = None
 
 from models import Profile, SwapRequest
 from nutrition_engine import (
@@ -20,15 +33,14 @@ from nutrition_engine import (
 )
 from ai_service import generate_ai_plan
 
-limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
-
 app = FastAPI(
     title="Smart Nutrition Assistant API",
     description="Personalized Meal Planner, Macro Calculator, and Nutrition Engine",
     version="2.1.0"
 )
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+if HAS_SLOWAPI and _rate_limit_exceeded_handler is not None:
+    app.state.limiter = limiter
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # CORS — read from environment; default to all origins (dev mode)
 _raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
