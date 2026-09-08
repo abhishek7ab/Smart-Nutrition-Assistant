@@ -21,6 +21,7 @@
 @import "./meal-card.css";
 @import "./grocery.css";
 @import "./recipe-modal.css";
+@import "./calorie-tracker.css";
 
 /* Responsive & Print */
 @import "./responsive.css";

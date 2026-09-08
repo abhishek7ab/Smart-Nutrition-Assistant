@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import PropTypes from "react";
 import "./styles/index.css";
 import {
   generateClientSingleDayPlan,
@@ -103,7 +104,6 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories }) {
 }
 
 // Interactive Daily Water Tracker Component
-// Interactive Daily Water Tracker Component
 function WaterTracker({ weight_kg }) {
   const weight = parseFloat(weight_kg) || 70;
   const targetLiters = (weight * 0.035).toFixed(1);
@@ -121,23 +121,29 @@ function WaterTracker({ weight_kg }) {
 
   const [toastMessage, setToastMessage] = useState("");
 
-  const updateWater = (delta) => {
-    const updated = Math.max(0, drankMl + delta);
-    setDrankMl(updated);
-    try {
-      localStorage.setItem(todayKey, updated.toString());
-    } catch (e) {
-      console.error(e);
-    }
+  const showToast = useCallback((msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(""), 2500);
+  }, []);
 
-    if (updated >= targetMl && drankMl < targetMl) {
-      showToast("🎉 Daily hydration goal achieved!");
-    } else if (delta > 0) {
-      showToast(`💧 Logged +${delta}ml`);
-    }
-  };
+  const updateWater = useCallback((delta) => {
+    setDrankMl((prev) => {
+      const updated = Math.max(0, prev + delta);
+      try {
+        localStorage.setItem(todayKey, updated.toString());
+      } catch (e) {
+        console.error(e);
+      }
+      if (updated >= targetMl && prev < targetMl) {
+        showToast("🎉 Daily hydration goal achieved!");
+      } else if (delta > 0) {
+        showToast(`💧 Logged +${delta}ml`);
+      }
+      return updated;
+    });
+  }, [todayKey, targetMl, showToast]);
 
-  const resetWater = () => {
+  const resetWater = useCallback(() => {
     setDrankMl(0);
     try {
       localStorage.setItem(todayKey, "0");
@@ -145,12 +151,7 @@ function WaterTracker({ weight_kg }) {
       console.error(e);
     }
     showToast("Tracker reset for today.");
-  };
-
-  const showToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(""), 2500);
-  };
+  }, [todayKey, showToast]);
 
   const pct = Math.min(100, Math.round((drankMl / targetMl) * 100));
   const loggedL = (drankMl / 1000).toFixed(2);
@@ -237,6 +238,16 @@ function WaterTracker({ weight_kg }) {
 
 // Recipe Instructions Modal
 function RecipeModal({ meal, onClose }) {
+  // Close modal on Escape key
+  useEffect(() => {
+    if (!meal) return;
+    const handleKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [meal, onClose]);
+
   if (!meal) return null;
 
   return (
@@ -265,7 +276,15 @@ function RecipeModal({ meal, onClose }) {
           </div>
           <div className="meta-item">
             <span className="meta-label">🎯 Goal Alignment</span>
-            <strong>High Protein</strong>
+            <strong>
+              {meal._goal
+                ? meal._goal
+                : meal.macros && meal.macros.protein_g > meal.macros.carbs_g
+                ? "High Protein"
+                : meal.macros && meal.macros.carbs_g > (meal.macros.protein_g + meal.macros.fats_g)
+                ? "High Carb / Energy"
+                : "Balanced Macros"}
+            </strong>
           </div>
         </div>
 
@@ -820,7 +839,7 @@ const ARCHETYPES_LIST = [
     name: "Nuts / Keto",
     macroSplit: "25P • 5C • 70F",
     dietVal: "balanced",
-    goalVal: "fat_loss",
+    goalVal: "weight_loss",
   },
   {
     id: "hypertrophy",
@@ -1162,6 +1181,84 @@ function InstitutionalFooter({ onNavigateSection }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Calorie Progress Tracker
+// ---------------------------------------------------------------------------
+function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
+  const meals = plan.is_weekly && plan.days
+    ? (Object.values(plan.days)[0]?.meals || [])
+    : (plan.meals || []);
+
+  const target = plan.target_calories || 2000;
+  const eaten = meals.reduce((sum, m) => eatenMeals[m.name] ? sum + (m.approx_calories || 0) : sum, 0);
+  const pct = Math.min(100, Math.round((eaten / target) * 100));
+  const remaining = Math.max(0, target - eaten);
+
+  const slotColors = ["#f59e0b", "#84cc16", "#818cf8", "#f97316"];
+  const slotLabels = ["🌅 Breakfast", "☀️ Lunch", "🌙 Dinner", "🍎 Snack"];
+
+  return (
+    <div className="calorie-tracker-card">
+      <div className="calorie-tracker-header">
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <span style={{ fontSize: "1.4rem" }}>🔥</span>
+          <div>
+            <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 700 }}>Daily Calorie Progress</h3>
+            <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--text-muted)" }}>Tap a meal to mark it as eaten</p>
+          </div>
+        </div>
+        <span style={{
+          background: pct >= 100 ? "#10b981" : "var(--accent-green-light)",
+          color: pct >= 100 ? "#fff" : "var(--accent-green)",
+          padding: "3px 12px", borderRadius: 12, fontWeight: 700, fontSize: "0.8rem"
+        }}>{pct}% eaten</span>
+      </div>
+
+      <div className="calorie-progress-bar-track">
+        <div
+          className="calorie-progress-bar-fill"
+          style={{ width: `${pct}%`, background: pct >= 100 ? "#10b981" : "var(--accent-green)" }}
+        />
+      </div>
+
+      <div className="calorie-stats-row">
+        <div className="calorie-stat-box">
+          <span className="calorie-stat-label">Target</span>
+          <span className="calorie-stat-val">{target} kcal</span>
+        </div>
+        <div className="calorie-stat-box" style={{ color: "var(--accent-green)" }}>
+          <span className="calorie-stat-label">Eaten</span>
+          <span className="calorie-stat-val" style={{ color: "var(--accent-green)" }}>{eaten} kcal</span>
+        </div>
+        <div className="calorie-stat-box">
+          <span className="calorie-stat-label">Remaining</span>
+          <span className="calorie-stat-val">{remaining} kcal</span>
+        </div>
+      </div>
+
+      <div className="calorie-meals-grid">
+        {meals.map((meal, idx) => {
+          const isEaten = !!eatenMeals[meal.name];
+          return (
+            <button
+              key={meal.name}
+              type="button"
+              className={`calorie-meal-btn ${isEaten ? "eaten" : ""}`}
+              onClick={() => onToggleMeal(meal.name)}
+              style={{ borderColor: slotColors[idx] || "var(--accent-green)" }}
+            >
+              <span style={{ fontSize: "0.72rem", color: slotColors[idx], fontWeight: 700 }}>{slotLabels[idx] || `Meal ${idx+1}`}</span>
+              <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>{(meal.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "")}</span>
+              <span style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>{meal.approx_calories} kcal</span>
+              {isEaten && <span style={{ fontSize: "1rem" }}>✅</span>}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // Main Root Application
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -1186,12 +1283,15 @@ function App() {
 
   const [mealPlan, setMealPlan] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [generatingType, setGeneratingType] = useState("1day"); // "1day" | "7day"
+  const [generatingType, setGeneratingType] = useState("1day");
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
   const [statusMessage, setStatusMessage] = useState("Add your profile details to create a personalized, goal-based nutrition plan.");
   const [selectedArchetype, setSelectedArchetype] = useState("balanced");
   const [previewRecipe, setPreviewRecipe] = useState(null);
+  const [navOpen, setNavOpen] = useState(false);
+  const [unitSystem, setUnitSystem] = useState("metric"); // "metric" | "imperial"
+  const [eatenMeals, setEatenMeals] = useState({}); // { "mealName": true }
 
   const handleSelectArchetype = (arch) => {
     setSelectedArchetype(arch.id);
@@ -1213,11 +1313,38 @@ function App() {
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    try {
-      localStorage.setItem("smart_nutrition_theme", next);
-    } catch (e) {
-      console.error(e);
-    }
+    try { localStorage.setItem("smart_nutrition_theme", next); } catch (e) { console.error(e); }
+  };
+
+  const toggleUnitSystem = () => {
+    setUnitSystem((prev) => {
+      const next = prev === "metric" ? "imperial" : "metric";
+      // Convert form values when switching
+      setForm((f) => {
+        if (prev === "metric" && next === "imperial") {
+          // kg → lbs, cm → inches (split into ft + in)
+          const lbs = f.weight_kg ? Math.round(parseFloat(f.weight_kg) * 2.20462) : "";
+          const totalIn = f.height_cm ? parseFloat(f.height_cm) / 2.54 : 0;
+          const ft = totalIn ? Math.floor(totalIn / 12) : "";
+          const inches = totalIn ? Math.round(totalIn % 12) : "";
+          return { ...f, weight_kg: lbs, height_cm: totalIn ? Math.round(totalIn) : "", _ft: ft, _in: inches };
+        } else {
+          // lbs → kg, inches → cm
+          const kg = f.weight_kg ? (parseFloat(f.weight_kg) / 2.20462).toFixed(1) : "";
+          const totalIn = f._ft ? parseFloat(f._ft) * 12 + parseFloat(f._in || 0) : f.height_cm;
+          const cm = totalIn ? Math.round(totalIn * 2.54) : "";
+          return { ...f, weight_kg: kg, height_cm: cm, _ft: undefined, _in: undefined };
+        }
+      });
+      return next;
+    });
+  };
+
+  // For imperial: rebuild height_cm from ft/in before submitting
+  const resolveMetricForm = (activeForm) => {
+    if (unitSystem === "metric") return activeForm;
+    const totalIn = (parseFloat(activeForm._ft || 0) * 12) + parseFloat(activeForm._in || 0);
+    return { ...activeForm, height_cm: Math.round(totalIn * 2.54), weight_kg: (parseFloat(activeForm.weight_kg) / 2.20462).toFixed(1) };
   };
 
   const resetForm = () => {
@@ -1310,8 +1437,13 @@ function App() {
 
   const handleGeneratePlan = async (type = "1day", customProfile = null) => {
     const activeForm = customProfile || form;
-    if (!activeForm.name.trim() || !activeForm.age || !activeForm.height_cm || !activeForm.weight_kg) {
-      setStatusMessage("Please complete the required profile details (Name, Age, Height, Weight) before generating your meal plan.");
+    const missingFields = [];
+    if (!activeForm.name.trim()) missingFields.push("Full Name");
+    if (!activeForm.age) missingFields.push("Age");
+    if (!activeForm.height_cm) missingFields.push("Height");
+    if (!activeForm.weight_kg) missingFields.push("Weight");
+    if (missingFields.length > 0) {
+      setStatusMessage(`⚠️ Please fill in: ${missingFields.join(", ")} — before generating your meal plan.`);
       return;
     }
 
@@ -1357,6 +1489,7 @@ function App() {
 
     if (result && !result.error) {
       setMealPlan(result);
+      setEatenMeals({}); // Reset tracker for new plan
       try {
         const updatedHistory = [result, ...history.filter((h) => h.date !== result.date || h.user_id !== result.user_id)].slice(0, 10);
         setHistory(updatedHistory);
@@ -1452,7 +1585,7 @@ function App() {
         </div>
 
         {/* Clean Global Header */}
-        <header className="global-header">
+        <header className="global-header" style={{ position: "relative" }}>
           <div className="header-inner">
             <div
               className="brand-logo-group"
@@ -1465,78 +1598,43 @@ function App() {
             </div>
 
             <ul className="nav-links-list">
-              <li>
-                <button
-                  type="button"
-                  className="nav-link"
-                  onClick={() => {
-                    const el = document.getElementById("methodology");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  className="nav-link"
-                  onClick={() => {
-                    const el = document.getElementById("protocol-engine");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Protocol Engine
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  className="nav-link"
-                  onClick={() => {
-                    const el = document.getElementById("macro-matrix");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Recipes
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  className="nav-link"
-                  onClick={() => {
-                    const el = document.getElementById("how-it-works");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Weekly Plan
-                </button>
-              </li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("methodology"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>About Us</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Protocol Engine</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("macro-matrix"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Recipes</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("how-it-works"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Weekly Plan</button></li>
             </ul>
 
             <div className="nav-action-matrix">
-              <button
-                className="theme-toggle-btn"
-                type="button"
-                onClick={toggleTheme}
-                title="Toggle Light/Dark Theme"
-              >
+              <button className="theme-toggle-btn" type="button" onClick={toggleTheme} title="Toggle Light/Dark Theme">
                 {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
               </button>
+              <button type="button" className="btn-primary-blueprint" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Create Plan →</button>
 
+              {/* Hamburger for mobile */}
               <button
+                className={`nav-hamburger ${navOpen ? "open" : ""}`}
                 type="button"
-                className="btn-primary-blueprint"
-                onClick={() => {
-                  const el = document.getElementById("protocol-engine");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
+                aria-label="Toggle navigation"
+                aria-expanded={navOpen}
+                onClick={() => setNavOpen((o) => !o)}
               >
-                Create Plan →
+                <span /><span /><span />
               </button>
             </div>
           </div>
+
+          {/* Mobile dropdown */}
+          <nav className={`mobile-nav-dropdown ${navOpen ? "open" : ""}`} aria-label="Mobile navigation">
+            {[
+              { label: "About Us", id: "methodology" },
+              { label: "Protocol Engine", id: "protocol-engine" },
+              { label: "Recipes", id: "macro-matrix" },
+              { label: "Weekly Plan", id: "how-it-works" },
+              { label: "Create Plan", id: "protocol-engine" },
+            ].map(({ label, id }) => (
+              <button key={label} type="button" onClick={() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth" }); setNavOpen(false); }}>{label}</button>
+            ))}
+          </nav>
         </header>
 
         {/* ZONE 2: Hero Section matching Screenshot 1 */}
@@ -1696,26 +1794,35 @@ function App() {
 
             <div className="field-row">
               <div className="field">
-                <label>Height (cm)</label>
+                <label style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  Height ({unitSystem === "metric" ? "cm" : "inches"})
+                  <button
+                    type="button"
+                    onClick={toggleUnitSystem}
+                    style={{ marginLeft: "auto", fontSize: "0.72rem", padding: "2px 10px", borderRadius: "12px", background: "var(--accent-green-light)", color: "var(--accent-green)", border: "none", cursor: "pointer", fontWeight: 700 }}
+                  >
+                    Switch to {unitSystem === "metric" ? "Imperial (°F/lbs)" : "Metric (cm/kg)"}
+                  </button>
+                </label>
                 <input
                   name="height_cm"
                   type="number"
                   min={50}
                   max={250}
-                  placeholder="Height in cm"
+                  placeholder={unitSystem === "metric" ? "Height in cm" : "Total inches (e.g. 70)"}
                   value={form.height_cm}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="field">
-                <label>Weight (kg)</label>
+                <label>Weight ({unitSystem === "metric" ? "kg" : "lbs"})</label>
                 <input
                   name="weight_kg"
                   type="number"
                   min={20}
-                  max={300}
-                  placeholder="Weight in kg"
+                  max={600}
+                  placeholder={unitSystem === "metric" ? "Weight in kg" : "Weight in lbs"}
                   value={form.weight_kg}
                   onChange={handleChange}
                   required
@@ -1811,6 +1918,17 @@ function App() {
 
           {/* Daily Hydration Tracker Component */}
           <WaterTracker weight_kg={form.weight_kg || 70} />
+
+          {/* Calorie Progress Tracker */}
+          {mealPlan && (
+            <CalorieTracker
+              plan={mealPlan}
+              eatenMeals={eatenMeals}
+              onToggleMeal={(name) =>
+                setEatenMeals((prev) => ({ ...prev, [name]: !prev[name] }))
+              }
+            />
+          )}
 
           {/* Results Card */}
           {mealPlan ? (

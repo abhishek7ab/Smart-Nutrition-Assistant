@@ -4,8 +4,12 @@ Smart Nutrition Assistant API - Main Application Server
 """
 
 import json
-from fastapi import FastAPI
+import os
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 from models import Profile, SwapRequest
 from nutrition_engine import (
@@ -14,17 +18,25 @@ from nutrition_engine import (
     generate_weekly_plan,
     generate_meal_swap
 )
+from ai_service import generate_ai_plan
+
+limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
 
 app = FastAPI(
     title="Smart Nutrition Assistant API",
     description="Personalized Meal Planner, Macro Calculator, and Nutrition Engine",
-    version="2.0.0"
+    version="2.1.0"
 )
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS configuration
+# CORS — read from environment; default to all origins (dev mode)
+_raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
+allowed_origins = [o.strip() for o in _raw_origins.split(",")] if _raw_origins != "*" else ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -35,43 +47,74 @@ def root():
     """Health check & API info."""
     return {
         "message": "Smart Nutrition Assistant backend is running",
-        "features": ["1-Day Plan", "7-Day Weekly Plan", "Meal Swaps", "Recipe Instructions", "Hydration Targets"]
+        "version": "2.1.0",
+        "features": ["1-Day Plan", "7-Day Weekly Plan", "Meal Swaps", "Recipe Instructions", "Hydration Targets", "AI-Powered Plans"]
     }
 
+@app.get("/health")
+@limiter.limit("120/minute")
+def health(request: Request):
+    """Lightweight health check endpoint."""
+    return {"status": "ok"}
+
 @app.post("/generate_plan")
-def generate_plan_endpoint(profile: Profile):
-    """Generate 1-day personalized nutrition plan."""
-    plan = generate_single_day_plan(profile)
+@limiter.limit("20/minute")
+def generate_plan_endpoint(request: Request, profile: Profile):
+    """Generate 1-day personalized nutrition plan.
 
-    # Save to local profile JSON cache
-    filename = f"mealplan_{profile.name.lower().replace(' ', '_')}.json"
+    Rate limited to 20 requests/minute per IP.
+    Attempts IBM Watsonx AI first; falls back to the built-in
+    rule-based nutrition engine if AI is unavailable or fails.
+    """
     try:
-        with open(filename, "w", encoding="utf-8") as f:
-            json.dump(plan, f, indent=2)
-    except Exception as e:
-        print(f"Warning: Could not save {filename}: {e}")
+        # 1. Try AI-powered plan
+        plan = generate_ai_plan(profile)
 
-    return plan
+        # 2. Fall back to deterministic nutrition engine
+        if not plan:
+            plan = generate_single_day_plan(profile)
+
+        # Save to local profile JSON cache
+        filename = f"mealplan_{profile.name.lower().replace(' ', '_')}.json"
+        try:
+            with open(filename, "w", encoding="utf-8") as f:
+                json.dump(plan, f, indent=2)
+        except Exception as e:
+            print(f"Warning: Could not save {filename}: {e}")
+
+        return plan
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to generate plan: {str(e)}")
 
 @app.post("/generate_weekly_plan")
-def generate_weekly_plan_endpoint(profile: Profile):
-    """Generate 7-day personalized weekly nutrition plan."""
-    weekly_plan = generate_weekly_plan(profile)
-
-    # Save weekly plan JSON cache
-    filename = f"weekly_mealplan_{profile.name.lower().replace(' ', '_')}.json"
+@limiter.limit("10/minute")
+def generate_weekly_plan_endpoint(request: Request, profile: Profile):
+    """Generate 7-day personalized weekly nutrition plan. Rate limited to 10/minute."""
     try:
-        with open(filename, "w", encoding="utf-8") as f:
-            json.dump(weekly_plan, f, indent=2)
-    except Exception as e:
-        print(f"Warning: Could not save {filename}: {e}")
+        weekly_plan = generate_weekly_plan(profile)
 
-    return weekly_plan
+        # Save weekly plan JSON cache
+        filename = f"weekly_mealplan_{profile.name.lower().replace(' ', '_')}.json"
+        try:
+            with open(filename, "w", encoding="utf-8") as f:
+                json.dump(weekly_plan, f, indent=2)
+        except Exception as e:
+            print(f"Warning: Could not save {filename}: {e}")
+
+        return weekly_plan
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to generate weekly plan: {str(e)}")
 
 @app.post("/swap_meal")
-def swap_meal_endpoint(req: SwapRequest):
-    """Swap an individual meal with an alternative aligned to diet and macros."""
-    return generate_meal_swap(req)
+@limiter.limit("30/minute")
+def swap_meal_endpoint(request: Request, req: SwapRequest):
+    """Swap an individual meal. Rate limited to 30/minute."""
+    try:
+        return generate_meal_swap(req)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to swap meal: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn

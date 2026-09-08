@@ -5,9 +5,74 @@ Core calculation engine for BMR, TDEE, Macros, Meal Planning, and Nutrition Rule
 
 import random
 from datetime import date
-from typing import Dict, Any
+from typing import Dict, Any, List
 from models import Profile, SwapRequest
 from meal_data import MEAL_DATABASE, ALTERNATIVES
+
+# ---------------------------------------------------------------------------
+# Activity multiplier map — explicit keys instead of substring matching
+# ---------------------------------------------------------------------------
+_ACTIVITY_MULTIPLIERS = {
+    "low": 1.2,
+    "medium": 1.45,
+    "high": 1.725,
+}
+
+def _get_activity_multiplier(activity: str) -> float:
+    """Return TDEE activity multiplier. Defaults to moderate (1.45) if unrecognised."""
+    # Try exact match first, then substring fallback
+    a = activity.strip().lower()
+    if a in _ACTIVITY_MULTIPLIERS:
+        return _ACTIVITY_MULTIPLIERS[a]
+    for key, mult in _ACTIVITY_MULTIPLIERS.items():
+        if key in a:
+            return mult
+    return _ACTIVITY_MULTIPLIERS["medium"]
+
+
+def _ingredient_text(ing) -> str:
+    """Normalise an ingredient (str or dict) to a plain lowercase string."""
+    if isinstance(ing, str):
+        return ing.lower()
+    if isinstance(ing, dict):
+        parts = [str(ing.get("name", "")), str(ing.get("item", "")), str(ing.get("amount", ""))]
+        return " ".join(parts).lower()
+    return str(ing).lower()
+
+
+def _filter_allergies(pool: List[Dict], allergies: List[str]) -> List[Dict]:
+    """Remove meal items whose ingredients match any allergy keyword."""
+    if not allergies:
+        return pool
+    allergy_keywords = [a.strip().lower() for a in allergies if a.strip()]
+    if not allergy_keywords:
+        return pool
+
+    filtered = []
+    for item in pool:
+        ingredient_texts = " ".join(_ingredient_text(ing) for ing in item.get("ingredients", []))
+        name_text = item.get("name", "").lower()
+        combined = ingredient_texts + " " + name_text
+        if not any(kw in combined for kw in allergy_keywords):
+            filtered.append(item)
+    # Safety: if all meals are filtered out, return original pool to avoid empty crash
+    return filtered if filtered else pool
+
+
+def _pick_meal(pool: List[Dict], day_offset: int, profile_name: str) -> Dict:
+    """
+    Pick a meal from pool with reproducible per-user, per-day variety.
+    Uses a seed derived from (profile name + day_offset) so the same user
+    always gets the same rotation, but different users see different orders.
+    """
+    if not pool:
+        return {}
+    seed = hash(profile_name + str(day_offset)) % (2 ** 32)
+    rng = random.Random(seed)
+    shuffled = pool[:]
+    rng.shuffle(shuffled)
+    return shuffled[day_offset % len(shuffled)]
+
 
 def calculate_macros(calories: int, goal: str) -> Dict[str, int]:
     """Calculate macro split in grams based on calories and fitness goal."""
@@ -31,19 +96,14 @@ def calculate_macros(calories: int, goal: str) -> Dict[str, int]:
 
 def compute_tdee_and_target(profile: Profile):
     """Compute BMR, TDEE (Mifflin-St Jeor) and target calories with deficit/surplus."""
+    # Mifflin-St Jeor BMR formula
     bmr = 10 * profile.weight_kg + 6.25 * profile.height_cm - 5 * profile.age
     if profile.sex.lower() == "male":
         bmr += 5
     else:
         bmr -= 161
 
-    act = profile.activity.lower()
-    if "low" in act:
-        tdee = bmr * 1.2
-    elif "high" in act:
-        tdee = bmr * 1.725
-    else:
-        tdee = bmr * 1.45
+    tdee = bmr * _get_activity_multiplier(profile.activity)
 
     goal = profile.goal.lower()
     if "loss" in goal:
@@ -78,61 +138,36 @@ def generate_single_day_plan(profile: Profile, day_name: str = "Today", day_offs
     d_cal = int(target_cal * 0.30)
     s_cal = int(target_cal * 0.10)
 
-    # Pick recipes with offset for variety across days
-    b_item = pool["breakfast"][day_offset % len(pool["breakfast"])]
-    l_item = pool["lunch"][day_offset % len(pool["lunch"])]
-    d_item = pool["dinner"][day_offset % len(pool["dinner"])]
-    s_item = pool["snack"][day_offset % len(pool["snack"])]
+    # Filter allergy meals then pick with seeded randomness for variety
+    b_pool = _filter_allergies(pool.get("breakfast", []), profile.allergies)
+    l_pool = _filter_allergies(pool.get("lunch", []), profile.allergies)
+    d_pool = _filter_allergies(pool.get("dinner", []), profile.allergies)
+    s_pool = _filter_allergies(pool.get("snack", []), profile.allergies)
+
+    b_item = _pick_meal(b_pool, day_offset, profile.name)
+    l_item = _pick_meal(l_pool, day_offset + 1, profile.name)
+    d_item = _pick_meal(d_pool, day_offset + 2, profile.name)
+    s_item = _pick_meal(s_pool, day_offset + 3, profile.name)
+
+    def _build_meal(item: Dict, cal: int, defaults: Dict) -> Dict:
+        return {
+            "name": item.get("name", defaults.get("name", "Meal")),
+            "ingredients": item.get("ingredients", []),
+            "approx_calories": cal,
+            "reason": item.get("reason", ""),
+            "prep_time": item.get("prep_time", defaults.get("prep_time", "10 mins")),
+            "cook_time": item.get("cook_time", defaults.get("cook_time", "12 mins")),
+            "difficulty": item.get("difficulty", "Easy"),
+            "instructions": item.get("instructions", defaults.get("instructions", ["Prepare fresh ingredients", "Cook on low flame", "Serve warm"])),
+            "macros": calculate_macros(cal, profile.goal),
+            "swaps": item.get("swaps", {}),
+        }
 
     meals = [
-        {
-            "name": b_item["name"],
-            "ingredients": b_item["ingredients"],
-            "approx_calories": b_cal,
-            "reason": b_item["reason"],
-            "prep_time": b_item.get("prep_time", "10 mins"),
-            "cook_time": b_item.get("cook_time", "12 mins"),
-            "difficulty": b_item.get("difficulty", "Easy"),
-            "instructions": b_item.get("instructions", ["Prepare fresh ingredients", "Cook on low flame", "Serve warm"]),
-            "macros": calculate_macros(b_cal, profile.goal),
-            "swaps": b_item.get("swaps", {})
-        },
-        {
-            "name": l_item["name"],
-            "ingredients": l_item["ingredients"],
-            "approx_calories": l_cal,
-            "reason": l_item["reason"],
-            "prep_time": l_item.get("prep_time", "15 mins"),
-            "cook_time": l_item.get("cook_time", "20 mins"),
-            "difficulty": l_item.get("difficulty", "Medium"),
-            "instructions": l_item.get("instructions", ["Assemble ingredients", "Cook according to directions", "Garnish and enjoy"]),
-            "macros": calculate_macros(l_cal, profile.goal),
-            "swaps": l_item.get("swaps", {})
-        },
-        {
-            "name": d_item["name"],
-            "ingredients": d_item["ingredients"],
-            "approx_calories": d_cal,
-            "reason": d_item["reason"],
-            "prep_time": d_item.get("prep_time", "12 mins"),
-            "cook_time": d_item.get("cook_time", "15 mins"),
-            "difficulty": d_item.get("difficulty", "Easy"),
-            "instructions": d_item.get("instructions", ["Prepare proteins & vegetables", "Simmer or roast", "Serve fresh"]),
-            "macros": calculate_macros(d_cal, profile.goal),
-            "swaps": d_item.get("swaps", {})
-        },
-        {
-            "name": s_item["name"],
-            "ingredients": s_item["ingredients"],
-            "approx_calories": s_cal,
-            "reason": s_item["reason"],
-            "prep_time": s_item.get("prep_time", "3 mins"),
-            "cook_time": s_item.get("cook_time", "0 mins"),
-            "difficulty": s_item.get("difficulty", "Easy"),
-            "instructions": s_item.get("instructions", ["Mix and enjoy this refreshing energy boost"]),
-            "macros": calculate_macros(s_cal, profile.goal),
-            "swaps": s_item.get("swaps", {})
-        }
+        _build_meal(b_item, b_cal, {"name": "Breakfast", "prep_time": "10 mins", "cook_time": "12 mins", "instructions": ["Prepare fresh ingredients", "Cook on low flame", "Serve warm"]}),
+        _build_meal(l_item, l_cal, {"name": "Lunch", "prep_time": "15 mins", "cook_time": "20 mins", "instructions": ["Assemble ingredients", "Cook according to directions", "Garnish and enjoy"]}),
+        _build_meal(d_item, d_cal, {"name": "Dinner", "prep_time": "12 mins", "cook_time": "15 mins", "instructions": ["Prepare proteins & vegetables", "Simmer or roast", "Serve fresh"]}),
+        _build_meal(s_item, s_cal, {"name": "Snack", "prep_time": "3 mins", "cook_time": "0 mins", "instructions": ["Mix and enjoy this refreshing energy boost"]}),
     ]
 
     return {
@@ -181,24 +216,28 @@ def generate_meal_swap(req: SwapRequest) -> Dict[str, Any]:
         meal_type_key = "snack"
 
     pool_key = get_diet_pool_key(req.profile.diet)
-    pool = MEAL_DATABASE.get(pool_key, MEAL_DATABASE["indian_veg"]).get(meal_type_key, [])
+    raw_pool = MEAL_DATABASE.get(pool_key, MEAL_DATABASE["indian_veg"]).get(meal_type_key, [])
+
+    # Filter allergies before swapping
+    pool = _filter_allergies(raw_pool, req.profile.allergies)
 
     if not pool:
-        options = ALTERNATIVES.get(meal_type_key, ALTERNATIVES["lunch"])
-        chosen = random.choice(options)
+        options = _filter_allergies(ALTERNATIVES.get(meal_type_key, ALTERNATIVES["lunch"]), req.profile.allergies)
+        chosen = random.choice(options) if options else ALTERNATIVES.get(meal_type_key, ALTERNATIVES["lunch"])[0]
     else:
         chosen = random.choice(pool)
 
-    cal_multiplier = 0.25 if meal_type_key == "breakfast" else (0.35 if meal_type_key == "lunch" else (0.30 if meal_type_key == "dinner" else 0.10))
+    cal_map = {"breakfast": 0.25, "lunch": 0.35, "dinner": 0.30, "snack": 0.10}
+    cal_multiplier = cal_map.get(meal_type_key, 0.35)
 
     _, _, target_cal = compute_tdee_and_target(req.profile)
     approx_cal = int(target_cal * cal_multiplier)
 
     return {
-        "name": chosen["name"],
-        "ingredients": chosen["ingredients"],
+        "name": chosen.get("name", "Meal"),
+        "ingredients": chosen.get("ingredients", []),
         "approx_calories": approx_cal,
-        "reason": chosen["reason"],
+        "reason": chosen.get("reason", ""),
         "prep_time": chosen.get("prep_time", "10 mins"),
         "cook_time": chosen.get("cook_time", "15 mins"),
         "difficulty": chosen.get("difficulty", "Easy"),
@@ -206,4 +245,3 @@ def generate_meal_swap(req: SwapRequest) -> Dict[str, Any]:
         "macros": calculate_macros(approx_cal, req.profile.goal),
         "swaps": chosen.get("swaps", {})
     }
-

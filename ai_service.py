@@ -22,8 +22,13 @@ project_id = os.getenv("WATSONX_PROJECT_ID")
 import importlib
 
 model = None
+_watsonx_status = "disabled"
 try:
-    if creds.get("apikey") and project_id:
+    if not creds.get("apikey"):
+        print("\u26a0\ufe0f  WATSONX_API_KEY not set \u2014 AI features disabled, using rule-based nutrition engine.")
+    elif not project_id:
+        print("\u26a0\ufe0f  WATSONX_PROJECT_ID not set \u2014 AI features disabled.")
+    else:
         watson_module = importlib.import_module("ibm_watsonx_ai.foundation_models")
         ModelInference = getattr(watson_module, "ModelInference")
         model = ModelInference(
@@ -32,9 +37,12 @@ try:
             project_id=project_id,
             params={"temperature": 0.5, "max_new_tokens": 500}
         )
+        _watsonx_status = "active"
+        print("\u2705  Watsonx AI model loaded successfully.")
+except ImportError:
+    print("\u26a0\ufe0f  ibm-watsonx-ai package not installed. Run: pip install ibm-watsonx-ai")
 except Exception as e:
-    # Watsonx is optional; fallback to local smart nutrition rules
-    pass
+    print(f"\u26a0\ufe0f  Watsonx AI initialisation failed: {e}")
 
 def generate_ai_plan(profile: Profile) -> Optional[Dict[str, Any]]:
     """Try to generate meal plan using Watsonx AI."""

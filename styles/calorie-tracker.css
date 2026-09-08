@@ -1,0 +1,119 @@
+/* styles/calorie-tracker.css - Daily Calorie Progress Tracker */
+
+.calorie-tracker-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 24px 28px;
+  margin: 20px 0;
+  box-shadow: var(--box-shadow);
+  animation: fadeUp 0.4s ease;
+}
+
+.calorie-tracker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Progress bar track */
+.calorie-progress-bar-track {
+  background: var(--inner-card-bg);
+  border-radius: 100px;
+  height: 10px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.calorie-progress-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(132, 204, 22, 0.4);
+}
+
+/* Stats row */
+.calorie-stats-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.calorie-stat-box {
+  flex: 1;
+  min-width: 90px;
+  background: var(--inner-card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.calorie-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calorie-stat-val {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Meal grid buttons */
+.calorie-meals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .calorie-meals-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.calorie-meal-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--inner-card-bg);
+  border: 2px solid var(--inner-card-border);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.calorie-meal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.calorie-meal-btn.eaten {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: #10b981;
+  opacity: 0.85;
+}
+
+.calorie-meal-btn.eaten::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.04);
+}

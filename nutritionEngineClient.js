@@ -330,6 +330,28 @@ export function computeBmrTdee(profile) {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Allergy Filtering — mirrors the backend _filter_allergies logic
+// ---------------------------------------------------------------------------
+function filterAllergies(pool, allergies) {
+  if (!allergies || allergies.length === 0) return pool;
+  const keywords = (Array.isArray(allergies) ? allergies : [allergies])
+    .map((a) => (typeof a === "string" ? a.trim().toLowerCase() : ""))
+    .filter(Boolean);
+  if (keywords.length === 0) return pool;
+
+  const filtered = pool.filter((item) => {
+    const ingText = (item.ingredients || [])
+      .map((ing) => (typeof ing === "string" ? ing : JSON.stringify(ing)))
+      .join(" ")
+      .toLowerCase();
+    const nameText = (item.name || "").toLowerCase();
+    return !keywords.some((kw) => ingText.includes(kw) || nameText.includes(kw));
+  });
+  // Safety fallback: never return empty — use original pool
+  return filtered.length > 0 ? filtered : pool;
+}
+
 function getPoolKey(diet) {
   const d = (diet || "").toLowerCase();
   if (d.includes("vegan")) return "vegan";
@@ -347,20 +369,24 @@ export function generateClientSingleDayPlan(profile, dayName = "Today", offset =
   const poolKey = getPoolKey(profile.diet);
   const pool = MEAL_POOLS[poolKey] || MEAL_POOLS.indian_veg;
 
+  const allergies = Array.isArray(profile.allergies)
+    ? profile.allergies
+    : (profile.allergies || "").split(",").map((a) => a.trim()).filter(Boolean);
+
   const bCal = Math.round(target_calories * 0.25);
   const lCal = Math.round(target_calories * 0.35);
   const dCal = Math.round(target_calories * 0.30);
   const sCal = Math.round(target_calories * 0.10);
 
-  const bList = pool.breakfast || MEAL_POOLS.indian_veg.breakfast;
-  const lList = pool.lunch || MEAL_POOLS.indian_veg.lunch;
-  const dList = pool.dinner || MEAL_POOLS.indian_veg.dinner;
-  const sList = pool.snack || MEAL_POOLS.indian_veg.snack;
+  const bList = filterAllergies(pool.breakfast || MEAL_POOLS.indian_veg.breakfast, allergies);
+  const lList = filterAllergies(pool.lunch || MEAL_POOLS.indian_veg.lunch, allergies);
+  const dList = filterAllergies(pool.dinner || MEAL_POOLS.indian_veg.dinner, allergies);
+  const sList = filterAllergies(pool.snack || MEAL_POOLS.indian_veg.snack, allergies);
 
   const bItem = bList[offset % bList.length];
-  const lItem = lList[offset % lList.length];
-  const dItem = dList[offset % dList.length];
-  const sItem = sList[offset % sList.length];
+  const lItem = lList[(offset + 1) % lList.length];
+  const dItem = dList[(offset + 2) % dList.length];
+  const sItem = sList[(offset + 3) % sList.length];
 
   const meals = [
     {
@@ -463,11 +489,16 @@ export function generateClientMealSwap(profile, mealIndex = 0, currentMealName =
 
   const poolKey = getPoolKey(profile.diet);
   const pool = MEAL_POOLS[poolKey] || MEAL_POOLS.indian_veg;
-  const list = pool[slot] || MEAL_POOLS.indian_veg[slot] || MEAL_POOLS.indian_veg.lunch;
+  const rawList = pool[slot] || MEAL_POOLS.indian_veg[slot] || MEAL_POOLS.indian_veg.lunch;
 
-  // Filter out current meal if possible
-  const filtered = list.filter((m) => m.name !== currentMealName);
-  const picked = filtered.length > 0 ? filtered[Math.floor(Math.random() * filtered.length)] : list[0];
+  const allergies = Array.isArray(profile.allergies)
+    ? profile.allergies
+    : (profile.allergies || "").split(",").map((a) => a.trim()).filter(Boolean);
+
+  // Filter allergy items first, then exclude current meal
+  const allergyFiltered = filterAllergies(rawList, allergies);
+  const filtered = allergyFiltered.filter((m) => m.name !== currentMealName);
+  const picked = filtered.length > 0 ? filtered[Math.floor(Math.random() * filtered.length)] : allergyFiltered[0];
 
   return {
     ...picked,

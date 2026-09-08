@@ -1,26 +1,26 @@
 {
-    "name":  "cdp2",
-    "version":  "1.0.0",
-    "description":  "",
-    "type":  "commonjs",
-    "scripts":  {
-                    "start":  "parcel index.html --open",
-                    "dev":  "parcel index.html",
-                    "build":  "parcel build index.html --dist-dir dist",
-                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1"
-                },
-    "keywords":  [
-
-                 ],
-    "author":  "",
-    "license":  "ISC",
-    "dependencies":  {
-                         "express":  "^5.1.0",
-                         "react":  "^18.3.1",
-                         "react-dom":  "^18.3.1"
-                     },
-    "devDependencies":  {
-                            "nodemon":  "^3.0.1",
-                            "parcel":  "^2.16.1"
-                        }
+    "name": "cdp2",
+    "version": "1.0.0",
+    "description": "",
+    "type": "commonjs",
+    "scripts": {
+        "start": "parcel index.html --open",
+        "dev": "parcel index.html",
+        "build": "parcel build index.html --dist-dir dist",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.1.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@parcel/packager-raw-url": "^2.16.1",
+        "@parcel/transformer-webmanifest": "^2.16.1",
+        "nodemon": "^3.0.1",
+        "parcel": "^2.16.1"
+    }
 }
