@@ -255,13 +255,12 @@ POST /generate_plan
 
 ## Author
 
-**Gargey Mahajan**
+**Abhishek Badave**
 
-B.Tech Computer Engineering  
+B.Tech Computer Science and Engineering  
 Vishwakarma University, Pune
 
 ## Connect With Me
 
-- [LinkedIn](https://www.linkedin.com/in/gargey-mahajan-624a56346/)
-- [GitHub](https://github.com/gargey2275)
-
+- [LinkedIn](https://www.linkedin.com/in/abhishek-badave)
+- [GitHub](https://github.com/abhishek7ab)
