@@ -8,9 +8,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - WATSONX_URL=https://us-south.ml.cloud.ibm.com
-      - WATSONX_API_KEY=n60N5MPb0bf1m-oMa3i2ru4kf1Jtcy1CyUagH2NSPUnv
-      - WATSONX_PROJECT_ID=0ee8c1fb-cde1-4ab3-bc5c-16751cdfed4b
+      WATSONX_URL: ${WATSONX_URL:-https://us-south.ml.cloud.ibm.com}
+      WATSONX_API_KEY: ${WATSONX_API_KEY:-}
+      WATSONX_PROJECT_ID: ${WATSONX_PROJECT_ID:-}
 
   frontend:
     build:

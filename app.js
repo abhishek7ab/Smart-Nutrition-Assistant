@@ -118,6 +118,9 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
   };
 
   const totalMacros = plan.total_macros || { protein_g: 130, carbs_g: 220, fats_g: 60 };
+  const macroCalories = { protein: totalMacros.protein_g * 4, carbs: totalMacros.carbs_g * 4, fats: totalMacros.fats_g * 9 };
+  const macroTotal = macroCalories.protein + macroCalories.carbs + macroCalories.fats || 1;
+  const macroPct = Object.fromEntries(Object.entries(macroCalories).map(([key, value]) => [key, (value / macroTotal * 100).toFixed(1)]));
 
   return (
     <div className="result-card">
@@ -171,9 +174,9 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
           <div className="macro-section">
             <span className="sub-heading">📊 Daily Macro Distribution</span>
             <div className="macro-bar-container">
-              <div className="macro-bar-fill protein" style={{ width: '30%' }} title="Protein 30%"></div>
-              <div className="macro-bar-fill carbs" style={{ width: '45%' }} title="Carbs 45%"></div>
-              <div className="macro-bar-fill fats" style={{ width: '25%' }} title="Fats 25%"></div>
+              <div className="macro-bar-fill protein" style={{ width: `${macroPct.protein}%` }} title={`Protein ${macroPct.protein}%`}></div>
+              <div className="macro-bar-fill carbs" style={{ width: `${macroPct.carbs}%` }} title={`Carbs ${macroPct.carbs}%`}></div>
+              <div className="macro-bar-fill fats" style={{ width: `${macroPct.fats}%` }} title={`Fats ${macroPct.fats}%`}></div>
             </div>
             <div className="macro-legend">
               <span className="legend-item protein"><span className="dot"></span> Protein: {totalMacros.protein_g}g</span>
@@ -308,7 +311,7 @@ function App() {
     if (bmi < 18.5) {
       category = "Underweight";
       catColor = "#fbbf24";
-    } else if (bmi >= 25 && bmi < 29.9) {
+    } else if (bmi >= 25 && bmi < 30) {
       category = "Overweight";
       catColor = "#f97316";
     } else if (bmi >= 30) {
@@ -349,16 +352,20 @@ function App() {
         body: JSON.stringify(payload),
       });
       const result = await res.json();
+      if (!res.ok || !result || result.error || !Array.isArray(result.meals) || !result.meals.length) {
+        setMealPlan({ error: result?.detail || result?.error || "The server returned an invalid meal plan." });
+        return;
+      }
       setMealPlan(result);
 
       // Save to localStorage history
-      if (result && !result.error) {
+      if (result && Array.isArray(result.meals) && result.meals.length) {
         const updatedHistory = [result, ...history.filter(h => h.date !== result.date || h.user_id !== result.user_id)].slice(0, 10);
         setHistory(updatedHistory);
         localStorage.setItem("smart_nutrition_history", JSON.stringify(updatedHistory));
       }
     } catch (error) {
-      alert("Error generating plan!");
+      setMealPlan({ error: error.message || "Error generating plan." });
     } finally {
       setLoading(false);
     }
@@ -383,16 +390,20 @@ function App() {
         body: JSON.stringify(payload)
       });
       const newMeal = await res.json();
-      if (newMeal && !newMeal.error) {
+      if (!res.ok || !newMeal || newMeal.error || newMeal.detail) throw new Error(newMeal?.detail || newMeal?.error || "Unable to swap this meal.");
         setMealPlan(prev => {
           if (!prev) return prev;
           const newMeals = [...prev.meals];
           newMeals[idx] = newMeal;
-          return { ...prev, meals: newMeals };
+          const updatedPlan = { ...prev, meals: newMeals };
+          const updatedHistory = [updatedPlan, ...history.filter(h => h.date !== updatedPlan.date || h.user_id !== updatedPlan.user_id)].slice(0, 10);
+          setHistory(updatedHistory);
+          localStorage.setItem("smart_nutrition_history", JSON.stringify(updatedHistory));
+          return updatedPlan;
         });
-      }
     } catch (e) {
       console.error("Failed to swap meal", e);
+      setMealPlan(prev => ({ ...prev, error: e.message || "Failed to swap meal." }));
     }
   };
 

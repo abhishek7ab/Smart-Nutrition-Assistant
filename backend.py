@@ -7,6 +7,8 @@ import re
 import os
 import random
 from datetime import date
+from pathlib import Path
+from typing import Iterable
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -78,6 +80,82 @@ def calculate_macros(calories: int, goal: str):
         "fats_g": fats_g
     }
 
+def activity_multiplier(activity: str) -> float:
+    act = (activity or "").lower()
+    if "low" in act:
+        return 1.2
+    if "high" in act:
+        return 1.725
+    return 1.45
+
+def calorie_target(profile: Profile) -> int:
+    bmr = 10 * profile.weight_kg + 6.25 * profile.height_cm - 5 * profile.age
+    bmr += 5 if profile.sex.lower() == "male" else -161
+    tdee = bmr * activity_multiplier(profile.activity)
+    goal = profile.goal.lower()
+    if "loss" in goal:
+        tdee -= 500
+    elif "gain" in goal or "muscle" in goal:
+        tdee += 400
+    return max(1200, int(tdee))
+
+def save_plan(profile: Profile, plan: dict) -> None:
+    # Treat profile names as display data, never as path components.
+    safe_name = re.sub(r"[^a-z0-9_-]+", "_", profile.name.lower()).strip("_-") or "user"
+    filename = Path(__file__).resolve().parent / f"mealplan_{safe_name}.json"
+    filename.write_text(json.dumps(plan, indent=2), encoding="utf-8")
+
+def matches_allergy(ingredient: str, allergy: str) -> bool:
+    ingredient = ingredient.lower()
+    allergy = allergy.lower().strip()
+    if not allergy:
+        return False
+    aliases = {
+        "milk": ("milk", "dairy", "yogurt", "yoghurt", "cheese", "paneer", "butter", "cream", "whey", "casein"),
+        "dairy": ("milk", "dairy", "yogurt", "yoghurt", "cheese", "paneer", "butter", "cream", "whey", "casein"),
+        "egg": ("egg",), "eggs": ("egg",),
+        "nut": ("almond", "walnut", "cashew", "pistachio", "pecan", "hazelnut", "macadamia", "nut"),
+        "tree nut": ("almond", "walnut", "cashew", "pistachio", "pecan", "hazelnut", "macadamia", "nut"),
+        "peanut": ("peanut",), "peanuts": ("peanut",),
+    }
+    terms = aliases.get(allergy, (allergy,))
+    return any(term in ingredient for term in terms)
+
+def meal_is_safe(meal: dict, profile: Profile) -> bool:
+    ingredients = meal.get("ingredients", [])
+    if isinstance(ingredients, str):
+        ingredients = [ingredients]
+    text = " ".join(str(item) for item in ingredients).lower()
+    name = str(meal.get("name", "")).lower()
+    text += " " + name
+    diet = profile.diet.lower().replace("_", "-")
+    if "vegan" in diet and re.search(r"\b(egg|eggs|milk|dairy|yogurt|yoghurt|cheese|paneer|honey|butter|whey|casein|chicken|turkey|fish|salmon|cod|beef|pork)\b", text):
+        return False
+    if "vegetarian" in diet and "non" not in diet and re.search(r"\b(chicken|turkey|fish|salmon|cod|beef|pork|meat|egg|eggs)\b", text):
+        return False
+    return not any(matches_allergy(text, allergy) for allergy in profile.allergies)
+
+def filter_plan(plan: dict, profile: Profile) -> dict:
+    plan["meals"] = [meal for meal in plan.get("meals", []) if meal_is_safe(meal, profile)]
+    return plan
+
+def choose_safe_alternative(meal_type: str, profile: Profile) -> dict:
+    diet = profile.diet.lower().replace("_", "-")
+    allowed = [meal for meal in ALTERNATIVES[meal_type] if meal_is_safe(meal, profile)]
+    if not allowed and ("vegan" in diet or ("vegetarian" in diet and "non" not in diet)):
+        fallback = {
+            "breakfast": {"name": "Breakfast: Chia Oat Bowl", "ingredients": ["1 cup oats", "1 tbsp chia seeds", "1 cup oat milk", "1/2 cup berries"], "reason": "A plant-based, fiber-rich breakfast."},
+            "lunch": {"name": "Lunch: Lentil Quinoa Bowl", "ingredients": ["1 cup lentils", "1/2 cup quinoa", "1 cup vegetables"], "reason": "Plant protein with fiber-rich grains and vegetables."},
+            "dinner": {"name": "Dinner: Chickpea Vegetable Curry", "ingredients": ["1 cup chickpeas", "1 cup vegetables", "1/2 cup rice"], "reason": "A satisfying plant-based dinner."},
+            "snack": {"name": "Snack: Apple & Pumpkin Seeds", "ingredients": ["1 apple", "2 tbsp pumpkin seeds"], "reason": "Fruit and seeds provide fiber and healthy fats."},
+        }
+        fallback_meal = fallback[meal_type]
+        if meal_is_safe(fallback_meal, profile):
+            return fallback_meal
+    if not allowed:
+        raise ValueError(f"No {meal_type} alternatives match this diet and allergy profile")
+    return random.choice(allowed)
+
 ALTERNATIVES = {
     "breakfast": [
         {
@@ -138,34 +216,13 @@ ALTERNATIVES = {
 }
 
 def generate_fallback_plan(profile: Profile):
-    bmr = 10 * profile.weight_kg + 6.25 * profile.height_cm - 5 * profile.age
-    if profile.sex.lower() == "male":
-        bmr += 5
-    else:
-        bmr -= 161
-    
-    act = profile.activity.lower()
-    if "low" in act:
-        tdee = bmr * 1.2
-    elif "high" in act:
-        tdee = bmr * 1.725
-    else:
-        tdee = bmr * 1.45
-        
-    goal = profile.goal.lower()
-    if "loss" in goal:
-        target_cal = int(tdee - 500)
-    elif "gain" in goal or "muscle" in goal:
-        target_cal = int(tdee + 400)
-    else:
-        target_cal = int(tdee)
-        
-    target_cal = max(1200, target_cal)
+    target_cal = calorie_target(profile)
     macros = calculate_macros(target_cal, profile.goal)
 
     diet = profile.diet.lower()
     is_veg = "veg" in diet and "non" not in diet
     is_vegan = "vegan" in diet
+    is_nonveg = "non" in diet
     
     if is_vegan:
         b_name = "Breakfast: Oatmeal with Almond Milk & Chia Seeds"
@@ -199,7 +256,7 @@ def generate_fallback_plan(profile: Profile):
         s_name = "Snack: Sprouted Moong Salad & Green Tea"
         s_ingr = ["1 cup sprouted moong", "1/4 cup diced cucumber & tomato", "1 tsp lemon juice"]
         s_reason = "Low calorie, nutrient-dense snack high in vitamins."
-    else:
+    elif is_nonveg or "balanced" in diet:
         b_name = "Breakfast: Scrambled Eggs with Avocado & Toast"
         b_ingr = ["3 large eggs", "1/2 sliced avocado", "2 slices whole wheat toast", "1 cup spinach"]
         b_reason = "High protein and healthy fats to start the day with stable blood sugar."
@@ -215,6 +272,20 @@ def generate_fallback_plan(profile: Profile):
         s_name = "Snack: Boiled Egg White & Almonds"
         s_ingr = ["2 boiled egg whites", "15 raw almonds"]
         s_reason = "Quick, low-carbohydrate protein booster."
+
+    else:
+        b_name = "Breakfast: Oatmeal with Seeds & Berries"
+        b_ingr = ["1 cup oats", "1 tbsp chia seeds", "1/2 cup blueberries", "1 tbsp maple syrup"]
+        b_reason = "A fiber-rich breakfast with plant-based energy."
+        l_name = "Lunch: Tofu & Chickpea Buddha Bowl"
+        l_ingr = ["150g grilled tofu", "1/2 cup chickpeas", "1 cup brown rice", "1 cup steamed spinach"]
+        l_reason = "Plant protein with iron and slow-digesting carbohydrates."
+        d_name = "Dinner: Lentil & Vegetable Curry with Quinoa"
+        d_ingr = ["1 cup yellow lentil curry", "3/4 cup cooked quinoa", "1 cup roasted cauliflower & carrots"]
+        d_reason = "A filling plant-based meal with fiber and protein."
+        s_name = "Snack: Apple with Pumpkin Seeds"
+        s_ingr = ["1 medium apple", "2 tbsp pumpkin seeds"]
+        s_reason = "Fruit and seeds provide fiber and unsaturated fats."
 
     b_cal = int(target_cal * 0.25)
     l_cal = int(target_cal * 0.35)
@@ -256,13 +327,14 @@ def generate_fallback_plan(profile: Profile):
         }
     ]
 
-    return {
+    plan = {
         "user_id": profile.name,
         "date": str(date.today()),
         "target_calories": target_cal,
         "total_macros": macros,
         "meals": meals
     }
+    return filter_plan(plan, profile)
 
 @app.post("/generate_plan")
 def generate_plan(profile: Profile):
@@ -296,18 +368,16 @@ def generate_plan(profile: Profile):
                     if "macros" not in meal:
                         meal["macros"] = calculate_macros(meal.get("approx_calories", 500), profile.goal)
 
-                filename = f"mealplan_{profile.name.lower().replace(' ', '_')}.json"
-                with open(filename, "w", encoding="utf-8") as f:
-                    json.dump(plan, f, indent=2)
-
+                if not all(meal_is_safe(meal, profile) for meal in plan.get("meals", [])):
+                    raise ValueError("Watsonx plan did not satisfy the selected diet/allergy constraints")
+                plan = filter_plan(plan, profile)
+                save_plan(profile, plan)
                 return plan
         except Exception as e:
             print("Watsonx AI call failed, falling back to Smart Nutrition Engine:", str(e))
 
     plan = generate_fallback_plan(profile)
-    filename = f"mealplan_{profile.name.lower().replace(' ', '_')}.json"
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(plan, f, indent=2)
+    save_plan(profile, plan)
     return plan
 
 @app.post("/swap_meal")
@@ -321,13 +391,15 @@ def swap_meal(req: SwapRequest):
     elif "snack" in name_lower:
         meal_type_key = "snack"
 
-    options = ALTERNATIVES.get(meal_type_key, ALTERNATIVES["lunch"])
-    chosen = random.choice(options)
+    try:
+        chosen = choose_safe_alternative(meal_type_key, req.profile)
+    except ValueError as exc:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
     
     cal_multiplier = 0.25 if meal_type_key == "breakfast" else (0.35 if meal_type_key == "lunch" else (0.30 if meal_type_key == "dinner" else 0.10))
     
-    bmr = 10 * req.profile.weight_kg + 6.25 * req.profile.height_cm - 5 * req.profile.age
-    target_cal = int(bmr * 1.45)
+    target_cal = calorie_target(req.profile)
     approx_cal = int(target_cal * cal_multiplier)
 
     new_meal = {
