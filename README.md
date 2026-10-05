@@ -48,19 +48,6 @@ npm start
 
 Open `http://localhost:1234` in a browser.
 
-## Optional Watsonx Configuration
-
-Create a `.env` file in the project root if Watsonx meal generation is enabled:
-
-```env
-WATSONX_API_KEY=your_api_key
-WATSONX_PROJECT_ID=your_project_id
-WATSONX_URL=https://us-south.ml.cloud.ibm.com
-```
-
-The backend still starts without these values and uses its built-in meal-plan
-logic.
-
 ## API
 
 Generate a plan with `POST http://127.0.0.1:8000/generate_plan`:
