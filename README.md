@@ -1,266 +1,85 @@
-# 🥗 Smart Nutrition Assistant
+# Smart Nutrition Assistant
 
-An AI-powered nutrition planning application that generates personalized meal plans based on a user's profile, fitness goals, dietary preferences, and allergies.
+A small React and FastAPI app that creates personalized meal plans from a user's
+body measurements, activity level, goal, diet preference, and allergies.
 
-Built using:
+## Features
 
-- React.js
-- FastAPI
-- IBM Watsonx AI / LLM Integration
-- Modern Responsive UI
-- REST API Architecture
+- Weight loss, muscle gain, and maintenance plans
+- Balanced, vegetarian, vegan, and non-vegetarian meal options
+- BMI, calorie, macro, and water-goal estimates
+- Allergy-aware meal recommendations
+- Meal swaps, saved plans, grocery lists, and responsive UI
+- Optional IBM Watsonx integration with a local fallback
 
----
+## Run Locally
 
-## 🚀 Features
-
-✅ **1-Day & 7-Day Weekly Meal Planning**: Mon-Sun customized day-by-day nutrition schedules.
-✅ **Dynamic Macro Donut Charts**: Live visual breakdown of Protein, Carbs, and Healthy Fats.
-✅ **Interactive Daily Hydration Tracker**: Personalized water targets with animated water cup logging.
-✅ **Step-by-Step Cooking Recipes**: Cook times, prep times, difficulty tags, and full instructions modal.
-✅ **Dark & Light Mode Switcher**: Seamless toggle between sleek Dark Glassmorphism and clean Light mode.
-✅ **Categorized Grocery Checklist with WhatsApp Export**: One-click checklist copying for WhatsApp or Notes.
-✅ **Supports Multiple Fitness Goals**: Weight Loss (Deficit), Muscle Gain (Surplus), Weight Maintenance.
-✅ **Comprehensive Diet Preferences**: Indian Vegetarian, Vegan, Non-Vegetarian, Eggetarian, Balanced.
-✅ **Allergy-Aware Meal Recommendations**: Filter out nuts, dairy, gluten, and shellfish safely.
-✅ **FastAPI REST API Architecture** & **React Modern Glassmorphism UI**
-
-
----
-
-# 📸 Screenshots
-
-## Home Screen
-
-![Home Screen](screenshots/home.png)
-
----
-
-## User Input Form
-
-![Input Form](screenshots/input-form-1.png)
-
----
-
-## Meal Plan Generation
-
-![Meal Plan Generation](screenshots/meal-plan-1.png)
-
----
-
-## Muscle Gain Meal Plan
-
-![Muscle Gain Plan](screenshots/input-form-1.png)
-
----
-
-## Responsive Modern UI
-
-![Responsive UI](screenshots/meal-plan-2.png)
-
----
-
-# 🏗️ Project Architecture
-
-```text
-Smart-Nutrition-Assistant
-│
-├── frontend
-│   ├── React
-│   ├── CSS
-│   └── API Integration
-│
-├── backend
-│   ├── FastAPI
-│   ├── Watsonx AI Integration
-│   └── Meal Plan Generation Logic
-│
-└── README.md
-```
-
----
-
-# ⚙️ Installation
-
-## Clone Repository
+### 1. Clone and install the frontend
 
 ```bash
-git clone https://github.com/yourusername/smart-nutrition-assistant.git
-
-cd smart-nutrition-assistant
-```
-
----
-
-# Backend Setup
-
-## Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-### Linux / Mac
-
-```bash
-source venv/bin/activate
-```
-
----
-
-## Install Dependencies
-
-```bash
-pip install fastapi uvicorn python-dotenv ibm-watsonx-ai
-```
-
----
-
-## Configure Environment Variables
-
-Create a `.env` file:
-
-```env
-WATSONX_API_KEY=YOUR_API_KEY
-WATSONX_PROJECT_ID=YOUR_PROJECT_ID
-WATSONX_URL=https://us-south.ml.cloud.ibm.com
-```
-
----
-
-## Run Backend
-
-```bash
-uvicorn backend:app --reload
-```
-
-Backend runs at:
-
-```text
-http://127.0.0.1:8000
-```
-
----
-
-# Frontend Setup
-
-Install dependencies:
-
-```bash
+git clone https://github.com/abhishek7ab/Smart-Nutrition-Assistant.git
+cd Smart-Nutrition-Assistant
 npm install
 ```
 
-Start frontend:
+### 2. Install and run the backend
+
+Create a virtual environment, activate it, and install the Python packages:
+
+```bash
+python -m venv venv
+# Windows PowerShell
+venv\Scripts\Activate.ps1
+# macOS/Linux
+source venv/bin/activate
+pip install fastapi uvicorn python-dotenv ibm-watsonx-ai
+uvicorn backend:app --reload
+```
+
+The API runs at `http://127.0.0.1:8000`.
+
+### 3. Run the frontend
+
+Open a second terminal in the project folder:
 
 ```bash
 npm start
 ```
 
-or
+Open `http://localhost:1234` in a browser.
 
-```bash
-npm run dev
+## Optional Watsonx Configuration
+
+Create a `.env` file in the project root if Watsonx meal generation is enabled:
+
+```env
+WATSONX_API_KEY=your_api_key
+WATSONX_PROJECT_ID=your_project_id
+WATSONX_URL=https://us-south.ml.cloud.ibm.com
 ```
 
-Frontend runs at:
+The backend still starts without these values and uses its built-in meal-plan
+logic.
 
-```text
-http://localhost:1234
-```
+## API
 
----
-
-# API Endpoint
-
-## Generate Meal Plan
-
-### Request
-
-```http
-POST /generate_plan
-```
-
-### Sample Request
+Generate a plan with `POST http://127.0.0.1:8000/generate_plan`:
 
 ```json
 {
-  "name": "John Doe",
+  "name": "Alex",
   "age": 25,
   "sex": "male",
   "height_cm": 177,
-  "weight_kg": 93,
-  "activity": "high",
+  "weight_kg": 75,
   "goal": "muscle_gain",
-  "diet": "non vegetarian",
-  "allergies": ["milk"]
+  "diet": "vegetarian",
+  "activity": "high",
+  "allergies": ["peanuts"]
 }
 ```
 
----
+## Tech Stack
 
-# Example Output
+React, Parcel, CSS, FastAPI, Python, and optional IBM Watsonx AI.
 
-```json
-{
-  "target_calories": 3200,
-  "meals": [
-    {
-      "name": "Breakfast",
-      "approx_calories": 550
-    },
-    {
-      "name": "Lunch",
-      "approx_calories": 650
-    },
-    {
-      "name": "Dinner",
-      "approx_calories": 700
-    }
-  ]
-}
-```
-
----
-
-# Future Improvements
-
-- BMI Calculator
-- Nutrition Charts
-- Progress Tracking
-- PDF Meal Plan Export
-- Authentication System
-- User Dashboard
-- Meal History Storage
-- Mobile App Version
-
----
-
-# Tech Stack
-
-| Technology | Usage |
-|------------|--------|
-| React | Frontend |
-| FastAPI | Backend |
-| IBM Watsonx AI | AI Meal Generation |
-| CSS3 | UI Styling |
-| REST API | Communication |
-
----
-
-## Author
-
-**Abhishek Badave**
-
-B.Tech Computer Science and Engineering  
-Vishwakarma University, Pune
-
-## Connect With Me
-
-- [LinkedIn](https://www.linkedin.com/in/abhishek-badave)
-- [GitHub](https://github.com/abhishek7ab)
