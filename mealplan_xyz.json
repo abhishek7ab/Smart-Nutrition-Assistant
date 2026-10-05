@@ -1,0 +1,68 @@
+{
+  "user_id": "xyz",
+  "date": "2023-04-01",
+  "target_calories": 2500,
+  "meals": [
+    {
+      "name": "Breakfast - Scrambled Eggs and Toast",
+      "ingredients": [
+        "Eggs",
+        "Whole grain bread",
+        "Spinach",
+        "Cheese"
+      ],
+      "approx_calories": 450,
+      "reason": "Provides a good balance of protein, carbs, and healthy fats for sustained energy.",
+      "swaps": {
+        "Avocado": "Cheese",
+        "Greek Yogurt": "Eggs"
+      }
+    },
+    {
+      "name": "Lunch - Grilled Chicken Salad",
+      "ingredients": [
+        "Grilled chicken breast",
+        "Mixed greens",
+        "Cherry tomatoes",
+        "Cucumber",
+        "Olive oil",
+        "Lemon juice"
+      ],
+      "approx_calories": 400,
+      "reason": "A light, refreshing meal rich in lean protein and fiber to keep you full.",
+      "swaps": {
+        "Tuna": "Chicken breast",
+        "Almonds": "Cherry tomatoes"
+      }
+    },
+    {
+      "name": "Dinner - Baked Salmon with Quinoa and Steamed Broccoli",
+      "ingredients": [
+        "Salmon fillet",
+        "Quinoa",
+        "Broccoli",
+        "Lemon",
+        "Garlic"
+      ],
+      "approx_calories": 600,
+      "reason": "An excellent source of omega-3 fatty acids, protein, and fiber to support overall health.",
+      "swaps": {
+        "Chicken": "Salmon fillet",
+        "Rice": "Quinoa"
+      }
+    },
+    {
+      "name": "Snack - Apple with Almond Butter",
+      "ingredients": [
+        "Apple",
+        "Almond butter"
+      ],
+      "approx_calories": 200,
+      "reason": "A satisfying snack providing healthy fats and fiber to curb hunger.",
+      "swaps": {
+        "Banana": "Apple",
+        "Peanut butter": "Almond butter"
+      }
+    }
+  ]
+}

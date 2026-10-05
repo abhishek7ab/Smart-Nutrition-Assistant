@@ -1,0 +1,73 @@
+{
+  "user_id": "12345",
+  "date": "2023-03-01",
+  "target_calories": 2200,
+  "meals": [
+    {
+      "name": "Tofu Scramble",
+      "ingredients": [
+        "tofu, spinach, bell peppers, onions, turmeric, black salt, olive oil"
+      ],
+      "approx_calories": 350,
+      "reason": "High in protein and fiber, good for muscle recovery and satiety",
+      "swaps": [
+        "swap tofu with tempeh for a different texture and flavor"
+      ]
+    },
+    {
+      "name": "Quinoa Salad",
+      "ingredients": [
+        "quinoa, mixed greens, cherry tomatoes, cucumber, chickpeas, lemon-tahini dressing"
+      ],
+      "approx_calories": 400,
+      "reason": "Complete protein source, rich in vitamins and minerals, supports muscle growth and recovery",
+      "swaps": [
+        "swap quinoa with farro for a different texture and flavor"
+      ]
+    },
+    {
+      "name": "Lentil Soup",
+      "ingredients": [
+        "lentils, carrots, celery, onions, garlic, vegetable broth, turmeric, cumin"
+      ],
+      "approx_calories": 350,
+      "reason": "High in protein and fiber, good for muscle recovery and satiety, provides essential vitamins and minerals",
+      "swaps": [
+        "swap lentils with chickpeas for a different texture and flavor"
+      ]
+    },
+    {
+      "name": "Chickpea Curry",
+      "ingredients": [
+        "chickpeas, spinach, bell peppers, onions, garlic, ginger, coconut milk, turmeric, cumin"
+      ],
+      "approx_calories": 400,
+      "reason": "High in protein and fiber, good for muscle recovery and satiety, provides essential vitamins and minerals",
+      "swaps": [
+        "swap chickpeas with tofu for a different texture and flavor"
+      ]
+    },
+    {
+      "name": "Veggie Stir-Fry",
+      "ingredients": [
+        "mixed vegetables, tofu, brown rice, soy sauce, sesame oil"
+      ],
+      "approx_calories": 400,
+      "reason": "High in vitamins and minerals, good for muscle recovery and satiety, provides a variety of textures and flavors",
+      "swaps": [
+        "swap tofu with tempeh for a different texture and flavor"
+      ]
+    },
+    {
+      "name": "Peanut Butter Banana Smoothie",
+      "ingredients": [
+        "banana, peanut butter, almond milk, chia seeds, oats"
+      ],
+      "approx_calories": 300,
+      "reason": "High in protein and healthy fats, good for muscle recovery and satiety, provides essential vitamins and minerals",
+      "swaps": [
+        "swap peanut butter with almond butter for a different flavor"
+      ]
+    }
+  ]
+}

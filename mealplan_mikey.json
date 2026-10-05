@@ -1,0 +1,88 @@
+{
+  "user_id": "12345",
+  "date": "2023-03-15",
+  "target_calories": 2500,
+  "meals": [
+    {
+      "name": "Breakfast - Chicken and Veggie Scramble",
+      "ingredients": [
+        "chicken breast",
+        "spinach",
+        "bell peppers",
+        "onions",
+        "2 eggs"
+      ],
+      "approx_calories": 450,
+      "reason": "High in protein to support muscle growth",
+      "swaps": [
+        "Swap egg whites for whole eggs if allergic to yolks"
+      ]
+    },
+    {
+      "name": "Mid-Morning Snack - Greek Yogurt and Berries",
+      "ingredients": [
+        "Greek yogurt",
+        "mixed berries"
+      ],
+      "approx_calories": 200,
+      "reason": "Probiotics and antioxidants for gut health and recovery",
+      "swaps": [
+        "Use lactose-free Greek yogurt if intolerant"
+      ]
+    },
+    {
+      "name": "Lunch - Grilled Chicken Salad",
+      "ingredients": [
+        "grilled chicken breast",
+        "mixed greens",
+        "cherry tomatoes",
+        "cucumbers",
+        "olives",
+        "balsamic vinaigrette"
+      ],
+      "approx_calories": 500,
+      "reason": "Balanced mix of lean protein, healthy fats, and fiber",
+      "swaps": [
+        "Add avocado for extra healthy fats"
+      ]
+    },
+    {
+      "name": "Afternoon Snack - Cottage Cheese and Almonds",
+      "ingredients": [
+        "cottage cheese",
+        "almonds"
+      ],
+      "approx_calories": 300,
+      "reason": "High in protein and healthy fats for muscle recovery",
+      "swaps": [
+        "Swap almonds with pumpkin seeds if allergic"
+      ]
+    },
+    {
+      "name": "Dinner - Baked Salmon with Quinoa and Broccoli",
+      "ingredients": [
+        "salmon fillet",
+        "quinoa",
+        "broccoli",
+        "olive oil, salt, and pepper"
+      ],
+      "approx_calories": 600,
+      "reason": "Omega-3 fatty acids and lean protein for muscle gain",
+      "swaps": [
+        "Use light tuna instead of salmon if preferred"
+      ]
+    },
+    {
+      "name": "Evening Snack - Cottage Cheese with Fruit",
+      "ingredients": [
+        "cottage cheese",
+        "assorted fruits"
+      ],
+      "approx_calories": 250,
+      "reason": "Protein and carbohydrates to support muscle recovery",
+      "swaps": [
+        "Use lactose-free cottage cheese if intolerant"
+      ]
+    }
+  ]
+}
