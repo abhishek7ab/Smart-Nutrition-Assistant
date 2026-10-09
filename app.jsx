@@ -1647,6 +1647,15 @@ function App() {
     }
   });
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.remove("theme-dark", "theme-light");
+    document.documentElement.classList.add(`theme-${theme}`);
+    if (document.body) {
+      document.body.className = `theme-${theme}`;
+    }
+  }, [theme]);
+
   const [form, setForm] = useState({
     name: "",
     age: "",

@@ -182,7 +182,12 @@
 
 .field input:hover,
 .field select:hover {
-  border-color: rgba(255, 255, 255, 0.16);
+  border-color: var(--text-light);
+}
+
+.field select option {
+  background: var(--card-bg);
+  color: var(--text-main);
 }
 
 .field input:focus,
@@ -267,6 +272,10 @@
   box-shadow: 0 6px 18px rgba(34, 197, 94, 0.3);
 }
 
+.theme-light .generate-btn:not(.weekly-btn) {
+  color: #ffffff;
+}
+
 .generate-btn.weekly-btn {
   background: var(--accent-orange);
   color: #fff;
@@ -334,7 +343,7 @@
 
 .close-btn:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--card-border);
 }
 
 .history-list {

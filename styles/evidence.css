@@ -121,6 +121,10 @@
   flex-shrink: 0;
 }
 
+.theme-light .evidence-check-icon {
+  color: #ffffff;
+}
+
 .evidence-footnote {
   font-size: 0.88rem;
   color: var(--text-muted);

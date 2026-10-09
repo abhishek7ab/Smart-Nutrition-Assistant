@@ -83,6 +83,10 @@
   box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
 }
 
+.theme-light .btn-hero-primary {
+  color: #ffffff;
+}
+
 /* Secondary CTA */
 .btn-hero-secondary {
   background: transparent;
@@ -101,7 +105,7 @@
 
 .btn-hero-secondary:hover {
   color: var(--text-main);
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: var(--accent-green);
   background: var(--inner-card-bg);
 }
 
@@ -139,7 +143,7 @@
 
 .hero-card-banner-bg {
   background: linear-gradient(135deg, var(--accent-green-light), rgba(249, 115, 22, 0.08));
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--inner-card-border);
   border-radius: var(--radius-xl);
   padding: 24px 20px;
   text-align: center;
@@ -183,7 +187,7 @@
 }
 
 .hero-macro-box:hover {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-green);
 }
 
 .hero-macro-label {

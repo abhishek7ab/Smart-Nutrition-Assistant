@@ -21,7 +21,7 @@
 
 /* Progress bar track */
 .calorie-progress-bar-track {
-  background: var(--inner-card-bg);
+  background: var(--track-bg);
   border-radius: 100px;
   height: 10px;
   width: 100%;
@@ -33,7 +33,7 @@
   height: 100%;
   border-radius: 100px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px rgba(132, 204, 22, 0.4);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
 }
 
 /* Stats row */
@@ -93,6 +93,7 @@
   background: var(--inner-card-bg);
   border: 2px solid var(--inner-card-border);
   border-radius: 14px;
+  color: var(--text-main);
   cursor: pointer;
   text-align: left;
   transition: all 0.2s ease;
