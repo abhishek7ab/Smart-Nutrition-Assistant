@@ -1,7 +1,7 @@
 // index.js — bootloader, DO NOT RENAME
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./app.js";   // loads your existing app.js (keeps extension unchanged)
+import App from "./app.jsx";   // loads existing app component
 import "./styles/index.css";
 
 const rootEl = document.getElementById("root");

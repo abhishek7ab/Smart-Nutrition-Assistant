@@ -32,7 +32,10 @@
   border-radius: 20px;
   box-shadow: var(--box-shadow);
   transition: all 0.25s ease;
+  animation: fadeUp 0.5s ease both;
 }
+.step-flow-card:nth-child(2) { animation-delay: 0.1s; }
+.step-flow-card:nth-child(3) { animation-delay: 0.2s; }
 
 .step-flow-card:hover {
   transform: translateY(-4px);
@@ -169,4 +172,18 @@
     width: 100%;
     text-align: center;
   }
+}
+
+/* Light theme: softer promo banner gradient */
+.theme-light .single-promo-banner {
+  background: linear-gradient(135deg, #eef7e8 0%, #fdf6ec 60%, #e8f5e1 100%);
+  border-color: rgba(112, 179, 67, 0.35);
+  color: #1f2937;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+.theme-light .promo-banner-title {
+  color: #1f2937;
+}
+.theme-light .promo-banner-desc {
+  color: #6b7280;
 }

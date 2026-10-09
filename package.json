@@ -4,23 +4,22 @@
     "description": "",
     "type": "commonjs",
     "scripts": {
-        "start": "parcel index.html --open",
-        "dev": "parcel index.html",
-        "build": "parcel build index.html --dist-dir dist",
+        "start": "vite --port 1234 --open",
+        "dev": "vite --port 1234",
+        "build": "vite build",
+        "preview": "vite preview --port 1234",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "express": "^5.1.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
     "devDependencies": {
-        "@parcel/packager-raw-url": "^2.16.1",
-        "@parcel/transformer-webmanifest": "^2.16.1",
+        "@vitejs/plugin-react": "^6.1.1",
         "nodemon": "^3.0.1",
-        "parcel": "^2.16.1"
+        "vite": "^8.3.2"
     }
 }

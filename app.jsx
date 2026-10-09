@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import PropTypes from "react";
 import "./styles/index.css";
 import {
   generateClientSingleDayPlan,
@@ -1340,11 +1339,15 @@ function App() {
     });
   };
 
-  // For imperial: rebuild height_cm from ft/in before submitting
+  // For imperial: rebuild height_cm from ft/in or direct inches before submitting
   const resolveMetricForm = (activeForm) => {
     if (unitSystem === "metric") return activeForm;
-    const totalIn = (parseFloat(activeForm._ft || 0) * 12) + parseFloat(activeForm._in || 0);
-    return { ...activeForm, height_cm: Math.round(totalIn * 2.54), weight_kg: (parseFloat(activeForm.weight_kg) / 2.20462).toFixed(1) };
+    const totalIn = activeForm._ft
+      ? (parseFloat(activeForm._ft || 0) * 12) + parseFloat(activeForm._in || 0)
+      : parseFloat(activeForm.height_cm || 0);
+    const convertedCm = totalIn > 0 ? Math.round(totalIn * 2.54) : activeForm.height_cm;
+    const convertedKg = activeForm.weight_kg ? (parseFloat(activeForm.weight_kg) / 2.20462).toFixed(1) : activeForm.weight_kg;
+    return { ...activeForm, height_cm: convertedCm, weight_kg: convertedKg };
   };
 
   const resetForm = () => {
@@ -1364,6 +1367,7 @@ function App() {
   };
 
   const loadDemoProfile = (autoGenerate = false) => {
+    setUnitSystem("metric");
     const demo = {
       name: "Aarav Sharma",
       age: "28",
@@ -1402,11 +1406,17 @@ function App() {
   };
 
   const calculateLiveMetrics = () => {
-    const h = parseFloat(form.height_cm);
-    const w = parseFloat(form.weight_kg);
+    let h = parseFloat(form.height_cm);
+    let w = parseFloat(form.weight_kg);
     const age = parseInt(form.age);
 
     if (!h || !w || h <= 0 || w <= 0) return null;
+
+    if (unitSystem === "imperial") {
+      const totalIn = form._ft ? (parseFloat(form._ft || 0) * 12 + parseFloat(form._in || 0)) : h;
+      h = totalIn * 2.54;
+      w = w / 2.20462;
+    }
 
     const bmi = (w / ((h / 100) * (h / 100))).toFixed(1);
     let category = "Healthy Weight";
@@ -1436,7 +1446,8 @@ function App() {
   const liveMetrics = calculateLiveMetrics();
 
   const handleGeneratePlan = async (type = "1day", customProfile = null) => {
-    const activeForm = customProfile || form;
+    const rawForm = customProfile || form;
+    const activeForm = resolveMetricForm(rawForm);
     const missingFields = [];
     if (!activeForm.name.trim()) missingFields.push("Full Name");
     if (!activeForm.age) missingFields.push("Age");
@@ -1699,6 +1710,16 @@ function App() {
               <button className="btn-reset-quick" type="button" onClick={resetForm}>
                 <span>↺</span> Reset
               </button>
+              <button
+                id="history-drawer-toggle"
+                className="btn-demo-quick"
+                type="button"
+                onClick={() => setShowHistory(!showHistory)}
+                style={{ borderColor: "rgba(56, 189, 248, 0.35)", color: "#38bdf8", background: "rgba(56, 189, 248, 0.12)" }}
+                title="View saved nutrition plans"
+              >
+                <span>📜</span> History {history.length > 0 ? `(${history.length})` : ""}
+              </button>
             </div>
           </div>
 
@@ -1940,6 +1961,30 @@ function App() {
               <p>
                 Enter your details above to generate an intelligent daily or 7-day weekly meal routine with macro distributions, recipe cooking instructions, and categorized shopping lists.
               </p>
+              {history.length > 0 && (
+                <div style={{ marginBottom: "24px" }}>
+                  <button
+                    id="empty-state-history-btn"
+                    className="btn-demo-quick"
+                    type="button"
+                    onClick={() => setShowHistory(true)}
+                    style={{
+                      borderColor: "rgba(56, 189, 248, 0.45)",
+                      color: "#38bdf8",
+                      background: "rgba(56, 189, 248, 0.12)",
+                      padding: "9px 22px",
+                      borderRadius: "18px",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px"
+                    }}
+                  >
+                    <span>📜</span> View Saved Plans ({history.length})
+                  </button>
+                </div>
+              )}
               <div className="empty-features">
                 <div className="feature-card">
                   <span>📅</span>
