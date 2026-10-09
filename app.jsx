@@ -10,8 +10,99 @@ const API_BASE = window.location.hostname === "localhost" || window.location.hos
   ? "http://127.0.0.1:8000"
   : `http://${window.location.hostname}:8000`;
 
-// SVG Circular / Donut Macro Chart Component
-function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories }) {
+// ---------------------------------------------------------------------------
+// 1. Semi-Circular BMI Speedometer Gauge Visualizer
+// ---------------------------------------------------------------------------
+function BmiGaugeVisualizer({ bmi, category, catColor, tdee, waterLiters }) {
+  const numericBmi = parseFloat(bmi) || 22.0;
+  // Map BMI 15 -> -90 deg (left), 40 -> +90 deg (right)
+  const clamped = Math.min(40, Math.max(15, numericBmi));
+  const angle = ((clamped - 15) / (40 - 15)) * 180 - 90; // -90deg to +90deg
+
+  return (
+    <div className="bmi-gauge-card">
+      <div className="bmi-gauge-header">
+        <span className="bmi-gauge-title">⚡ Real-Time Biometric Gauge</span>
+        <span className="bmi-cat-sub" style={{ backgroundColor: catColor, color: "#fff" }}>
+          {category}
+        </span>
+      </div>
+
+      <div className="bmi-gauge-svg-wrap">
+        <svg className="bmi-gauge-svg" viewBox="0 0 180 100">
+          <defs>
+            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#38bdf8" />
+              <stop offset="35%" stopColor="#10b981" />
+              <stop offset="65%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#ef4444" />
+            </linearGradient>
+          </defs>
+          {/* Gauge Background Track */}
+          <path
+            d="M 15 90 A 75 75 0 0 1 165 90"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.08)"
+            strokeWidth="14"
+            strokeLinecap="round"
+          />
+          {/* Gauge Color Gradient Arc */}
+          <path
+            d="M 15 90 A 75 75 0 0 1 165 90"
+            fill="none"
+            stroke="url(#gaugeGradient)"
+            strokeWidth="12"
+            strokeLinecap="round"
+          />
+          {/* Needle Indicator */}
+          <g className="bmi-needle" transform={`rotate(${angle}, 90, 90)`} style={{ transformOrigin: "90px 90px" }}>
+            <line x1="90" y1="90" x2="90" y2="28" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="90" cy="28" r="3" fill="var(--accent-green)" />
+          </g>
+          {/* Pivot Center Point */}
+          <circle cx="90" cy="90" r="7" fill="var(--card-bg)" stroke="#ffffff" strokeWidth="2.5" />
+        </svg>
+
+        <div className="bmi-readout-center">
+          <span className="bmi-val-big">{numericBmi}</span>
+          <span style={{ fontSize: "0.68rem", color: "var(--text-muted)", fontWeight: 700 }}>BMI INDEX</span>
+        </div>
+      </div>
+
+      <div className="bmi-gauge-legend">
+        <span><i className="bmi-dot" style={{ background: "#38bdf8" }}></i> &lt;18.5 Under</span>
+        <span><i className="bmi-dot" style={{ background: "#10b981" }}></i> 18.5-24.9 Fit</span>
+        <span><i className="bmi-dot" style={{ background: "#f59e0b" }}></i> 25-29.9 Over</span>
+        <span><i className="bmi-dot" style={{ background: "#ef4444" }}></i> 30+ Obese</span>
+      </div>
+
+      {tdee && (
+        <div className="energy-flow-visualizer">
+          <div className="energy-flow-steps">
+            <div className="energy-flow-step">
+              <span className="step-lbl">Est. Maintenance</span>
+              <span className="step-val">{tdee} kcal</span>
+            </div>
+            <div className="energy-flow-step" style={{ textAlign: "right" }}>
+              <span className="step-lbl">Daily Hydration</span>
+              <span className="step-val">💧 {waterLiters} L</span>
+            </div>
+          </div>
+          <div className="energy-flow-bar-track">
+            <div className="energy-flow-bar-fill" style={{ width: "100%" }}></div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 2. Upgraded Interactive SVG Macro Donut & Per-Meal Budget Visualizer
+// ---------------------------------------------------------------------------
+function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = [] }) {
+  const [hoveredMacro, setHoveredMacro] = useState(null); // 'p' | 'c' | 'f' | null
+
   const p = Number(protein_g) || 120;
   const c = Number(carbs_g) || 200;
   const f = Number(fats_g) || 50;
@@ -36,67 +127,254 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories }) {
   const fOffset = -(pStroke + cStroke);
   const fStroke = (fPct / 100) * perimeter;
 
+  // Active Center readout based on hover
+  let centerNumber = target_calories;
+  let centerUnit = "kcal / day";
+  if (hoveredMacro === "p") {
+    centerNumber = `${p}g`;
+    centerUnit = `Protein (${pCal} kcal)`;
+  } else if (hoveredMacro === "c") {
+    centerNumber = `${c}g`;
+    centerUnit = `Carbs (${cCal} kcal)`;
+  } else if (hoveredMacro === "f") {
+    centerNumber = `${f}g`;
+    centerUnit = `Fats (${fCal} kcal)`;
+  }
+
+  // Calculate per-meal calorie shares
+  const mealColors = ["#f59e0b", "#84cc16", "#818cf8", "#f97316"];
+  const validMeals = meals && meals.length > 0 ? meals : [];
+  const mealsTotal = validMeals.reduce((acc, m) => acc + (m.approx_calories || 0), 0) || 1;
+
   return (
-    <div className="macro-chart-wrapper">
-      <div className="donut-chart-box">
-        <svg className="donut-svg" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="38" className="donut-bg" />
-          {/* Protein Segment */}
-          <circle
-            cx="50"
-            cy="50"
-            r="38"
-            className="donut-segment segment-protein"
-            strokeDasharray={`${pStroke} ${perimeter}`}
-            strokeDashoffset={pOffset}
-          />
-          {/* Carbs Segment */}
-          <circle
-            cx="50"
-            cy="50"
-            r="38"
-            className="donut-segment segment-carbs"
-            strokeDasharray={`${cStroke} ${perimeter}`}
-            strokeDashoffset={cOffset}
-          />
-          {/* Fats Segment */}
-          <circle
-            cx="50"
-            cy="50"
-            r="38"
-            className="donut-segment segment-fats"
-            strokeDasharray={`${fStroke} ${perimeter}`}
-            strokeDashoffset={fOffset}
-          />
-        </svg>
-        <div className="donut-center-text">
-          <span className="center-cal-number">{target_calories}</span>
-          <span className="center-cal-unit">kcal / day</span>
+    <div className="macro-chart-wrapper" style={{ flexDirection: "column", gap: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 24, width: "100%", flexWrap: "wrap" }}>
+        <div className="donut-chart-box macro-donut-interactive">
+          <svg className="donut-svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="38" className="donut-bg" />
+            {/* Protein Segment */}
+            <circle
+              cx="50"
+              cy="50"
+              r="38"
+              className={`donut-segment segment-protein ${hoveredMacro === "p" ? "active-hover" : ""}`}
+              strokeDasharray={`${pStroke} ${perimeter}`}
+              strokeDashoffset={pOffset}
+              onMouseEnter={() => setHoveredMacro("p")}
+              onMouseLeave={() => setHoveredMacro(null)}
+            />
+            {/* Carbs Segment */}
+            <circle
+              cx="50"
+              cy="50"
+              r="38"
+              className={`donut-segment segment-carbs ${hoveredMacro === "c" ? "active-hover" : ""}`}
+              strokeDasharray={`${cStroke} ${perimeter}`}
+              strokeDashoffset={cOffset}
+              onMouseEnter={() => setHoveredMacro("c")}
+              onMouseLeave={() => setHoveredMacro(null)}
+            />
+            {/* Fats Segment */}
+            <circle
+              cx="50"
+              cy="50"
+              r="38"
+              className={`donut-segment segment-fats ${hoveredMacro === "f" ? "active-hover" : ""}`}
+              strokeDasharray={`${fStroke} ${perimeter}`}
+              strokeDashoffset={fOffset}
+              onMouseEnter={() => setHoveredMacro("f")}
+              onMouseLeave={() => setHoveredMacro(null)}
+            />
+          </svg>
+          <div className="donut-center-text">
+            <span className="center-cal-number">{centerNumber}</span>
+            <span className="center-cal-unit">{centerUnit}</span>
+          </div>
+        </div>
+
+        <div className="macro-breakdown-details">
+          <div
+            className={`macro-detail-pill protein-pill ${hoveredMacro === "p" ? "active" : ""}`}
+            onMouseEnter={() => setHoveredMacro("p")}
+            onMouseLeave={() => setHoveredMacro(null)}
+          >
+            <div className="pill-dot"></div>
+            <div className="pill-info">
+              <span className="pill-title">Protein ({pPct}%)</span>
+              <strong>{p}g</strong>
+            </div>
+          </div>
+          <div
+            className={`macro-detail-pill carbs-pill ${hoveredMacro === "c" ? "active" : ""}`}
+            onMouseEnter={() => setHoveredMacro("c")}
+            onMouseLeave={() => setHoveredMacro(null)}
+          >
+            <div className="pill-dot"></div>
+            <div className="pill-info">
+              <span className="pill-title">Carbohydrates ({cPct}%)</span>
+              <strong>{c}g</strong>
+            </div>
+          </div>
+          <div
+            className={`macro-detail-pill fats-pill ${hoveredMacro === "f" ? "active" : ""}`}
+            onMouseEnter={() => setHoveredMacro("f")}
+            onMouseLeave={() => setHoveredMacro(null)}
+          >
+            <div className="pill-dot"></div>
+            <div className="pill-info">
+              <span className="pill-title">Healthy Fats ({fPct}%)</span>
+              <strong>{f}g</strong>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="macro-breakdown-details">
-        <div className="macro-detail-pill protein-pill">
-          <div className="pill-dot"></div>
-          <div className="pill-info">
-            <span className="pill-title">Protein ({pPct}%)</span>
-            <strong>{p}g</strong>
+      {validMeals.length > 0 && (
+        <div className="per-meal-budget-section">
+          <div className="per-meal-budget-header">
+            <span>Calorie Budget by Meal</span>
+            <span>{target_calories} kcal target</span>
+          </div>
+          <div className="per-meal-budget-bar">
+            {validMeals.map((m, i) => {
+              const share = Math.max(5, Math.round(((m.approx_calories || 0) / mealsTotal) * 100));
+              return (
+                <div
+                  key={i}
+                  className="meal-budget-segment"
+                  style={{
+                    flexGrow: share,
+                    background: mealColors[i % mealColors.length],
+                  }}
+                  title={`${m.name}: ${m.approx_calories} kcal (${share}%)`}
+                />
+              );
+            })}
+          </div>
+          <div className="per-meal-budget-legend">
+            {validMeals.map((m, i) => (
+              <div key={i} className="meal-budget-item">
+                <span
+                  className="meal-budget-dot"
+                  style={{ background: mealColors[i % mealColors.length] }}
+                />
+                <span>
+                  {(m.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "").slice(0, 16)} ({m.approx_calories} kcal)
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="macro-detail-pill carbs-pill">
-          <div className="pill-dot"></div>
-          <div className="pill-info">
-            <span className="pill-title">Carbohydrates ({cPct}%)</span>
-            <strong>{c}g</strong>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 3. 7-Day Weekly Calorie & Macro Trend Bar Chart
+// ---------------------------------------------------------------------------
+function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
+  if (!days) return null;
+  const dayNames = Object.keys(days);
+  if (dayNames.length === 0) return null;
+
+  const maxCal = Math.max(...dayNames.map((d) => days[d]?.target_calories || 2000), 2500);
+
+  return (
+    <div className="weekly-trend-chart-card">
+      <div className="weekly-trend-header">
+        <span className="weekly-trend-title">
+          <span>📊</span> 7-Day Calorie & Variety Overview
+        </span>
+        <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>
+          Click any bar to jump to that day&apos;s meal schedule
+        </span>
+      </div>
+
+      <div className="weekly-trend-bars-container">
+        {dayNames.map((day) => {
+          const cal = days[day]?.target_calories || 2000;
+          const heightPct = Math.max(30, Math.round((cal / maxCal) * 100));
+          const isActive = selectedDay === day;
+
+          return (
+            <button
+              key={day}
+              type="button"
+              className={`weekly-day-bar-column ${isActive ? "active" : ""}`}
+              onClick={() => onSelectDay(day)}
+              title={`${day}: ${cal} kcal`}
+            >
+              <span className="weekly-bar-cal-label">{cal}</span>
+              <div
+                className="weekly-bar-pill"
+                style={{ height: `${heightPct}%` }}
+              />
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="weekly-day-labels-row">
+        {dayNames.map((day) => (
+          <span
+            key={day}
+            className={`weekly-day-name-tag ${selectedDay === day ? "active" : ""}`}
+          >
+            {day.slice(0, 3)}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 4. Chrono-Nutrition & Fasting Window Timeline
+// ---------------------------------------------------------------------------
+function MealTimelineVisualizer({ meals = [] }) {
+  const defaultTimes = ["08:30 AM", "01:15 PM", "04:45 PM", "07:45 PM"];
+  const defaultSlots = ["Breakfast", "Lunch", "Snack", "Dinner"];
+  const defaultIcons = ["🍳", "🥗", "🍎", "🍽️"];
+
+  const items = meals.length > 0
+    ? meals.map((m, i) => {
+        const lower = (m.name || "").toLowerCase();
+        let slot = defaultSlots[i] || `Meal ${i + 1}`;
+        let icon = defaultIcons[i] || "🍴";
+        let time = defaultTimes[i] || "12:00 PM";
+
+        if (lower.includes("breakfast")) { slot = "Breakfast"; icon = "🍳"; time = "08:30 AM"; }
+        else if (lower.includes("lunch")) { slot = "Lunch"; icon = "🥗"; time = "01:15 PM"; }
+        else if (lower.includes("dinner")) { slot = "Dinner"; icon = "🍽️"; time = "07:45 PM"; }
+        else if (lower.includes("snack")) { slot = "Snack"; icon = "🍎"; time = "04:45 PM"; }
+
+        return { slot, icon, time, name: m.name, cal: m.approx_calories };
+      })
+    : [];
+
+  if (items.length === 0) return null;
+
+  return (
+    <div className="chrono-timeline-card">
+      <div className="chrono-timeline-header">
+        <span className="chrono-title">
+          <span>⏰</span> Chrono-Nutrition & Meal Timing
+        </span>
+        <span className="fasting-badge">
+          <span>🌙</span> 13h Overnight Fasting Window
+        </span>
+      </div>
+
+      <div className="chrono-track-wrap">
+        <div className="chrono-track-line" />
+        {items.map((it, idx) => (
+          <div key={idx} className="chrono-milestone">
+            <div className="chrono-node">{it.icon}</div>
+            <span className="chrono-time">{it.time}</span>
+            <span className="chrono-slot-name">{it.slot}</span>
           </div>
-        </div>
-        <div className="macro-detail-pill fats-pill">
-          <div className="pill-dot"></div>
-          <div className="pill-info">
-            <span className="pill-title">Healthy Fats ({fPct}%)</span>
-            <strong>{f}g</strong>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -552,6 +830,15 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
 
       {activeTab === "plan" ? (
         <>
+          {/* 7-Day Weekly Calorie Trend Bar Chart for Weekly Plans */}
+          {isWeekly && (
+            <WeeklyTrendVisualizer
+              days={plan.days}
+              selectedDay={selectedDay}
+              onSelectDay={setSelectedDay}
+            />
+          )}
+
           {/* Visual Donut Macro Chart & Metric Highlights */}
           <div className="macro-dashboard-grid">
             <div className="macro-chart-box-container">
@@ -561,6 +848,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                 carbs_g={totalMacros.carbs_g}
                 fats_g={totalMacros.fats_g}
                 target_calories={targetCal}
+                meals={currentMeals}
               />
             </div>
 
@@ -586,6 +874,9 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
             </div>
           </div>
 
+          {/* Meal Timing & Fasting Window Visual Strip */}
+          <MealTimelineVisualizer meals={currentMeals} />
+
           {/* Meals List */}
           <div className="meals-list">
             {currentMeals.map((meal, idx) => {
@@ -610,6 +901,15 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                 slot = defaultSlots[idx] || `Meal ${idx + 1}`;
               }
 
+              // Compute macro ratio for this meal
+              const mP = Number(meal.macros?.protein_g) || 20;
+              const mC = Number(meal.macros?.carbs_g) || 40;
+              const mF = Number(meal.macros?.fats_g) || 10;
+              const mTotalCal = (mP * 4) + (mC * 4) + (mF * 9) || 1;
+              const pW = Math.round(((mP * 4) / mTotalCal) * 100);
+              const cW = Math.round(((mC * 4) / mTotalCal) * 100);
+              const fW = Math.max(0, 100 - pW - cW);
+
               return (
                 <div className="meal-item" key={idx}>
                   <div className="meal-header">
@@ -622,6 +922,21 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                           <span className="meal-tag">⏱️ {meal.prep_time || "10 mins"}</span>
                           <span className="meal-tag">🍳 {meal.cook_time || "15 mins"}</span>
                           <span className="meal-tag difficulty">{meal.difficulty || "Easy"}</span>
+                          {mP >= 28 && (
+                            <span className="meal-highlight-badge badge-high-protein">
+                              ⚡ High Protein ({mP}g)
+                            </span>
+                          )}
+                          {mC >= 45 && (
+                            <span className="meal-highlight-badge badge-high-fiber">
+                              🌾 Sustained Energy
+                            </span>
+                          )}
+                          {(meal.prep_time || "").includes("5") && (
+                            <span className="meal-highlight-badge badge-quick">
+                              ⏱️ Express Prep
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -644,6 +959,16 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                         {swappingIdx === idx ? "Swapping..." : "🔄 Swap"}
                       </button>
                     </div>
+                  </div>
+
+                  {/* Micro Macro Ratio Strip */}
+                  <div
+                    className="meal-macro-ratio-bar"
+                    title={`Macros: ${mP}g Protein (${pW}%), ${mC}g Carbs (${cW}%), ${mF}g Fats (${fW}%)`}
+                  >
+                    <div className="ratio-seg ratio-p" style={{ width: `${pW}%` }} />
+                    <div className="ratio-seg ratio-c" style={{ width: `${cW}%` }} />
+                    <div className="ratio-seg ratio-f" style={{ width: `${fW}%` }} />
                   </div>
 
                   <div className="meal-body">
@@ -1193,6 +1518,27 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
   const pct = Math.min(100, Math.round((eaten / target) * 100));
   const remaining = Math.max(0, target - eaten);
 
+  // Compute macro targets & eaten macros
+  const targetP = plan.target_macros?.protein_g || 120;
+  const targetC = plan.target_macros?.carbs_g || 200;
+  const targetF = plan.target_macros?.fats_g || 50;
+
+  let eatenP = 0;
+  let eatenC = 0;
+  let eatenF = 0;
+
+  meals.forEach((m) => {
+    if (eatenMeals[m.name] && m.macros) {
+      eatenP += Number(m.macros.protein_g) || 0;
+      eatenC += Number(m.macros.carbs_g) || 0;
+      eatenF += Number(m.macros.fats_g) || 0;
+    }
+  });
+
+  const pPct = Math.min(100, Math.round((eatenP / targetP) * 100));
+  const cPct = Math.min(100, Math.round((eatenC / targetC) * 100));
+  const fPct = Math.min(100, Math.round((eatenF / targetF) * 100));
+
   const slotColors = ["#f59e0b", "#84cc16", "#818cf8", "#f97316"];
   const slotLabels = ["🌅 Breakfast", "☀️ Lunch", "🌙 Dinner", "🍎 Snack"];
 
@@ -1202,8 +1548,8 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span style={{ fontSize: "1.4rem" }}>🔥</span>
           <div>
-            <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 700 }}>Daily Calorie Progress</h3>
-            <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--text-muted)" }}>Tap a meal to mark it as eaten</p>
+            <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 700 }}>Daily Calorie & Macro Progress</h3>
+            <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--text-muted)" }}>Tap a meal to mark it eaten and update live macro targets</p>
           </div>
         </div>
         <span style={{
@@ -1232,6 +1578,39 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
         <div className="calorie-stat-box">
           <span className="calorie-stat-label">Remaining</span>
           <span className="calorie-stat-val">{remaining} kcal</span>
+        </div>
+      </div>
+
+      {/* Target vs Eaten Macro Progress Bars */}
+      <div className="macro-progress-tracker-grid">
+        <div className="macro-prog-box">
+          <div className="macro-prog-top">
+            <span className="macro-prog-label">🍗 Protein</span>
+            <span className="macro-prog-nums">{eatenP} / {targetP}g ({pPct}%)</span>
+          </div>
+          <div className="macro-prog-track">
+            <div className="macro-prog-fill fill-protein" style={{ width: `${pPct}%` }} />
+          </div>
+        </div>
+
+        <div className="macro-prog-box">
+          <div className="macro-prog-top">
+            <span className="macro-prog-label">🌾 Carbs</span>
+            <span className="macro-prog-nums">{eatenC} / {targetC}g ({cPct}%)</span>
+          </div>
+          <div className="macro-prog-track">
+            <div className="macro-prog-fill fill-carbs" style={{ width: `${cPct}%` }} />
+          </div>
+        </div>
+
+        <div className="macro-prog-box">
+          <div className="macro-prog-top">
+            <span className="macro-prog-label">🥑 Healthy Fats</span>
+            <span className="macro-prog-nums">{eatenF} / {targetF}g ({fPct}%)</span>
+          </div>
+          <div className="macro-prog-track">
+            <div className="macro-prog-fill fill-fats" style={{ width: `${fPct}%` }} />
+          </div>
         </div>
       </div>
 
@@ -1859,24 +2238,16 @@ function App() {
               </div>
             </div>
 
-            {/* Live Health Metrics Preview Bar */}
+            {/* Live Health Metrics Preview Bar with Real-Time Speedometer Gauge */}
             {liveMetrics && (
-              <div className="live-health-bar">
-                <div className="health-stat">
-                  <span className="stat-title">BMI Index</span>
-                  <span className="stat-val">{liveMetrics.bmi}</span>
-                  <span className="category-pill" style={{ backgroundColor: liveMetrics.catColor }}>
-                    {liveMetrics.category}
-                  </span>
-                </div>
-                <div className="health-stat">
-                  <span className="stat-title">Est. Maintenance (TDEE)</span>
-                  <span className="stat-val">{liveMetrics.tdee} kcal</span>
-                </div>
-                <div className="health-stat">
-                  <span className="stat-title">Daily Hydration Baseline</span>
-                  <span className="stat-val">💧 {liveMetrics.waterLiters} Liters</span>
-                </div>
+              <div style={{ margin: "16px 0 20px 0" }}>
+                <BmiGaugeVisualizer
+                  bmi={liveMetrics.bmi}
+                  category={liveMetrics.category}
+                  catColor={liveMetrics.catColor}
+                  tdee={liveMetrics.tdee}
+                  waterLiters={liveMetrics.waterLiters}
+                />
               </div>
             )}
 

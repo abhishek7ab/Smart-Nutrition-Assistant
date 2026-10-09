@@ -1,0 +1,610 @@
+/* styles/visualizations.css - Advanced Nutrition & Biometric Visualizations */
+
+/* ==========================================================================
+   1. SEMI-CIRCULAR BMI SPEEDOMETER GAUGE
+   ========================================================================== */
+.bmi-gauge-card {
+  background: var(--inner-card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 18px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bmi-gauge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.bmi-gauge-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bmi-gauge-svg-wrap {
+  position: relative;
+  width: 180px;
+  height: 98px;
+  margin: 0 auto;
+}
+
+.bmi-gauge-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.bmi-needle {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: 90px 90px;
+}
+
+.bmi-readout-center {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.bmi-val-big {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1;
+  display: block;
+}
+
+.bmi-cat-sub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 2px 8px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.bmi-gauge-legend {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.bmi-gauge-legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bmi-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   2. ENERGY BALANCE METABOLIC FLOW (BMR -> TDEE -> TARGET)
+   ========================================================================== */
+.energy-flow-visualizer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 14px;
+  padding: 12px 16px;
+}
+
+.energy-flow-bar-track {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.energy-flow-bar-fill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.6s ease;
+  background: linear-gradient(90deg, #38bdf8 0%, #10b981 50%, #f59e0b 100%);
+}
+
+.energy-flow-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.energy-flow-step {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.energy-flow-step .step-lbl {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.energy-flow-step .step-val {
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.energy-flow-step.target-step .step-val {
+  color: var(--accent-green);
+}
+
+/* ==========================================================================
+   3. UPGRADED INTERACTIVE MACRO DONUT & PER-MEAL BUDGET BAR
+   ========================================================================== */
+.macro-donut-interactive {
+  cursor: pointer;
+}
+
+.donut-segment {
+  transition: stroke-width 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
+}
+
+.donut-segment:hover,
+.donut-segment.active-hover {
+  stroke-width: 13;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.macro-detail-pill {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.macro-detail-pill:hover,
+.macro-detail-pill.active {
+  transform: translateX(4px);
+  border-color: var(--accent-green);
+  background: rgba(132, 204, 22, 0.08);
+}
+
+.per-meal-budget-section {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--inner-card-border);
+  width: 100%;
+}
+
+.per-meal-budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.per-meal-budget-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  gap: 2px;
+}
+
+.meal-budget-segment {
+  height: 100%;
+  transition: flex-grow 0.5s ease;
+  position: relative;
+}
+
+.meal-budget-segment:hover {
+  filter: brightness(1.2);
+}
+
+.per-meal-budget-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.meal-budget-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meal-budget-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   4. TARGET VS ACTUAL MACRO PROGRESS RINGS / BARS (IN CALORIE TRACKER)
+   ========================================================================== */
+.macro-progress-tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.macro-prog-box {
+  background: var(--inner-card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.macro-prog-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.macro-prog-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.macro-prog-label {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.macro-prog-nums {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.macro-prog-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.macro-prog-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fill-protein { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+.fill-carbs { background: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
+.fill-fats { background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+
+/* ==========================================================================
+   5. 7-DAY WEEKLY CALORIE & MACRO TREND BAR CHART
+   ========================================================================== */
+.weekly-trend-chart-card {
+  background: var(--inner-card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 18px;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+}
+
+.weekly-trend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.weekly-trend-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.weekly-trend-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 120px;
+  padding: 10px 4px 0 4px;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.weekly-day-bar-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.weekly-day-bar-column:hover {
+  transform: translateY(-3px);
+}
+
+.weekly-bar-cal-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.weekly-bar-pill {
+  width: 100%;
+  max-width: 38px;
+  border-radius: 8px 8px 3px 3px;
+  background: rgba(132, 204, 22, 0.35);
+  border: 1px solid rgba(132, 204, 22, 0.5);
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.weekly-day-bar-column.active .weekly-bar-pill {
+  background: var(--accent-green);
+  border-color: #bef264;
+  box-shadow: 0 0 14px rgba(132, 204, 22, 0.6);
+}
+
+.weekly-day-bar-column.active .weekly-bar-cal-label {
+  color: var(--accent-green);
+  font-weight: 800;
+}
+
+.weekly-day-labels-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+.weekly-day-name-tag {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.weekly-day-bar-column.active + .weekly-day-name-tag,
+.weekly-day-name-tag.active {
+  color: var(--accent-green);
+}
+
+/* ==========================================================================
+   6. MEAL TIMING & INTERMITTENT FASTING TIMELINE STRIP
+   ========================================================================== */
+.chrono-timeline-card {
+  background: var(--inner-card-bg);
+  border: 1px solid var(--inner-card-border);
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.chrono-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.chrono-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.fasting-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chrono-track-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+}
+
+.chrono-track-line {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, #f59e0b, #84cc16, #38bdf8, #818cf8);
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.chrono-milestone {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.chrono-node {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 2px solid var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.chrono-time {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.chrono-slot-name {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   7. PER-MEAL CARD MINI MACRO RATIO BAR & HEALTH HIGHLIGHT BADGES
+   ========================================================================== */
+.meal-macro-ratio-bar {
+  display: flex;
+  height: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0 6px 0;
+  background: rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+.ratio-seg {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.ratio-p { background: #38bdf8; }
+.ratio-c { background: #a855f7; }
+.ratio-f { background: #f59e0b; }
+
+.meal-badge-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.meal-highlight-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-high-protein {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.badge-high-fiber {
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.badge-quick {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-keto-friendly {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS FOR VISUALIZATIONS
+   ========================================================================== */
+@media (max-width: 768px) {
+  .macro-progress-tracker-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .weekly-trend-bars-container {
+    height: 90px;
+    gap: 4px;
+  }
+
+  .weekly-bar-pill {
+    max-width: 26px;
+  }
+
+  .chrono-track-wrap {
+    padding: 6px;
+  }
+
+  .chrono-node {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+}
