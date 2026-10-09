@@ -1,188 +1,205 @@
-/* styles/result-card.css - Nutrition Result Dashboard, Tabs, Day Selectors, Energy Tiles */
+/* styles/result-card.css — Professional Nutrition Dashboard Cards */
 
+/* ── Main Result Container ────────────── */
 .result-card {
   position: relative;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 28px;
+  border-radius: var(--radius-2xl);
   padding: 32px;
-  margin-top: 28px;
-  animation: fadeIn 0.4s ease;
+  margin-top: 24px;
+  animation: fadeIn 0.35s ease;
   box-shadow: var(--box-shadow);
 }
 
 .result-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
-  left: 32px;
-  right: 32px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-orange), #38bdf8);
-  border-radius: 3px;
+  left: 28px;
+  right: 28px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-orange), var(--accent-cyan));
+  border-radius: 2px;
 }
 
 .result-header {
   border-bottom: 1px solid var(--inner-card-border);
   padding-bottom: 20px;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
 .title-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  margin-bottom: 18px;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
 }
 
 .title-row h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--text-main);
+  letter-spacing: -0.02em;
 }
 
 .plan-subtitle {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
   margin-top: 4px;
 }
 
-.print-btn {
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.print-btn,
+.icon-btn {
   background: var(--inner-card-bg);
-  border: 1.5px solid var(--inner-card-border);
-  color: var(--text-main);
-  padding: 10px 18px;
-  border-radius: 14px;
-  font-size: 0.88rem;
-  font-weight: 700;
+  border: 1px solid var(--inner-card-border);
+  color: var(--text-muted);
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s ease;
+  transition: all var(--transition);
 }
 
-.print-btn:hover {
-  border-color: var(--accent-green);
+.print-btn:hover,
+.icon-btn:hover {
+  border-color: rgba(34, 197, 94, 0.3);
   color: var(--accent-green);
   background: var(--accent-green-light);
 }
 
-/* View Tabs (Daily Plan vs Grocery List) */
+/* ── View Tabs ────────────────────────── */
 .view-tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 22px;
 }
 
 .tab-btn {
   background: var(--inner-card-bg);
-  border: 1.5px solid var(--inner-card-border);
+  border: 1px solid var(--inner-card-border);
   color: var(--text-muted);
-  padding: 10px 20px;
-  border-radius: 14px;
-  font-size: 0.92rem;
-  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition);
 }
 
 .tab-btn:hover {
   color: var(--text-main);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .tab-btn.active {
   background: var(--accent-green-light);
-  border-color: var(--accent-green);
+  border-color: rgba(34, 197, 94, 0.3);
   color: var(--accent-green);
 }
 
-/* Day Selector Row (for 7-Day Plans) */
+/* ── Day Selector (7-Day Plans) ─────── */
 .day-selector-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 22px;
   flex-wrap: wrap;
-  padding: 14px 18px;
+  padding: 12px 16px;
   background: var(--inner-card-bg);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--inner-card-border);
 }
 
 .day-selector-label {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-light);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .day-pills {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
   padding-bottom: 2px;
 }
 
 .day-pill {
   background: var(--card-bg);
-  border: 1.5px solid var(--card-border);
-  color: var(--text-main);
-  padding: 8px 16px;
-  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  transition: all 0.2s ease;
-  min-width: 72px;
+  transition: all var(--transition);
+  min-width: 68px;
+  white-space: nowrap;
 }
 
 .day-pill:hover {
-  border-color: var(--accent-green);
+  border-color: rgba(34, 197, 94, 0.25);
+  color: var(--text-main);
 }
 
 .day-pill.active {
   background: var(--accent-green);
   border-color: var(--accent-green-dark);
-  color: #0b1411;
-  box-shadow: 0 4px 14px rgba(132, 204, 22, 0.4);
+  color: #0a2e1a;
+  box-shadow: 0 3px 12px rgba(34, 197, 94, 0.3);
 }
 
 .day-pill .day-name {
-  font-size: 0.88rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .day-pill .day-cal {
-  font-size: 0.72rem;
-  font-weight: 700;
-  opacity: 0.9;
+  font-size: 0.68rem;
+  font-weight: 600;
+  opacity: 0.85;
 }
 
-/* Top Macro & Energy Stats Grid */
+/* ── Macro + Energy Dashboard Grid ───── */
 .macro-dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 20px;
-  margin-bottom: 28px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.macro-chart-box-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-subheading {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-light);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 12px;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
 }
 
 /* Energy Stats Box */
@@ -194,43 +211,45 @@
 .stat-tiles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  height: 100%;
+  gap: 10px;
+  flex: 1;
 }
 
 .stat-tile {
   background: var(--inner-card-bg);
   border: 1px solid var(--inner-card-border);
-  border-radius: 18px;
-  padding: 18px 16px;
+  border-radius: var(--radius-lg);
+  padding: 16px 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 6px;
-  transition: all 0.2s ease;
+  transition: all var(--transition);
 }
 
 .stat-tile:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
 .stat-tile.highlight {
-  border-color: rgba(132, 204, 22, 0.4);
+  border-color: rgba(34, 197, 94, 0.25);
   background: var(--accent-green-light);
 }
 
 .stat-tile-label {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-light);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .stat-tile-val {
-  font-size: 1.3rem;
-  font-weight: 900;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--text-main);
+  letter-spacing: -0.02em;
 }
 
 .stat-tile.highlight .stat-tile-val {
@@ -238,74 +257,93 @@
 }
 
 .stat-tile-desc {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  line-height: 1.3;
+  font-size: 0.68rem;
+  color: var(--text-light);
+  line-height: 1.35;
 }
 
-@media (max-width: 900px) {
-  .macro-dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-  .stat-tiles {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Empty Welcome State */
+/* ── Empty State ──────────────────────── */
 .empty-state {
-  position: relative;
   text-align: center;
-  padding: 36px 20px;
+  padding: 40px 20px;
 }
 
 .empty-icon {
-  font-size: 2.8rem;
-  margin-bottom: 12px;
+  font-size: 2.5rem;
+  margin-bottom: 14px;
 }
 
 .empty-state h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
   margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 
 .empty-state p {
   color: var(--text-muted);
-  max-width: 620px;
-  margin: 0 auto 30px auto;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto 28px auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .empty-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
   text-align: left;
 }
 
 .feature-card {
   background: var(--inner-card-bg);
   border: 1px solid var(--inner-card-border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 18px;
+  transition: all var(--transition);
+}
+
+.feature-card:hover {
+  border-color: rgba(34, 197, 94, 0.2);
+  transform: translateY(-2px);
 }
 
 .feature-card span {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   display: block;
   margin-bottom: 8px;
 }
 
 .feature-card h3 {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 4px;
+  color: var(--text-main);
 }
 
 .feature-card p {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   margin: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .macro-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .result-card {
+    padding: 22px 16px;
+  }
+
+  .stat-tiles {
+    grid-template-columns: 1fr;
+  }
 }
