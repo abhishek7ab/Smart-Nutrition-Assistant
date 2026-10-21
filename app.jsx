@@ -336,7 +336,10 @@ function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
   const dayNames = Object.keys(days);
   if (dayNames.length === 0) return null;
 
-  const maxCal = Math.max(...dayNames.map((d) => days[d]?.target_calories || 2000), 2500);
+  const dayCalories = dayNames.map(
+    (day) => days[day]?.actual_calories || days[day]?.target_calories || 2000
+  );
+  const maxCal = Math.max(...dayCalories, 1);
 
   return (
     <div className="weekly-trend-chart-card">
@@ -349,7 +352,7 @@ function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
 
       <div className="weekly-trend-bars-container">
         {dayNames.map((day) => {
-          const cal = days[day]?.target_calories || 2000;
+          const cal = days[day]?.actual_calories || days[day]?.target_calories || 2000;
           const heightPct = Math.max(30, Math.round((cal / maxCal) * 100));
           const isActive = selectedDay === day;
 

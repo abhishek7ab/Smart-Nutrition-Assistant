@@ -914,6 +914,26 @@
 /* ==========================================================================
    3. EXTRA SMALL PHONES (<= 420px)
    ========================================================================== */
+@media (max-width: 560px) {
+  .day-pills {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .day-pill {
+    min-width: 0;
+    padding: 7px 4px;
+    border-radius: 10px;
+  }
+
+  .day-pill .day-cal {
+    font-size: 0.64rem;
+  }
+}
+
 @media (max-width: 420px) {
   .hero-main-heading {
     font-size: 1.7rem;
