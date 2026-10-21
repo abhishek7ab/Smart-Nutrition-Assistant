@@ -3,7 +3,8 @@ import "./styles/index.css";
 import {
   generateClientSingleDayPlan,
   generateClientWeeklyPlan,
-  generateClientMealSwap
+  generateClientMealSwap,
+  getAllCatalogMeals
 } from "./nutritionEngineClient.js";
 
 const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
@@ -561,8 +562,430 @@ function WaterTracker({ weight_kg }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Fullscreen Distraction-Free Kitchen Cooking Mode with Timers
+// ---------------------------------------------------------------------------
+function KitchenCookingMode({ meal, onClose }) {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [checkedIngredients, setCheckedIngredients] = useState({});
+  const [timerSeconds, setTimerSeconds] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [timerEnded, setTimerEnded] = useState(false);
+
+  const instructions = meal.instructions && meal.instructions.length > 0
+    ? meal.instructions
+    : [
+        "Prepare and wash all fresh whole-food ingredients thoroughly.",
+        "Cook over gentle heat with minimal cold-pressed oil or ghee until tender and aromatic.",
+        "Plate fresh and garnish with garden herbs."
+      ];
+
+  const totalSteps = instructions.length;
+
+  // Escape key closes cooking mode, arrow keys navigate
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight" && currentStep < totalSteps - 1) setCurrentStep((s) => s + 1);
+      if (e.key === "ArrowLeft" && currentStep > 0) setCurrentStep((s) => s - 1);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [currentStep, totalSteps, onClose]);
+
+  // Web Audio chime for timer expiry
+  const playTimerChime = useCallback(() => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+      osc.frequency.setValueAtTime(880, ctx.currentTime + 0.18);
+      gain.gain.setValueAtTime(0.35, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.9);
+    } catch {}
+  }, []);
+
+  // Timer countdown effect
+  useEffect(() => {
+    if (!timerRunning) return;
+    if (timerSeconds <= 0) {
+      setTimerRunning(false);
+      setTimerEnded(true);
+      playTimerChime();
+      return;
+    }
+    const interval = setInterval(() => {
+      setTimerSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setTimerRunning(false);
+          setTimerEnded(true);
+          playTimerChime();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [timerRunning, timerSeconds, playTimerChime]);
+
+  const startTimer = (secs) => {
+    setTimerSeconds(secs);
+    setTimerRunning(true);
+    setTimerEnded(false);
+  };
+
+  const toggleTimer = () => {
+    if (timerSeconds === 0) {
+      startTimer(300);
+    } else {
+      setTimerRunning((r) => !r);
+    }
+  };
+
+  const resetTimer = () => {
+    setTimerRunning(false);
+    setTimerSeconds(0);
+    setTimerEnded(false);
+  };
+
+  const formatTimer = (totalSecs) => {
+    const mins = Math.floor(totalSecs / 60);
+    const secs = totalSecs % 60;
+    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  };
+
+  const toggleIngredient = (idx) => {
+    setCheckedIngredients((prev) => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
+  const ingredientsList = meal.ingredients || [];
+  const checkedCount = Object.values(checkedIngredients).filter(Boolean).length;
+  const progressPct = Math.round(((currentStep + 1) / totalSteps) * 100);
+
+  return (
+    <div className="kitchen-overlay" role="dialog" aria-modal="true" aria-label="Kitchen Cooking Mode">
+      <header className="kitchen-header">
+        <div className="kitchen-title-box">
+          <span className="kitchen-badge">🍳 Interactive Kitchen Mode</span>
+          <h1 className="kitchen-recipe-title">{meal.name}</h1>
+        </div>
+        <div className="kitchen-header-actions">
+          <button className="btn-exit-kitchen" type="button" onClick={onClose}>
+            ✕ Exit Cooking Mode
+          </button>
+        </div>
+      </header>
+
+      <div className="kitchen-progress-track">
+        <div className="kitchen-progress-fill" style={{ width: `${progressPct}%` }} />
+      </div>
+
+      <main className="kitchen-body">
+        {/* Left Column: Prep Checklist */}
+        <aside className="kitchen-ingredients-panel">
+          <div className="kitchen-panel-header">
+            <h2 className="kitchen-panel-title">Mise en place</h2>
+            <span className="kitchen-ingr-count">{checkedCount} of {ingredientsList.length} ready</span>
+          </div>
+          <p style={{ fontSize: "0.76rem", color: "var(--text-light)", margin: "0" }}>
+            Tap ingredients as you prep or add them to the pan:
+          </p>
+          <ul className="kitchen-checklist">
+            {ingredientsList.map((ing, i) => {
+              const text = typeof ing === "object" ? (ing.name || ing.item || JSON.stringify(ing)) : String(ing);
+              const isChecked = !!checkedIngredients[i];
+              return (
+                <li
+                  key={i}
+                  className={`kitchen-check-item ${isChecked ? "checked" : ""}`}
+                  onClick={() => toggleIngredient(i)}
+                  role="checkbox"
+                  aria-checked={isChecked}
+                  tabIndex={0}
+                >
+                  <div className="kitchen-check-box">
+                    {isChecked && "✓"}
+                  </div>
+                  <span className="kitchen-check-text">{text}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </aside>
+
+        {/* Right Column: Step and Timer */}
+        <section className="kitchen-step-panel">
+          <div className="kitchen-step-card">
+            <div className="kitchen-step-meta">
+              <span className="kitchen-step-number-tag">
+                Step {currentStep + 1} of {totalSteps}
+              </span>
+              <div className="kitchen-step-dots">
+                {instructions.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`kitchen-step-dot ${idx === currentStep ? "active" : idx < currentStep ? "completed" : ""}`}
+                    onClick={() => setCurrentStep(idx)}
+                    style={{ cursor: "pointer" }}
+                    title={`Jump to step ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <p className="kitchen-step-instruction">
+              {instructions[currentStep]}
+            </p>
+
+            {/* Interactive Kitchen Timer Module */}
+            <div className="kitchen-timer-module">
+              <div className="kitchen-timer-left">
+                <div className="kitchen-timer-icon-wrap">
+                  <Icon.refresh style={{ width: 20, height: 20 }} />
+                </div>
+                <div>
+                  <div className={`kitchen-timer-display ${timerRunning ? "running" : timerEnded ? "ended" : ""}`}>
+                    {timerEnded ? "00:00 — Ready!" : formatTimer(timerSeconds)}
+                  </div>
+                  <div style={{ fontSize: "0.68rem", color: "var(--text-light)", textTransform: "uppercase", letterSpacing: "0.06em", marginTop: "2px" }}>
+                    Kitchen Timer
+                  </div>
+                </div>
+              </div>
+
+              <div className="kitchen-timer-presets">
+                <button type="button" className="timer-preset-btn" onClick={() => startTimer(60)}>+1m</button>
+                <button type="button" className="timer-preset-btn" onClick={() => startTimer(300)}>+5m</button>
+                <button type="button" className="timer-preset-btn" onClick={() => startTimer(600)}>+10m</button>
+                <button type="button" className="timer-preset-btn" onClick={() => startTimer(900)}>+15m</button>
+              </div>
+
+              <div className="kitchen-timer-controls">
+                <button type="button" className="btn-timer-primary" onClick={toggleTimer}>
+                  {timerRunning ? "Pause" : timerSeconds > 0 ? "Resume" : "Start 5m"}
+                </button>
+                {timerSeconds > 0 && (
+                  <button type="button" className="btn-timer-reset" onClick={resetTimer}>Reset</button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Step Navigation Bar */}
+          <footer className="kitchen-nav-bar">
+            <button
+              type="button"
+              className="btn-kitchen-prev"
+              onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
+              disabled={currentStep === 0}
+            >
+              ← Previous step
+            </button>
+
+            {currentStep < totalSteps - 1 ? (
+              <button
+                type="button"
+                className="btn-kitchen-next"
+                onClick={() => setCurrentStep((s) => Math.min(totalSteps - 1, s + 1))}
+              >
+                Next step →
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn-kitchen-done"
+                onClick={onClose}
+              >
+                🎉 Meal complete! Enjoy
+              </button>
+            )}
+          </footer>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Printable Fridge-Ready Weekly Plan & Grocery Sheet
+// ---------------------------------------------------------------------------
+function PrintableFridgeSheet({ plan, profile, onClose }) {
+  if (!plan) return null;
+
+  const isWeekly = !!plan.is_weekly && !!plan.days;
+  const daysList = isWeekly ? Object.keys(plan.days) : [];
+  const grocery = plan.categorized_grocery_list || {};
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  return (
+    <div className="fridge-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="fridge-sheet-container" onClick={(e) => e.stopPropagation()}>
+        {/* On-Screen Action Toolbar */}
+        <div className="fridge-toolbar">
+          <div className="fridge-toolbar-info">
+            <Icon.notebook style={{ width: 18, height: 18, color: "var(--accent-green)" }} />
+            <span>Fridge-Ready Weekly Sheet (Formatted for Home Printing)</span>
+          </div>
+          <div className="fridge-toolbar-actions">
+            <button className="btn-print-action" type="button" onClick={handlePrint}>
+              <Icon.print style={{ width: 16, height: 16 }} /> Print Sheet / Save PDF
+            </button>
+            <button className="btn-close-fridge" type="button" onClick={onClose}>
+              Close
+            </button>
+          </div>
+        </div>
+
+        {/* The Printable Paper Sheet */}
+        <article className="fridge-sheet-paper">
+          <header className="fridge-sheet-header">
+            <div className="fridge-sheet-brand">
+              <h2>Smart Nutrition Assistant</h2>
+              <p>Weekly Whole-Food Nourishment Protocol</p>
+            </div>
+            <div className="fridge-sheet-meta">
+              <span className="fridge-meta-user">Prepared for: {plan.user_id || profile?.name || "Client"}</span>
+              <span className="fridge-meta-date">Date: {plan.date || new Date().toISOString().split("T")[0]} · Goal: {profile?.goal || "Health & Vitality"}</span>
+            </div>
+          </header>
+
+          {/* Key Targets Banner */}
+          <div className="fridge-summary-strip">
+            <div className="fridge-summary-col">
+              <span className="fridge-summary-val">{plan.target_calories || 2100}</span>
+              <span className="fridge-summary-lbl">Daily kcal Target</span>
+            </div>
+            <div className="fridge-summary-col">
+              <span className="fridge-summary-val">{plan.target_macros?.protein_g || 140}g</span>
+              <span className="fridge-summary-lbl">Protein Goal</span>
+            </div>
+            <div className="fridge-summary-col">
+              <span className="fridge-summary-val">{plan.target_macros?.carbs_g || 210}g</span>
+              <span className="fridge-summary-lbl">Carbohydrates</span>
+            </div>
+            <div className="fridge-summary-col">
+              <span className="fridge-summary-val">{plan.target_macros?.fats_g || 55}g</span>
+              <span className="fridge-summary-lbl">Healthy Fats</span>
+            </div>
+            <div className="fridge-summary-col">
+              <span className="fridge-summary-val">3.0 L</span>
+              <span className="fridge-summary-lbl">Water (8 glasses)</span>
+            </div>
+          </div>
+
+          {/* Weekly 7-Day Table */}
+          <h3 className="fridge-section-title">
+            <span>7-Day Meal Schedule</span>
+            <span style={{ fontSize: "0.74rem", fontWeight: 600, color: "#666" }}>Stick on fridge for quick daily reference</span>
+          </h3>
+
+          <div className="fridge-table-wrap">
+            <table className="fridge-weekly-table">
+              <thead>
+                <tr>
+                  <th style={{ width: "12%" }}>Day</th>
+                  <th style={{ width: "22%" }}>Breakfast</th>
+                  <th style={{ width: "22%" }}>Lunch</th>
+                  <th style={{ width: "22%" }}>Dinner</th>
+                  <th style={{ width: "22%" }}>Snack & Fuel</th>
+                </tr>
+              </thead>
+              <tbody>
+                {isWeekly ? (
+                  daysList.map((dayName) => {
+                    const dayPlan = plan.days[dayName];
+                    const meals = dayPlan?.meals || [];
+                    const b = meals[0] || {};
+                    const l = meals[1] || {};
+                    const d = meals[2] || {};
+                    const s = meals[3] || {};
+                    return (
+                      <tr key={dayName}>
+                        <td className="fridge-day-name">{dayName}</td>
+                        <td className="fridge-meal-cell">
+                          <strong>{b.name || "—"}</strong>
+                          <span>{b.approx_calories ? `${b.approx_calories} kcal` : ""}</span>
+                        </td>
+                        <td className="fridge-meal-cell">
+                          <strong>{l.name || "—"}</strong>
+                          <span>{l.approx_calories ? `${l.approx_calories} kcal` : ""}</span>
+                        </td>
+                        <td className="fridge-meal-cell">
+                          <strong>{d.name || "—"}</strong>
+                          <span>{d.approx_calories ? `${d.approx_calories} kcal` : ""}</span>
+                        </td>
+                        <td className="fridge-meal-cell">
+                          <strong>{s.name || "—"}</strong>
+                          <span>{s.approx_calories ? `${s.approx_calories} kcal` : ""}</span>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td className="fridge-day-name">{plan.day || "Today"}</td>
+                    {(plan.meals || []).map((m, idx) => (
+                      <td key={idx} className="fridge-meal-cell">
+                        <strong>{m.name}</strong>
+                        <span>{m.approx_calories} kcal</span>
+                      </td>
+                    ))}
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Categorized Grocery List with [ ] Tick Boxes */}
+          <h3 className="fridge-section-title">
+            <span>Categorized Grocery Checklist</span>
+            <span style={{ fontSize: "0.74rem", fontWeight: 600, color: "#666" }}>Bring to market or check off in pantry</span>
+          </h3>
+
+          <div className="fridge-grocery-grid">
+            {Object.keys(grocery).length > 0 ? (
+              Object.entries(grocery).map(([catName, items]) => (
+                <div key={catName} className="fridge-grocery-category">
+                  <h4 className="fridge-grocery-cat-name">{catName} ({items.length})</h4>
+                  <ul className="fridge-checklist">
+                    {items.slice(0, 14).map((item, i) => (
+                      <li key={i} className="fridge-check-row">
+                        <span className="fridge-box" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            ) : (
+              <p style={{ fontSize: "0.82rem", color: "#666" }}>Standard whole-food staples: oats, quinoa, leafy greens, tomatoes, curd, paneer, and lentils.</p>
+            )}
+          </div>
+
+          <footer className="fridge-sheet-footer">
+            <span>🌿 Whole-Food Nutrition · Verified against Mifflin-St Jeor metabolic formulas</span>
+            <span>Prep tip: Batch-cook grains and soak lentils on Sunday evening</span>
+          </footer>
+        </article>
+      </div>
+    </div>
+  );
+}
+
 // Recipe Instructions Modal
-function RecipeModal({ meal, onClose }) {
+function RecipeModal({ meal, onClose, onStartCooking }) {
   // Close modal on Escape key
   useEffect(() => {
     if (!meal) return;
@@ -653,6 +1076,18 @@ function RecipeModal({ meal, onClose }) {
         </div>
 
         <div className="recipe-modal-footer">
+          <button
+            className="btn-kitchen-mode-trigger"
+            type="button"
+            onClick={() => {
+              if (onStartCooking) {
+                onClose();
+                onStartCooking(meal);
+              }
+            }}
+          >
+            🍳 Start Kitchen Cooking Mode
+          </button>
           <button className="secondary-btn" type="button" onClick={onClose}>Close recipe</button>
         </div>
       </div>
@@ -662,7 +1097,7 @@ function RecipeModal({ meal, onClose }) {
 
 
 // Main Meal Plan Display Component
-function MealPlanDisplay({ plan, onSwapMeal, profile }) {
+function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFridgeSheet }) {
   const [activeTab, setActiveTab] = useState("plan"); // "plan" | "grocery"
   const [selectedDay, setSelectedDay] = useState("Monday");
   const [checkedItems, setCheckedItems] = useState({});
@@ -820,7 +1255,20 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
             <p className="plan-subtitle">Prepared for <b>{plan.user_id}</b> · {plan.date}</p>
           </div>
           <div className="action-buttons">
-            <button className="icon-btn print-btn" onClick={() => window.print()} title="Print or save as PDF">
+            <button
+              className="icon-btn fridge-sheet-btn"
+              type="button"
+              onClick={() => onOpenFridgeSheet && onOpenFridgeSheet()}
+              title="View and print fridge-ready plan sheet with grocery checklist"
+            >
+              <Icon.notebook /> Fridge Sheet
+            </button>
+            <button
+              className="icon-btn print-btn"
+              type="button"
+              onClick={() => onOpenFridgeSheet ? onOpenFridgeSheet() : window.print()}
+              title="Print or save as PDF"
+            >
               <Icon.print /> Print
             </button>
           </div>
@@ -987,13 +1435,23 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                     <div className="meal-header-actions">
                       <span className="cal-badge">{meal.approx_calories} kcal</span>
                       {!meal.unavailable && (
-                        <button
-                          className="recipe-btn"
-                          type="button"
-                          onClick={() => setSelectedRecipe(meal)}
-                        >
-                          Recipe
-                        </button>
+                        <>
+                          <button
+                            className="recipe-btn"
+                            type="button"
+                            onClick={() => setSelectedRecipe(meal)}
+                          >
+                            Recipe
+                          </button>
+                          <button
+                            className="cook-now-btn"
+                            type="button"
+                            onClick={() => onStartCooking && onStartCooking(meal)}
+                            title="Start step-by-step kitchen cooking mode"
+                          >
+                            🍳 Cook
+                          </button>
+                        </>
                       )}
                       <button
                         className="swap-meal-btn"
@@ -1104,7 +1562,14 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
 
       {/* Recipe Modal */}
       {selectedRecipe && (
-        <RecipeModal meal={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
+        <RecipeModal
+          meal={selectedRecipe}
+          onClose={() => setSelectedRecipe(null)}
+          onStartCooking={(m) => {
+            setSelectedRecipe(null);
+            if (onStartCooking) onStartCooking(m);
+          }}
+        />
       )}
     </div>
   );
@@ -1811,6 +2276,202 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// "What's in My Fridge?" Smart Pantry Matcher
+// ---------------------------------------------------------------------------
+const STAPLE_CHIPS = [
+  "Spinach", "Paneer", "Eggs", "Oats", "Curd", "Quinoa",
+  "Chickpeas", "Chicken", "Tomatoes", "Tofu", "Lentils", "Cucumber"
+];
+
+function PantryMatcher({ onOpenRecipe, onStartCooking }) {
+  const [selectedPantry, setSelectedPantry] = useState(["Spinach", "Paneer", "Tomatoes"]);
+  const [customInput, setCustomInput] = useState("");
+  const allMeals = React.useMemo(() => getAllCatalogMeals(), []);
+
+  const handleToggleStaple = (chip) => {
+    setSelectedPantry((prev) =>
+      prev.includes(chip) ? prev.filter((c) => c !== chip) : [...prev, chip]
+    );
+  };
+
+  const handleAddCustom = (e) => {
+    e.preventDefault();
+    const val = customInput.trim();
+    if (!val) return;
+    if (!selectedPantry.map((s) => s.toLowerCase()).includes(val.toLowerCase())) {
+      setSelectedPantry((prev) => [...prev, val]);
+    }
+    setCustomInput("");
+  };
+
+  const handleRemove = (item) => {
+    setSelectedPantry((prev) => prev.filter((c) => c !== item));
+  };
+
+  // Rank meals by how many selected pantry items they contain
+  const matchedMeals = React.useMemo(() => {
+    if (selectedPantry.length === 0) return [];
+    const searchTerms = selectedPantry.map((s) => s.toLowerCase());
+
+    const matches = [];
+    allMeals.forEach((meal) => {
+      const ingList = (meal.ingredients || []).map((ing) =>
+        (typeof ing === "object" ? (ing.name || ing.item || JSON.stringify(ing)) : String(ing)).toLowerCase()
+      );
+      const combined = `${meal.name} ${ingList.join(" ")}`.toLowerCase();
+
+      const matchedTerms = searchTerms.filter((term) => combined.includes(term));
+      if (matchedTerms.length > 0) {
+        matches.push({
+          meal,
+          matchedCount: matchedTerms.length,
+          matchedTerms,
+        });
+      }
+    });
+
+    matches.sort((a, b) => b.matchedCount - a.matchedCount);
+    return matches.slice(0, 6);
+  }, [selectedPantry, allMeals]);
+
+  return (
+    <section id="pantry-matcher" className="pantry-matcher-section" aria-label="Smart Pantry Matcher">
+      <div className="pantry-matcher-card">
+        <header className="pantry-header">
+          <div className="pantry-tag">
+            <Icon.leaf style={{ width: 14, height: 14 }} />
+            Zero-Waste Kitchen & Pantry Matcher
+          </div>
+          <h2 className="pantry-title">What's in your fridge right now?</h2>
+          <p className="pantry-description">
+            Select or type ingredients you already have at home. We'll cross-reference our whole-food catalog and surface delicious recipes you can cook immediately without an extra trip to the store.
+          </p>
+        </header>
+
+        <div className="pantry-controls-wrap">
+          <form className="pantry-input-row" onSubmit={handleAddCustom}>
+            <input
+              type="text"
+              className="pantry-text-input"
+              placeholder="e.g. sweet potato, bell pepper, mushrooms..."
+              value={customInput}
+              onChange={(e) => setCustomInput(e.target.value)}
+            />
+            <button className="btn-add-ingredient" type="submit">
+              + Add Ingredient
+            </button>
+          </form>
+
+          <div>
+            <div className="pantry-staples-label">Popular staple pantry items:</div>
+            <div className="pantry-staple-chips" style={{ marginTop: 10 }}>
+              {STAPLE_CHIPS.map((chip) => {
+                const isSelected = selectedPantry.includes(chip);
+                return (
+                  <button
+                    key={chip}
+                    type="button"
+                    className={`staple-chip ${isSelected ? "selected" : ""}`}
+                    onClick={() => handleToggleStaple(chip)}
+                  >
+                    {isSelected ? "✓" : "+"} {chip}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {selectedPantry.length > 0 && (
+            <div className="pantry-active-tags">
+              <span className="pantry-active-label">In your kitchen ({selectedPantry.length}):</span>
+              {selectedPantry.map((item) => (
+                <span key={item} className="active-ingr-pill">
+                  {item}
+                  <button
+                    type="button"
+                    className="btn-remove-ingr"
+                    onClick={() => handleRemove(item)}
+                    title={`Remove ${item}`}
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+              <button
+                type="button"
+                className="btn-clear-pantry"
+                onClick={() => setSelectedPantry([])}
+              >
+                Clear all
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Results */}
+        <div>
+          <div className="pantry-results-header" style={{ marginBottom: 18 }}>
+            <span className="pantry-results-count">
+              {matchedMeals.length > 0
+                ? `Showing top ${matchedMeals.length} whole-food recipes matching your pantry:`
+                : selectedPantry.length === 0
+                ? "Select ingredients above to find matching meals."
+                : "No matching recipes found with these exact ingredients."}
+            </span>
+          </div>
+
+          {matchedMeals.length > 0 ? (
+            <div className="pantry-results-grid">
+              {matchedMeals.map(({ meal, matchedCount, matchedTerms }) => (
+                <article key={meal.name} className="pantry-meal-card">
+                  <div className="pantry-meal-card-top">
+                    <span className="pantry-match-badge">
+                      ✓ Matches {matchedCount} {matchedCount === 1 ? "item" : "items"}
+                    </span>
+                    <h3 className="pantry-meal-name">{meal.name}</h3>
+                    <div className="pantry-meal-macros">
+                      <span><strong>{meal.approx_calories}</strong> kcal</span>
+                      <span>•</span>
+                      <span><strong>{meal.macros?.protein_g || 0}g</strong> protein</span>
+                      <span>•</span>
+                      <span>{meal.cook_time || "15 mins"}</span>
+                    </div>
+                    <div className="pantry-matched-ingrs-list">
+                      Found in recipe: <strong>{matchedTerms.join(", ")}</strong>
+                    </div>
+                  </div>
+
+                  <div className="pantry-meal-actions">
+                    <button
+                      type="button"
+                      className="btn-pantry-cook"
+                      onClick={() => onStartCooking(meal)}
+                    >
+                      🍳 Cook Now
+                    </button>
+                    <button
+                      type="button"
+                      className="btn-pantry-view"
+                      onClick={() => onOpenRecipe(meal)}
+                    >
+                      Recipe Details
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : selectedPantry.length > 0 ? (
+            <div className="pantry-empty-prompt">
+              Try clicking popular staples like <strong>Spinach</strong>, <strong>Paneer</strong>, or <strong>Oats</strong> above.
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Main Root Application
 function App() {
   const emptyForm = {
@@ -1841,6 +2502,8 @@ function App() {
   const [navOpen, setNavOpen] = useState(false);
   const [unitSystem, setUnitSystem] = useState("metric"); // "metric" | "imperial"
   const [eatenMeals, setEatenMeals] = useState({}); // { "mealName": true }
+  const [cookingMeal, setCookingMeal] = useState(null);
+  const [showFridgeSheet, setShowFridgeSheet] = useState(false);
 
   const [theme, setTheme] = useState(() => {
     try {
@@ -2180,6 +2843,7 @@ function App() {
               <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("methodology"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>About</button></li>
               <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Meal plans</button></li>
               <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("macro-matrix"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Recipes</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("pantry-matcher"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Pantry matcher</button></li>
               <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("how-it-works"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>How it works</button></li>
             </ul>
 
@@ -2216,6 +2880,7 @@ function App() {
               { label: "About", id: "methodology" },
               { label: "Meal plans", id: "protocol-engine" },
               { label: "Recipes", id: "macro-matrix" },
+              { label: "Pantry matcher", id: "pantry-matcher" },
               { label: "How it works", id: "how-it-works" },
               { label: "Create my plan", id: "protocol-engine" },
             ].map(({ label, id }) => (
@@ -2274,6 +2939,12 @@ function App() {
         {/* ZONE 6: Tabbed Showcase Grid matching Screenshot 4 */}
         <ProtocolMatrixShowcase
           onSelectRecipe={(recipe) => setPreviewRecipe(recipe)}
+        />
+
+        {/* "What's in My Fridge?" Smart Pantry Matcher */}
+        <PantryMatcher
+          onOpenRecipe={(recipe) => setPreviewRecipe(recipe)}
+          onStartCooking={(meal) => setCookingMeal(meal)}
         />
 
         {/* ZONE 7: Generator Form Section */}
@@ -2537,7 +3208,13 @@ function App() {
 
           {/* Results Card */}
           {mealPlan ? (
-            <MealPlanDisplay plan={mealPlan} onSwapMeal={handleSwapMeal} profile={form} />
+            <MealPlanDisplay
+              plan={mealPlan}
+              onSwapMeal={handleSwapMeal}
+              profile={form}
+              onStartCooking={(meal) => setCookingMeal(meal)}
+              onOpenFridgeSheet={() => setShowFridgeSheet(true)}
+            />
           ) : (
             <div className="empty-state">
               <span className="section-eyebrow">Your plan</span>
@@ -2591,6 +3268,24 @@ function App() {
           <RecipeModal
             meal={previewRecipe}
             onClose={() => setPreviewRecipe(null)}
+            onStartCooking={(meal) => setCookingMeal(meal)}
+          />
+        )}
+
+        {/* Fullscreen Interactive Kitchen Cooking Mode */}
+        {cookingMeal && (
+          <KitchenCookingMode
+            meal={cookingMeal}
+            onClose={() => setCookingMeal(null)}
+          />
+        )}
+
+        {/* Printable Fridge-Ready Weekly Sheet */}
+        {showFridgeSheet && (
+          <PrintableFridgeSheet
+            plan={mealPlan}
+            profile={form}
+            onClose={() => setShowFridgeSheet(false)}
           />
         )}
       </div>

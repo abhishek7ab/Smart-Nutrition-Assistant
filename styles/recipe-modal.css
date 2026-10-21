@@ -174,16 +174,39 @@
 .recipe-modal-footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
   margin-top: 28px;
+}
+
+.btn-kitchen-mode-trigger {
+  background: var(--accent-green);
+  color: #ffffff;
+  border: 1.5px solid var(--accent-green);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(46, 139, 79, 0.28);
+  transition: all var(--transition);
+}
+
+.btn-kitchen-mode-trigger:hover {
+  background: var(--accent-green-dark);
+  border-color: var(--accent-green-dark);
 }
 
 .secondary-btn {
   background: transparent;
   border: 1px solid var(--card-border);
   color: var(--text-main);
-  padding: 11px 24px;
+  padding: 10px 20px;
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   transition: border-color var(--transition), color var(--transition);

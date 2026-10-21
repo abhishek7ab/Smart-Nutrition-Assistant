@@ -1,0 +1,469 @@
+/* styles/cooking-mode.css — Fullscreen distraction-free kitchen companion */
+
+.kitchen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease;
+}
+
+.kitchen-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 16px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.kitchen-title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.kitchen-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-green);
+}
+
+.kitchen-recipe-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.kitchen-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-exit-kitchen {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition);
+}
+
+.btn-exit-kitchen:hover {
+  color: var(--text-main);
+  border-color: var(--accent-green);
+  background: var(--accent-green-light);
+}
+
+/* Step Progress Bar */
+.kitchen-progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--card-border);
+}
+
+.kitchen-progress-fill {
+  height: 100%;
+  background: var(--accent-green);
+  transition: width 0.3s ease;
+}
+
+/* Main Kitchen Workspace */
+.kitchen-body {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px 28px 100px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  flex: 1;
+}
+
+/* Sidebar: Ingredient Checklist */
+.kitchen-ingredients-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+}
+
+.kitchen-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kitchen-panel-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.kitchen-ingr-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  background: var(--card-bg);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--card-border);
+}
+
+.kitchen-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.kitchen-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition);
+  user-select: none;
+}
+
+.kitchen-check-item:hover {
+  background: var(--card-bg);
+}
+
+.kitchen-check-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all var(--transition);
+}
+
+.kitchen-check-item.checked .kitchen-check-box {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #ffffff;
+}
+
+.kitchen-check-text {
+  font-size: 0.88rem;
+  color: var(--text-body);
+  line-height: 1.4;
+  transition: color var(--transition);
+}
+
+.kitchen-check-item.checked .kitchen-check-text {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+/* Center Column: Active Step & Timer */
+.kitchen-step-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.kitchen-step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+.kitchen-step-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kitchen-step-number-tag {
+  background: var(--accent-green-light);
+  color: var(--accent-green-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kitchen-step-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.kitchen-step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--card-border);
+  transition: all 0.2s ease;
+}
+
+.kitchen-step-dot.active {
+  background: var(--accent-green);
+  transform: scale(1.3);
+}
+
+.kitchen-step-dot.completed {
+  background: var(--accent-green-dark);
+}
+
+.kitchen-step-instruction {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* Interactive Kitchen Timer */
+.kitchen-timer-module {
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.kitchen-timer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kitchen-timer-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--accent-green-light);
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kitchen-timer-display {
+  font-family: var(--font-body);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.kitchen-timer-display.running {
+  color: var(--accent-green);
+  animation: gentlePulse 2s infinite;
+}
+
+.kitchen-timer-display.ended {
+  color: var(--accent-red);
+  animation: pulseDot 1s infinite;
+}
+
+.kitchen-timer-presets {
+  display: flex;
+  gap: 6px;
+}
+
+.timer-preset-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-body);
+  border-radius: var(--radius-full);
+  padding: 4px 11px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.timer-preset-btn:hover {
+  background: var(--accent-green-light);
+  border-color: var(--accent-green);
+  color: var(--accent-green-dark);
+}
+
+.kitchen-timer-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-timer-primary {
+  background: var(--accent-green);
+  color: #ffffff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.btn-timer-primary:hover {
+  background: var(--accent-green-dark);
+}
+
+.btn-timer-reset {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-timer-reset:hover {
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}
+
+/* Step Navigation Footer */
+.kitchen-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.btn-kitchen-prev {
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  color: var(--text-main);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+}
+
+.btn-kitchen-prev:hover:not(:disabled) {
+  border-color: var(--text-main);
+  background: var(--bg-secondary);
+}
+
+.btn-kitchen-prev:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-kitchen-next {
+  background: var(--accent-green);
+  border: 1.5px solid var(--accent-green);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+}
+
+.btn-kitchen-next:hover {
+  background: var(--accent-green-dark);
+  border-color: var(--accent-green-dark);
+}
+
+.btn-kitchen-done {
+  background: var(--accent-green);
+  border: 1.5px solid var(--accent-green);
+  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: var(--radius-full);
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(46, 139, 79, 0.35);
+  transition: all var(--transition);
+}
+
+.btn-kitchen-done:hover {
+  background: var(--accent-green-dark);
+}
+
+@media (max-width: 860px) {
+  .kitchen-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px 16px 80px;
+  }
+
+  .kitchen-step-card {
+    padding: 24px;
+  }
+
+  .kitchen-header {
+    padding: 12px 16px;
+  }
+
+  .kitchen-recipe-title {
+    font-size: 1.05rem;
+  }
+}

@@ -1,0 +1,349 @@
+/* styles/pantry-matcher.css — "What's in My Fridge?" Smart Pantry Matcher */
+
+.pantry-matcher-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+.pantry-matcher-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2xl);
+  padding: 44px 48px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.pantry-header {
+  max-width: 680px;
+}
+
+.pantry-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-green);
+  margin-bottom: 12px;
+}
+
+.pantry-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin: 0 0 12px 0;
+}
+
+.pantry-description {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Pantry Input & Staple Chips */
+.pantry-controls-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+}
+
+.pantry-input-row {
+  display: flex;
+  gap: 12px;
+}
+
+.pantry-text-input {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-full);
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  transition: border-color var(--transition);
+}
+
+.pantry-text-input:focus {
+  outline: none;
+  border-color: var(--accent-green);
+}
+
+.btn-add-ingredient {
+  background: var(--accent-green);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition);
+}
+
+.btn-add-ingredient:hover {
+  background: var(--accent-green-dark);
+}
+
+/* Quick Staple Chips */
+.pantry-staples-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  margin-bottom: -6px;
+}
+
+.pantry-staple-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.staple-chip {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-body);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition);
+  user-select: none;
+}
+
+.staple-chip:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.staple-chip.selected {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #ffffff;
+}
+
+/* Active Selected Ingredients Bar */
+.pantry-active-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.pantry-active-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.active-ingr-pill {
+  background: var(--accent-green-light);
+  border: 1px solid var(--accent-green-mid);
+  color: var(--accent-green-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-remove-ingr {
+  background: none;
+  border: none;
+  color: var(--accent-green-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.btn-clear-pantry {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.btn-clear-pantry:hover {
+  color: var(--accent-red);
+}
+
+/* Matched Recipes Results Grid */
+.pantry-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pantry-results-count {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.pantry-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.pantry-meal-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.pantry-meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--accent-green-mid);
+}
+
+.pantry-meal-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pantry-match-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent-green-light);
+  color: var(--accent-green-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+.pantry-meal-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.pantry-meal-macros {
+  display: flex;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pantry-meal-macros span strong {
+  color: var(--text-main);
+}
+
+.pantry-matched-ingrs-list {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.pantry-matched-ingrs-list strong {
+  color: var(--accent-green);
+}
+
+.pantry-meal-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--card-border);
+}
+
+.btn-pantry-cook {
+  flex: 1;
+  background: var(--accent-green);
+  color: #ffffff;
+  border: none;
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background var(--transition);
+}
+
+.btn-pantry-cook:hover {
+  background: var(--accent-green-dark);
+}
+
+.btn-pantry-view {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  padding: 9px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-pantry-view:hover {
+  background: var(--bg-secondary);
+  border-color: var(--text-main);
+}
+
+.pantry-empty-prompt {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 680px) {
+  .pantry-matcher-card {
+    padding: 24px 18px;
+  }
+
+  .pantry-input-row {
+    flex-direction: column;
+  }
+
+  .pantry-results-grid {
+    grid-template-columns: 1fr;
+  }
+}

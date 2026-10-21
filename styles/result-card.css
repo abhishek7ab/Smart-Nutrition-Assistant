@@ -75,7 +75,20 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  transition: border-color var(--transition), color var(--transition);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.fridge-sheet-btn {
+  background: var(--accent-green-light);
+  border-color: var(--accent-green-mid);
+  color: var(--accent-green-dark);
+  font-weight: 700;
+}
+
+.fridge-sheet-btn:hover {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #ffffff;
 }
 
 .print-btn:hover,

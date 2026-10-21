@@ -278,3 +278,23 @@ export function generateClientMealSwap(profile, mealIndex = 0, currentMealName =
   const picked = pool[Math.floor(Math.random() * pool.length)];
   return buildMeal(picked);
 }
+
+export function getAllCatalogMeals() {
+  const seen = new Set();
+  const list = [];
+  const diets = catalog.diets || {};
+  Object.keys(diets).forEach((dietKey) => {
+    const slots = diets[dietKey] || {};
+    Object.keys(slots).forEach((slotKey) => {
+      const meals = slots[slotKey] || [];
+      meals.forEach((m) => {
+        if (m && m.name && !seen.has(m.name)) {
+          seen.add(m.name);
+          list.push(buildMeal(m));
+        }
+      });
+    });
+  });
+  return list;
+}
+

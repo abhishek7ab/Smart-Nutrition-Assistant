@@ -118,6 +118,27 @@
   transition: border-color var(--transition), color var(--transition), background-color var(--transition);
 }
 
+.cook-now-btn {
+  background: var(--accent-green-light);
+  border: 1px solid var(--accent-green-mid);
+  color: var(--accent-green-dark);
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all var(--transition);
+}
+
+.cook-now-btn:hover {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #ffffff;
+}
+
 .recipe-btn:hover,
 .swap-meal-btn:hover:not(:disabled) {
   border-color: var(--accent-green);

@@ -1,0 +1,346 @@
+/* styles/fridge-print.css — Editorial fridge-ready weekly plan & printable sheet */
+
+.fridge-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  background: rgba(18, 22, 20, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  padding: 30px 16px;
+}
+
+.fridge-sheet-container {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Floating Actions Bar above sheet */
+.fridge-toolbar {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.fridge-toolbar-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.fridge-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-print-action {
+  background: var(--accent-green);
+  color: #ffffff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(46, 139, 79, 0.3);
+  transition: background var(--transition);
+}
+
+.btn-print-action:hover {
+  background: var(--accent-green-dark);
+}
+
+.btn-close-fridge {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-close-fridge:hover {
+  color: var(--text-main);
+  border-color: var(--text-main);
+}
+
+/* The Paper Sheet (Clean Editorial Print Quality) */
+.fridge-sheet-paper {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-radius: 8px;
+  padding: 40px 48px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid #e5e0d8;
+  font-family: var(--font-body);
+}
+
+.fridge-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 22px;
+  border-bottom: 2px solid #2e8b4f;
+  margin-bottom: 24px;
+}
+
+.fridge-sheet-brand h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e6b3b;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.fridge-sheet-brand p {
+  font-size: 0.82rem;
+  color: #666666;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.fridge-sheet-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fridge-meta-user {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.fridge-meta-date {
+  font-size: 0.78rem;
+  color: #777777;
+}
+
+/* Summary Metrics Bar */
+.fridge-summary-strip {
+  background: #f7f5f0;
+  border: 1px solid #e8e4dc;
+  border-radius: 6px;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.fridge-summary-col {
+  text-align: center;
+}
+
+.fridge-summary-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e6b3b;
+  display: block;
+}
+
+.fridge-summary-lbl {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #666666;
+}
+
+/* Weekly 7-Day Grid Table */
+.fridge-section-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fridge-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 32px;
+}
+
+.fridge-weekly-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.fridge-weekly-table th {
+  background: #f2efe9;
+  border: 1px solid #dcd7ce;
+  padding: 9px 10px;
+  text-align: left;
+  font-weight: 700;
+  color: #333333;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+}
+
+.fridge-weekly-table td {
+  border: 1px solid #e5e0d8;
+  padding: 10px 10px;
+  vertical-align: top;
+  line-height: 1.4;
+  color: #2b2b2b;
+}
+
+.fridge-day-name {
+  font-weight: 700;
+  color: #1e6b3b;
+  white-space: nowrap;
+}
+
+.fridge-meal-cell strong {
+  display: block;
+  font-size: 0.78rem;
+  color: #111111;
+  margin-bottom: 2px;
+}
+
+.fridge-meal-cell span {
+  font-size: 0.7rem;
+  color: #666666;
+}
+
+/* Categorized Grocery Section with Tick Boxes */
+.fridge-grocery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 28px;
+  margin-bottom: 28px;
+}
+
+.fridge-grocery-category {
+  background: #fcfbf8;
+  border: 1px solid #e8e4dc;
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.fridge-grocery-cat-name {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1e6b3b;
+  border-bottom: 1px solid #e8e4dc;
+  padding-bottom: 6px;
+  margin: 0 0 10px 0;
+}
+
+.fridge-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fridge-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #333333;
+}
+
+.fridge-box {
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid #888888;
+  border-radius: 2px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Footer / Tips */
+.fridge-sheet-footer {
+  border-top: 1px solid #e5e0d8;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: #777777;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT MEDIA RULES — PERFECT FRIDGE PRINTOUT
+   ═══════════════════════════════════════════ */
+@media print {
+  /* Hide the rest of the application */
+  body * {
+    visibility: hidden;
+  }
+
+  .fridge-sheet-paper,
+  .fridge-sheet-paper * {
+    visibility: visible;
+  }
+
+  .fridge-modal-backdrop {
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .fridge-toolbar {
+    display: none !important;
+  }
+
+  .fridge-sheet-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .fridge-sheet-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10mm 12mm !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+}

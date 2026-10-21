@@ -23,6 +23,9 @@
 @import "./recipe-modal.css";
 @import "./calorie-tracker.css";
 @import "./visualizations.css";
+@import "./cooking-mode.css";
+@import "./fridge-print.css";
+@import "./pantry-matcher.css";
 
 /* Responsive & Print */
 @import "./responsive.css";
