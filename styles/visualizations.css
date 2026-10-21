@@ -169,14 +169,22 @@
 
 .per-meal-budget-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: 4px 16px;
   margin-bottom: 9px;
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.per-meal-budget-header span:last-child {
+  color: var(--text-light);
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .per-meal-budget-bar {
