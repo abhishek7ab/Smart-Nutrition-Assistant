@@ -1153,7 +1153,12 @@
 
   .floating-form,
   .water-tracker-card,
+  .calorie-tracker-card,
+  .generator-header-bar,
+  .history-drawer,
+  .empty-state,
   .form-toolbar,
+  .view-tabs,
   .print-btn,
   .recipe-btn,
   .swap-meal-btn,
@@ -1163,13 +1168,26 @@
   .hero-section,
   .archetypes-section,
   .evidence-split-section,
+  .evidence-promo-banner,
   .steps-workflow-section,
   .showcase-matrix-section,
   .institutional-footer {
     display: none !important;
   }
 
-  .result-card,
+  .generator-section {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .result-card {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
   .meal-item,
   .grocery-card {
     background: #ffffff !important;
