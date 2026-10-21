@@ -1117,20 +1117,23 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
       <div className="hero-section">
         {/* Left Content */}
         <div className="hero-left-content">
-          <div className="hero-eyebrow-pill">AI-Powered • Personalized Nutrition</div>
+          <div className="hero-eyebrow-pill">
+            <Icon.leaf className="eyebrow-leaf" />
+            Whole-Food Clinical Nutrition
+          </div>
 
           <h1 className="hero-main-heading">
-            Healthy eating <span>made simple</span> for you
+            Nourishing real food, <span>scientifically tailored</span> to your body.
           </h1>
 
           <p className="hero-subdescription">
-            Personalized daily and weekly meal plans built around your body, your goals, and the food you actually enjoy.
+            Personalized daily and 7-day meal protocols designed for metabolic vitality, steady energy, and gut health — built around fresh, vibrant whole ingredients you actually love.
           </p>
 
           <ul className="hero-feature-list">
-            <li>Daily and weekly meal plans tailored to your goals</li>
-            <li>Calorie, macro, and hydration targets calculated from your metrics</li>
-            <li>Categorized grocery lists that make shopping effortless</li>
+            <li>Precision calorie, macro, and prebiotic fiber targets calculated from your biometrics</li>
+            <li>Varied 7-day whole-food meal schedules with step-by-step recipes and cooking times</li>
+            <li>Categorized fresh-produce grocery lists that make healthy shopping effortless</li>
           </ul>
 
           <div className="hero-actions-group">
@@ -1140,7 +1143,7 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
               onClick={onStartAssessment}
               id="hero-cta-assessment"
             >
-              Create my plan
+              Build my nutrition plan
             </button>
 
             <button
@@ -1149,36 +1152,57 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
               onClick={onExploreDemo}
               id="hero-cta-demo"
             >
-              See a sample plan
+              Explore sample plan
             </button>
           </div>
-          <p className="hero-no-commitment">Free to use. No account required.</p>
+          <p className="hero-no-commitment">100% free & open. No credit card or account needed.</p>
 
           <div className="hero-trust-row">
-            <span className="hero-trust-item">Evidence-based targets</span>
-            <span className="hero-trust-item">No sign-up needed</span>
-            <span className="hero-trust-item">Built for everyday eating</span>
+            <span className="hero-trust-item">Mifflin-St Jeor metabolic formulas</span>
+            <span className="hero-trust-item">Zero ultra-processed filler</span>
+            <span className="hero-trust-item">Complete whole-food recipes</span>
           </div>
         </div>
 
         {/* Right Side — Real Food Photo */}
         <div className="hero-visual-wrapper">
           <div className="hero-photo-container">
-            <img src="./assets/hero_food.jpg" alt="Beautiful Indian nutrition meal spread on marble" loading="eager" />
+            <img
+              src="./assets/hero_food.jpg"
+              alt="Vibrant whole-foods Mediterranean nourishment bowl with quinoa, avocado, edamame, fresh vegetables, and infused water"
+              loading="eager"
+            />
+            <div className="hero-photo-tag-top">
+              <span className="hero-organic-badge">
+                <Icon.leaf className="hero-badge-leaf" />
+                100% Whole Foods • High Vitality
+              </span>
+            </div>
             <div className="hero-floating-stats">
-              <div className="hero-stat-bubble">
-                <span className="hero-stat-bubble-val green">2,100</span>
-                <span className="hero-stat-bubble-lbl">kcal target</span>
+              <div className="hero-floating-header">
+                <span className="hero-floating-pill-label">Daily Nourishment Protocol</span>
+                <span className="hero-floating-micro-badge">Metabolic Balance</span>
               </div>
-              <div className="hero-stat-divider" />
-              <div className="hero-stat-bubble">
-                <span className="hero-stat-bubble-val">140g</span>
-                <span className="hero-stat-bubble-lbl">Protein</span>
-              </div>
-              <div className="hero-stat-divider" />
-              <div className="hero-stat-bubble">
-                <span className="hero-stat-bubble-val blue">3.0 L</span>
-                <span className="hero-stat-bubble-lbl">Hydration</span>
+              <div className="hero-floating-metrics-grid">
+                <div className="hero-stat-bubble">
+                  <span className="hero-stat-bubble-val green">2,100</span>
+                  <span className="hero-stat-bubble-lbl">Energy (kcal)</span>
+                </div>
+                <div className="hero-stat-divider" />
+                <div className="hero-stat-bubble">
+                  <span className="hero-stat-bubble-val">140g</span>
+                  <span className="hero-stat-bubble-lbl">Protein</span>
+                </div>
+                <div className="hero-stat-divider" />
+                <div className="hero-stat-bubble">
+                  <span className="hero-stat-bubble-val amber">38g</span>
+                  <span className="hero-stat-bubble-lbl">Prebiotic Fiber</span>
+                </div>
+                <div className="hero-stat-divider" />
+                <div className="hero-stat-bubble">
+                  <span className="hero-stat-bubble-val blue">3.0 L</span>
+                  <span className="hero-stat-bubble-lbl">Hydration</span>
+                </div>
               </div>
             </div>
           </div>
