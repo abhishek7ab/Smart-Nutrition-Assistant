@@ -800,7 +800,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                   onClick={() => setSelectedDay(day)}
                 >
                   <span className="day-name">{day.slice(0, 3)}</span>
-                  <span className="day-cal">{plan.days[day]?.target_calories} kcal</span>
+                  <span className="day-cal">{plan.days[day]?.actual_calories || plan.days[day]?.target_calories} kcal</span>
                 </button>
               ))}
             </div>
@@ -870,6 +870,11 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                   <span className="stat-tile-val">{targetCal} kcal</span>
                   <span className="stat-tile-desc">Optimized for your fitness goal</span>
                 </div>
+                <div className="stat-tile">
+                  <span className="stat-tile-label">Plate Calories (from recipes)</span>
+                  <span className="stat-tile-val">{currentDayData.actual_calories || currentMeals.reduce((s, m) => s + (m.approx_calories || 0), 0)} kcal</span>
+                  <span className="stat-tile-desc">Sum of catalog nutrition, not a TDEE split</span>
+                </div>
               </div>
             </div>
           </div>
@@ -911,10 +916,10 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
               const fW = Math.max(0, 100 - pW - cW);
 
               return (
-                <div className="meal-item" key={idx}>
+                <div className={`meal-item ${meal.unavailable ? "meal-blocked" : ""}`} key={idx}>
                   <div className="meal-header">
                     <div className="meal-title-group">
-                      <div className="meal-emoji-badge">{getMealIcon(meal.name)}</div>
+                      <div className="meal-emoji-badge">{meal.unavailable ? "⛔" : getMealIcon(meal.name)}</div>
                       <div className="meal-heading-wrapper">
                         <span className="meal-slot-tag">{slot}</span>
                         <h3 className="meal-title">{cleanTitle}</h3>
@@ -943,18 +948,20 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
 
                     <div className="meal-header-actions">
                       <span className="cal-badge">{meal.approx_calories} kcal</span>
-                      <button
-                        className="recipe-btn"
-                        type="button"
-                        onClick={() => setSelectedRecipe(meal)}
-                      >
-                        📖 View Recipe
-                      </button>
+                      {!meal.unavailable && (
+                        <button
+                          className="recipe-btn"
+                          type="button"
+                          onClick={() => setSelectedRecipe(meal)}
+                        >
+                          📖 View Recipe
+                        </button>
+                      )}
                       <button
                         className="swap-meal-btn"
                         type="button"
                         onClick={() => handleSwapClick(idx, meal.name)}
-                        disabled={swappingIdx === idx}
+                        disabled={swappingIdx === idx || meal.unavailable}
                       >
                         {swappingIdx === idx ? "Swapping..." : "🔄 Swap"}
                       </button>
@@ -1656,7 +1663,7 @@ function App() {
     }
   }, [theme]);
 
-  const [form, setForm] = useState({
+  const emptyForm = {
     name: "",
     age: "",
     sex: "male",
@@ -1666,7 +1673,12 @@ function App() {
     goal: "maintain",
     diet: "indian vegetarian",
     allergies: "",
-  });
+    conditions: [],
+    cuisine: "any",
+    budget: "medium",
+  };
+
+  const [form, setForm] = useState(emptyForm);
 
   const [mealPlan, setMealPlan] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -1739,17 +1751,7 @@ function App() {
   };
 
   const resetForm = () => {
-    setForm({
-      name: "",
-      age: "",
-      sex: "male",
-      height_cm: "",
-      weight_kg: "",
-      activity: "medium",
-      goal: "maintain",
-      diet: "indian vegetarian",
-      allergies: "",
-    });
+    setForm({ ...emptyForm });
     setMealPlan(null);
     setStatusMessage("Form cleared. Start again with your latest profile details.");
   };
@@ -1766,6 +1768,9 @@ function App() {
       goal: "maintain",
       diet: "indian vegetarian",
       allergies: "nuts",
+      conditions: [],
+      cuisine: "indian",
+      budget: "medium",
     };
     setForm(demo);
     if (autoGenerate) {
@@ -1785,6 +1790,27 @@ function App() {
       console.error("Failed to load history", e);
     }
   }, []);
+
+  useEffect(() => {
+    const name = (form.name || "").trim();
+    if (!name) return;
+    let cancelled = false;
+    fetch(`${API_BASE}/plans?name=${encodeURIComponent(name)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled || !data?.plans) return;
+        setHistory(data.plans);
+        try {
+          localStorage.setItem("smart_nutrition_history", JSON.stringify(data.plans));
+        } catch (e) {
+          console.error(e);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [form.name]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -1851,14 +1877,20 @@ function App() {
     setStatusMessage(type === "7day" ? "Generating full 7-day varied weekly nutrition plan..." : "Building your personalized daily nutrition plan...");
 
     const payload = {
-      ...activeForm,
       name: activeForm.name.trim(),
       age: parseInt(activeForm.age, 10) || 25,
+      sex: activeForm.sex || "male",
       height_cm: parseFloat(activeForm.height_cm) || 175,
       weight_kg: parseFloat(activeForm.weight_kg) || 70,
+      activity: activeForm.activity || "medium",
+      goal: activeForm.goal || "maintain",
+      diet: activeForm.diet || "indian vegetarian",
       allergies: activeForm.allergies
         ? (Array.isArray(activeForm.allergies) ? activeForm.allergies : activeForm.allergies.split(",").map((a) => a.trim()).filter(Boolean))
         : [],
+      conditions: Array.isArray(activeForm.conditions) ? activeForm.conditions : [],
+      cuisine: activeForm.cuisine || "any",
+      budget: activeForm.budget || "medium",
     };
 
     let result = null;

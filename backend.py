@@ -3,7 +3,6 @@
 Smart Nutrition Assistant API - Main Application Server
 """
 
-import json
 import os
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,23 +27,22 @@ except Exception:
 
 from models import Profile, SwapRequest
 from nutrition_engine import (
-    calculate_macros,
     generate_single_day_plan,
     generate_weekly_plan,
     generate_meal_swap
 )
 from ai_service import generate_ai_plan
+from plan_store import save_plan, list_plans, get_plan, init_db
 
 app = FastAPI(
     title="Smart Nutrition Assistant API",
     description="Personalized Meal Planner, Macro Calculator, and Nutrition Engine",
-    version="2.1.0"
+    version="2.2.0"
 )
 if HAS_SLOWAPI and _rate_limit_exceeded_handler is not None:
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS — read from environment; default to all origins (dev mode)
 _raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
 allowed_origins = [o.strip() for o in _raw_origins.split(",")] if _raw_origins != "*" else ["*"]
 
@@ -56,79 +54,78 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.on_event("startup")
+def _startup():
+    init_db()
+
+
 @app.get("/")
 def root():
-    """Health check & API info."""
     return {
         "message": "Smart Nutrition Assistant backend is running",
-        "version": "2.1.0",
-        "features": ["1-Day Plan", "7-Day Weekly Plan", "Meal Swaps", "Recipe Instructions", "Hydration Targets", "AI-Powered Plans"]
+        "version": "2.2.0",
+        "features": ["1-Day Plan", "7-Day Weekly Plan", "Meal Swaps", "Recipe Instructions", "Hydration Targets", "Saved Plans", "Allergy Fail-Closed"]
     }
+
 
 @app.get("/health")
 @limiter.limit("120/minute")
 def health(request: Request):
-    """Lightweight health check endpoint."""
     return {"status": "ok"}
+
 
 @app.post("/generate_plan")
 @limiter.limit("20/minute")
 def generate_plan_endpoint(request: Request, profile: Profile):
-    """Generate 1-day personalized nutrition plan.
-
-    Rate limited to 20 requests/minute per IP.
-    Attempts IBM Watsonx AI first; falls back to the built-in
-    rule-based nutrition engine if AI is unavailable or fails.
-    """
     try:
-        # 1. Try AI-powered plan
         plan = generate_ai_plan(profile)
-
-        # 2. Fall back to deterministic nutrition engine
         if not plan:
             plan = generate_single_day_plan(profile)
-
-        # Save to local profile JSON cache
-        filename = f"mealplan_{profile.name.lower().replace(' ', '_')}.json"
-        try:
-            with open(filename, "w", encoding="utf-8") as f:
-                json.dump(plan, f, indent=2)
-        except Exception as e:
-            print(f"Warning: Could not save {filename}: {e}")
-
+        plan_id = save_plan(profile, plan, "daily")
+        plan["id"] = plan_id
         return plan
-
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate plan: {str(e)}")
+
 
 @app.post("/generate_weekly_plan")
 @limiter.limit("10/minute")
 def generate_weekly_plan_endpoint(request: Request, profile: Profile):
-    """Generate 7-day personalized weekly nutrition plan. Rate limited to 10/minute."""
     try:
         weekly_plan = generate_weekly_plan(profile)
-
-        # Save weekly plan JSON cache
-        filename = f"weekly_mealplan_{profile.name.lower().replace(' ', '_')}.json"
-        try:
-            with open(filename, "w", encoding="utf-8") as f:
-                json.dump(weekly_plan, f, indent=2)
-        except Exception as e:
-            print(f"Warning: Could not save {filename}: {e}")
-
+        plan_id = save_plan(profile, weekly_plan, "weekly")
+        weekly_plan["id"] = plan_id
         return weekly_plan
-
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate weekly plan: {str(e)}")
+
 
 @app.post("/swap_meal")
 @limiter.limit("30/minute")
 def swap_meal_endpoint(request: Request, req: SwapRequest):
-    """Swap an individual meal. Rate limited to 30/minute."""
     try:
         return generate_meal_swap(req)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to swap meal: {str(e)}")
+
+
+@app.get("/plans")
+@limiter.limit("60/minute")
+def list_saved_plans(request: Request, name: str, limit: int = 10):
+    if not name or not name.strip():
+        raise HTTPException(status_code=400, detail="name query parameter is required")
+    return {"plans": list_plans(name, limit)}
+
+
+@app.get("/plans/{plan_id}")
+@limiter.limit("60/minute")
+def read_saved_plan(request: Request, plan_id: int):
+    plan = get_plan(plan_id)
+    if not plan:
+        raise HTTPException(status_code=404, detail="Plan not found")
+    return plan
+
 
 if __name__ == "__main__":
     import uvicorn

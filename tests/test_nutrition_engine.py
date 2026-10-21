@@ -230,16 +230,17 @@ class TestAllergyFiltering:
     def test_allergy_matching_is_case_insensitive(self):
         pool = [
             self._make_meal("Walnut Salad", ["Walnut", "Arugula"]),
+            self._make_meal("Oatmeal Bowl", ["Oats", "Milk"]),
         ]
         filtered = _filter_allergies(pool, ["WALNUT"])
-        assert len(filtered) == 1  # Falls back to full pool since all filtered
-        # The fallback returns original pool when all items match
+        assert len(filtered) == 1
+        assert filtered[0]["name"] == "Oatmeal Bowl"
 
-    def test_fallback_when_all_filtered(self):
-        """When all meals are allergenic, returns original pool instead of empty list."""
+    def test_fail_closed_when_all_filtered(self):
+        """When all meals are allergenic, fail closed: returns empty list to avoid unsafe meals."""
         pool = [self._make_meal("Nut Parfait", ["walnut", "cashew"])]
         result = _filter_allergies(pool, ["walnut"])
-        assert len(result) > 0  # Never returns empty
+        assert result == []
 
 
 # ---------------------------------------------------------------------------

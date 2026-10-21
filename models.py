@@ -2,6 +2,13 @@ from pydantic import BaseModel, Field, field_validator
 from typing import List
 
 
+_GOALS = {"weight_loss", "muscle_gain", "maintain"}
+_ACTIVITY = {"low", "medium", "high"}
+_BUDGETS = {"low", "medium", "high"}
+_CUISINES = {"indian", "global", "any"}
+_CONDITIONS = {"diabetes", "pcos"}
+
+
 class Profile(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     age: int = Field(..., ge=10, le=120, description="Age in years (10-120)")
@@ -12,6 +19,9 @@ class Profile(BaseModel):
     diet: str = Field(..., description="Dietary preference e.g. 'indian vegetarian', 'vegan', 'non-vegetarian'")
     activity: str = Field(..., description="Activity level: 'low', 'medium', or 'high'")
     allergies: List[str] = []
+    conditions: List[str] = []
+    cuisine: str = "any"
+    budget: str = "medium"
 
     @field_validator("sex")
     @classmethod
@@ -43,6 +53,28 @@ class Profile(BaseModel):
     @classmethod
     def validate_activity(cls, v: str) -> str:
         return v.strip().lower()
+
+    @field_validator("cuisine")
+    @classmethod
+    def validate_cuisine(cls, v: str) -> str:
+        normalised = (v or "any").strip().lower()
+        return normalised if normalised in _CUISINES else "any"
+
+    @field_validator("budget")
+    @classmethod
+    def validate_budget(cls, v: str) -> str:
+        normalised = (v or "medium").strip().lower()
+        return normalised if normalised in _BUDGETS else "medium"
+
+    @field_validator("conditions")
+    @classmethod
+    def validate_conditions(cls, v: List[str]) -> List[str]:
+        cleaned = []
+        for item in v or []:
+            key = str(item).strip().lower()
+            if key in _CONDITIONS and key not in cleaned:
+                cleaned.append(key)
+        return cleaned
 
 
 class SwapRequest(BaseModel):

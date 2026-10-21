@@ -1,0 +1,3500 @@
+{
+  "version": 3,
+  "diets": {
+    "indian_veg": {
+      "breakfast": [
+        {
+          "name": "Breakfast: Moong Dal Chilla with Mint Chutney & Curd",
+          "ingredients": [
+            "2 moong dal chillas",
+            "75g fresh paneer filling",
+            "1 tbsp mint chutney",
+            "1 cup low-fat curd"
+          ],
+          "reason": "High-protein vegetarian breakfast with iron and probiotics.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Soak moong dal 30 mins and grind with ginger and chilli.",
+            "Cook thin chillas on a non-stick pan.",
+            "Fill with paneer and serve with mint chutney and curd."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 28,
+            "carbs_g": 38,
+            "fats_g": 14
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Vegetable Oats Upma with Peanuts & Sprouts",
+          "ingredients": [
+            "1 cup rolled oats",
+            "1/2 cup mixed diced veggies",
+            "1 tbsp roasted peanuts",
+            "1/2 cup boiled moong sprouts"
+          ],
+          "reason": "Beta-glucan fiber for a steady glycemic response.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 385,
+            "protein_g": 16,
+            "carbs_g": 56,
+            "fats_g": 11
+          },
+          "allergens": [
+            "nuts"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Paneer Stuffed Multigrain Paratha with Curd",
+          "ingredients": [
+            "2 multigrain parathas",
+            "80g spiced low-fat paneer",
+            "1 cup probiotic curd",
+            "1/2 cup cucumber slices"
+          ],
+          "reason": "Complex carbs with slow-digesting casein protein.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 520,
+            "protein_g": 26,
+            "carbs_g": 52,
+            "fats_g": 20
+          },
+          "allergens": [
+            "dairy",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Poha with Peas, Peanuts & Lemon",
+          "ingredients": [
+            "1.5 cups flattened rice poha",
+            "1/4 cup green peas",
+            "1 tbsp roasted peanuts",
+            "lemon wedge"
+          ],
+          "reason": "Light B-vitamin breakfast that is quick to cook.",
+          "prep_time": "8 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 355,
+            "protein_g": 10,
+            "carbs_g": 62,
+            "fats_g": 8
+          },
+          "allergens": [
+            "nuts"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Besan Chilla with Mint & Tomato Salsa",
+          "ingredients": [
+            "2 gram-flour chillas",
+            "1/2 cup mixed peppers",
+            "2 tbsp mint salsa",
+            "1 tsp oil"
+          ],
+          "reason": "Naturally gluten-free chickpea protein.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 390,
+            "protein_g": 22,
+            "carbs_g": 42,
+            "fats_g": 12
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Idli with Sambar & Coconut Chutney",
+          "ingredients": [
+            "3 steamed idlis",
+            "1 cup vegetable sambar",
+            "2 tbsp coconut chutney"
+          ],
+          "reason": "Steamed fermented rice-lentil cakes, gentle on digestion.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 340,
+            "protein_g": 14,
+            "carbs_g": 62,
+            "fats_g": 4
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Ragi Dosa with Mixed Vegetable Sambar",
+          "ingredients": [
+            "2 ragi dosas",
+            "1 cup sambar",
+            "1 tbsp mint chutney"
+          ],
+          "reason": "Finger-millet iron and calcium with a lower glycemic load.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 365,
+            "protein_g": 12,
+            "carbs_g": 64,
+            "fats_g": 6
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lunch: Paneer Tikka with Yellow Dal & Brown Rice",
+          "ingredients": [
+            "120g grilled paneer tikka",
+            "3/4 cup yellow tadka dal",
+            "3/4 cup brown rice",
+            "1 cup kachumber salad"
+          ],
+          "reason": "Complete amino acids from legumes, grain, and dairy.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 620,
+            "protein_g": 32,
+            "carbs_g": 68,
+            "fats_g": 20
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Rajma Masala with Quinoa & Steamed Beans",
+          "ingredients": [
+            "1 cup cooked rajma",
+            "3/4 cup cooked quinoa",
+            "1 cup steamed beans & carrots",
+            "1 cup plain raita"
+          ],
+          "reason": "Fiber, magnesium, and plant protein.",
+          "prep_time": "10 mins",
+          "cook_time": "25 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 580,
+            "protein_g": 26,
+            "carbs_g": 78,
+            "fats_g": 12
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Soya Chunk Matar Curry with Rotis & Salad",
+          "ingredients": [
+            "50g textured soya chunks",
+            "1/2 cup green peas",
+            "2 multigrain rotis",
+            "1 cup mixed salad",
+            "1/2 cup curd"
+          ],
+          "reason": "Concentrated soy protein with low fat.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 540,
+            "protein_g": 34,
+            "carbs_g": 58,
+            "fats_g": 14
+          },
+          "allergens": [
+            "soy",
+            "gluten",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Palak Dal with Bajra Roti & Salad",
+          "ingredients": [
+            "1 cup palak toor dal",
+            "2 bajra rotis",
+            "1 cup cucumber tomato salad"
+          ],
+          "reason": "Iron-rich millet lunch without refined flour.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 510,
+            "protein_g": 22,
+            "carbs_g": 70,
+            "fats_g": 12
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Chole with Brown Rice & Kachumber",
+          "ingredients": [
+            "1 cup chole",
+            "3/4 cup brown rice",
+            "1 cup onion-tomato kachumber",
+            "lemon"
+          ],
+          "reason": "Chickpea protein and resistant starch.",
+          "prep_time": "10 mins",
+          "cook_time": "25 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 560,
+            "protein_g": 20,
+            "carbs_g": 86,
+            "fats_g": 10
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Vegetable Khichdi with Kadhi",
+          "ingredients": [
+            "1.5 cups moong-rice vegetable khichdi",
+            "3/4 cup low-fat kadhi",
+            "1 roasted papad"
+          ],
+          "reason": "One-pot comfort meal with probiotics from kadhi.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 490,
+            "protein_g": 18,
+            "carbs_g": 72,
+            "fats_g": 12
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Tofu Bhurji Bowl with Millet & Salad",
+          "ingredients": [
+            "150g tofu bhurji",
+            "3/4 cup cooked foxtail millet",
+            "1 cup mixed salad"
+          ],
+          "reason": "Dairy-free high-protein vegetarian lunch.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 530,
+            "protein_g": 28,
+            "carbs_g": 58,
+            "fats_g": 16
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Dinner: Palak Paneer with Whole Wheat Phulkas",
+          "ingredients": [
+            "100g paneer cubes",
+            "1.5 cups spinach puree",
+            "2 whole wheat phulkas",
+            "1 cup cucumber salad"
+          ],
+          "reason": "Iron, lutein, and casein for overnight recovery.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 480,
+            "protein_g": 26,
+            "carbs_g": 42,
+            "fats_g": 18
+          },
+          "allergens": [
+            "dairy",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Moong Dal Khichdi with Baingan Bharta & Curd",
+          "ingredients": [
+            "1.25 cups moong dal brown-rice khichdi",
+            "1 cup baingan bharta",
+            "1/2 cup curd",
+            "1 roasted papad"
+          ],
+          "reason": "Light, digestible dinner for gut rest.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 450,
+            "protein_g": 18,
+            "carbs_g": 64,
+            "fats_g": 10
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Grilled Tofu Stir Fry with Brown Rice",
+          "ingredients": [
+            "150g firm tofu",
+            "1 cup broccoli",
+            "1/2 cup bell peppers",
+            "1/2 cup brown rice",
+            "1 tbsp sesame seeds"
+          ],
+          "reason": "Low saturated fat and micronutrient-dense vegetables.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 470,
+            "protein_g": 26,
+            "carbs_g": 44,
+            "fats_g": 16
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Lauki Chana Dal with Jowar Roti",
+          "ingredients": [
+            "1 cup lauki chana dal",
+            "2 jowar rotis",
+            "1 cup salad"
+          ],
+          "reason": "Light bottle-gourd stew with millet.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 420,
+            "protein_g": 18,
+            "carbs_g": 62,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Stuffed Capsicum with Paneer & Millet",
+          "ingredients": [
+            "2 stuffed capsicums",
+            "80g paneer stuffing",
+            "1/2 cup cooked millet",
+            "salad"
+          ],
+          "reason": "Volume eating with protein-rich stuffing.",
+          "prep_time": "10 mins",
+          "cook_time": "22 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 460,
+            "protein_g": 24,
+            "carbs_g": 48,
+            "fats_g": 16
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Masoor Dal Tadka with Quinoa",
+          "ingredients": [
+            "1 cup masoor dal",
+            "3/4 cup quinoa",
+            "1 cup sauteed greens"
+          ],
+          "reason": "Fast-cooking lentils with complete grain protein.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 440,
+            "protein_g": 22,
+            "carbs_g": 62,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Vegetable Daliya with Sprouts Raita",
+          "ingredients": [
+            "1.5 cups broken-wheat vegetable daliya",
+            "1/2 cup sprouts raita"
+          ],
+          "reason": "High-fiber cracked wheat dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 16,
+            "carbs_g": 70,
+            "fats_g": 8
+          },
+          "allergens": [
+            "gluten",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "snack": [
+        {
+          "name": "Snack: Sprouted Moong Chaat with Pomegranate",
+          "ingredients": [
+            "1 cup sprouted moong",
+            "1/4 cup onion tomato",
+            "2 tbsp pomegranate",
+            "lemon and chaat masala"
+          ],
+          "reason": "Low glycemic snack with digestive enzymes.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 180,
+            "protein_g": 12,
+            "carbs_g": 28,
+            "fats_g": 2
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Roasted Makhana & Almonds",
+          "ingredients": [
+            "30g roasted makhana",
+            "12 raw almonds",
+            "1 cup green tea"
+          ],
+          "reason": "Crunchy magnesium-rich snack.",
+          "prep_time": "2 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 220,
+            "protein_g": 8,
+            "carbs_g": 18,
+            "fats_g": 12
+          },
+          "allergens": [
+            "nuts"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Low-fat Curd with Flaxseed & Cucumber",
+          "ingredients": [
+            "1 cup low-fat curd",
+            "1 tbsp ground flaxseed",
+            "1/2 cucumber"
+          ],
+          "reason": "Probiotics and ALA omega-3.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 160,
+            "protein_g": 12,
+            "carbs_g": 12,
+            "fats_g": 6
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Roasted Chana & Guava",
+          "ingredients": [
+            "40g roasted chana",
+            "1 guava"
+          ],
+          "reason": "Crunchy plant protein with vitamin C.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 210,
+            "protein_g": 10,
+            "carbs_g": 32,
+            "fats_g": 4
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Buttermilk & Roasted Foxnuts",
+          "ingredients": [
+            "1 glass salted chaas",
+            "25g roasted makhana"
+          ],
+          "reason": "Hydrating probiotic drink with volume.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 150,
+            "protein_g": 7,
+            "carbs_g": 18,
+            "fats_g": 4
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Cucumber Hung-Curd Dip with Carrot Sticks",
+          "ingredients": [
+            "1/2 cup hung curd",
+            "1 cup carrot cucumber sticks",
+            "mint"
+          ],
+          "reason": "High-volume, high-protein dip.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 140,
+            "protein_g": 11,
+            "carbs_g": 14,
+            "fats_g": 3
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Masala Corn & Lemon",
+          "ingredients": [
+            "1 cup boiled sweet corn",
+            "chaat masala",
+            "lemon"
+          ],
+          "reason": "Simple starch snack; skip if you need very low GI.",
+          "prep_time": "5 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 170,
+            "protein_g": 5,
+            "carbs_g": 34,
+            "fats_g": 2
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": false,
+          "pcos_friendly": false,
+          "swaps": {}
+        }
+      ]
+    },
+    "vegan": {
+      "breakfast": [
+        {
+          "name": "Breakfast: Tofu Scramble with Spinach & Toast",
+          "ingredients": [
+            "150g firm tofu",
+            "1.5 cups spinach",
+            "2 slices whole grain sourdough",
+            "1 tbsp nutritional yeast"
+          ],
+          "reason": "Complete amino acids without cholesterol.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 410,
+            "protein_g": 28,
+            "carbs_g": 36,
+            "fats_g": 14
+          },
+          "allergens": [
+            "soy",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Protein Oatmeal with Chia, Almond Butter & Berries",
+          "ingredients": [
+            "1 cup rolled oats",
+            "1.5 cups soy milk",
+            "1 tbsp chia",
+            "1 tbsp almond butter",
+            "1/2 cup blueberries"
+          ],
+          "reason": "Fiber plus plant fats for satiety.",
+          "prep_time": "10 mins",
+          "cook_time": "8 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 480,
+            "protein_g": 18,
+            "carbs_g": 62,
+            "fats_g": 16
+          },
+          "allergens": [
+            "nuts",
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Moong Chilla with Mint Chutney (no curd)",
+          "ingredients": [
+            "2 moong dal chillas",
+            "mint chutney",
+            "tomato salsa"
+          ],
+          "reason": "Indian vegan protein pancakes.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 360,
+            "protein_g": 20,
+            "carbs_g": 48,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Ragi Porridge with Banana & Pumpkin Seeds",
+          "ingredients": [
+            "1 cup ragi porridge",
+            "1/2 banana",
+            "1 tbsp pumpkin seeds"
+          ],
+          "reason": "Millet calcium without dairy.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 390,
+            "protein_g": 10,
+            "carbs_g": 68,
+            "fats_g": 10
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": false,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Sprouts Poha with Lemon",
+          "ingredients": [
+            "1.5 cups poha",
+            "1/2 cup mixed sprouts",
+            "lemon",
+            "curry leaves"
+          ],
+          "reason": "Light fermented-feel breakfast with sprouts.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 350,
+            "protein_g": 12,
+            "carbs_g": 62,
+            "fats_g": 6
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Chickpea Flour Pancakes with Salsa",
+          "ingredients": [
+            "2 besan pancakes",
+            "tomato onion salsa",
+            "1 tsp oil"
+          ],
+          "reason": "Gluten-free savory pancakes.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 370,
+            "protein_g": 18,
+            "carbs_g": 44,
+            "fats_g": 12
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Soy Milk Smoothie with Tofu & Berries",
+          "ingredients": [
+            "1 cup unsweetened soy milk",
+            "80g silken tofu",
+            "1/2 cup berries",
+            "1 tbsp flaxseed"
+          ],
+          "reason": "Drinkable 20g+ plant protein.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 320,
+            "protein_g": 22,
+            "carbs_g": 28,
+            "fats_g": 12
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lunch: Chickpea Buddha Bowl with Tahini & Sweet Potato",
+          "ingredients": [
+            "1 cup roasted chickpeas",
+            "1/2 cup quinoa",
+            "1 cup sweet potato",
+            "kale",
+            "2 tbsp tahini dressing"
+          ],
+          "reason": "Prebiotic fiber and sesame fats.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 610,
+            "protein_g": 22,
+            "carbs_g": 82,
+            "fats_g": 20
+          },
+          "allergens": [
+            "sesame"
+          ],
+          "budget": "medium",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Red Lentil Dal with Kale & Brown Rice",
+          "ingredients": [
+            "1 cup masoor dal",
+            "1 cup kale",
+            "3/4 cup brown rice",
+            "turmeric ginger"
+          ],
+          "reason": "Easily digested legumes with folate.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 540,
+            "protein_g": 22,
+            "carbs_g": 86,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Rajma Bowl with Quinoa (no raita)",
+          "ingredients": [
+            "1 cup rajma",
+            "3/4 cup quinoa",
+            "steamed beans",
+            "lemon"
+          ],
+          "reason": "Classic North Indian beans, dairy-free.",
+          "prep_time": "10 mins",
+          "cook_time": "25 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 560,
+            "protein_g": 22,
+            "carbs_g": 84,
+            "fats_g": 10
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Soya Chunk Curry with Millet Roti",
+          "ingredients": [
+            "50g soya chunks",
+            "1/2 cup peas",
+            "2 jowar rotis",
+            "salad"
+          ],
+          "reason": "Highest vegan protein lunch in the catalog.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 530,
+            "protein_g": 32,
+            "carbs_g": 56,
+            "fats_g": 12
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Chana Palak with Brown Rice",
+          "ingredients": [
+            "1 cup chickpeas in spinach gravy",
+            "3/4 cup brown rice",
+            "salad"
+          ],
+          "reason": "Iron plus plant protein.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 550,
+            "protein_g": 20,
+            "carbs_g": 82,
+            "fats_g": 10
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Tofu Tikka Bowl with Millet",
+          "ingredients": [
+            "150g tofu tikka",
+            "3/4 cup foxtail millet",
+            "peppers",
+            "mint chutney"
+          ],
+          "reason": "Tandoori spices without dairy marinade.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 520,
+            "protein_g": 28,
+            "carbs_g": 54,
+            "fats_g": 16
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Vegetable Sambar Rice with Beans Poriyal",
+          "ingredients": [
+            "1.5 cups sambar rice",
+            "1 cup beans poriyal"
+          ],
+          "reason": "South Indian vegan thali plate.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 500,
+            "protein_g": 16,
+            "carbs_g": 88,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Dinner: Black Bean & Sweet Potato Bowl with Guacamole",
+          "ingredients": [
+            "1 cup black beans",
+            "1 roasted sweet potato",
+            "kale",
+            "2 tbsp guacamole"
+          ],
+          "reason": "Potassium and resistant starch.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 490,
+            "protein_g": 18,
+            "carbs_g": 72,
+            "fats_g": 14
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Grilled Tofu Tikka with Roti & Veggies",
+          "ingredients": [
+            "150g tofu tikka",
+            "2 whole-wheat rotis",
+            "sauteed peppers",
+            "mint chutney"
+          ],
+          "reason": "Low-fat vegan dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 460,
+            "protein_g": 26,
+            "carbs_g": 48,
+            "fats_g": 14
+          },
+          "allergens": [
+            "soy",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Moong Khichdi with Baingan Bharta (no curd)",
+          "ingredients": [
+            "1.25 cups khichdi",
+            "1 cup baingan bharta",
+            "roasted papad"
+          ],
+          "reason": "Light Indian dinner without dairy.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 16,
+            "carbs_g": 68,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Lentil Soup with Mixed Salad",
+          "ingredients": [
+            "1.5 cups thick masoor soup",
+            "1 cup salad",
+            "1 tsp olive oil"
+          ],
+          "reason": "High-volume, lower-calorie dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 380,
+            "protein_g": 20,
+            "carbs_g": 48,
+            "fats_g": 10
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Vegetable Stir Fry with Tofu & Cauliflower Rice",
+          "ingredients": [
+            "150g tofu",
+            "2 cups mixed vegetables",
+            "1 cup cauliflower rice",
+            "tamari"
+          ],
+          "reason": "Low-carb vegan dinner for glucose control.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 360,
+            "protein_g": 24,
+            "carbs_g": 22,
+            "fats_g": 16
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Chole with Jowar Roti",
+          "ingredients": [
+            "1 cup chole",
+            "2 jowar rotis",
+            "onion salad"
+          ],
+          "reason": "Chickpeas with gluten-free millet bread.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 470,
+            "protein_g": 18,
+            "carbs_g": 70,
+            "fats_g": 10
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Stuffed Zucchini with Lentils",
+          "ingredients": [
+            "2 zucchini boats",
+            "3/4 cup cooked lentils",
+            "tomato herb sauce"
+          ],
+          "reason": "High volume, modest calories.",
+          "prep_time": "10 mins",
+          "cook_time": "22 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 340,
+            "protein_g": 18,
+            "carbs_g": 42,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "snack": [
+        {
+          "name": "Snack: Roasted Edamame & Apple",
+          "ingredients": [
+            "1/2 cup roasted edamame",
+            "1 apple",
+            "green tea"
+          ],
+          "reason": "Complete plant protein with pectin.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 230,
+            "protein_g": 14,
+            "carbs_g": 28,
+            "fats_g": 6
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Sprouted Moong & Peanut Chaat",
+          "ingredients": [
+            "1 cup sprouted moong",
+            "1.5 tbsp roasted peanuts",
+            "onion tomato lemon"
+          ],
+          "reason": "Folate-rich chaat.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 210,
+            "protein_g": 12,
+            "carbs_g": 24,
+            "fats_g": 8
+          },
+          "allergens": [
+            "nuts"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Chia Pudding with Berries",
+          "ingredients": [
+            "3 tbsp chia",
+            "3/4 cup almond milk",
+            "1/2 cup berries"
+          ],
+          "reason": "ALA omega-3 snack.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 240,
+            "protein_g": 8,
+            "carbs_g": 22,
+            "fats_g": 12
+          },
+          "allergens": [
+            "nuts"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Roasted Makhana (plain)",
+          "ingredients": [
+            "35g roasted makhana",
+            "black pepper",
+            "herbal tea"
+          ],
+          "reason": "Nut-free crunchy snack.",
+          "prep_time": "2 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 130,
+            "protein_g": 4,
+            "carbs_g": 22,
+            "fats_g": 2
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Carrot Sticks with Hummus",
+          "ingredients": [
+            "1 cup carrots",
+            "4 tbsp hummus"
+          ],
+          "reason": "Fiber plus chickpea protein.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 180,
+            "protein_g": 6,
+            "carbs_g": 20,
+            "fats_g": 8
+          },
+          "allergens": [
+            "sesame"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Roasted Chana",
+          "ingredients": [
+            "45g roasted chana",
+            "lemon",
+            "chaat masala"
+          ],
+          "reason": "Cheap high-protein crunch.",
+          "prep_time": "1 min",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 170,
+            "protein_g": 9,
+            "carbs_g": 26,
+            "fats_g": 3
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Soy Curd with Flax (unsweetened)",
+          "ingredients": [
+            "1 cup unsweetened soy curd",
+            "1 tbsp flaxseed"
+          ],
+          "reason": "Dairy-free probiotic bowl.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 160,
+            "protein_g": 12,
+            "carbs_g": 10,
+            "fats_g": 8
+          },
+          "allergens": [
+            "soy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ]
+    },
+    "non_veg": {
+      "breakfast": [
+        {
+          "name": "Breakfast: Masala Omelette with Multigrain Toast & Fruit",
+          "ingredients": [
+            "2 whole eggs + 1 egg white",
+            "2 slices multigrain toast",
+            "onion tomato chilli",
+            "1 orange"
+          ],
+          "reason": "High biological-value protein and choline.",
+          "prep_time": "10 mins",
+          "cook_time": "8 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 420,
+            "protein_g": 26,
+            "carbs_g": 38,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Boiled Eggs, Avocado & Sourdough",
+          "ingredients": [
+            "3 soft-boiled eggs",
+            "1/2 avocado",
+            "2 slices sourdough",
+            "chia seeds"
+          ],
+          "reason": "Monounsaturated fats with complete protein.",
+          "prep_time": "10 mins",
+          "cook_time": "7 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 510,
+            "protein_g": 24,
+            "carbs_g": 32,
+            "fats_g": 28
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "medium",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Egg Bhurji with Millet Roti",
+          "ingredients": [
+            "3 eggs bhurji",
+            "2 jowar rotis",
+            "salad"
+          ],
+          "reason": "Indian scrambled eggs without refined bread.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 440,
+            "protein_g": 28,
+            "carbs_g": 36,
+            "fats_g": 18
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Greek Yogurt, Eggs & Berries",
+          "ingredients": [
+            "2 boiled eggs",
+            "3/4 cup Greek yogurt",
+            "1/2 cup berries"
+          ],
+          "reason": "Very high protein, modest carbs.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 360,
+            "protein_g": 32,
+            "carbs_g": 22,
+            "fats_g": 14
+          },
+          "allergens": [
+            "egg",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Chicken Keema Paratha (1) with Curd",
+          "ingredients": [
+            "1 whole-wheat keema paratha",
+            "80g chicken mince filling",
+            "1/2 cup curd"
+          ],
+          "reason": "Savory high-protein Indian breakfast.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 480,
+            "protein_g": 30,
+            "carbs_g": 40,
+            "fats_g": 18
+          },
+          "allergens": [
+            "gluten",
+            "dairy"
+          ],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Egg White Veggie Omelette & Fruit",
+          "ingredients": [
+            "4 egg whites + 1 yolk",
+            "spinach tomato",
+            "1 apple"
+          ],
+          "reason": "Lower-fat omelette for calorie control.",
+          "prep_time": "10 mins",
+          "cook_time": "8 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 280,
+            "protein_g": 24,
+            "carbs_g": 24,
+            "fats_g": 8
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Smoked Fish & Cucumber Open Toast",
+          "ingredients": [
+            "80g smoked rohu or salmon",
+            "1 slice sourdough",
+            "cucumber",
+            "lemon"
+          ],
+          "reason": "Omega-3 breakfast; skip if budget is tight.",
+          "prep_time": "10 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 330,
+            "protein_g": 26,
+            "carbs_g": 18,
+            "fats_g": 14
+          },
+          "allergens": [
+            "fish",
+            "gluten"
+          ],
+          "budget": "high",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lunch: Grilled Herb Chicken with Jeera Rice & Dal",
+          "ingredients": [
+            "150g grilled chicken breast",
+            "3/4 cup jeera brown rice",
+            "1/2 cup yellow dal",
+            "green salad"
+          ],
+          "reason": "Lean poultry to support muscle protein synthesis.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 620,
+            "protein_g": 46,
+            "carbs_g": 62,
+            "fats_g": 14
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Chicken Tikka Wrap with Mint Yogurt",
+          "ingredients": [
+            "140g chicken tikka",
+            "1 whole-wheat roti",
+            "cabbage carrot",
+            "2 tbsp mint yogurt"
+          ],
+          "reason": "Portable high-protein lunch.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 540,
+            "protein_g": 40,
+            "carbs_g": 48,
+            "fats_g": 16
+          },
+          "allergens": [
+            "gluten",
+            "dairy"
+          ],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Egg Curry with Brown Rice & Beans",
+          "ingredients": [
+            "3 eggs in tomato curry",
+            "3/4 cup brown rice",
+            "1 cup green beans"
+          ],
+          "reason": "Affordable complete protein.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 580,
+            "protein_g": 28,
+            "carbs_g": 68,
+            "fats_g": 18
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Grilled Fish with Millet & Salad",
+          "ingredients": [
+            "160g grilled rohu",
+            "3/4 cup millet",
+            "kachumber"
+          ],
+          "reason": "Local fish, lower cost than salmon.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 520,
+            "protein_g": 38,
+            "carbs_g": 48,
+            "fats_g": 14
+          },
+          "allergens": [
+            "fish"
+          ],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Chicken Salad Bowl with Chickpeas",
+          "ingredients": [
+            "120g chicken",
+            "1/2 cup chickpeas",
+            "mixed greens",
+            "lemon olive oil"
+          ],
+          "reason": "Lower-carb high-protein lunch.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 480,
+            "protein_g": 42,
+            "carbs_g": 32,
+            "fats_g": 16
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Keema Matar with Jowar Roti",
+          "ingredients": [
+            "120g lean mutton or chicken keema",
+            "peas",
+            "2 jowar rotis",
+            "salad"
+          ],
+          "reason": "Spiced mince with millet bread.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 560,
+            "protein_g": 36,
+            "carbs_g": 46,
+            "fats_g": 22
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Tandoori Chicken, Dal & Salad (no rice)",
+          "ingredients": [
+            "160g tandoori chicken",
+            "3/4 cup dal",
+            "large salad"
+          ],
+          "reason": "Lower-carb non-veg thali.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 500,
+            "protein_g": 48,
+            "carbs_g": 28,
+            "fats_g": 16
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Dinner: Pan-Seared Salmon with Asparagus & Sweet Potato",
+          "ingredients": [
+            "180g salmon",
+            "asparagus",
+            "1/2 cup sweet potato",
+            "lemon"
+          ],
+          "reason": "EPA/DHA dinner for recovery.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 560,
+            "protein_g": 40,
+            "carbs_g": 28,
+            "fats_g": 28
+          },
+          "allergens": [
+            "fish"
+          ],
+          "budget": "high",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Egg Curry with Multigrain Rotis & Raita",
+          "ingredients": [
+            "3 boiled eggs in curry",
+            "2 multigrain rotis",
+            "cucumber raita",
+            "green beans"
+          ],
+          "reason": "Comfort dinner with complete amino acids.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 520,
+            "protein_g": 30,
+            "carbs_g": 48,
+            "fats_g": 20
+          },
+          "allergens": [
+            "egg",
+            "gluten",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Grilled Chicken, Sauteed Veg & Millet",
+          "ingredients": [
+            "150g chicken",
+            "2 cups mixed veg",
+            "1/2 cup millet"
+          ],
+          "reason": "Everyday lean dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 470,
+            "protein_g": 40,
+            "carbs_g": 36,
+            "fats_g": 12
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Rohu Fish Curry with Cauliflower Rice",
+          "ingredients": [
+            "160g rohu curry",
+            "1.5 cups cauliflower rice",
+            "salad"
+          ],
+          "reason": "Lower-carb fish curry.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 390,
+            "protein_g": 34,
+            "carbs_g": 14,
+            "fats_g": 20
+          },
+          "allergens": [
+            "fish"
+          ],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Chicken Soup with Vegetables",
+          "ingredients": [
+            "large bowl chicken vegetable soup",
+            "1 slice toast optional skip"
+          ],
+          "reason": "High volume, modest calories.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 320,
+            "protein_g": 28,
+            "carbs_g": 22,
+            "fats_g": 10
+          },
+          "allergens": [
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Turkey or Chicken Mince Lettuce Wraps",
+          "ingredients": [
+            "150g lean mince",
+            "lettuce cups",
+            "salsa"
+          ],
+          "reason": "Very low carb dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 340,
+            "protein_g": 36,
+            "carbs_g": 10,
+            "fats_g": 14
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Anda Bhurji, Palak & Phulka",
+          "ingredients": [
+            "3 egg bhurji",
+            "1 cup palak sabzi",
+            "1 phulka"
+          ],
+          "reason": "Simple Indian night meal.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 28,
+            "carbs_g": 28,
+            "fats_g": 18
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "snack": [
+        {
+          "name": "Snack: Boiled Egg Whites with Roasted Chana",
+          "ingredients": [
+            "3 egg whites",
+            "35g roasted chana",
+            "chaat masala"
+          ],
+          "reason": "Lean protein crunch.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 190,
+            "protein_g": 20,
+            "carbs_g": 18,
+            "fats_g": 3
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Greek Yogurt Berry Parfait",
+          "ingredients": [
+            "1 cup Greek yogurt",
+            "1/2 cup berries",
+            "chia",
+            "1 tsp honey"
+          ],
+          "reason": "Casein snack; honey makes it less diabetes-friendly.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 250,
+            "protein_g": 20,
+            "carbs_g": 28,
+            "fats_g": 6
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": false,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Boiled Eggs with Cucumber",
+          "ingredients": [
+            "2 whole boiled eggs",
+            "cucumber",
+            "black pepper"
+          ],
+          "reason": "Zero-prep protein.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 160,
+            "protein_g": 13,
+            "carbs_g": 2,
+            "fats_g": 10
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Chicken Breast Slices & Guava",
+          "ingredients": [
+            "80g grilled chicken leftover",
+            "1 guava"
+          ],
+          "reason": "Uses lunch leftovers.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 200,
+            "protein_g": 24,
+            "carbs_g": 16,
+            "fats_g": 4
+          },
+          "allergens": [],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Buttermilk & One Egg",
+          "ingredients": [
+            "1 glass chaas",
+            "1 boiled egg"
+          ],
+          "reason": "Hydration plus protein.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 170,
+            "protein_g": 12,
+            "carbs_g": 10,
+            "fats_g": 8
+          },
+          "allergens": [
+            "egg",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Tuna or Flaked Fish on Cucumber",
+          "ingredients": [
+            "80g canned tuna in water or flaked fish",
+            "cucumber rounds"
+          ],
+          "reason": "Omega-3 snack.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 150,
+            "protein_g": 22,
+            "carbs_g": 4,
+            "fats_g": 4
+          },
+          "allergens": [
+            "fish"
+          ],
+          "budget": "medium",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Roasted Chana & Buttermilk (no egg)",
+          "ingredients": [
+            "40g roasted chana",
+            "1 glass chaas"
+          ],
+          "reason": "Egg-free non-veg-plan snack option.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 200,
+            "protein_g": 10,
+            "carbs_g": 24,
+            "fats_g": 4
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ]
+    },
+    "egg_veg": {
+      "breakfast": [
+        {
+          "name": "Breakfast: Masala Omelette with Toast",
+          "ingredients": [
+            "3 egg omelette",
+            "2 slices multigrain toast",
+            "tomato salsa"
+          ],
+          "reason": "Classic eggetarian breakfast.",
+          "prep_time": "10 mins",
+          "cook_time": "8 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 400,
+            "protein_g": 24,
+            "carbs_g": 36,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Egg Bhurji with Jowar Roti",
+          "ingredients": [
+            "3 eggs",
+            "2 jowar rotis",
+            "salad"
+          ],
+          "reason": "Millet plus eggs.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 26,
+            "carbs_g": 38,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Besan & Egg Chilla",
+          "ingredients": [
+            "1 egg + besan chilla",
+            "mint chutney"
+          ],
+          "reason": "Hybrid gram-flour protein pancake.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 380,
+            "protein_g": 22,
+            "carbs_g": 40,
+            "fats_g": 12
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Curd, Eggs & Fruit",
+          "ingredients": [
+            "2 boiled eggs",
+            "1 cup curd",
+            "papaya 1/2 cup"
+          ],
+          "reason": "Very high protein vegetarian-plus-egg.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 340,
+            "protein_g": 28,
+            "carbs_g": 24,
+            "fats_g": 12
+          },
+          "allergens": [
+            "egg",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Idli Sambar with One Egg",
+          "ingredients": [
+            "3 idlis",
+            "sambar",
+            "1 boiled egg"
+          ],
+          "reason": "South Indian plate with extra protein.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 390,
+            "protein_g": 20,
+            "carbs_g": 60,
+            "fats_g": 6
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Egg White Spinach Omelette",
+          "ingredients": [
+            "4 egg whites + 1 yolk",
+            "spinach",
+            "1 fruit"
+          ],
+          "reason": "Lower fat omelette.",
+          "prep_time": "10 mins",
+          "cook_time": "8 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 270,
+            "protein_g": 24,
+            "carbs_g": 20,
+            "fats_g": 8
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Vegetable Upma with Boiled Egg",
+          "ingredients": [
+            "1 cup vegetable upma",
+            "2 boiled eggs"
+          ],
+          "reason": "Adds protein to a carb breakfast.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 420,
+            "protein_g": 20,
+            "carbs_g": 52,
+            "fats_g": 12
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lunch: Egg Curry, Brown Rice & Salad",
+          "ingredients": [
+            "3 egg curry",
+            "3/4 cup brown rice",
+            "salad"
+          ],
+          "reason": "Affordable complete-protein lunch.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 570,
+            "protein_g": 26,
+            "carbs_g": 70,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Dal, Roti, Egg Bhurji & Salad",
+          "ingredients": [
+            "1 cup dal",
+            "2 rotis",
+            "2 egg bhurji",
+            "salad"
+          ],
+          "reason": "Everyday Indian eggetarian thali.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 600,
+            "protein_g": 30,
+            "carbs_g": 68,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Egg Fried Millet with Vegetables",
+          "ingredients": [
+            "2 eggs",
+            "1 cup cooked millet",
+            "mixed veg"
+          ],
+          "reason": "Better-carb fried rice analogue.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 520,
+            "protein_g": 24,
+            "carbs_g": 58,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Chole, Egg & Millet Roti",
+          "ingredients": [
+            "1 cup chole",
+            "2 boiled eggs",
+            "2 jowar rotis"
+          ],
+          "reason": "Double plant-plus-egg protein.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 610,
+            "protein_g": 32,
+            "carbs_g": 74,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Palak Dal with Egg and Salad",
+          "ingredients": [
+            "1 cup palak dal",
+            "2 boiled eggs",
+            "salad"
+          ],
+          "reason": "Iron and complete protein.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 480,
+            "protein_g": 28,
+            "carbs_g": 42,
+            "fats_g": 14
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Paneer & Egg Bowl with Quinoa",
+          "ingredients": [
+            "80g paneer",
+            "2 eggs",
+            "1/2 cup quinoa",
+            "salad"
+          ],
+          "reason": "Very high protein; contains dairy.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 590,
+            "protein_g": 38,
+            "carbs_g": 40,
+            "fats_g": 24
+          },
+          "allergens": [
+            "egg",
+            "dairy"
+          ],
+          "budget": "medium",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Sambar Rice with Egg",
+          "ingredients": [
+            "1.5 cups sambar rice",
+            "2 boiled eggs",
+            "poriyal"
+          ],
+          "reason": "South Indian + eggs.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 560,
+            "protein_g": 24,
+            "carbs_g": 80,
+            "fats_g": 12
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Dinner: Egg Curry with Phulkas & Beans",
+          "ingredients": [
+            "3 egg curry",
+            "2 phulkas",
+            "green beans"
+          ],
+          "reason": "Warm Indian dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 500,
+            "protein_g": 28,
+            "carbs_g": 46,
+            "fats_g": 18
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Masoor Dal, Egg Bhurji & Salad",
+          "ingredients": [
+            "1 cup masoor dal",
+            "2 egg bhurji",
+            "large salad"
+          ],
+          "reason": "Lower-carb eggetarian dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 30,
+            "carbs_g": 36,
+            "fats_g": 14
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Vegetable Daliya with Boiled Eggs",
+          "ingredients": [
+            "1.25 cups vegetable daliya",
+            "2 boiled eggs"
+          ],
+          "reason": "Cracked wheat with extra protein.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 460,
+            "protein_g": 24,
+            "carbs_g": 58,
+            "fats_g": 10
+          },
+          "allergens": [
+            "egg",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Palak Egg with Jowar Roti",
+          "ingredients": [
+            "2 eggs in palak gravy",
+            "2 jowar rotis",
+            "salad"
+          ],
+          "reason": "Spinach iron plus eggs.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 470,
+            "protein_g": 26,
+            "carbs_g": 44,
+            "fats_g": 16
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Omelette, Sauteed Veg & Curd",
+          "ingredients": [
+            "3 egg omelette",
+            "2 cups sauteed vegetables",
+            "1/2 cup curd"
+          ],
+          "reason": "Low starch dinner.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 390,
+            "protein_g": 28,
+            "carbs_g": 18,
+            "fats_g": 20
+          },
+          "allergens": [
+            "egg",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Khichdi with Fried Egg",
+          "ingredients": [
+            "1.25 cups khichdi",
+            "1 fried egg",
+            "salad"
+          ],
+          "reason": "Comfort plus one egg.",
+          "prep_time": "10 mins",
+          "cook_time": "18 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 440,
+            "protein_g": 18,
+            "carbs_g": 62,
+            "fats_g": 12
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Tofu Optional Skip: Egg Drop Vegetable Soup",
+          "ingredients": [
+            "egg drop soup with 2 eggs",
+            "mixed vegetables"
+          ],
+          "reason": "Light night meal.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 280,
+            "protein_g": 20,
+            "carbs_g": 16,
+            "fats_g": 12
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "snack": [
+        {
+          "name": "Snack: Boiled Eggs & Cucumber",
+          "ingredients": [
+            "2 boiled eggs",
+            "cucumber",
+            "chaat masala"
+          ],
+          "reason": "Simple protein.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 160,
+            "protein_g": 13,
+            "carbs_g": 2,
+            "fats_g": 10
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Egg Whites & Roasted Chana",
+          "ingredients": [
+            "3 egg whites",
+            "30g roasted chana"
+          ],
+          "reason": "Lean combo.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 180,
+            "protein_g": 20,
+            "carbs_g": 16,
+            "fats_g": 2
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Curd & One Egg",
+          "ingredients": [
+            "1 cup curd",
+            "1 boiled egg"
+          ],
+          "reason": "Probiotic protein.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 190,
+            "protein_g": 16,
+            "carbs_g": 12,
+            "fats_g": 8
+          },
+          "allergens": [
+            "egg",
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Sprout Chaat & Egg White",
+          "ingredients": [
+            "3/4 cup sprouts chaat",
+            "2 egg whites"
+          ],
+          "reason": "Fiber plus protein.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 170,
+            "protein_g": 16,
+            "carbs_g": 18,
+            "fats_g": 2
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Buttermilk & Roasted Chana",
+          "ingredients": [
+            "1 glass chaas",
+            "35g roasted chana"
+          ],
+          "reason": "Egg-free option inside eggetarian plan.",
+          "prep_time": "2 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 180,
+            "protein_g": 8,
+            "carbs_g": 22,
+            "fats_g": 4
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Greek Yogurt (no honey)",
+          "ingredients": [
+            "1 cup unsweetened Greek yogurt",
+            "cinnamon"
+          ],
+          "reason": "High protein dairy snack.",
+          "prep_time": "1 min",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 150,
+            "protein_g": 20,
+            "carbs_g": 8,
+            "fats_g": 4
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "global",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Masala Eggs",
+          "ingredients": [
+            "2 eggs boiled masala",
+            "lemon"
+          ],
+          "reason": "Spiced boiled eggs.",
+          "prep_time": "3 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Prep ingredients as listed.",
+            "Cook using a small amount of oil or steam.",
+            "Serve immediately."
+          ],
+          "nutrition": {
+            "calories": 160,
+            "protein_g": 13,
+            "carbs_g": 2,
+            "fats_g": 10
+          },
+          "allergens": [
+            "egg"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "swaps": {}
+        }
+      ]
+    }
+  }
+}
