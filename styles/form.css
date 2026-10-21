@@ -105,6 +105,27 @@
 .status-banner strong,
 .status-banner b { color: var(--text-main); }
 
+.form-inline-status {
+  grid-column: 1 / -1;
+  background: var(--accent-green-light);
+  border: 1px solid var(--accent-green-mid);
+  color: var(--accent-green-dark);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.86rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+.form-inline-status.warning {
+  background: var(--accent-amber-light);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+}
+
 /* ── Main Form Card ───────────────────── */
 .floating-form {
   position: relative;

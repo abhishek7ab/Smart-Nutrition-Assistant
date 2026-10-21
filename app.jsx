@@ -1097,9 +1097,11 @@ function RecipeModal({ meal, onClose, onStartCooking }) {
 
 
 // Main Meal Plan Display Component
-function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFridgeSheet }) {
+function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFridgeSheet, selectedDay: externalDay, onSelectDay }) {
   const [activeTab, setActiveTab] = useState("plan"); // "plan" | "grocery"
-  const [selectedDay, setSelectedDay] = useState("Monday");
+  const [internalDay, setInternalDay] = useState("Monday");
+  const selectedDay = externalDay !== undefined ? externalDay : internalDay;
+  const setSelectedDay = onSelectDay || setInternalDay;
   const [checkedItems, setCheckedItems] = useState({});
   const [swappingIdx, setSwappingIdx] = useState(null);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -1547,7 +1549,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                             if (e.key === "Enter" || e.key === " ") toggleCheck(key);
                           }}
                         >
-                          <input type="checkbox" checked={isChecked} readOnly />
+                          <input type="checkbox" checked={isChecked} onChange={() => toggleCheck(key)} />
                           <span>{item}</span>
                         </li>
                       );
@@ -1882,7 +1884,13 @@ function StepsSection({ onStep1Click }) {
 
       {/* 3 Step Cards */}
       <div className="steps-cards-row">
-        <div className="step-flow-card" onClick={onStep1Click}>
+        <div
+          className="step-flow-card"
+          onClick={onStep1Click}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
+        >
           <span className="step-numeral">01</span>
           <h3 className="step-title-num">Enter your details</h3>
           <p className="step-description-text">
@@ -1890,7 +1898,13 @@ function StepsSection({ onStep1Click }) {
           </p>
         </div>
 
-        <div className="step-flow-card" onClick={onStep1Click}>
+        <div
+          className="step-flow-card"
+          onClick={onStep1Click}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
+        >
           <span className="step-numeral">02</span>
           <h3 className="step-title-num">We build your targets</h3>
           <p className="step-description-text">
@@ -1898,7 +1912,13 @@ function StepsSection({ onStep1Click }) {
           </p>
         </div>
 
-        <div className="step-flow-card" onClick={onStep1Click}>
+        <div
+          className="step-flow-card"
+          onClick={onStep1Click}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
+        >
           <span className="step-numeral">03</span>
           <h3 className="step-title-num">Cook, eat, and track</h3>
           <p className="step-description-text">
@@ -1908,12 +1928,29 @@ function StepsSection({ onStep1Click }) {
       </div>
 
       {/* Single Weekly Meal Planner Card */}
-      <div className="single-promo-banner">
+      <div
+        className="single-promo-banner"
+        onClick={onStep1Click}
+        style={{ cursor: "pointer" }}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
+      >
         <div className="single-promo-content">
           <span className="promo-badge-tag">7-Day Variety</span>
           <h3 className="promo-banner-title">Weekly Meal Planner</h3>
           <p className="promo-banner-desc">7 days of varied, nutritionally balanced meal plans tailored to your unique body metrics.</p>
         </div>
+        <button
+          type="button"
+          className="btn-promo-cta"
+          onClick={(e) => {
+            e.stopPropagation();
+            onStep1Click();
+          }}
+        >
+          Build 7-Day Plan →
+        </button>
       </div>
     </section>
   );
@@ -2096,7 +2133,7 @@ function ProtocolMatrixShowcase({ onSelectRecipe }) {
 }
 
 // Institutional footer with columns (DietDoctor-style)
-function InstitutionalFooter({ onNavigateSection }) {
+function InstitutionalFooter({ onNavigateSection, onSelectDiet, onShowLegalModal }) {
   return (
     <footer className="institutional-footer" id="footer-trust" aria-label="Footer">
       <div className="footer-inner">
@@ -2132,10 +2169,10 @@ function InstitutionalFooter({ onNavigateSection }) {
           <div>
             <div className="footer-col-title">Diet Types</div>
             <div className="footer-col-links">
-              <button type="button" onClick={() => onNavigateSection("hero")}>Indian Vegetarian</button>
-              <button type="button" onClick={() => onNavigateSection("hero")}>Vegan</button>
-              <button type="button" onClick={() => onNavigateSection("hero")}>Non-Vegetarian</button>
-              <button type="button" onClick={() => onNavigateSection("hero")}>Balanced</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian vegetarian") : onNavigateSection("protocol-engine")}>Indian Vegetarian</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian vegan") : onNavigateSection("protocol-engine")}>Vegan</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian non-vegetarian") : onNavigateSection("protocol-engine")}>Non-Vegetarian</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("balanced") : onNavigateSection("protocol-engine")}>Balanced</button>
             </div>
           </div>
         </div>
@@ -2145,9 +2182,9 @@ function InstitutionalFooter({ onNavigateSection }) {
             © 2026 Smart Nutrition. All rights reserved.
           </div>
           <div className="footer-links-row">
-            <button type="button" onClick={() => onNavigateSection("hero")}>Privacy Policy</button>
-            <button type="button" onClick={() => onNavigateSection("hero")}>Terms of Service</button>
-            <button type="button" onClick={() => onNavigateSection("hero")}>Contact</button>
+            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("privacy")}>Privacy Policy</button>
+            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("terms")}>Terms of Service</button>
+            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("contact")}>Contact</button>
           </div>
         </div>
       </div>
@@ -2158,9 +2195,9 @@ function InstitutionalFooter({ onNavigateSection }) {
 // ---------------------------------------------------------------------------
 // Calorie Progress Tracker
 // ---------------------------------------------------------------------------
-function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
+function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" }) {
   const meals = plan.is_weekly && plan.days
-    ? (Object.values(plan.days)[0]?.meals || [])
+    ? (plan.days[currentDay]?.meals || Object.values(plan.days)[0]?.meals || [])
     : (plan.meals || []);
 
   const target = plan.target_calories || 2000;
@@ -2504,6 +2541,8 @@ function App() {
   const [eatenMeals, setEatenMeals] = useState({}); // { "mealName": true }
   const [cookingMeal, setCookingMeal] = useState(null);
   const [showFridgeSheet, setShowFridgeSheet] = useState(false);
+  const [selectedDay, setSelectedDay] = useState("Monday");
+  const [legalModal, setLegalModal] = useState(null);
 
   const [theme, setTheme] = useState(() => {
     try {
@@ -2538,6 +2577,38 @@ function App() {
       goal: arch.goalVal,
     }));
     setStatusMessage(`Calibrated to ${arch.name} (${arch.macroSplit}). Ready to generate plan.`);
+    const el = document.getElementById("protocol-engine");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleFooterSelectDiet = (dietValue) => {
+    setForm((prev) => ({ ...prev, diet: dietValue }));
+    setStatusMessage(`Diet preference set to ${dietValue}. Ready to calculate plan.`);
+    const el = document.getElementById("protocol-engine");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleShowLegalModal = (type) => {
+    if (type === "privacy") {
+      setLegalModal({
+        title: "Privacy Policy",
+        body: "Smart Nutrition values your complete personal privacy. All biometrics, calorie computations, and diet customizations are calculated directly in your browser or local environment. We do not sell, store, or transmit your physical metrics to external advertising networks."
+      });
+    } else if (type === "terms") {
+      setLegalModal({
+        title: "Terms of Service",
+        body: "Smart Nutrition is an open clinical nutrition calculator intended for personal health, meal planning, and educational purposes. Metabolic targets utilize the Mifflin-St Jeor equation. Always consult a licensed dietitian or physician for specialized medical conditions."
+      });
+    } else if (type === "contact") {
+      setLegalModal({
+        title: "Contact & Clinical Feedback",
+        body: "We welcome feedback from nutrition researchers, home cooks, and clinical practitioners. Reach out at clinical@smartnutrition.local or open an issue on our GitHub repository."
+      });
+    }
   };
 
   const handleNavigateSection = (sectionId) => {
@@ -2685,12 +2756,30 @@ function App() {
     const rawForm = customProfile || form;
     const activeForm = resolveMetricForm(rawForm);
     const missingFields = [];
-    if (!activeForm.name.trim()) missingFields.push("Full Name");
-    if (!activeForm.age) missingFields.push("Age");
-    if (!activeForm.height_cm) missingFields.push("Height");
-    if (!activeForm.weight_kg) missingFields.push("Weight");
+    let firstMissingInputId = null;
+
+    if (!activeForm.age) {
+      missingFields.push("Age");
+      if (!firstMissingInputId) firstMissingInputId = "profile-age";
+    }
+    if (!activeForm.height_cm) {
+      missingFields.push(unitSystem === "metric" ? "Height (cm)" : "Height (inches)");
+      if (!firstMissingInputId) firstMissingInputId = "profile-height";
+    }
+    if (!activeForm.weight_kg) {
+      missingFields.push(unitSystem === "metric" ? "Weight (kg)" : "Weight (lbs)");
+      if (!firstMissingInputId) firstMissingInputId = "profile-weight";
+    }
+
     if (missingFields.length > 0) {
-      setStatusMessage(`Please fill in ${missingFields.join(", ")} before generating your meal plan.`);
+      setStatusMessage(`Please enter your ${missingFields.join(", ")} before generating your meal plan.`);
+      if (firstMissingInputId) {
+        const el = document.getElementById(firstMissingInputId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+          el.focus();
+        }
+      }
       return;
     }
 
@@ -2698,8 +2787,10 @@ function App() {
     setGeneratingType(type);
     setStatusMessage(type === "7day" ? "Generating full 7-day varied weekly nutrition plan..." : "Building your personalized daily nutrition plan...");
 
+    const resolvedName = (activeForm.name || "").trim() || "You";
+
     const payload = {
-      name: activeForm.name.trim(),
+      name: resolvedName,
       age: parseInt(activeForm.age, 10) || 25,
       sex: activeForm.sex || "male",
       height_cm: parseFloat(activeForm.height_cm) || 175,
@@ -3005,6 +3096,13 @@ function App() {
                       onClick={() => {
                         setMealPlan(h);
                         setShowHistory(false);
+                        setStatusMessage(`Restored saved plan for ${h.user_id} (${h.date})`);
+                        setTimeout(() => {
+                          const resEl = document.getElementById("results-dashboard");
+                          if (resEl) {
+                            resEl.scrollIntoView({ behavior: "smooth", block: "start" });
+                          }
+                        }, 100);
                       }}
                     >
                       <div>
@@ -3028,15 +3126,14 @@ function App() {
             }}
           >
             <div className="field">
-              <label htmlFor="profile-name">Full name</label>
+              <label htmlFor="profile-name">Full name (optional)</label>
               <input
                 id="profile-name"
                 name="name"
-                placeholder="e.g. Aarav Sharma"
+                placeholder="e.g. Aarav Sharma (or leave blank for 'You')"
                 value={form.name}
                 onChange={handleChange}
                 autoComplete="name"
-                required
               />
             </div>
 
@@ -3157,6 +3254,13 @@ function App() {
               </div>
             </div>
 
+            {statusMessage && (
+              <div className="form-inline-status">
+                <Icon.leaf style={{ width: 16, height: 16, flexShrink: 0 }} />
+                <span>{statusMessage}</span>
+              </div>
+            )}
+
             {/* Dual Action Buttons */}
             <div className="btn-actions-row">
               <button
@@ -3200,6 +3304,7 @@ function App() {
             <CalorieTracker
               plan={mealPlan}
               eatenMeals={eatenMeals}
+              currentDay={selectedDay}
               onToggleMeal={(name) =>
                 setEatenMeals((prev) => ({ ...prev, [name]: !prev[name] }))
               }
@@ -3212,6 +3317,8 @@ function App() {
               plan={mealPlan}
               onSwapMeal={handleSwapMeal}
               profile={form}
+              selectedDay={selectedDay}
+              onSelectDay={setSelectedDay}
               onStartCooking={(meal) => setCookingMeal(meal)}
               onOpenFridgeSheet={() => setShowFridgeSheet(true)}
             />
@@ -3228,7 +3335,11 @@ function App() {
                     id="empty-state-history-btn"
                     className="btn btn-outline"
                     type="button"
-                    onClick={() => setShowHistory(true)}
+                    onClick={() => {
+                      setShowHistory(true);
+                      const el = document.getElementById("protocol-engine");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
                   >
                     <Icon.notebook className="icon" />
                     View saved plans ({history.length})
@@ -3261,6 +3372,8 @@ function App() {
         {/* ZONE 8: Institutional Footer */}
         <InstitutionalFooter
           onNavigateSection={handleNavigateSection}
+          onSelectDiet={handleFooterSelectDiet}
+          onShowLegalModal={handleShowLegalModal}
         />
 
         {/* Showcase Recipe Modal Preview */}
@@ -3287,6 +3400,26 @@ function App() {
             profile={form}
             onClose={() => setShowFridgeSheet(false)}
           />
+        )}
+
+        {/* Institutional Informational Modal (Privacy / Terms / Contact) */}
+        {legalModal && (
+          <div className="modal-backdrop" onClick={() => setLegalModal(null)} role="dialog" aria-modal="true">
+            <div className="recipe-modal" style={{ maxWidth: 540 }} onClick={(e) => e.stopPropagation()}>
+              <div className="recipe-modal-header">
+                <h2>{legalModal.title}</h2>
+                <button className="close-btn" type="button" onClick={() => setLegalModal(null)}>✕</button>
+              </div>
+              <div style={{ padding: "18px 0", fontSize: "0.95rem", lineHeight: 1.7, color: "var(--text-body)" }}>
+                {legalModal.body}
+              </div>
+              <div className="recipe-modal-footer">
+                <button className="secondary-btn" type="button" onClick={() => setLegalModal(null)}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

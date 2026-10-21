@@ -116,6 +116,16 @@
   max-width: 560px;
 }
 
+.single-promo-banner .btn-promo-cta {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.single-promo-banner:hover {
+  border-color: var(--accent-green);
+  box-shadow: var(--card-shadow-hover);
+}
+
 /* kept for backwards compatibility */
 .steps-inner {
   max-width: 1180px;
