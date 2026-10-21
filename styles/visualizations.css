@@ -1,19 +1,16 @@
-/* styles/visualizations.css - Advanced Nutrition & Biometric Visualizations */
+/* styles/visualizations.css — Biometric & nutrition visualisations */
 
 /* ==========================================================================
-   1. SEMI-CIRCULAR BMI SPEEDOMETER GAUGE
+   1. BMI GAUGE
    ========================================================================== */
 .bmi-gauge-card {
-  background: var(--inner-card-bg);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 18px;
-  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  gap: 4px;
 }
 
 .bmi-gauge-header {
@@ -21,25 +18,39 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 8px;
+  gap: 12px;
 }
 
 .bmi-gauge-title {
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.74rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  display: flex;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+}
+
+.bmi-cat-sub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-body);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-full);
+  padding: 3px 11px;
+}
+
+.bmi-gauge-body {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 28px;
   align-items: center;
-  gap: 6px;
+  margin-top: 10px;
 }
 
 .bmi-gauge-svg-wrap {
   position: relative;
-  width: 180px;
-  height: 98px;
-  margin: 0 auto;
+  width: 190px;
+  height: 104px;
 }
 
 .bmi-gauge-svg {
@@ -55,143 +66,104 @@
 
 .bmi-readout-center {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
 
 .bmi-val-big {
-  font-size: 1.45rem;
-  font-weight: 900;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--text-main);
   line-height: 1;
   display: block;
 }
 
-.bmi-cat-sub {
-  font-size: 0.72rem;
+.bmi-readout-unit {
+  font-size: 0.64rem;
+  color: var(--text-light);
   font-weight: 700;
-  border-radius: 10px;
-  padding: 2px 8px;
-  display: inline-block;
-  margin-top: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .bmi-gauge-legend {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 10px;
-  font-size: 0.68rem;
-  font-weight: 700;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--text-muted);
 }
 
 .bmi-gauge-legend span {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .bmi-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   display: inline-block;
 }
 
-/* ==========================================================================
-   2. ENERGY BALANCE METABOLIC FLOW (BMR -> TDEE -> TARGET)
-   ========================================================================== */
+/* Energy summary beside the gauge */
 .energy-flow-visualizer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   width: 100%;
-  margin-top: 10px;
-  background: var(--track-bg-subtle);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 14px;
-  padding: 12px 16px;
-}
-
-.energy-flow-bar-track {
-  position: relative;
-  height: 8px;
-  background: var(--track-bg);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.energy-flow-bar-fill {
-  height: 100%;
-  border-radius: 8px;
-  transition: width 0.6s ease;
-  background: linear-gradient(90deg, #38bdf8 0%, #10b981 50%, #f59e0b 100%);
-}
-
-.energy-flow-steps {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
 }
 
 .energy-flow-step {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+  padding: 12px 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
 }
 
 .energy-flow-step .step-lbl {
   color: var(--text-muted);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .energy-flow-step .step-val {
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-main);
+  font-size: 1rem;
 }
 
-.energy-flow-step.target-step .step-val {
-  color: var(--accent-green);
-}
+.energy-flow-step.target-step .step-val { color: var(--accent-green-dark); }
+
+.energy-flow-bar-track,
+.energy-flow-bar-fill { display: none; }
 
 /* ==========================================================================
-   3. UPGRADED INTERACTIVE MACRO DONUT & PER-MEAL BUDGET BAR
+   2. MACRO DONUT INTERACTIONS (see macro-chart.css for base)
    ========================================================================== */
-.macro-donut-interactive {
-  cursor: pointer;
-}
-
-.donut-segment {
-  transition: stroke-width 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
-}
+.macro-donut-interactive { cursor: pointer; }
 
 .donut-segment:hover,
 .donut-segment.active-hover {
-  stroke-width: 13;
-  filter: drop-shadow(0 0 6px currentColor);
+  stroke-width: 12;
 }
 
-.macro-detail-pill {
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.macro-detail-pill:hover,
-.macro-detail-pill.active {
-  transform: translateX(4px);
-  border-color: var(--accent-green);
-  background: rgba(132, 204, 22, 0.08);
-}
-
+/* ==========================================================================
+   3. PER-MEAL CALORIE BUDGET
+   ========================================================================== */
 .per-meal-budget-section {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--inner-card-border);
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
   width: 100%;
 }
 
@@ -199,153 +171,138 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-  font-size: 0.74rem;
+  margin-bottom: 9px;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 .per-meal-budget-bar {
   display: flex;
-  height: 8px;
-  border-radius: 8px;
+  height: 7px;
+  border-radius: var(--radius-full);
   overflow: hidden;
-  background: var(--track-bg);
+  background: var(--data-track);
   gap: 2px;
 }
 
 .meal-budget-segment {
   height: 100%;
   transition: flex-grow 0.5s ease;
-  position: relative;
-}
-
-.meal-budget-segment:hover {
-  filter: brightness(1.2);
 }
 
 .per-meal-budget-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
-  font-size: 0.72rem;
+  gap: 8px 16px;
+  margin-top: 10px;
+  font-size: 0.74rem;
   color: var(--text-muted);
 }
 
 .meal-budget-item {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 .meal-budget-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
 }
 
 /* ==========================================================================
-   4. TARGET VS ACTUAL MACRO PROGRESS RINGS / BARS (IN CALORIE TRACKER)
+   4. TARGET VS EATEN MACRO PROGRESS
    ========================================================================== */
 .macro-progress-tracker-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 
 .macro-prog-box {
-  background: var(--inner-card-bg);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 14px;
-  padding: 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.macro-prog-box:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-green);
+  gap: 8px;
 }
 
 .macro-prog-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 0.74rem;
-  font-weight: 700;
+  align-items: baseline;
+  font-size: 0.78rem;
 }
 
 .macro-prog-label {
   color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  font-weight: 600;
 }
 
 .macro-prog-nums {
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--text-main);
 }
 
 .macro-prog-track {
   height: 6px;
-  background: var(--track-bg);
-  border-radius: 6px;
+  background: var(--data-track);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .macro-prog-fill {
   height: 100%;
-  border-radius: 6px;
+  border-radius: var(--radius-full);
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.fill-protein { background: #38bdf8; }
-.fill-carbs { background: #a855f7; }
-.fill-fats { background: #f59e0b; }
+.fill-protein { background: var(--data-protein); }
+.fill-carbs   { background: var(--data-carbs); }
+.fill-fats    { background: var(--data-fats); }
 
 /* ==========================================================================
-   5. 7-DAY WEEKLY CALORIE & MACRO TREND BAR CHART
+   5. WEEKLY TREND CHART
    ========================================================================== */
 .weekly-trend-chart-card {
-  background: var(--inner-card-bg);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 18px;
-  padding: 16px 20px;
-  margin-bottom: 22px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 26px;
 }
 
 .weekly-trend-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
 .weekly-trend-title {
-  font-size: 0.88rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
 
 .weekly-trend-bars-container {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  height: 120px;
-  padding: 10px 4px 0 4px;
-  gap: 8px;
-  border-bottom: 1px solid var(--inner-card-border);
+  height: 110px;
+  gap: 10px;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 2px;
 }
 
 .weekly-day-bar-column {
@@ -356,131 +313,111 @@
   height: 100%;
   justify-content: flex-end;
   cursor: pointer;
-  transition: transform 0.2s ease;
   background: none;
   border: none;
   padding: 0;
   color: inherit;
 }
 
-.weekly-day-bar-column:hover {
-  transform: translateY(-3px);
-}
-
 .weekly-bar-cal-label {
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   white-space: nowrap;
-  transition: color 0.2s ease;
 }
 
 .weekly-bar-pill {
   width: 100%;
-  max-width: 38px;
-  border-radius: 6px 6px 3px 3px;
-  background: rgba(34, 197, 94, 0.25);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  max-width: 34px;
+  border-radius: 4px 4px 0 0;
+  background: #d8ded9;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
 }
+
+.weekly-day-bar-column:hover .weekly-bar-pill { background: var(--accent-green-mid); }
 
 .weekly-day-bar-column.active .weekly-bar-pill {
   background: var(--accent-green);
-  border-color: var(--accent-green-dark);
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
 }
 
 .weekly-day-bar-column.active .weekly-bar-cal-label {
-  color: var(--accent-green);
-  font-weight: 800;
+  color: var(--accent-green-dark);
+  font-weight: 700;
 }
 
 .weekly-day-labels-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-  gap: 8px;
+  margin-top: 10px;
+  gap: 10px;
 }
 
 .weekly-day-name-tag {
   flex: 1;
   text-align: center;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.74rem;
+  font-weight: 600;
   color: var(--text-muted);
 }
 
-.weekly-day-bar-column.active + .weekly-day-name-tag,
-.weekly-day-name-tag.active {
-  color: var(--accent-green);
-}
+.weekly-day-name-tag.active { color: var(--accent-green-dark); font-weight: 700; }
 
 /* ==========================================================================
-   6. MEAL TIMING & INTERMITTENT FASTING TIMELINE STRIP
+   6. MEAL TIMING TIMELINE
    ========================================================================== */
 .chrono-timeline-card {
-  background: var(--inner-card-bg);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 16px;
-  padding: 14px 18px;
-  margin-bottom: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 26px;
 }
 
 .chrono-timeline-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .chrono-title {
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 6px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
 }
 
 .fasting-badge {
   font-size: 0.72rem;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 12px;
-  background: rgba(168, 85, 247, 0.15);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
 }
 
 .chrono-track-wrap {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 8px 12px;
-  background: var(--track-bg-subtle);
-  border-radius: 12px;
+  gap: 8px;
+  padding: 4px 0 0 0;
 }
 
 .chrono-track-line {
   position: absolute;
-  top: 50%;
-  left: 20px;
-  right: 20px;
-  height: 2px;
-  background: linear-gradient(90deg, #f59e0b, #84cc16, #38bdf8, #818cf8);
-  transform: translateY(-50%);
+  top: 7px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: var(--card-border);
   z-index: 1;
-  opacity: 0.6;
 }
 
 .chrono-milestone {
@@ -489,55 +426,49 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  flex: 1;
 }
 
 .chrono-node {
-  width: 28px;
-  height: 28px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: var(--card-bg);
-  border: 2px solid var(--accent-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--accent-green);
+  display: block;
 }
 
 .chrono-time {
-  font-size: 0.7rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--text-main);
 }
 
 .chrono-slot-name {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* ==========================================================================
-   7. PER-MEAL CARD MINI MACRO RATIO BAR & HEALTH HIGHLIGHT BADGES
+   7. PER-MEAL MINI MACRO BAR & BADGES
    ========================================================================== */
 .meal-macro-ratio-bar {
   display: flex;
-  height: 4px;
-  border-radius: 4px;
+  height: 3px;
+  border-radius: 3px;
   overflow: hidden;
-  margin: 10px 0 6px 0;
-  background: var(--track-bg);
+  margin: 0 0 18px 0;
+  background: var(--data-track);
   width: 100%;
 }
 
-.ratio-seg {
-  height: 100%;
-  transition: width 0.3s ease;
-}
+.ratio-seg { height: 100%; }
 
-.ratio-p { background: #38bdf8; }
-.ratio-c { background: #a855f7; }
-.ratio-f { background: #f59e0b; }
+.ratio-p { background: var(--data-protein); }
+.ratio-c { background: var(--data-carbs); }
+.ratio-f { background: var(--data-fats); }
 
 .meal-badge-chips-row {
   display: flex;
@@ -548,94 +479,24 @@
 
 .meal-highlight-badge {
   font-size: 0.68rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 8px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
 }
 
-.badge-high-protein {
-  background: rgba(56, 189, 248, 0.12);
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-}
+.badge-high-protein { color: var(--accent-green-dark); border-color: var(--accent-green-mid); background: var(--accent-green-light); }
+.badge-high-fiber   { color: var(--accent-blue); border-color: #d5e3f0; background: var(--accent-blue-light); }
+.badge-quick        { color: var(--accent-green-dark); border-color: var(--accent-green-mid); background: var(--accent-green-light); }
+.badge-keto-friendly{ color: var(--accent-warm); border-color: var(--accent-warm-light); background: var(--accent-warm-light); }
 
-.badge-high-fiber {
-  background: rgba(168, 85, 247, 0.12);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-}
-
-.badge-quick {
-  background: rgba(16, 185, 129, 0.12);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.badge-keto-friendly {
-  background: rgba(245, 158, 11, 0.12);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-
-/* Light Theme overrides for visualizations */
-.theme-light .fasting-badge {
-  background: rgba(124, 58, 237, 0.1);
-  color: #7c3aed;
-  border-color: rgba(124, 58, 237, 0.25);
-}
-
-.theme-light .badge-high-protein {
-  background: rgba(2, 132, 199, 0.1);
-  color: #0284c7;
-  border-color: rgba(2, 132, 199, 0.25);
-}
-
-.theme-light .badge-high-fiber {
-  background: rgba(124, 58, 237, 0.1);
-  color: #7c3aed;
-  border-color: rgba(124, 58, 237, 0.25);
-}
-
-.theme-light .badge-quick {
-  background: rgba(22, 163, 74, 0.1);
-  color: #16a34a;
-  border-color: rgba(22, 163, 74, 0.25);
-}
-
-.theme-light .badge-keto-friendly {
-  background: rgba(217, 119, 6, 0.1);
-  color: #b45309;
-  border-color: rgba(217, 119, 6, 0.25);
-}
-
-/* ==========================================================================
-   RESPONSIVE ADJUSTMENTS FOR VISUALIZATIONS
-   ========================================================================== */
-@media (max-width: 768px) {
-  .macro-progress-tracker-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .weekly-trend-bars-container {
-    height: 90px;
-    gap: 4px;
-  }
-
-  .weekly-bar-pill {
-    max-width: 26px;
-  }
-
-  .chrono-track-wrap {
-    padding: 6px;
-  }
-
-  .chrono-node {
-    width: 24px;
-    height: 24px;
-    font-size: 0.7rem;
-  }
+@media (max-width: 820px) {
+  .bmi-gauge-body { grid-template-columns: 1fr; gap: 20px; }
+  .macro-progress-tracker-grid { grid-template-columns: 1fr; gap: 14px; }
+  .weekly-trend-bars-container { height: 90px; gap: 6px; }
 }

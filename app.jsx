@@ -11,6 +11,55 @@ const API_BASE = window.location.hostname === "localhost" || window.location.hos
   : `http://${window.location.hostname}:8000`;
 
 // ---------------------------------------------------------------------------
+// Small inline icon set (keeps the interface free of emoji clutter)
+// ---------------------------------------------------------------------------
+const Icon = {
+  leaf: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+    </svg>
+  ),
+  print: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <polyline points="6 9 6 2 18 2 18 9" />
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+      <rect x="6" y="14" width="12" height="8" />
+    </svg>
+  ),
+  droplet: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M12 2.7 6.8 8.2a7.4 7.4 0 1 0 10.4 0Z" />
+    </svg>
+  ),
+  refresh: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M3 12a9 9 0 0 1 15.5-6.2L21 8" />
+      <path d="M21 3v5h-5" />
+      <path d="M21 12a9 9 0 0 1-15.5 6.2L3 16" />
+      <path d="M3 21v-5h5" />
+    </svg>
+  ),
+  notebook: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M4 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+      <path d="M8 7h8M8 11h8M8 15h5" />
+    </svg>
+  ),
+  check: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  ),
+};
+
+// ---------------------------------------------------------------------------
 // 1. Semi-Circular BMI Speedometer Gauge Visualizer
 // ---------------------------------------------------------------------------
 function BmiGaugeVisualizer({ bmi, category, catColor, tdee, waterLiters }) {
@@ -22,77 +71,66 @@ function BmiGaugeVisualizer({ bmi, category, catColor, tdee, waterLiters }) {
   return (
     <div className="bmi-gauge-card">
       <div className="bmi-gauge-header">
-        <span className="bmi-gauge-title">⚡ Real-Time Biometric Gauge</span>
-        <span className="bmi-cat-sub" style={{ backgroundColor: catColor, color: "#fff" }}>
-          {category}
-        </span>
+        <span className="bmi-gauge-title">Live estimate</span>
+        <span className="bmi-cat-sub">{category}</span>
       </div>
 
-      <div className="bmi-gauge-svg-wrap">
-        <svg className="bmi-gauge-svg" viewBox="0 0 180 100">
-          <defs>
-            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="35%" stopColor="#10b981" />
-              <stop offset="65%" stopColor="#f59e0b" />
-              <stop offset="100%" stopColor="#ef4444" />
-            </linearGradient>
-          </defs>
-          {/* Gauge Background Track */}
-          <path
-            d="M 15 90 A 75 75 0 0 1 165 90"
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.08)"
-            strokeWidth="14"
-            strokeLinecap="round"
-          />
-          {/* Gauge Color Gradient Arc */}
-          <path
-            d="M 15 90 A 75 75 0 0 1 165 90"
-            fill="none"
-            stroke="url(#gaugeGradient)"
-            strokeWidth="12"
-            strokeLinecap="round"
-          />
-          {/* Needle Indicator */}
-          <g className="bmi-needle" transform={`rotate(${angle}, 90, 90)`} style={{ transformOrigin: "90px 90px" }}>
-            <line x1="90" y1="90" x2="90" y2="28" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="90" cy="28" r="3" fill="var(--accent-green)" />
-          </g>
-          {/* Pivot Center Point */}
-          <circle cx="90" cy="90" r="7" fill="var(--card-bg)" stroke="#ffffff" strokeWidth="2.5" />
-        </svg>
+      <div className="bmi-gauge-body">
+        <div className="bmi-gauge-svg-wrap">
+          <svg className="bmi-gauge-svg" viewBox="0 0 180 100" role="img" aria-label={`BMI ${numericBmi}, ${category}`}>
+            <defs>
+              <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#b8862e" />
+                <stop offset="35%" stopColor="#2e8b4f" />
+                <stop offset="70%" stopColor="#b8862e" />
+                <stop offset="100%" stopColor="#b4443a" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 15 90 A 75 75 0 0 1 165 90"
+              fill="none"
+              stroke="var(--data-track)"
+              strokeWidth="10"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 15 90 A 75 75 0 0 1 165 90"
+              fill="none"
+              stroke="url(#gaugeGradient)"
+              strokeWidth="10"
+              strokeLinecap="round"
+              opacity="0.85"
+            />
+            <g className="bmi-needle" transform={`rotate(${angle}, 90, 90)`} style={{ transformOrigin: "90px 90px" }}>
+              <line x1="90" y1="90" x2="90" y2="32" stroke="var(--text-main)" strokeWidth="2.5" strokeLinecap="round" />
+            </g>
+            <circle cx="90" cy="90" r="5" fill="var(--text-main)" />
+          </svg>
 
-        <div className="bmi-readout-center">
-          <span className="bmi-val-big">{numericBmi}</span>
-          <span style={{ fontSize: "0.68rem", color: "var(--text-muted)", fontWeight: 700 }}>BMI INDEX</span>
+          <div className="bmi-readout-center">
+            <span className="bmi-val-big">{numericBmi}</span>
+            <span className="bmi-readout-unit">BMI index</span>
+          </div>
+        </div>
+
+        <div className="energy-flow-visualizer">
+          <div className="energy-flow-step">
+            <span className="step-lbl">Est. maintenance</span>
+            <span className="step-val">{tdee ? `${tdee} kcal` : "—"}</span>
+          </div>
+          <div className="energy-flow-step">
+            <span className="step-lbl">Daily hydration</span>
+            <span className="step-val">{waterLiters ? `${waterLiters} L` : "—"}</span>
+          </div>
         </div>
       </div>
 
       <div className="bmi-gauge-legend">
-        <span><i className="bmi-dot" style={{ background: "#38bdf8" }}></i> &lt;18.5 Under</span>
-        <span><i className="bmi-dot" style={{ background: "#10b981" }}></i> 18.5-24.9 Fit</span>
-        <span><i className="bmi-dot" style={{ background: "#f59e0b" }}></i> 25-29.9 Over</span>
-        <span><i className="bmi-dot" style={{ background: "#ef4444" }}></i> 30+ Obese</span>
+        <span><i className="bmi-dot" style={{ background: "#b8862e" }} /> Under 18.5</span>
+        <span><i className="bmi-dot" style={{ background: "#2e8b4f" }} /> 18.5–24.9 Healthy</span>
+        <span><i className="bmi-dot" style={{ background: "#c99a3a" }} /> 25–29.9 Over</span>
+        <span><i className="bmi-dot" style={{ background: "#b4443a" }} /> 30+ Obese</span>
       </div>
-
-      {tdee && (
-        <div className="energy-flow-visualizer">
-          <div className="energy-flow-steps">
-            <div className="energy-flow-step">
-              <span className="step-lbl">Est. Maintenance</span>
-              <span className="step-val">{tdee} kcal</span>
-            </div>
-            <div className="energy-flow-step" style={{ textAlign: "right" }}>
-              <span className="step-lbl">Daily Hydration</span>
-              <span className="step-val">💧 {waterLiters} L</span>
-            </div>
-          </div>
-          <div className="energy-flow-bar-track">
-            <div className="energy-flow-bar-fill" style={{ width: "100%" }}></div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -142,7 +180,7 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
   }
 
   // Calculate per-meal calorie shares
-  const mealColors = ["#f59e0b", "#84cc16", "#818cf8", "#f97316"];
+  const mealColors = ["#2e8b4f", "#b8862e", "#6b5ca5", "#2b6cb0"];
   const validMeals = meals && meals.length > 0 ? meals : [];
   const mealsTotal = validMeals.reduce((acc, m) => acc + (m.approx_calories || 0), 0) || 1;
 
@@ -283,11 +321,9 @@ function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
   return (
     <div className="weekly-trend-chart-card">
       <div className="weekly-trend-header">
-        <span className="weekly-trend-title">
-          <span>📊</span> 7-Day Calorie & Variety Overview
-        </span>
+        <span className="weekly-trend-title">7-day calorie overview</span>
         <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>
-          Click any bar to jump to that day&apos;s meal schedule
+          Select a day to view its meals
         </span>
       </div>
 
@@ -335,21 +371,19 @@ function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
 function MealTimelineVisualizer({ meals = [] }) {
   const defaultTimes = ["08:30 AM", "01:15 PM", "04:45 PM", "07:45 PM"];
   const defaultSlots = ["Breakfast", "Lunch", "Snack", "Dinner"];
-  const defaultIcons = ["🍳", "🥗", "🍎", "🍽️"];
 
   const items = meals.length > 0
     ? meals.map((m, i) => {
         const lower = (m.name || "").toLowerCase();
         let slot = defaultSlots[i] || `Meal ${i + 1}`;
-        let icon = defaultIcons[i] || "🍴";
         let time = defaultTimes[i] || "12:00 PM";
 
-        if (lower.includes("breakfast")) { slot = "Breakfast"; icon = "🍳"; time = "08:30 AM"; }
-        else if (lower.includes("lunch")) { slot = "Lunch"; icon = "🥗"; time = "01:15 PM"; }
-        else if (lower.includes("dinner")) { slot = "Dinner"; icon = "🍽️"; time = "07:45 PM"; }
-        else if (lower.includes("snack")) { slot = "Snack"; icon = "🍎"; time = "04:45 PM"; }
+        if (lower.includes("breakfast")) { slot = "Breakfast"; time = "08:30 AM"; }
+        else if (lower.includes("lunch")) { slot = "Lunch"; time = "01:15 PM"; }
+        else if (lower.includes("dinner")) { slot = "Dinner"; time = "07:45 PM"; }
+        else if (lower.includes("snack")) { slot = "Snack"; time = "04:45 PM"; }
 
-        return { slot, icon, time, name: m.name, cal: m.approx_calories };
+        return { slot, time, name: m.name };
       })
     : [];
 
@@ -358,19 +392,15 @@ function MealTimelineVisualizer({ meals = [] }) {
   return (
     <div className="chrono-timeline-card">
       <div className="chrono-timeline-header">
-        <span className="chrono-title">
-          <span>⏰</span> Chrono-Nutrition & Meal Timing
-        </span>
-        <span className="fasting-badge">
-          <span>🌙</span> 13h Overnight Fasting Window
-        </span>
+        <span className="chrono-title">Meal timing</span>
+        <span className="fasting-badge">About 13 hours overnight</span>
       </div>
 
       <div className="chrono-track-wrap">
         <div className="chrono-track-line" />
         {items.map((it, idx) => (
           <div key={idx} className="chrono-milestone">
-            <div className="chrono-node">{it.icon}</div>
+            <span className="chrono-node" />
             <span className="chrono-time">{it.time}</span>
             <span className="chrono-slot-name">{it.slot}</span>
           </div>
@@ -412,9 +442,9 @@ function WaterTracker({ weight_kg }) {
         console.error(e);
       }
       if (updated >= targetMl && prev < targetMl) {
-        showToast("🎉 Daily hydration goal achieved!");
+        showToast("Daily hydration goal reached.");
       } else if (delta > 0) {
-        showToast(`💧 Logged +${delta}ml`);
+        showToast(`Logged ${delta} ml`);
       }
       return updated;
     });
@@ -439,28 +469,19 @@ function WaterTracker({ weight_kg }) {
       {/* Header */}
       <div className="water-header">
         <div className="water-title-wrap">
-          <div className="water-icon-circle">💧</div>
+          <div className="water-icon-circle"><Icon.droplet /></div>
           <div>
-            <h3>Daily Hydration Tracker</h3>
-            <p className="water-subtitle">Optimal fluid balance computed dynamically for your bodyweight</p>
+            <h3>Daily hydration</h3>
+            <p className="water-subtitle">A simple fluid goal based on your body weight</p>
           </div>
         </div>
         <span className={`water-pct-badge ${pct >= 100 ? "complete" : ""}`}>
-          {pct}% Reached
+          {pct}% of goal
         </span>
       </div>
 
-      {/* 3-Column Dashboard Body */}
+      {/* Progress + quick log */}
       <div className="water-dashboard-layout">
-        {/* Col 1: Animated Realistic Glass */}
-        <div className="cup-container">
-          <div className="glass-cup">
-            <div className="water-fill" style={{ height: `${pct}%` }}></div>
-            <div className="cup-label">{drankMl} ml</div>
-          </div>
-        </div>
-
-        {/* Col 2: Live Metrics & Progress Bar */}
         <div className="water-stats-col">
           <div className="water-metrics-tiles">
             <div className="water-metric-box">
@@ -469,7 +490,7 @@ function WaterTracker({ weight_kg }) {
             </div>
             <div className="water-metric-box active-log">
               <span className="water-metric-lbl">Logged</span>
-              <span className="water-metric-val" style={{ color: "#38bdf8" }}>{loggedL} L</span>
+              <span className="water-metric-val">{loggedL} L</span>
             </div>
             <div className="water-metric-box">
               <span className="water-metric-lbl">Remaining</span>
@@ -484,27 +505,26 @@ function WaterTracker({ weight_kg }) {
           {toastMessage && <span className="water-toast">{toastMessage}</span>}
         </div>
 
-        {/* Col 3: Quick Log Buttons */}
         <div className="water-actions-col">
           <div className="water-btn-grid">
             <button className="water-quick-btn" type="button" onClick={() => updateWater(250)}>
-              <span>🥛</span> +250 ml
+              +250 ml
             </button>
             <button className="water-quick-btn primary-add" type="button" onClick={() => updateWater(500)}>
-              <span>🧴</span> +500 ml
+              +500 ml
             </button>
             <button className="water-quick-btn" type="button" onClick={() => updateWater(750)}>
-              <span>💧</span> +750 ml
+              +750 ml
             </button>
             <button className="water-quick-btn" type="button" onClick={() => updateWater(1000)}>
-              <span>🫙</span> +1.0 L
+              +1 L
             </button>
           </div>
 
           <div className="water-reset-row">
-            <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>1-Click Quick Log</span>
+            <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>Quick add</span>
             <button className="water-reset-btn" type="button" onClick={resetWater}>
-              ↺ Reset Tracker
+              Reset
             </button>
           </div>
         </div>
@@ -540,34 +560,34 @@ function RecipeModal({ meal, onClose }) {
 
         <div className="recipe-meta-row">
           <div className="meta-item">
-            <span className="meta-label">⏱️ Prep Time</span>
+            <span className="meta-label">Prep time</span>
             <strong>{meal.prep_time || "10 mins"}</strong>
           </div>
           <div className="meta-item">
-            <span className="meta-label">🍳 Cook Time</span>
+            <span className="meta-label">Cook time</span>
             <strong>{meal.cook_time || "15 mins"}</strong>
           </div>
           <div className="meta-item">
-            <span className="meta-label">🔥 Calories</span>
+            <span className="meta-label">Calories</span>
             <strong>{meal.approx_calories} kcal</strong>
           </div>
           <div className="meta-item">
-            <span className="meta-label">🎯 Goal Alignment</span>
+            <span className="meta-label">Goal alignment</span>
             <strong>
               {meal._goal
                 ? meal._goal
                 : meal.macros && meal.macros.protein_g > meal.macros.carbs_g
-                ? "High Protein"
+                ? "High protein"
                 : meal.macros && meal.macros.carbs_g > (meal.macros.protein_g + meal.macros.fats_g)
-                ? "High Carb / Energy"
-                : "Balanced Macros"}
+                ? "High carbohydrate"
+                : "Balanced macros"}
             </strong>
           </div>
         </div>
 
         <div className="recipe-body">
           <div className="recipe-section">
-            <h3>🥗 Required Ingredients</h3>
+            <h3>Ingredients</h3>
             <ul className="recipe-ingr-list">
               {meal.ingredients && meal.ingredients.map((ing, i) => (
                 <li key={i}>
@@ -579,7 +599,7 @@ function RecipeModal({ meal, onClose }) {
           </div>
 
           <div className="recipe-section">
-            <h3>👨‍🍳 Step-by-Step Cooking Guide</h3>
+            <h3>Method</h3>
             <ol className="cooking-steps-list">
               {meal.instructions && meal.instructions.length > 0 ? (
                 meal.instructions.map((step, idx) => (
@@ -599,13 +619,13 @@ function RecipeModal({ meal, onClose }) {
 
           {meal.reason && (
             <div className="recipe-purpose-box">
-              <strong>💡 Nutritionist Note:</strong> {typeof meal.reason === "object" ? JSON.stringify(meal.reason) : meal.reason}
+              <strong>Why this meal works:</strong> {typeof meal.reason === "object" ? JSON.stringify(meal.reason) : meal.reason}
             </div>
           )}
         </div>
 
         <div className="recipe-modal-footer">
-          <button className="secondary-btn" type="button" onClick={onClose}>Close Recipe</button>
+          <button className="secondary-btn" type="button" onClick={onClose}>Close recipe</button>
         </div>
       </div>
     </div>
@@ -625,7 +645,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
   if (!plan || plan.error) {
     return plan && plan.error ? (
       <div className="result-card error">
-        <h2>⚠️ Error Generating Plan</h2>
+        <h2>We could not generate this plan</h2>
         <pre>{plan.error}</pre>
         {plan.raw && <pre>{plan.raw.slice(0, 500)}</pre>}
       </div>
@@ -648,22 +668,13 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
     return String(ing);
   };
 
-  const getMealIcon = (name) => {
-    const n = (name || "").toLowerCase();
-    if (n.includes("breakfast")) return "🍳";
-    if (n.includes("lunch")) return "🥗";
-    if (n.includes("dinner")) return "🍽️";
-    if (n.includes("snack")) return "🍎";
-    return "🍴";
-  };
-
   // Build Aggregated Grocery List from All Meals
   const buildGroceryCategories = () => {
     const categories = {
-      "🥦 Fresh Produce & Vegetables": [],
-      "🥩 High-Protein & Dairy": [],
-      "🌾 Healthy Grains & Carbs": [],
-      "🧂 Superfoods, Oils & Pantry": []
+      "Fresh produce": [],
+      "Protein & dairy": [],
+      "Grains & carbohydrates": [],
+      "Pantry & oils": []
     };
 
     const mealsToProcess = isWeekly
@@ -695,7 +706,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
           lower.includes("protein") ||
           lower.includes("soya")
         ) {
-          categories["🥩 High-Protein & Dairy"].push(text);
+          categories["Protein & dairy"].push(text);
         } else if (
           lower.includes("spinach") ||
           lower.includes("palak") ||
@@ -713,7 +724,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
           lower.includes("guava") ||
           lower.includes("pomegranate")
         ) {
-          categories["🥦 Fresh Produce & Vegetables"].push(text);
+          categories["Fresh produce"].push(text);
         } else if (
           lower.includes("oat") ||
           lower.includes("rice") ||
@@ -730,9 +741,9 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
           lower.includes("poha") ||
           lower.includes("khichdi")
         ) {
-          categories["🌾 Healthy Grains & Carbs"].push(text);
+          categories["Grains & carbohydrates"].push(text);
         } else {
-          categories["🧂 Superfoods, Oils & Pantry"].push(text);
+          categories["Pantry & oils"].push(text);
         }
       });
     });
@@ -753,7 +764,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
   };
 
   const copyGroceryList = () => {
-    let output = `🛒 Smart Nutrition Assistant - Grocery Shopping List\nPlan for: ${plan.user_id} (${plan.date})\n\n`;
+    let output = `Smart Nutrition Assistant — Grocery list\nPlan for: ${plan.user_id} (${plan.date})\n\n`;
     Object.entries(groceryCategories).forEach(([category, items]) => {
       if (items.length > 0) {
         output += `${category.toUpperCase()}:\n`;
@@ -765,7 +776,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
     });
 
     navigator.clipboard.writeText(output);
-    setCopyFeedback("📋 Grocery list copied to clipboard! Ready to paste into WhatsApp or Notes.");
+    setCopyFeedback("Grocery list copied to your clipboard.");
     setTimeout(() => setCopyFeedback(""), 4000);
   };
 
@@ -777,12 +788,12 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
       <div className="result-header">
         <div className="title-row">
           <div>
-            <h2>{isWeekly ? "📅 7-Day Personalized Nutrition Plan" : "🎉 Personalized Daily Nutrition Plan"}</h2>
-            <p className="plan-subtitle">Formulated for <b>{plan.user_id}</b> • Generated on {plan.date}</p>
+            <h2>{isWeekly ? "Your 7-day nutrition plan" : "Your daily nutrition plan"}</h2>
+            <p className="plan-subtitle">Prepared for <b>{plan.user_id}</b> · {plan.date}</p>
           </div>
           <div className="action-buttons">
-            <button className="icon-btn print-btn" onClick={() => window.print()} title="Print / Export PDF">
-              📄 Export PDF / Print
+            <button className="icon-btn print-btn" onClick={() => window.print()} title="Print or save as PDF">
+              <Icon.print /> Print
             </button>
           </div>
         </div>
@@ -790,7 +801,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
         {/* Weekly Day Selector Pills */}
         {isWeekly && (
           <div className="day-selector-row">
-            <span className="day-selector-label">Select Day:</span>
+            <span className="day-selector-label">Day</span>
             <div className="day-pills">
               {daysList.map((day) => (
                 <button
@@ -815,7 +826,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
             aria-selected={activeTab === "plan"}
             onClick={() => setActiveTab("plan")}
           >
-            🍽️ {isWeekly ? `${selectedDay}'s Meal Plan` : "Daily Meal Plan"}
+            {isWeekly ? `${selectedDay}'s meals` : "Meals"}
           </button>
           <button
             className={`tab-btn ${activeTab === "grocery" ? "active" : ""}`}
@@ -823,7 +834,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
             aria-selected={activeTab === "grocery"}
             onClick={() => setActiveTab("grocery")}
           >
-            🛒 {isWeekly ? "Weekly Grocery Checklist" : "Grocery Checklist"}
+            Grocery list
           </button>
         </div>
       </div>
@@ -842,7 +853,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
           {/* Visual Donut Macro Chart & Metric Highlights */}
           <div className="macro-dashboard-grid">
             <div className="macro-chart-box-container">
-              <span className="dashboard-subheading">📊 Calorie & Macro Distribution</span>
+              <span className="dashboard-subheading">Calorie & macro distribution</span>
               <MacroDonutChart
                 protein_g={totalMacros.protein_g}
                 carbs_g={totalMacros.carbs_g}
@@ -853,7 +864,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
             </div>
 
             <div className="energy-stats-box">
-              <span className="dashboard-subheading">🔥 Energy & Metabolic Targets</span>
+              <span className="dashboard-subheading">Energy & metabolic targets</span>
               <div className="stat-tiles">
                 <div className="stat-tile">
                   <span className="stat-tile-label">Basal Metabolic Rate (BMR)</span>
@@ -890,19 +901,19 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
               let cleanTitle = meal.name;
 
               if (lower.startsWith("breakfast")) {
-                slot = "🌅 Breakfast";
+                slot = "Breakfast";
                 cleanTitle = meal.name.replace(/^breakfast[:\s-]*/i, "");
               } else if (lower.startsWith("lunch")) {
-                slot = "☀️ Lunch";
+                slot = "Lunch";
                 cleanTitle = meal.name.replace(/^lunch[:\s-]*/i, "");
               } else if (lower.startsWith("dinner")) {
-                slot = "🌙 Dinner";
+                slot = "Dinner";
                 cleanTitle = meal.name.replace(/^dinner[:\s-]*/i, "");
               } else if (lower.startsWith("snack")) {
-                slot = "🍎 Snack";
+                slot = "Snack";
                 cleanTitle = meal.name.replace(/^snack[:\s-]*/i, "");
               } else {
-                const defaultSlots = ["🌅 Breakfast", "☀️ Lunch", "🌙 Dinner", "🍎 Snack"];
+                const defaultSlots = ["Breakfast", "Lunch", "Dinner", "Snack"];
                 slot = defaultSlots[idx] || `Meal ${idx + 1}`;
               }
 
@@ -919,27 +930,26 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                 <div className={`meal-item ${meal.unavailable ? "meal-blocked" : ""}`} key={idx}>
                   <div className="meal-header">
                     <div className="meal-title-group">
-                      <div className="meal-emoji-badge">{meal.unavailable ? "⛔" : getMealIcon(meal.name)}</div>
                       <div className="meal-heading-wrapper">
                         <span className="meal-slot-tag">{slot}</span>
                         <h3 className="meal-title">{cleanTitle}</h3>
                         <div className="meal-meta-tags">
-                          <span className="meal-tag">⏱️ {meal.prep_time || "10 mins"}</span>
-                          <span className="meal-tag">🍳 {meal.cook_time || "15 mins"}</span>
+                          <span className="meal-tag">{meal.prep_time || "10 mins"} prep</span>
+                          <span className="meal-tag">{meal.cook_time || "15 mins"} cook</span>
                           <span className="meal-tag difficulty">{meal.difficulty || "Easy"}</span>
                           {mP >= 28 && (
                             <span className="meal-highlight-badge badge-high-protein">
-                              ⚡ High Protein ({mP}g)
+                              High protein
                             </span>
                           )}
                           {mC >= 45 && (
                             <span className="meal-highlight-badge badge-high-fiber">
-                              🌾 Sustained Energy
+                              Sustained energy
                             </span>
                           )}
                           {(meal.prep_time || "").includes("5") && (
                             <span className="meal-highlight-badge badge-quick">
-                              ⏱️ Express Prep
+                              Quick prep
                             </span>
                           )}
                         </div>
@@ -954,7 +964,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                           type="button"
                           onClick={() => setSelectedRecipe(meal)}
                         >
-                          📖 View Recipe
+                          Recipe
                         </button>
                       )}
                       <button
@@ -963,7 +973,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                         onClick={() => handleSwapClick(idx, meal.name)}
                         disabled={swappingIdx === idx || meal.unavailable}
                       >
-                        {swappingIdx === idx ? "Swapping..." : "🔄 Swap"}
+                        {swappingIdx === idx ? "Swapping…" : "Swap"}
                       </button>
                     </div>
                   </div>
@@ -981,7 +991,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                   <div className="meal-body">
                     {meal.ingredients && meal.ingredients.length > 0 && (
                       <div className="ingr-block">
-                        <span className="sub-heading">🥗 Key Ingredients</span>
+                        <span className="sub-heading">Key ingredients</span>
                         <div className="ingr-chips-wrap">
                           {meal.ingredients.map((ing, i) => (
                             <span className="ingr-chip" key={i}>
@@ -995,7 +1005,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
                     <div className="details-block">
                       {meal.reason && (
                         <div className="reason-box">
-                          <span className="label">🎯 Nutritional Purpose</span>
+                          <span className="label">Why this meal works</span>
                           <p className="reason-text">
                             {typeof meal.reason === "object" ? JSON.stringify(meal.reason) : meal.reason}
                           </p>
@@ -1004,9 +1014,9 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
 
                       {meal.macros && (
                         <div className="meal-mini-macros">
-                          <span className="macro-mini-pill p">🍗 Protein: <b>{meal.macros.protein_g}g</b></span>
-                          <span className="macro-mini-pill c">🌾 Carbs: <b>{meal.macros.carbs_g}g</b></span>
-                          <span className="macro-mini-pill f">🥑 Fats: <b>{meal.macros.fats_g}g</b></span>
+                          <span className="macro-mini-pill p">Protein <b>{meal.macros.protein_g}g</b></span>
+                          <span className="macro-mini-pill c">Carbs <b>{meal.macros.carbs_g}g</b></span>
+                          <span className="macro-mini-pill f">Fats <b>{meal.macros.fats_g}g</b></span>
                         </div>
                       )}
                     </div>
@@ -1020,11 +1030,11 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
         <div className="grocery-section">
           <div className="grocery-toolbar">
             <div>
-              <h3>🛒 {isWeekly ? "Complete 7-Day Grocery Shopping List" : "Categorized Grocery Checklist"}</h3>
-              <p className="grocery-subtitle">Everything you need for your planned healthy meals</p>
+              <h3>{isWeekly ? "Weekly grocery list" : "Grocery list"}</h3>
+              <p className="grocery-subtitle">Everything you need for the meals in this plan</p>
             </div>
             <button className="copy-grocery-btn" type="button" onClick={copyGroceryList}>
-              📋 Copy for WhatsApp / Notes
+              Copy list
             </button>
           </div>
 
@@ -1072,64 +1082,76 @@ function MealPlanDisplay({ plan, onSwapMeal, profile }) {
   );
 }
 
-// Zone 2: Hero Section - Personalized Smart Nutrition
+// Zone 2: DietDoctor-style Hero — left checklist + right food photo
 function HeroSection({ onStartAssessment, onExploreDemo }) {
   return (
-    <section className="hero-section" id="hero">
-      {/* Left Content */}
-      <div className="hero-left-content">
-        <div className="hero-eyebrow-pill">AI-Powered • Personalized Nutrition</div>
+    <section id="hero">
+      <div className="hero-section">
+        {/* Left Content */}
+        <div className="hero-left-content">
+          <div className="hero-eyebrow-pill">AI-Powered • Personalized Nutrition</div>
 
-        <h1 className="hero-main-heading">
-          Smart Nutrition <span>Tailored for You</span>
-        </h1>
+          <h1 className="hero-main-heading">
+            Healthy eating <span>made simple</span> for you
+          </h1>
 
-        <p className="hero-subdescription">
-          Input your biometrics, fitness targets, and dietary preferences. Our intelligent engine calculates your exact caloric and macro distribution with delicious daily and weekly meal plans.
-        </p>
+          <p className="hero-subdescription">
+            Personalized daily and weekly meal plans built around your body, your goals, and the food you actually enjoy.
+          </p>
 
-        <div className="hero-actions-group">
-          <button
-            type="button"
-            className="btn-hero-primary"
-            onClick={onStartAssessment}
-            id="hero-cta-assessment"
-          >
-            <span>Create My Plan →</span>
-          </button>
+          <ul className="hero-feature-list">
+            <li>Daily and weekly meal plans tailored to your goals</li>
+            <li>Calorie, macro, and hydration targets calculated from your metrics</li>
+            <li>Categorized grocery lists that make shopping effortless</li>
+          </ul>
 
-          <button
-            type="button"
-            className="btn-hero-secondary"
-            onClick={onExploreDemo}
-            id="hero-cta-demo"
-          >
-            <span>Quick Demo ⚡</span>
-          </button>
-        </div>
-      </div>
+          <div className="hero-actions-group">
+            <button
+              type="button"
+              className="btn-hero-primary"
+              onClick={onStartAssessment}
+              id="hero-cta-assessment"
+            >
+              Create my plan
+            </button>
 
-      {/* Right Side Visual Produce Card */}
-      <div className="hero-visual-wrapper">
-        <div className="hero-produce-card">
-          <div className="hero-card-banner-bg">
-            <span className="hero-basket-icon">🥗</span>
-            <h3 className="hero-card-title">Fresh Daily Nutrition Plan</h3>
-            <p className="hero-card-subtitle">Personalized & Evidence-Based</p>
+            <button
+              type="button"
+              className="btn-hero-secondary"
+              onClick={onExploreDemo}
+              id="hero-cta-demo"
+            >
+              See a sample plan
+            </button>
           </div>
+          <p className="hero-no-commitment">Free to use. No account required.</p>
 
-          <div className="hero-macro-pill-row">
-            <div className="hero-macro-box">
-              <span className="hero-macro-label">Target</span>
-              <div className="hero-macro-val">2,100 kcal</div>
-            </div>
-            <div className="hero-macro-box">
-              <span className="hero-macro-label">Protein</span>
-              <div className="hero-macro-val" style={{ color: "var(--accent-green)" }}>140g</div>
-            </div>
-            <div className="hero-macro-box">
-              <span className="hero-macro-label">Water</span>
-              <div className="hero-macro-val" style={{ color: "#38bdf8" }}>3.0 L</div>
+          <div className="hero-trust-row">
+            <span className="hero-trust-item">Evidence-based targets</span>
+            <span className="hero-trust-item">No sign-up needed</span>
+            <span className="hero-trust-item">Built for everyday eating</span>
+          </div>
+        </div>
+
+        {/* Right Side — Real Food Photo */}
+        <div className="hero-visual-wrapper">
+          <div className="hero-photo-container">
+            <img src="./assets/hero_food.jpg" alt="Beautiful Indian nutrition meal spread on marble" loading="eager" />
+            <div className="hero-floating-stats">
+              <div className="hero-stat-bubble">
+                <span className="hero-stat-bubble-val green">2,100</span>
+                <span className="hero-stat-bubble-lbl">kcal target</span>
+              </div>
+              <div className="hero-stat-divider" />
+              <div className="hero-stat-bubble">
+                <span className="hero-stat-bubble-val">140g</span>
+                <span className="hero-stat-bubble-lbl">Protein</span>
+              </div>
+              <div className="hero-stat-divider" />
+              <div className="hero-stat-bubble">
+                <span className="hero-stat-bubble-val blue">3.0 L</span>
+                <span className="hero-stat-bubble-lbl">Hydration</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1138,172 +1160,232 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
   );
 }
 
-// Zone 3: Horizontal Round Category Icons matching Screenshot 2
+// Zone 3: Dietary approach cards (DietDoctor-style Guides)
 const ARCHETYPES_LIST = [
   {
     id: "balanced",
-    emoji: "🥗",
-    name: "Balanced",
+    name: "Balanced nutrition",
     macroSplit: "30P • 45C • 25F",
     dietVal: "balanced",
     goalVal: "maintain",
+    image: "./assets/recipe_salad.jpg",
+    desc: "A nutrient-dense split for sustained everyday vitality, steady energy, and wellbeing.",
   },
   {
     id: "vegetarian",
-    emoji: "🥕",
-    name: "Vegetables",
+    name: "Vegetarian diet",
     macroSplit: "25P • 50C • 25F",
     dietVal: "indian vegetarian",
     goalVal: "maintain",
+    image: "./assets/recipe_oatmeal.jpg",
+    desc: "Wholesome plant-rich staples, lentils, whole grains, dairy, and seasonal garden produce.",
   },
   {
     id: "vegan",
-    emoji: "🍇",
-    name: "Berries / Plant",
+    name: "Plant-based diet",
     macroSplit: "20P • 60C • 20F",
     dietVal: "indian vegan",
     goalVal: "maintain",
+    image: "./assets/recipe_parfait.jpg",
+    desc: "Purely plant-derived meals rich in fiber, micronutrients, and clean anti-inflammatory fuel.",
   },
   {
-    id: "keto",
-    emoji: "🥑",
-    name: "Nuts / Keto",
-    macroSplit: "25P • 5C • 70F",
+    id: "low-carb",
+    name: "Low-carb diet",
+    macroSplit: "30P • 20C • 50F",
     dietVal: "balanced",
     goalVal: "weight_loss",
+    image: "./assets/recipe_salmon.jpg",
+    desc: "Healthy fats and reduced carbohydrates to stabilize blood sugar and accelerate fat loss.",
   },
   {
-    id: "hypertrophy",
-    emoji: "🥤",
-    name: "Beverages / Protein",
+    id: "high-protein",
+    name: "High-protein diet",
     macroSplit: "35P • 45C • 20F",
     dietVal: "balanced",
     goalVal: "muscle_gain",
+    image: "./assets/hero_food.jpg",
+    desc: "Higher protein targets for lean muscle preservation, satiety, and active metabolic support.",
   },
 ];
 
+// Zone 3: DietDoctor-style Guide Cards (like "Keto for beginners", "Low-carb diet", "High-protein diet")
 function DietaryArchetypeStrip({ selectedArchetype, onSelectArchetype }) {
   return (
     <section className="archetypes-section" aria-label="Dietary Frameworks">
-      <div className="archetypes-header">
-        <div className="archetypes-tag">Explore Diets</div>
-        <h2 className="archetypes-title">Select Your Dietary Framework</h2>
-      </div>
+      <div className="archetypes-inner">
+        <div className="archetypes-header">
+          <span className="archetypes-tag">Explore Nutrition Frameworks</span>
+          <h2 className="archetypes-title">Choose your dietary approach</h2>
+        </div>
 
-      <div className="archetypes-circle-grid">
-        {ARCHETYPES_LIST.map((arch) => {
-          const isActive = selectedArchetype === arch.id;
-          return (
-            <button
-              key={arch.id}
-              type="button"
-              className={`archetype-circle-btn ${isActive ? "active" : ""}`}
-              onClick={() => onSelectArchetype(arch)}
-              aria-pressed={isActive}
-            >
-              <div className="archetype-circle-icon">{arch.emoji}</div>
-              <span className="archetype-circle-name">{arch.name}</span>
-              <span className="archetype-circle-split">{arch.macroSplit}</span>
-            </button>
-          );
-        })}
+        <div className="archetypes-circle-grid">
+          {ARCHETYPES_LIST.map((arch) => {
+            const isActive = selectedArchetype === arch.id;
+            return (
+              <button
+                key={arch.id}
+                type="button"
+                className={`archetype-circle-btn ${isActive ? "active" : ""}`}
+                onClick={() => onSelectArchetype(arch)}
+                aria-pressed={isActive}
+              >
+                <div className="archetype-circle-icon">
+                  <img src={arch.image} alt={arch.name} loading="lazy" />
+                </div>
+                <div className="archetype-card-body">
+                  <span className="archetype-guide-badge">Guide</span>
+                  <span className="archetype-circle-name">{arch.name}</span>
+                  <span className="archetype-circle-split">{arch.macroSplit}</span>
+                  <p className="archetype-card-desc">{arch.desc}</p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
 }
 
-// Zone 4: Split About Section matching Screenshot 2
+// Zone 4: DietDoctor-style About Section with real photo cards
 function EvidenceSection() {
   return (
-    <section className="evidence-split-section" id="methodology" aria-label="About The Engine">
-      {/* Left Column: 2 Visual Image Cards */}
-      <div className="evidence-visual-col">
-        <div className="evidence-img-card tall">
-          <span className="evidence-card-emoji">👩‍🍳</span>
-          <h4 className="evidence-card-title">Fresh Meal Prep</h4>
-          <p className="evidence-card-desc">Step-by-step easy home cooking instructions</p>
+    <>
+      <section className="evidence-split-section" id="methodology" aria-label="About The Engine">
+        {/* Left Column: Photo cards */}
+        <div className="evidence-visual-col">
+          <div className="evidence-img-card tall">
+            <img src="./assets/meal_prep.jpg" alt="Woman preparing healthy Indian meal" loading="lazy" />
+            <div className="card-overlay" />
+            <div className="card-label">
+              <div className="evidence-card-title">Fresh Meal Prep</div>
+              <div className="evidence-card-desc">Step-by-step easy home cooking</div>
+            </div>
+          </div>
+          <div className="evidence-img-card card-alt">
+            <img src="./assets/hero_food.jpg" alt="Nutrient-dense meal spread" loading="lazy" />
+            <div className="card-overlay" />
+            <div className="card-label">
+              <div className="evidence-card-title">Nutrient-Dense</div>
+              <div className="evidence-card-desc">Whole foods rich in vitamins & minerals</div>
+            </div>
+          </div>
         </div>
-        <div className="evidence-img-card card-alt">
-          <span className="evidence-card-emoji">🥦</span>
-          <h4 className="evidence-card-title">Nutrient-Dense</h4>
-          <p className="evidence-card-desc">Whole foods rich in essential vitamins & minerals</p>
+
+        {/* Right Column */}
+        <div className="evidence-content-col">
+          <div className="evidence-tag">About The Platform</div>
+          <h2 className="evidence-title">Precision Nutrition & Delicious Recipes Delivered</h2>
+          <p className="evidence-lead">
+            We ease your everyday routine and make healthy eating delicious, affordable, and effortless. At Smart Nutrition, you can generate:
+          </p>
+
+          <ul className="evidence-checklist">
+            <li className="evidence-check-item">
+              <span className="evidence-check-icon">✓</span>
+              <span>Personalized Caloric Targets</span>
+            </li>
+            <li className="evidence-check-item">
+              <span className="evidence-check-icon">✓</span>
+              <span>Balanced Macronutrients</span>
+            </li>
+            <li className="evidence-check-item">
+              <span className="evidence-check-icon">✓</span>
+              <span>7-Day Weekly Meal Plans</span>
+            </li>
+            <li className="evidence-check-item">
+              <span className="evidence-check-icon">✓</span>
+              <span>Categorized Grocery Lists</span>
+            </li>
+            <li className="evidence-check-item">
+              <span className="evidence-check-icon">✓</span>
+              <span>Dynamic Hydration Goal</span>
+            </li>
+            <li className="evidence-check-item">
+              <span className="evidence-check-icon">✓</span>
+              <span>100% Free Public Utility</span>
+            </li>
+          </ul>
+
+          <p className="evidence-footnote">
+            Our algorithm balances energy expenditure equations (Mifflin-St Jeor) with macronutrient density to ensure sustainable, long-term health and peak vitality.
+          </p>
+        </div>
+      </section>
+
+      {/* Membership-style promo banner */}
+      <div className="evidence-promo-banner">
+        <div className="evidence-promo-card">
+          <div className="evidence-promo-content">
+            <div className="promo-kicker">Weekly Planner</div>
+            <h3>Wish someone else would plan dinner?</h3>
+            <p>
+              We’ve got you. Unlock personalized meal plans, complete recipe library with step-by-step cooking instructions, and categorized grocery lists that make healthy eating simple, enjoyable, and delicious.
+            </p>
+            <button
+              type="button"
+              className="btn-promo-cta"
+              onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
+            >
+              Generate my free plan
+            </button>
+          </div>
+          <div className="evidence-promo-photos">
+            <div className="photo-thumb">
+              <img src="./assets/recipe_oatmeal.jpg" alt="Oatmeal bowl with fresh figs" loading="lazy" />
+            </div>
+            <div className="photo-thumb">
+              <img src="./assets/recipe_salad.jpg" alt="Arugula and tangerine salad" loading="lazy" />
+            </div>
+            <div className="photo-thumb">
+              <img src="./assets/recipe_salmon.jpg" alt="Herb grilled salmon with vegetables" loading="lazy" />
+            </div>
+            <div className="photo-thumb">
+              <img src="./assets/recipe_parfait.jpg" alt="Berry yogurt parfait" loading="lazy" />
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Right Column: Text & Checklist */}
-      <div className="evidence-content-col">
-        <div className="evidence-tag">About The Platform</div>
-        <h2 className="evidence-title">Precision Nutrition & Delicious Recipes Delivered</h2>
-        <p className="evidence-lead">
-          We ease your everyday routine and make healthy eating delicious, affordable, and effortless. At Smart Nutrition, you can generate:
-        </p>
-
-        <ul className="evidence-checklist">
-          <li className="evidence-check-item">
-            <span className="evidence-check-icon">✓</span>
-            <span>Personalized Caloric Targets</span>
-          </li>
-          <li className="evidence-check-item">
-            <span className="evidence-check-icon">✓</span>
-            <span>Balanced Macronutrients</span>
-          </li>
-          <li className="evidence-check-item">
-            <span className="evidence-check-icon">✓</span>
-            <span>7-Day Weekly Meal Plans</span>
-          </li>
-          <li className="evidence-check-item">
-            <span className="evidence-check-icon">✓</span>
-            <span>Categorized Grocery Lists</span>
-          </li>
-          <li className="evidence-check-item">
-            <span className="evidence-check-icon">✓</span>
-            <span>Dynamic Hydration Goal</span>
-          </li>
-          <li className="evidence-check-item">
-            <span className="evidence-check-icon">✓</span>
-            <span>100% Free Public Utility</span>
-          </li>
-        </ul>
-
-        <p className="evidence-footnote">
-          Our algorithm balances energy expenditure equations (Mifflin-St Jeor) with macronutrient density to ensure sustainable, long-term health and peak vitality.
-        </p>
-      </div>
-    </section>
+    </>
   );
 }
 
 // Zone 5: 3-Step Process & 2 Split Promo Cards
 function StepsSection({ onStep1Click }) {
   return (
-    <section className="steps-workflow-section" id="how-it-works" aria-label="3-Step Workflow">
-      <p className="steps-intro-text">
-        We calculate your metabolic requirements with precision to deliver delicious daily dishes tailored to your body.
-      </p>
+    <section className="steps-workflow-section" id="how-it-works" aria-label="How it works">
+      <div className="steps-header">
+        <span className="section-eyebrow">How it works</span>
+        <h2 className="section-title">A personalized plan in three steps</h2>
+        <p className="steps-intro-text">
+          We calculate your metabolic requirements with precision, then translate them into meals you will actually look forward to.
+        </p>
+      </div>
 
       {/* 3 Step Cards */}
       <div className="steps-cards-row">
-        <div className="step-flow-card" onClick={onStep1Click} style={{ cursor: "pointer" }}>
-          <div className="step-icon-badge">🧬</div>
-          <h3 className="step-title-num"><span className="num">1.</span> Enter Biometrics</h3>
+        <div className="step-flow-card" onClick={onStep1Click}>
+          <span className="step-numeral">01</span>
+          <h3 className="step-title-num">Enter your details</h3>
           <p className="step-description-text">
-            Input your age, weight, height, activity level, and dietary framework in the form below.
+            Add your age, height, weight, activity level, and dietary preferences to the form below.
           </p>
         </div>
 
-        <div className="step-flow-card" onClick={onStep1Click} style={{ cursor: "pointer" }}>
-          <div className="step-icon-badge">⚙️</div>
-          <h3 className="step-title-num"><span className="num">2.</span> AI Computes Plan</h3>
+        <div className="step-flow-card" onClick={onStep1Click}>
+          <span className="step-numeral">02</span>
+          <h3 className="step-title-num">We build your targets</h3>
           <p className="step-description-text">
-            Our algorithm balances exact calories, proteins, carbohydrates, and healthy fats.
+            Your plan balances calories, protein, carbohydrates, and healthy fats around your goal.
           </p>
         </div>
 
-        <div className="step-flow-card" onClick={onStep1Click} style={{ cursor: "pointer" }}>
-          <div className="step-icon-badge">📊</div>
-          <h3 className="step-title-num"><span className="num">3.</span> Follow & Enjoy</h3>
+        <div className="step-flow-card" onClick={onStep1Click}>
+          <span className="step-numeral">03</span>
+          <h3 className="step-title-num">Cook, eat, and track</h3>
           <p className="step-description-text">
-            Follow your delicious meal routine, cook simple recipes, and track your daily hydration.
+            Follow your daily meals, open step-by-step recipes, and log hydration as you go.
           </p>
         </div>
       </div>
@@ -1313,27 +1395,24 @@ function StepsSection({ onStep1Click }) {
         <div className="single-promo-content">
           <span className="promo-badge-tag">7-Day Variety</span>
           <h3 className="promo-banner-title">Weekly Meal Planner</h3>
-          <p className="promo-banner-desc">
-            Get varied daily recipes from Monday to Sunday matching your exact caloric target.
-          </p>
+          <p className="promo-banner-desc">7 days of varied, nutritionally balanced meal plans tailored to your unique body metrics.</p>
         </div>
-        <button type="button" className="promo-cta-btn" onClick={onStep1Click}>
-          Generate 7-Day Plan →
-        </button>
       </div>
     </section>
   );
 }
 
-// Zone 6: Tabbed Showcase Grid
+// Zone 6: DietDoctor-style Recipe Cards with real photos
 const SHOWCASE_PRODUCTS = [
   {
     id: "prod-1",
-    category: ["all", "fruit"],
-    title: "Fresh Figs Oatmeal Bowl",
-    emoji: "🥣",
+    category: ["all", "breakfast"],
+    title: "Fig & Berry Oatmeal Bowl",
+    img: "./assets/recipe_oatmeal.jpg",
+    label: "Breakfast",
     calories: "380 kcal",
-    price: "Easy • 10m",
+    time: "10 min",
+    difficulty: "Easy",
     recipe: {
       name: "Fresh Figs & Cinnamon Spiced Oats",
       approx_calories: 380,
@@ -1350,11 +1429,13 @@ const SHOWCASE_PRODUCTS = [
   },
   {
     id: "prod-2",
-    category: ["all", "veg"],
+    category: ["all", "mains"],
     title: "Lime & Herb Grilled Salmon",
-    emoji: "🥗",
+    img: "./assets/recipe_salmon.jpg",
+    label: "Lunch",
     calories: "520 kcal",
-    price: "Medium • 15m",
+    time: "15 min",
+    difficulty: "Medium",
     recipe: {
       name: "Lime & Herb Grilled Salmon Bowl",
       approx_calories: 520,
@@ -1371,11 +1452,13 @@ const SHOWCASE_PRODUCTS = [
   },
   {
     id: "prod-3",
-    category: ["all", "berries"],
+    category: ["all", "snacks"],
     title: "Berry Greek Yogurt Parfait",
-    emoji: "🫐",
+    img: "./assets/recipe_parfait.jpg",
+    label: "Snack",
     calories: "320 kcal",
-    price: "Easy • 5m",
+    time: "5 min",
+    difficulty: "Easy",
     recipe: {
       name: "Mixed Berry Greek Yogurt Parfait",
       approx_calories: 320,
@@ -1392,11 +1475,13 @@ const SHOWCASE_PRODUCTS = [
   },
   {
     id: "prod-4",
-    category: ["all", "nuts"],
-    title: "Tangerine & Walnut Salad",
-    emoji: "🍊",
+    category: ["all", "salads"],
+    title: "Tangerine Walnut Arugula Salad",
+    img: "./assets/recipe_salad.jpg",
+    label: "Dinner",
     calories: "410 kcal",
-    price: "Easy • 8m",
+    time: "8 min",
+    difficulty: "Easy",
     recipe: {
       name: "Tangerine, Walnut & Arugula Salad",
       approx_calories: 410,
@@ -1414,99 +1499,140 @@ const SHOWCASE_PRODUCTS = [
 ];
 
 function ProtocolMatrixShowcase({ onSelectRecipe }) {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = React.useState("all");
 
   const filtered = SHOWCASE_PRODUCTS.filter((item) =>
     activeCategory === "all" ? true : item.category.includes(activeCategory)
   );
 
   return (
-    <section className="showcase-matrix-section" id="macro-matrix" aria-label="Curated Protocols">
+    <section className="showcase-matrix-section" id="macro-matrix" aria-label="Popular Recipes">
       <div className="showcase-header">
-        <div className="showcase-subtitle-tag">Featured Recipes</div>
-        <h2 className="showcase-main-title">Right Off the Kitchen</h2>
+        <div className="showcase-subtitle-tag">From the recipe library</div>
+        <h2 className="showcase-main-title">Recipes worth cooking tonight</h2>
         <p className="showcase-desc">
-          Explore evidence-based balanced meals formulated for peak energy, muscle recovery, and metabolic health.
+          Balanced, everyday meals from the same library used to build your plan — with full ingredients and methods.
         </p>
       </div>
 
-      {/* Tabs */}
-      <div className="showcase-tabs-row" role="tablist">
-        <button
-          type="button"
-          className={`showcase-tab-btn ${activeCategory === "all" ? "active" : ""}`}
-          onClick={() => setActiveCategory("all")}
-        >
-          All Meals
-        </button>
-        <button
-          type="button"
-          className={`showcase-tab-btn ${activeCategory === "fruit" ? "active" : ""}`}
-          onClick={() => setActiveCategory("fruit")}
-        >
-          Fruit / Breakfast
-        </button>
-        <button
-          type="button"
-          className={`showcase-tab-btn ${activeCategory === "veg" ? "active" : ""}`}
-          onClick={() => setActiveCategory("veg")}
-        >
-          Vegetables / Lunch
-        </button>
-        <button
-          type="button"
-          className={`showcase-tab-btn ${activeCategory === "berries" ? "active" : ""}`}
-          onClick={() => setActiveCategory("berries")}
-        >
-          Berries / Snacks
-        </button>
-        <button
-          type="button"
-          className={`showcase-tab-btn ${activeCategory === "nuts" ? "active" : ""}`}
-          onClick={() => setActiveCategory("nuts")}
-        >
-          Nuts / Dinner
-        </button>
+      {/* Tabs — underline style */}
+      <div className="showcase-tabs-row" role="tablist" aria-label="Recipe categories">
+        {[
+          { id: "all", label: "All recipes" },
+          { id: "breakfast", label: "Breakfast" },
+          { id: "mains", label: "Mains" },
+          { id: "snacks", label: "Snacks" },
+          { id: "salads", label: "Salads" },
+        ].map(t => (
+          <button
+            key={t.id}
+            type="button"
+            className={`showcase-tab-btn ${activeCategory === t.id ? "active" : ""}`}
+            onClick={() => setActiveCategory(t.id)}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
 
-      {/* 4 Clean Product Cards */}
+      {/* Recipe Cards with real photos */}
       <div className="showcase-cards-grid">
         {filtered.map((item) => (
-          <div className="showcase-item-card" key={item.id}>
-            <div className="showcase-item-visual">{item.emoji}</div>
-            <h3 className="showcase-item-name">{item.title}</h3>
-            <div className="showcase-item-meta">{item.calories} • {item.price}</div>
-            <button
-              type="button"
-              className="showcase-item-btn"
-              onClick={() => onSelectRecipe(item.recipe)}
-            >
-              View Recipe
-            </button>
+          <div className="showcase-item-card" key={item.id} onClick={() => onSelectRecipe(item.recipe)}>
+            <div className="showcase-item-visual">
+              <img src={item.img} alt={item.title} loading="lazy" />
+              <span className="recipe-cal-badge">{item.calories}</span>
+            </div>
+            <div className="showcase-card-body">
+              <div className="recipe-rating-row">
+                <span className="recipe-rating-num">{item.label}</span>
+              </div>
+              <h3 className="showcase-item-name">{item.title}</h3>
+              <div className="showcase-item-meta">
+                <span>{item.time}</span>
+                <span className="meta-dot" />
+                <span>{item.difficulty}</span>
+              </div>
+              <button
+                type="button"
+                className="showcase-item-btn"
+                onClick={(e) => { e.stopPropagation(); onSelectRecipe(item.recipe); }}
+              >
+                View recipe
+              </button>
+            </div>
           </div>
         ))}
+      </div>
+
+      <div className="check-all-recipes-wrap">
+        <button
+          type="button"
+          className="btn-check-all-recipes"
+          onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
+        >
+          Build a plan with these recipes
+        </button>
       </div>
     </section>
   );
 }
 
-// Clean & Minimal Footer matching Reference Site
+// Institutional footer with columns (DietDoctor-style)
 function InstitutionalFooter({ onNavigateSection }) {
   return (
     <footer className="institutional-footer" id="footer-trust" aria-label="Footer">
-      <div className="footer-brand-title">
-        <span>🥗 Smart Nutrition</span>
-      </div>
+      <div className="footer-inner">
+        <div className="footer-top-grid">
+          <div className="footer-brand-col">
+            <div className="footer-brand-title">
+              <Icon.leaf className="footer-brand-mark" />
+              <span className="footer-brand-name">Smart<span>Nutrition</span></span>
+            </div>
+            <p>Your free personal nutrition engine. Evidence-based meal plans, macro targets, and grocery lists — all in one place.</p>
+          </div>
 
-      <nav className="footer-simple-links" aria-label="Footer Navigation">
-        <button type="button" onClick={() => onNavigateSection("hero")}>Home</button>
-        <button type="button" onClick={() => onNavigateSection("methodology")}>About</button>
-        <button type="button" onClick={() => onNavigateSection("macro-matrix")}>Recipes</button>
-        <button type="button" onClick={() => onNavigateSection("protocol-engine")}>Create Plan</button>
-      </nav>
+          <div>
+            <div className="footer-col-title">Platform</div>
+            <div className="footer-col-links">
+              <button type="button" onClick={() => onNavigateSection("hero")}>Home</button>
+              <button type="button" onClick={() => onNavigateSection("methodology")}>About Us</button>
+              <button type="button" onClick={() => onNavigateSection("macro-matrix")}>Recipes</button>
+              <button type="button" onClick={() => onNavigateSection("how-it-works")}>How It Works</button>
+            </div>
+          </div>
 
-      <div className="footer-copyright">
-        © 2026 Smart Nutrition. All rights reserved.
+          <div>
+            <div className="footer-col-title">Nutrition Plans</div>
+            <div className="footer-col-links">
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>1-Day Plan</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>7-Day Weekly Plan</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>Grocery Lists</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>Hydration Tracker</button>
+            </div>
+          </div>
+
+          <div>
+            <div className="footer-col-title">Diet Types</div>
+            <div className="footer-col-links">
+              <button type="button" onClick={() => onNavigateSection("hero")}>Indian Vegetarian</button>
+              <button type="button" onClick={() => onNavigateSection("hero")}>Vegan</button>
+              <button type="button" onClick={() => onNavigateSection("hero")}>Non-Vegetarian</button>
+              <button type="button" onClick={() => onNavigateSection("hero")}>Balanced</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom-row">
+          <div className="footer-copyright">
+            © 2026 Smart Nutrition. All rights reserved.
+          </div>
+          <div className="footer-links-row">
+            <button type="button" onClick={() => onNavigateSection("hero")}>Privacy Policy</button>
+            <button type="button" onClick={() => onNavigateSection("hero")}>Terms of Service</button>
+            <button type="button" onClick={() => onNavigateSection("hero")}>Contact</button>
+          </div>
+        </div>
       </div>
     </footer>
   );
@@ -1546,31 +1672,20 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
   const cPct = Math.min(100, Math.round((eatenC / targetC) * 100));
   const fPct = Math.min(100, Math.round((eatenF / targetF) * 100));
 
-  const slotColors = ["#f59e0b", "#84cc16", "#818cf8", "#f97316"];
-  const slotLabels = ["🌅 Breakfast", "☀️ Lunch", "🌙 Dinner", "🍎 Snack"];
+  const slotLabels = ["Breakfast", "Lunch", "Dinner", "Snack"];
 
   return (
     <div className="calorie-tracker-card">
       <div className="calorie-tracker-header">
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: "1.4rem" }}>🔥</span>
-          <div>
-            <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 700 }}>Daily Calorie & Macro Progress</h3>
-            <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--text-muted)" }}>Tap a meal to mark it eaten and update live macro targets</p>
-          </div>
+        <div className="calorie-tracker-heading">
+          <h3>Today&apos;s progress</h3>
+          <p>Select a meal to mark it eaten and update your totals.</p>
         </div>
-        <span style={{
-          background: pct >= 100 ? "#10b981" : "var(--accent-green-light)",
-          color: pct >= 100 ? "#fff" : "var(--accent-green)",
-          padding: "3px 12px", borderRadius: 12, fontWeight: 700, fontSize: "0.8rem"
-        }}>{pct}% eaten</span>
+        <span className={`calorie-pct-badge ${pct >= 100 ? "complete" : ""}`}>{pct}% eaten</span>
       </div>
 
       <div className="calorie-progress-bar-track">
-        <div
-          className="calorie-progress-bar-fill"
-          style={{ width: `${pct}%`, background: pct >= 100 ? "#10b981" : "var(--accent-green)" }}
-        />
+        <div className="calorie-progress-bar-fill" style={{ width: `${pct}%` }} />
       </div>
 
       <div className="calorie-stats-row">
@@ -1578,9 +1693,9 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
           <span className="calorie-stat-label">Target</span>
           <span className="calorie-stat-val">{target} kcal</span>
         </div>
-        <div className="calorie-stat-box" style={{ color: "var(--accent-green)" }}>
+        <div className="calorie-stat-box">
           <span className="calorie-stat-label">Eaten</span>
-          <span className="calorie-stat-val" style={{ color: "var(--accent-green)" }}>{eaten} kcal</span>
+          <span className="calorie-stat-val positive">{eaten} kcal</span>
         </div>
         <div className="calorie-stat-box">
           <span className="calorie-stat-label">Remaining</span>
@@ -1588,11 +1703,11 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
         </div>
       </div>
 
-      {/* Target vs Eaten Macro Progress Bars */}
+      {/* Target vs eaten macro progress */}
       <div className="macro-progress-tracker-grid">
         <div className="macro-prog-box">
           <div className="macro-prog-top">
-            <span className="macro-prog-label">🍗 Protein</span>
+            <span className="macro-prog-label">Protein</span>
             <span className="macro-prog-nums">{eatenP} / {targetP}g ({pPct}%)</span>
           </div>
           <div className="macro-prog-track">
@@ -1602,7 +1717,7 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
 
         <div className="macro-prog-box">
           <div className="macro-prog-top">
-            <span className="macro-prog-label">🌾 Carbs</span>
+            <span className="macro-prog-label">Carbs</span>
             <span className="macro-prog-nums">{eatenC} / {targetC}g ({cPct}%)</span>
           </div>
           <div className="macro-prog-track">
@@ -1612,7 +1727,7 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
 
         <div className="macro-prog-box">
           <div className="macro-prog-top">
-            <span className="macro-prog-label">🥑 Healthy Fats</span>
+            <span className="macro-prog-label">Fats</span>
             <span className="macro-prog-nums">{eatenF} / {targetF}g ({fPct}%)</span>
           </div>
           <div className="macro-prog-track">
@@ -1630,12 +1745,12 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
               type="button"
               className={`calorie-meal-btn ${isEaten ? "eaten" : ""}`}
               onClick={() => onToggleMeal(meal.name)}
-              style={{ borderColor: slotColors[idx] || "var(--accent-green)" }}
+              aria-pressed={isEaten}
             >
-              <span style={{ fontSize: "0.72rem", color: slotColors[idx], fontWeight: 700 }}>{slotLabels[idx] || `Meal ${idx+1}`}</span>
-              <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>{(meal.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "")}</span>
-              <span style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>{meal.approx_calories} kcal</span>
-              {isEaten && <span style={{ fontSize: "1rem" }}>✅</span>}
+              <span className="calorie-meal-slot">{slotLabels[idx] || `Meal ${idx + 1}`}</span>
+              <span className="calorie-meal-name">{(meal.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "")}</span>
+              <span className="calorie-meal-cal">{meal.approx_calories} kcal</span>
+              {isEaten && <span className="calorie-meal-check" />}
             </button>
           );
         })}
@@ -1646,23 +1761,6 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal }) {
 
 // Main Root Application
 function App() {
-  const [theme, setTheme] = useState(() => {
-    try {
-      return localStorage.getItem("smart_nutrition_theme") || "dark";
-    } catch {
-      return "dark";
-    }
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.classList.remove("theme-dark", "theme-light");
-    document.documentElement.classList.add(`theme-${theme}`);
-    if (document.body) {
-      document.body.className = `theme-${theme}`;
-    }
-  }, [theme]);
-
   const emptyForm = {
     name: "",
     age: "",
@@ -1709,43 +1807,28 @@ function App() {
     }
   };
 
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    try { localStorage.setItem("smart_nutrition_theme", next); } catch (e) { console.error(e); }
-  };
-
   const toggleUnitSystem = () => {
     setUnitSystem((prev) => {
       const next = prev === "metric" ? "imperial" : "metric";
-      // Convert form values when switching
       setForm((f) => {
         if (prev === "metric" && next === "imperial") {
-          // kg → lbs, cm → inches (split into ft + in)
           const lbs = f.weight_kg ? Math.round(parseFloat(f.weight_kg) * 2.20462) : "";
-          const totalIn = f.height_cm ? parseFloat(f.height_cm) / 2.54 : 0;
-          const ft = totalIn ? Math.floor(totalIn / 12) : "";
-          const inches = totalIn ? Math.round(totalIn % 12) : "";
-          return { ...f, weight_kg: lbs, height_cm: totalIn ? Math.round(totalIn) : "", _ft: ft, _in: inches };
-        } else {
-          // lbs → kg, inches → cm
-          const kg = f.weight_kg ? (parseFloat(f.weight_kg) / 2.20462).toFixed(1) : "";
-          const totalIn = f._ft ? parseFloat(f._ft) * 12 + parseFloat(f._in || 0) : f.height_cm;
-          const cm = totalIn ? Math.round(totalIn * 2.54) : "";
-          return { ...f, weight_kg: kg, height_cm: cm, _ft: undefined, _in: undefined };
+          const inches = f.height_cm ? Math.round(parseFloat(f.height_cm) / 2.54) : "";
+          return { ...f, weight_kg: lbs, height_cm: inches, _ft: undefined, _in: undefined };
         }
+
+        const kg = f.weight_kg ? (parseFloat(f.weight_kg) / 2.20462).toFixed(1) : "";
+        const cm = f.height_cm ? Math.round(parseFloat(f.height_cm) * 2.54) : "";
+        return { ...f, weight_kg: kg, height_cm: cm, _ft: undefined, _in: undefined };
       });
       return next;
     });
   };
 
-  // For imperial: rebuild height_cm from ft/in or direct inches before submitting
+  // Imperial values are stored in inches and pounds; convert once before submitting.
   const resolveMetricForm = (activeForm) => {
     if (unitSystem === "metric") return activeForm;
-    const totalIn = activeForm._ft
-      ? (parseFloat(activeForm._ft || 0) * 12) + parseFloat(activeForm._in || 0)
-      : parseFloat(activeForm.height_cm || 0);
-    const convertedCm = totalIn > 0 ? Math.round(totalIn * 2.54) : activeForm.height_cm;
+    const convertedCm = activeForm.height_cm ? Math.round(parseFloat(activeForm.height_cm) * 2.54) : activeForm.height_cm;
     const convertedKg = activeForm.weight_kg ? (parseFloat(activeForm.weight_kg) / 2.20462).toFixed(1) : activeForm.weight_kg;
     return { ...activeForm, height_cm: convertedCm, weight_kg: convertedKg };
   };
@@ -1776,7 +1859,7 @@ function App() {
     if (autoGenerate) {
       handleGeneratePlan("1day", demo);
     } else {
-      setStatusMessage("Demo profile loaded. Click 'Generate 1-Day Plan' or 'Generate 7-Day Plan' below.");
+      setStatusMessage("Demo profile loaded. Choose a 1-day or 7-day plan below.");
     }
   };
 
@@ -1827,8 +1910,7 @@ function App() {
     if (!h || !w || h <= 0 || w <= 0) return null;
 
     if (unitSystem === "imperial") {
-      const totalIn = form._ft ? (parseFloat(form._ft || 0) * 12 + parseFloat(form._in || 0)) : h;
-      h = totalIn * 2.54;
+      h = h * 2.54;
       w = w / 2.20462;
     }
 
@@ -1868,7 +1950,7 @@ function App() {
     if (!activeForm.height_cm) missingFields.push("Height");
     if (!activeForm.weight_kg) missingFields.push("Weight");
     if (missingFields.length > 0) {
-      setStatusMessage(`⚠️ Please fill in: ${missingFields.join(", ")} — before generating your meal plan.`);
+      setStatusMessage(`Please fill in ${missingFields.join(", ")} before generating your meal plan.`);
       return;
     }
 
@@ -1928,7 +2010,7 @@ function App() {
       } catch (e) {
         console.error(e);
       }
-      setStatusMessage(type === "7day" ? "🎉 Your 7-Day Weekly Nutrition Plan is ready!" : "🎉 Your personalized daily nutrition plan is ready!");
+      setStatusMessage(type === "7day" ? "Your 7-day nutrition plan is ready." : "Your personalized daily nutrition plan is ready.");
       setTimeout(() => {
         const resEl = document.getElementById("results-dashboard");
         if (resEl) {
@@ -1995,51 +2077,37 @@ function App() {
           return { ...prev, meals: newMeals };
         }
       });
-      setStatusMessage(`🔄 Swapped meal to: ${newMeal.name}`);
+      setStatusMessage(`Meal swapped: ${newMeal.name}`);
     }
   };
 
   return (
-    <div className={`app theme-${theme}`}>
+    <div className="app">
       <div className="container">
-        {/* Clean Topbar */}
-        <div className="clinical-topbar">
-          <div className="topbar-inner">
-            <div className="topbar-left">
-              <span>📞 +1 (234) 567 89 00</span>
-              <span>📍 Free Public Nutrition Engine</span>
-            </div>
-            <div className="topbar-right">
-              <span className="topbar-badge">⚡ 100% Free Public Utility</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Clean Global Header */}
-        <header className="global-header" style={{ position: "relative" }}>
+        {/* Global Header */}
+        <header className="global-header">
           <div className="header-inner">
-            <div
+            <button
               className="brand-logo-group"
+              type="button"
+              aria-label="Smart Nutrition home"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              <div className="brand-icon-wrapper">🥗</div>
-              <div className="brand-title">
+              <Icon.leaf className="brand-mark" />
+              <span className="brand-title">
                 Smart<span>Nutrition</span>
-              </div>
-            </div>
+              </span>
+            </button>
 
             <ul className="nav-links-list">
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("methodology"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>About Us</button></li>
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Protocol Engine</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("methodology"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>About</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Meal plans</button></li>
               <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("macro-matrix"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Recipes</button></li>
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("how-it-works"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Weekly Plan</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("how-it-works"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>How it works</button></li>
             </ul>
 
             <div className="nav-action-matrix">
-              <button className="theme-toggle-btn" type="button" onClick={toggleTheme} title="Toggle Light/Dark Theme">
-                {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
-              </button>
-              <button type="button" className="btn-primary-blueprint" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Create Plan →</button>
+              <button type="button" className="btn-primary-blueprint" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Create my plan</button>
 
               {/* Hamburger for mobile */}
               <button
@@ -2057,18 +2125,18 @@ function App() {
           {/* Mobile dropdown */}
           <nav className={`mobile-nav-dropdown ${navOpen ? "open" : ""}`} aria-label="Mobile navigation">
             {[
-              { label: "About Us", id: "methodology" },
-              { label: "Protocol Engine", id: "protocol-engine" },
+              { label: "About", id: "methodology" },
+              { label: "Meal plans", id: "protocol-engine" },
               { label: "Recipes", id: "macro-matrix" },
-              { label: "Weekly Plan", id: "how-it-works" },
-              { label: "Create Plan", id: "protocol-engine" },
+              { label: "How it works", id: "how-it-works" },
+              { label: "Create my plan", id: "protocol-engine" },
             ].map(({ label, id }) => (
               <button key={label} type="button" onClick={() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth" }); setNavOpen(false); }}>{label}</button>
             ))}
           </nav>
         </header>
 
-        {/* ZONE 2: Hero Section matching Screenshot 1 */}
+        {/* Hero */}
         <HeroSection
           onStartAssessment={() => {
             const el = document.getElementById("protocol-engine");
@@ -2111,34 +2179,34 @@ function App() {
           onSelectRecipe={(recipe) => setPreviewRecipe(recipe)}
         />
 
-        {/* ZONE 7: Interactive Nutrition Protocol Generator Form & Results */}
+        {/* ZONE 7: Generator Form Section */}
         <section id="protocol-engine" className="generator-section">
+          <div className="generator-section-inner">
           {/* Header Bar with Title and Quick Actions */}
           <div className="generator-header-bar">
             <div className="generator-title-group">
-              <span className="generator-eyebrow">Personalized Nutrition Engine</span>
-              <h2 className="generator-main-title">Calculate Your Custom Diet Plan</h2>
+              <span className="generator-eyebrow">Your plan</span>
+              <h2 className="generator-main-title">Calculate your nutrition plan</h2>
               <p className="generator-subtitle">
-                Enter your biometric parameters below to dynamically compute your BMR, TDEE, macronutrient distribution, and recipes.
+                Add a few details and we will calculate your energy needs, macronutrient targets, and a day of meals built around them.
               </p>
             </div>
 
             <div className="generator-actions">
               <button className="btn-demo-quick" type="button" onClick={() => loadDemoProfile(true)}>
-                <span>⚡</span> Fill & Generate Demo
+                Use demo profile
               </button>
               <button className="btn-reset-quick" type="button" onClick={resetForm}>
-                <span>↺</span> Reset
+                Reset
               </button>
               <button
                 id="history-drawer-toggle"
                 className="btn-demo-quick"
                 type="button"
                 onClick={() => setShowHistory(!showHistory)}
-                style={{ borderColor: "rgba(56, 189, 248, 0.35)", color: "#38bdf8", background: "rgba(56, 189, 248, 0.12)" }}
                 title="View saved nutrition plans"
               >
-                <span>📜</span> History {history.length > 0 ? `(${history.length})` : ""}
+                Saved plans{history.length > 0 ? ` (${history.length})` : ""}
               </button>
             </div>
           </div>
@@ -2146,7 +2214,7 @@ function App() {
           {/* Live Status Banner */}
           {statusMessage && (
             <div className="status-banner" aria-live="polite">
-              <span>💡</span> {statusMessage}
+              {statusMessage}
             </div>
           )}
 
@@ -2154,11 +2222,11 @@ function App() {
           {showHistory && (
             <div className="history-drawer">
               <div className="history-header">
-                <h3>📜 Saved Nutrition Plans</h3>
-                <button className="close-btn" type="button" onClick={() => setShowHistory(false)}>✕</button>
+                <h3>Saved plans</h3>
+                <button className="close-btn" type="button" onClick={() => setShowHistory(false)} aria-label="Close saved plans">×</button>
               </div>
               {history.length === 0 ? (
-                <p className="no-history">No saved plans yet. Generate your first plan!</p>
+                <p className="no-history">No saved plans yet. Generate your first plan to see it here.</p>
               ) : (
                 <div className="history-list">
                   {history.map((h, i) => (
@@ -2173,7 +2241,7 @@ function App() {
                     >
                       <div>
                         <strong>{h.user_id}</strong>
-                        <span className="history-date">{h.is_weekly ? "📅 7-Day Plan" : "🍽️ 1-Day Plan"} • {h.date}</span>
+                        <span className="history-date">{h.is_weekly ? "7-day plan" : "1-day plan"} · {h.date}</span>
                       </div>
                       <span className="history-cal">{h.target_calories} kcal</span>
                     </button>
@@ -2192,125 +2260,132 @@ function App() {
             }}
           >
             <div className="field">
-              <label>Full Name</label>
+              <label htmlFor="profile-name">Full name</label>
               <input
+                id="profile-name"
                 name="name"
-                placeholder="Full Name (e.g. Aarav Sharma)"
+                placeholder="e.g. Aarav Sharma"
                 value={form.name}
                 onChange={handleChange}
+                autoComplete="name"
                 required
               />
             </div>
 
             <div className="field-row">
               <div className="field">
-                <label>Age</label>
+                <label htmlFor="profile-age">Age</label>
                 <input
+                  id="profile-age"
                   name="age"
                   type="number"
                   min={1}
                   max={120}
-                  placeholder="Age"
+                  placeholder="Years"
                   value={form.age}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="field">
-                <label>Sex</label>
-                <select name="sex" value={form.sex} onChange={handleChange}>
+                <label htmlFor="profile-sex">Sex</label>
+                <select id="profile-sex" name="sex" value={form.sex} onChange={handleChange}>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
               </div>
               <div className="field">
-                <label>Activity Level</label>
-                <select name="activity" value={form.activity} onChange={handleChange}>
-                  <option value="low">Low (Sedentary / Desk Job)</option>
-                  <option value="medium">Moderate (3-4 workouts/wk)</option>
-                  <option value="high">High (Athletic / Daily Heavy)</option>
+                <label htmlFor="profile-activity">Activity level</label>
+                <select id="profile-activity" name="activity" value={form.activity} onChange={handleChange}>
+                  <option value="low">Low — mostly seated</option>
+                  <option value="medium">Moderate — 3–4 workouts a week</option>
+                  <option value="high">High — daily training or physical work</option>
                 </select>
               </div>
             </div>
 
             <div className="field-row">
               <div className="field">
-                <label style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  Height ({unitSystem === "metric" ? "cm" : "inches"})
-                  <button
-                    type="button"
-                    onClick={toggleUnitSystem}
-                    style={{ marginLeft: "auto", fontSize: "0.72rem", padding: "2px 10px", borderRadius: "12px", background: "var(--accent-green-light)", color: "var(--accent-green)", border: "none", cursor: "pointer", fontWeight: 700 }}
-                  >
-                    Switch to {unitSystem === "metric" ? "Imperial (°F/lbs)" : "Metric (cm/kg)"}
+                <div className="field-label-row">
+                  <label htmlFor="profile-height">Height ({unitSystem === "metric" ? "cm" : "in"})</label>
+                  <button type="button" className="unit-toggle" onClick={toggleUnitSystem}>
+                    Use {unitSystem === "metric" ? "imperial" : "metric"}
                   </button>
-                </label>
+                </div>
                 <input
+                  id="profile-height"
                   name="height_cm"
                   type="number"
-                  min={50}
-                  max={250}
-                  placeholder={unitSystem === "metric" ? "Height in cm" : "Total inches (e.g. 70)"}
+                  min={unitSystem === "metric" ? 50 : 20}
+                  max={unitSystem === "metric" ? 250 : 98}
+                  placeholder={unitSystem === "metric" ? "Height in cm" : "Total inches"}
                   value={form.height_cm}
                   onChange={handleChange}
                   required
                 />
+                <span className="field-hint">
+                  {unitSystem === "metric" ? "Centimetres" : "Total inches, e.g. 70"}
+                </span>
               </div>
               <div className="field">
-                <label>Weight ({unitSystem === "metric" ? "kg" : "lbs"})</label>
+                <label htmlFor="profile-weight">Weight ({unitSystem === "metric" ? "kg" : "lb"})</label>
                 <input
+                  id="profile-weight"
                   name="weight_kg"
                   type="number"
-                  min={20}
-                  max={600}
-                  placeholder={unitSystem === "metric" ? "Weight in kg" : "Weight in lbs"}
+                  min={unitSystem === "metric" ? 20 : 44}
+                  max={unitSystem === "metric" ? 600 : 1300}
+                  placeholder={unitSystem === "metric" ? "Weight in kg" : "Weight in pounds"}
                   value={form.weight_kg}
                   onChange={handleChange}
                   required
                 />
+                <span className="field-hint">
+                  {unitSystem === "metric" ? "Kilograms" : "Pounds"}
+                </span>
               </div>
               <div className="field">
-                <label>Fitness Goal</label>
-                <select name="goal" value={form.goal} onChange={handleChange}>
-                  <option value="weight_loss">🔥 Weight Loss (Caloric Deficit)</option>
-                  <option value="muscle_gain">💪 Muscle Gain (Lean Surplus)</option>
-                  <option value="maintain">⚖️ Weight Maintenance</option>
+                <label htmlFor="profile-goal">Fitness goal</label>
+                <select id="profile-goal" name="goal" value={form.goal} onChange={handleChange}>
+                  <option value="weight_loss">Weight loss — calorie deficit</option>
+                  <option value="muscle_gain">Muscle gain — lean surplus</option>
+                  <option value="maintain">Maintain weight</option>
                 </select>
               </div>
             </div>
 
-            {/* Live Health Metrics Preview Bar with Real-Time Speedometer Gauge */}
+            {/* Live biometric estimate */}
             {liveMetrics && (
-              <div style={{ margin: "16px 0 20px 0" }}>
-                <BmiGaugeVisualizer
-                  bmi={liveMetrics.bmi}
-                  category={liveMetrics.category}
-                  catColor={liveMetrics.catColor}
-                  tdee={liveMetrics.tdee}
-                  waterLiters={liveMetrics.waterLiters}
-                />
-              </div>
+              <BmiGaugeVisualizer
+                bmi={liveMetrics.bmi}
+                category={liveMetrics.category}
+                catColor={liveMetrics.catColor}
+                tdee={liveMetrics.tdee}
+                waterLiters={liveMetrics.waterLiters}
+              />
             )}
 
-            <div className="field-row">
-              <div className="field flex-2">
-                <label>Diet Preference</label>
-                <select name="diet" value={form.diet} onChange={handleChange}>
-                  <option value="indian vegetarian">Indian Vegetarian</option>
-                  <option value="indian vegan">Indian Vegan (Dairy-Free)</option>
+            <div className="field-row fields-2">
+              <div className="field">
+                <label htmlFor="profile-diet">Diet preference</label>
+                <select id="profile-diet" name="diet" value={form.diet} onChange={handleChange}>
+                  <option value="indian vegetarian">Indian vegetarian</option>
+                  <option value="indian vegan">Indian vegan (dairy-free)</option>
                   <option value="indian eggetarian">Eggetarian</option>
-                  <option value="indian non-vegetarian">Indian Non-Vegetarian</option>
-                  <option value="balanced">Balanced (Global Veg + Non-Veg)</option>
+                  <option value="indian non-vegetarian">Indian non-vegetarian</option>
+                  <option value="balanced">Balanced (vegetarian and non-vegetarian)</option>
                 </select>
               </div>
-              <div className="field flex-2">
-                <label>Allergies & Exclusions</label>
+              <div className="field">
+                <label htmlFor="profile-allergies">Allergies and exclusions</label>
                 <input
+                  id="profile-allergies"
                   name="allergies"
-                  placeholder="Allergies (e.g. milk, peanuts, shellfish)"
+                  placeholder="e.g. milk, peanuts, shellfish"
                   value={form.allergies}
                   onChange={handleChange}
                 />
+                <span className="field-hint">Separate multiple items with commas.</span>
               </div>
             </div>
 
@@ -2324,10 +2399,10 @@ function App() {
                 {loading && generatingType === "1day" ? (
                   <>
                     <span className="spinner"></span>
-                    <span>Generating Daily Plan...</span>
+                    <span>Generating daily plan…</span>
                   </>
                 ) : (
-                  "Generate 1-Day Plan ✨"
+                  "Generate 1-day plan"
                 )}
               </button>
 
@@ -2340,10 +2415,10 @@ function App() {
                 {loading && generatingType === "7day" ? (
                   <>
                     <span className="spinner"></span>
-                    <span>Building 7-Day Plan...</span>
+                    <span>Building weekly plan…</span>
                   </>
                 ) : (
-                  "Generate 7-Day Weekly Plan 📅"
+                  "Generate 7-day plan"
                 )}
               </button>
             </div>
@@ -2368,59 +2443,45 @@ function App() {
             <MealPlanDisplay plan={mealPlan} onSwapMeal={handleSwapMeal} profile={form} />
           ) : (
             <div className="empty-state">
-              <div className="empty-icon">✨</div>
-              <h2>Smart Nutrition Tailored Specifically for You</h2>
+              <span className="section-eyebrow">Your plan</span>
+              <h2>Nutrition tailored to your everyday life</h2>
               <p>
-                Enter your details above to generate an intelligent daily or 7-day weekly meal routine with macro distributions, recipe cooking instructions, and categorized shopping lists.
+                Add your details above to generate a daily or 7-day plan with practical recipes, clear macro targets, and a categorized grocery list.
               </p>
               {history.length > 0 && (
-                <div style={{ marginBottom: "24px" }}>
+                <div className="empty-history-action">
                   <button
                     id="empty-state-history-btn"
-                    className="btn-demo-quick"
+                    className="btn btn-outline"
                     type="button"
                     onClick={() => setShowHistory(true)}
-                    style={{
-                      borderColor: "rgba(56, 189, 248, 0.45)",
-                      color: "#38bdf8",
-                      background: "rgba(56, 189, 248, 0.12)",
-                      padding: "9px 22px",
-                      borderRadius: "18px",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px"
-                    }}
                   >
-                    <span>📜</span> View Saved Plans ({history.length})
+                    <Icon.notebook className="icon" />
+                    View saved plans ({history.length})
                   </button>
                 </div>
               )}
               <div className="empty-features">
                 <div className="feature-card">
-                  <span>📅</span>
-                  <h3>7-Day Weekly Planner</h3>
-                  <p>Varied daily recipes from Monday to Sunday matching your exact caloric target.</p>
+                  <h3>7-day weekly planner</h3>
+                  <p>Varied recipes from Monday to Sunday, built around your daily calorie target.</p>
                 </div>
                 <div className="feature-card">
-                  <span>📊</span>
-                  <h3>Visual Macro Donut Charts</h3>
-                  <p>Clear circular breakdown of Protein, Carbs, and Fats with caloric indicators.</p>
+                  <h3>Macro breakdowns</h3>
+                  <p>A clear view of protein, carbohydrates, and fats for every plan.</p>
                 </div>
                 <div className="feature-card">
-                  <span>👨‍🍳</span>
-                  <h3>Step-by-Step Cooking Steps</h3>
-                  <p>Prep time, cook time, and concise instructions for every meal.</p>
+                  <h3>Step-by-step recipes</h3>
+                  <p>Prep time, cook time, ingredients, and concise methods for each meal.</p>
                 </div>
                 <div className="feature-card">
-                  <span>💧</span>
-                  <h3>Dynamic Water Tracker</h3>
-                  <p>Personalized hydration goal with real-time logging and animated water glass.</p>
+                  <h3>Hydration tracking</h3>
+                  <p>A personalized daily water goal with simple one-tap logging.</p>
                 </div>
               </div>
             </div>
           )}
+          </div>
         </section>
 
         {/* ZONE 8: Institutional Footer */}

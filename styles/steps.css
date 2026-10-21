@@ -1,192 +1,134 @@
-/* styles/steps.css - 3-Step Process & Single High-Impact Promo Banner */
+/* styles/steps.css — "How it works" three-step flow + weekly plan note */
 
 .steps-workflow-section {
-  padding: 48px 0;
-  margin-bottom: 48px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  padding: 72px max(24px, calc((100% - 1180px) / 2));
+}
+
+.steps-header {
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+
+.steps-header .section-title {
+  margin-bottom: 14px;
 }
 
 .steps-intro-text {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 36px auto;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  max-width: 620px;
+  line-height: 1.7;
+  margin-bottom: 44px;
+}
+
+.steps-header .steps-intro-text {
+  margin-bottom: 0;
 }
 
 .steps-cards-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-bottom: 48px;
+  gap: 24px;
+  margin-bottom: 44px;
 }
 
 .step-flow-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px 16px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 20px;
-  box-shadow: var(--box-shadow);
-  transition: all 0.25s ease;
-  animation: fadeUp 0.5s ease both;
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--card-shadow);
+  position: relative;
 }
-.step-flow-card:nth-child(2) { animation-delay: 0.1s; }
-.step-flow-card:nth-child(3) { animation-delay: 0.2s; }
 
 .step-flow-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(132, 204, 22, 0.4);
-  box-shadow: var(--box-shadow-hover);
+  border-color: var(--accent-green-mid);
+  box-shadow: var(--card-shadow-hover);
 }
 
-.step-icon-badge {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--accent-orange-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
+.step-numeral {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  line-height: 1;
   margin-bottom: 16px;
-  box-shadow: 0 6px 16px rgba(234, 88, 12, 0.12);
+  display: block;
 }
 
 .step-title-num {
-  font-size: 1.15rem;
-  font-weight: 800;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.step-title-num span.num {
-  color: var(--accent-orange);
-  margin-right: 4px;
+.step-title-num .num {
+  display: none;
 }
 
 .step-description-text {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  max-width: 280px;
+  line-height: 1.65;
 }
 
-/* Single High-Impact Unified Promo Banner Card */
+/* Weekly plan note */
 .single-promo-banner {
-  background: linear-gradient(135deg, #12281e 0%, #17382a 60%, #204e3b 100%);
-  border: 1.5px solid rgba(132, 204, 22, 0.3);
-  border-radius: 26px;
-  padding: 36px 44px;
-  color: #ffffff;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent-green);
+  border-radius: var(--radius-md);
+  padding: 26px 30px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 32px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s ease;
+  justify-content: space-between;
+  gap: 24px;
 }
 
-.single-promo-banner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-orange), #38bdf8);
-}
-
-.single-promo-banner:hover {
-  transform: translateY(-3px);
-  border-color: rgba(132, 204, 22, 0.5);
-}
-
-.single-promo-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 650px;
-}
-
-.promo-badge-tag {
-  font-size: 0.78rem;
-  font-weight: 800;
+.single-promo-content .promo-badge-tag {
+  display: inline-block;
   color: var(--accent-green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  margin-bottom: 8px;
 }
 
-.promo-banner-title {
-  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
-  font-weight: 900;
-  color: #ffffff;
-  line-height: 1.2;
+.single-promo-content .promo-banner-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
 }
 
-.promo-banner-desc {
-  font-size: 0.92rem;
-  color: #cbd5e1;
-  line-height: 1.5;
+.single-promo-content .promo-banner-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 560px;
 }
 
-.promo-cta-btn {
-  background: var(--accent-green);
-  color: #0b1411;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 20px;
-  font-weight: 800;
-  font-size: 0.95rem;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 18px rgba(132, 204, 22, 0.35);
-  flex-shrink: 0;
+/* kept for backwards compatibility */
+.steps-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.promo-cta-btn:hover {
-  background: #a3e635;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 860px) {
-  .steps-cards-row {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
+@media (max-width: 820px) {
+  .steps-workflow-section { padding: 52px 20px; }
+  .steps-cards-row { grid-template-columns: 1fr; margin-bottom: 32px; }
   .single-promo-banner {
     flex-direction: column;
     align-items: flex-start;
-    padding: 28px 22px;
-    gap: 20px;
+    padding: 24px 22px;
   }
-
-  .promo-cta-btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* Light theme: softer promo banner gradient */
-.theme-light .single-promo-banner {
-  background: linear-gradient(135deg, #eef7e8 0%, #fdf6ec 60%, #e8f5e1 100%);
-  border-color: rgba(112, 179, 67, 0.35);
-  color: #1f2937;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-}
-.theme-light .promo-banner-title {
-  color: #1f2937;
-}
-.theme-light .promo-banner-desc {
-  color: #6b7280;
-}
-.theme-light .promo-cta-btn {
-  color: #ffffff;
 }

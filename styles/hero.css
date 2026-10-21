@@ -1,43 +1,44 @@
-/* styles/hero.css — Professional, Warm Hero Section */
+/* styles/hero.css — Editorial hero: copy on the left, real food photography on the right */
 
 .hero-section {
-  padding: 64px 0 56px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 80px 24px 72px;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
   align-items: center;
 }
 
-/* Left */
+/* ── Left Content ───────────────────────────── */
 .hero-left-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  animation: fadeUp 0.6s ease both;
+  animation: fadeUp 0.5s ease both;
 }
 
 .hero-eyebrow-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--accent-green-light);
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  background: transparent;
   color: var(--accent-green);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  border-radius: 99px;
-  padding: 4px 14px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0;
   margin-bottom: 20px;
-  text-transform: capitalize;
 }
 
 .hero-main-heading {
-  font-size: clamp(2rem, 3.6vw, 3.2rem);
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-size: clamp(2.05rem, 3.3vw, 3rem);
+  font-weight: 700;
   color: var(--text-main);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
   margin-bottom: 18px;
 }
 
@@ -46,11 +47,45 @@
 }
 
 .hero-subdescription {
-  font-size: 1.05rem;
+  font-size: 1.06rem;
   color: var(--text-muted);
-  line-height: 1.65;
-  margin-bottom: 32px;
+  line-height: 1.7;
+  margin-bottom: 24px;
   max-width: 520px;
+}
+
+/* Green checkmark list */
+.hero-feature-list {
+  list-style: none;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.hero-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.94rem;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.hero-feature-list li::before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: 50%;
+  background: var(--accent-green-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e8b4f' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 10px 10px no-repeat;
+}
+
+.hero-feature-list li a,
+.hero-feature-list li span.link {
+  color: var(--accent-green);
+  font-weight: 600;
 }
 
 .hero-actions-group {
@@ -58,118 +93,202 @@
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 14px;
 }
 
 /* Primary CTA */
 .btn-hero-primary {
   background: var(--accent-green);
-  color: #0a2e1a;
-  border: none;
-  padding: 13px 26px;
-  border-radius: var(--radius-lg);
-  font-size: 0.97rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all var(--transition);
-  letter-spacing: -0.01em;
-}
-
-.btn-hero-primary:hover {
-  background: var(--accent-green-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
-}
-
-.theme-light .btn-hero-primary {
   color: #ffffff;
-}
-
-/* Secondary CTA */
-.btn-hero-secondary {
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--card-border);
-  padding: 12px 22px;
-  border-radius: var(--radius-lg);
-  font-size: 0.92rem;
+  border: 1.5px solid var(--accent-green);
+  padding: 14px 30px;
+  border-radius: var(--radius-full);
+  font-size: 0.98rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all var(--transition);
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.btn-hero-primary:hover {
+  background: var(--accent-green-dark);
+  border-color: var(--accent-green-dark);
+}
+
+.hero-no-commitment {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* Secondary CTA */
+.btn-hero-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 1.5px solid var(--card-border);
+  padding: 13px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color var(--transition), background-color var(--transition), color var(--transition);
 }
 
 .btn-hero-secondary:hover {
-  color: var(--text-main);
+  color: var(--accent-green-dark);
   border-color: var(--accent-green);
-  background: var(--inner-card-bg);
+  background: var(--accent-green-light);
 }
 
-/* Right side card */
+/* ── Trust row (replaces the old testimonial strip) ── */
+.hero-trust-row {
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--card-border);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+}
+
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.hero-trust-item::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-green-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e8b4f' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 9px 9px no-repeat;
+}
+
+/* ── Right Side: Real Food Photo ─────────────── */
 .hero-visual-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
+  animation: fadeUp 0.6s ease 0.1s both;
 }
 
+.hero-photo-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(26, 26, 26, 0.14);
+  background: var(--bg-secondary);
+}
+
+.hero-photo-container img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Stats card overlaid on the photo */
+.hero-floating-stats {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 26px rgba(26, 26, 26, 0.14);
+}
+
+.hero-stat-bubble {
+  text-align: center;
+  flex: 1;
+}
+
+.hero-stat-bubble-val {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  display: block;
+  line-height: 1.2;
+}
+
+.hero-stat-bubble-val.green { color: var(--accent-green); }
+.hero-stat-bubble-val.blue  { color: var(--accent-blue); }
+
+.hero-stat-bubble-lbl {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+  display: block;
+}
+
+.hero-stat-divider {
+  width: 1px;
+  height: 34px;
+  background: var(--card-border);
+}
+
+/* ── Fallback card (when no image) ────────────── */
 .hero-produce-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: var(--radius-2xl);
-  padding: 28px;
-  box-shadow: var(--box-shadow-hover);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--card-shadow);
   width: 100%;
   max-width: 400px;
-  position: relative;
-  overflow: hidden;
-  animation: heroFloat 5.5s ease-in-out infinite, fadeUp 0.8s ease both 0.2s;
-}
-
-/* Subtle top accent line */
-.hero-produce-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 24px;
-  right: 24px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-  border-radius: 2px;
 }
 
 .hero-card-banner-bg {
-  background: linear-gradient(135deg, var(--accent-green-light), rgba(249, 115, 22, 0.08));
-  border: 1px solid var(--inner-card-border);
-  border-radius: var(--radius-xl);
+  background: var(--accent-green-light);
+  border: 1px solid var(--accent-green-mid);
+  border-radius: var(--radius-lg);
   padding: 24px 20px;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .hero-basket-icon {
-  font-size: 3.5rem;
+  font-size: 2.6rem;
   margin-bottom: 10px;
   display: block;
 }
 
 .hero-card-title {
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-main);
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
 }
 
 .hero-card-subtitle {
   font-size: 0.82rem;
   color: var(--text-muted);
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
-/* Macro pills */
 .hero-macro-pill-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -178,16 +297,11 @@
 }
 
 .hero-macro-box {
-  background: var(--inner-card-bg);
-  border: 1px solid var(--inner-card-border);
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
   padding: 12px 8px;
   text-align: center;
-  transition: border-color var(--transition);
-}
-
-.hero-macro-box:hover {
-  border-color: var(--accent-green);
 }
 
 .hero-macro-label {
@@ -200,46 +314,23 @@
 
 .hero-macro-val {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-main);
   margin-top: 3px;
-  letter-spacing: -0.01em;
-}
-
-/* Stat row in hero card */
-.hero-stat-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--inner-card-border);
-}
-
-.hero-stat-item {
-  text-align: center;
-}
-
-.hero-stat-val {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-
-.hero-stat-lbl {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-top: 2px;
 }
 
 @media (max-width: 900px) {
   .hero-section {
     grid-template-columns: 1fr;
-    padding: 40px 0;
-    gap: 32px;
+    padding: 48px 20px 44px;
+    gap: 40px;
   }
 
-  .hero-produce-card {
-    max-width: 100%;
+  .hero-photo-container img {
+    height: 320px;
+  }
+
+  .hero-main-heading {
+    font-size: clamp(1.85rem, 6vw, 2.4rem);
   }
 }

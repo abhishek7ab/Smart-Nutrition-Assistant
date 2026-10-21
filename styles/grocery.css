@@ -1,92 +1,135 @@
-/* styles/grocery.css - Categorized Grocery Checklist & Clipboard Export */
+/* styles/grocery.css — Grocery checklist */
 
 .grocery-section {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
 }
 
 .grocery-toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .grocery-toolbar h3 {
-  font-size: 1.2rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
   font-weight: 700;
+}
+
+.grocery-subtitle {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  margin-top: 5px;
 }
 
 .copy-grocery-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  border: none;
-  color: #ffffff;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text-body);
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: border-color var(--transition), color var(--transition), background-color var(--transition);
 }
 
 .copy-grocery-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.6);
+  border-color: var(--accent-green);
+  color: var(--accent-green-dark);
+  background: var(--accent-green-light);
 }
 
 .grocery-feedback {
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid var(--accent-green);
-  color: var(--accent-green);
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  background: var(--accent-green-light);
+  border: 1px solid var(--accent-green-mid);
+  color: var(--accent-green-dark);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.86rem;
+  font-weight: 500;
 }
 
 .grocery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  gap: 26px;
 }
 
 .grocery-card {
-  background: var(--card-bg);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 16px;
-  padding: 18px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 .grocery-card h4 {
-  font-size: 0.95rem;
-  margin-bottom: 12px;
-  color: var(--text-main);
-  border-bottom: 1px solid var(--inner-card-border);
-  padding-bottom: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
+  color: var(--accent-green-dark);
 }
 
 .checklist {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .checklist li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  font-size: 0.85rem;
-  color: var(--text-main);
+  font-size: 0.88rem;
+  color: var(--text-body);
   cursor: pointer;
   user-select: none;
-  transition: all 0.2s ease;
+  transition: color 0.18s ease;
+  line-height: 1.5;
+}
+
+.checklist li input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  border: 1.5px solid var(--input-border);
+  border-radius: 4px;
+  background: var(--card-bg);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.checklist li:hover input[type="checkbox"] { border-color: var(--accent-green); }
+
+.checklist li input[type="checkbox"]:checked {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+.checklist li input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 10px 10px no-repeat;
 }
 
 .checklist li.checked span {
   text-decoration: line-through;
-  color: var(--text-muted);
-  opacity: 0.6;
+  color: var(--text-light);
 }

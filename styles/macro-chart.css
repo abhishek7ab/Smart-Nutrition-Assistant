@@ -1,10 +1,10 @@
-/* styles/macro-chart.css - SVG Circular / Donut Macro Chart and Breakdown Details */
+/* styles/macro-chart.css — Macro donut + breakdown */
 
 .macro-chart-wrapper {
-  background: var(--inner-card-bg);
-  border: 1px solid var(--inner-card-border);
-  border-radius: 20px;
-  padding: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -13,8 +13,8 @@
 
 .donut-chart-box {
   position: relative;
-  width: 125px;
-  height: 125px;
+  width: 124px;
+  height: 124px;
   flex-shrink: 0;
 }
 
@@ -26,27 +26,19 @@
 
 .donut-bg {
   fill: none;
-  stroke: var(--track-bg);
-  stroke-width: 10;
+  stroke: var(--data-track);
+  stroke-width: 9;
 }
 
 .donut-segment {
   fill: none;
-  stroke-width: 10;
-  transition: stroke-dasharray 0.5s ease;
+  stroke-width: 9;
+  transition: stroke-width 0.25s ease;
 }
 
-.segment-protein {
-  stroke: #38bdf8;
-}
-
-.segment-carbs {
-  stroke: #a855f7;
-}
-
-.segment-fats {
-  stroke: #f59e0b;
-}
+.segment-protein { stroke: var(--data-protein); }
+.segment-carbs   { stroke: var(--data-carbs); }
+.segment-fats    { stroke: var(--data-fats); }
 
 .donut-center-text {
   position: absolute;
@@ -54,21 +46,25 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  width: 80%;
 }
 
 .center-cal-number {
   display: block;
-  font-size: 1.25rem;
-  font-weight: 900;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--text-main);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .center-cal-unit {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   color: var(--text-muted);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-top: 2px;
 }
 
 .macro-breakdown-details {
@@ -82,30 +78,42 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 12px;
-  border-radius: 12px;
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
   background: var(--card-bg);
   border: 1px solid var(--card-border);
+  transition: border-color 0.2s ease;
+}
+
+.macro-detail-pill:hover,
+.macro-detail-pill.active {
+  border-color: var(--accent-green-mid);
 }
 
 .pill-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
 }
 
-.protein-pill .pill-dot { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.5); }
-.carbs-pill .pill-dot { background: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.5); }
-.fats-pill .pill-dot { background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+.protein-pill .pill-dot { background: var(--data-protein); }
+.carbs-pill .pill-dot   { background: var(--data-carbs); }
+.fats-pill .pill-dot    { background: var(--data-fats); }
 
 .pill-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.86rem;
 }
 
 .pill-title {
   color: var(--text-muted);
+  font-weight: 500;
+}
+
+.pill-info strong {
+  font-weight: 700;
+  color: var(--text-main);
 }

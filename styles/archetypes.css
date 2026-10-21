@@ -1,94 +1,152 @@
-/* styles/archetypes.css - Horizontal Round Category Icons matching Screenshot 2 */
+/* styles/archetypes.css — Dietary approach cards */
 
 .archetypes-section {
-  padding: 32px 0 48px 0;
+  background: var(--bg-secondary);
+  padding: 72px 0;
   border-top: 1px solid var(--card-border);
   border-bottom: 1px solid var(--card-border);
-  margin-bottom: 48px;
+}
+
+.archetypes-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .archetypes-header {
-  text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
 
 .archetypes-tag {
-  color: var(--accent-orange);
+  display: block;
+  color: var(--accent-green);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
+  letter-spacing: 0.09em;
+  margin-bottom: 10px;
 }
 
 .archetypes-title {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  font-weight: 700;
   color: var(--text-main);
+  line-height: 1.25;
 }
 
 .archetypes-circle-grid {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
 }
 
 .archetype-circle-btn {
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 100px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  text-align: left;
+  box-shadow: var(--card-shadow);
 }
 
-.archetype-circle-icon {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: var(--accent-green-light);
-  border: 2px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 14px rgba(112, 179, 67, 0.12);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+.archetype-circle-btn:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--accent-green-mid);
 }
 
-.archetype-circle-btn:hover .archetype-circle-icon {
-  transform: translateY(-4px) scale(1.05);
+.archetype-circle-btn.active {
   border-color: var(--accent-green);
-  box-shadow: 0 8px 20px rgba(112, 179, 67, 0.25);
+  box-shadow: 0 0 0 1px var(--accent-green);
+}
+
+/* Photo thumbnail area */
+.archetype-circle-icon {
+  width: 100%;
+  height: 120px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--card-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.archetype-circle-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.archetype-circle-btn:hover .archetype-circle-icon img {
+  transform: scale(1.05);
 }
 
 .archetype-circle-btn.active .archetype-circle-icon {
-  background: var(--accent-green);
-  border-color: var(--accent-green-dark);
-  box-shadow: 0 8px 24px rgba(112, 179, 67, 0.4);
-  transform: translateY(-4px);
+  border-bottom-color: var(--accent-green);
+}
+
+/* Card body */
+.archetype-card-body {
+  padding: 14px 15px 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .archetype-circle-name {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-main);
-  text-align: center;
-  transition: color 0.2s ease;
-}
-
-.archetype-circle-btn:hover .archetype-circle-name,
-.archetype-circle-btn.active .archetype-circle-name {
-  color: var(--accent-green-dark);
+  display: block;
+  margin-bottom: 3px;
+  line-height: 1.3;
 }
 
 .archetype-circle-split {
   font-size: 0.72rem;
-  color: var(--text-muted);
+  color: var(--accent-green);
   font-weight: 600;
-  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+.archetype-card-desc {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.archetype-guide-badge {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-mid);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.archetype-circle-btn.active .archetype-guide-badge {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #ffffff;
+}
+
+@media (max-width: 960px) {
+  .archetypes-circle-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 580px) {
+  .archetypes-circle-grid { grid-template-columns: repeat(2, 1fr); }
 }

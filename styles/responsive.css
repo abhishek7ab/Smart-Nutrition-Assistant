@@ -956,6 +956,167 @@
 /* ==========================================================================
    4. DEDICATED PRINT STYLES
    ========================================================================== */
+/* ==========================================================================
+   5. EDITORIAL REDESIGN ALIGNMENT
+   Keeps the newer white, full-bleed sections consistent at tablet and phone
+   sizes without the legacy centred/card treatments.
+   ========================================================================== */
+@media (max-width: 992px) {
+  .app {
+    padding: 0;
+  }
+
+  .hero-left-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-subdescription {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero-actions-group {
+    justify-content: flex-start;
+  }
+
+  .hero-section {
+    padding: 56px 24px 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .hero-section {
+    padding: 40px 20px 44px;
+  }
+
+  .hero-trust-row {
+    justify-content: flex-start;
+    gap: 8px 18px;
+    margin-top: 24px;
+  }
+
+  .archetypes-section {
+    padding: 48px 0;
+    margin-bottom: 0;
+  }
+
+  .archetypes-circle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .archetype-circle-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .archetype-circle-icon {
+    width: 100%;
+    height: 88px;
+    margin-bottom: 0;
+    font-size: 2rem;
+  }
+
+  .evidence-split-section {
+    padding: 48px 20px;
+    margin-bottom: 0;
+  }
+
+  .evidence-promo-banner {
+    padding: 40px 20px;
+  }
+
+  .evidence-promo-card {
+    padding: 26px 20px;
+  }
+
+  .steps-workflow-section {
+    padding: 48px 20px;
+    margin-bottom: 0;
+  }
+
+  .steps-header {
+    margin-bottom: 28px;
+  }
+
+  .showcase-matrix-section {
+    padding: 48px 20px;
+    margin-bottom: 0;
+  }
+
+  .showcase-item-card {
+    padding: 0;
+    border-radius: var(--radius-lg);
+  }
+
+  .showcase-item-visual {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 0;
+  }
+
+  .showcase-item-name {
+    font-size: 0.97rem;
+  }
+
+  .showcase-item-btn {
+    min-height: 38px;
+  }
+
+  .generator-section {
+    padding: 48px 20px;
+  }
+
+  .generator-actions > * + *::before {
+    content: none;
+  }
+
+  .view-tabs .tab-btn {
+    padding: 10px 0;
+    border-radius: 0;
+  }
+
+  .day-selector-row {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .meal-tag {
+    padding: 0;
+  }
+
+  .cal-badge {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .reason-box {
+    padding: 2px 0 2px 12px;
+    border-radius: 0;
+  }
+
+  .ingr-chip {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .macro-mini-pill {
+    flex: none;
+    padding: 0;
+    text-align: left;
+  }
+}
+
 @media print {
   body {
     background: #ffffff !important;
