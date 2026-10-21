@@ -36,7 +36,7 @@
 .calorie-pct-badge {
   background: transparent;
   border: 1px solid var(--card-border);
-  color: var(--accent-green-dark);
+  color: var(--accent-green);
   padding: 5px 14px;
   border-radius: var(--radius-full);
   font-weight: 700;
@@ -92,7 +92,7 @@
   color: var(--text-main);
 }
 
-.calorie-stat-val.positive { color: var(--accent-green-dark); }
+.calorie-stat-val.positive { color: var(--accent-green); }
 
 /* Meal toggles */
 .calorie-meals-grid {

@@ -204,17 +204,17 @@
   bottom: 20px;
   left: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 14px 18px;
   display: flex;
   gap: 12px;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 8px 26px rgba(26, 26, 26, 0.14);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.22);
 }
 
 .hero-stat-bubble {

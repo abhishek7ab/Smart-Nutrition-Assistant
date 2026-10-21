@@ -331,7 +331,7 @@
   width: 100%;
   max-width: 34px;
   border-radius: 4px 4px 0 0;
-  background: #d8ded9;
+  background: var(--data-track);
   transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
 }
 

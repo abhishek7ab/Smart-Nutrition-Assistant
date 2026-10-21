@@ -45,14 +45,14 @@
 
 .copy-grocery-btn:hover {
   border-color: var(--accent-green);
-  color: var(--accent-green-dark);
+  color: var(--accent-green);
   background: var(--accent-green-light);
 }
 
 .grocery-feedback {
   background: var(--accent-green-light);
   border: 1px solid var(--accent-green-mid);
-  color: var(--accent-green-dark);
+  color: var(--accent-green);
   padding: 10px 16px;
   border-radius: var(--radius-md);
   font-size: 0.86rem;
@@ -78,7 +78,7 @@
   text-transform: uppercase;
   letter-spacing: 0.07em;
   margin-bottom: 14px;
-  color: var(--accent-green-dark);
+  color: var(--accent-green);
 }
 
 .checklist {

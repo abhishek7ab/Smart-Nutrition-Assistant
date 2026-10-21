@@ -82,6 +82,12 @@ select:focus-visible {
   margin: 0;
 }
 
+/* Keep anchored sections clear of the sticky header */
+section[id],
+#results-dashboard {
+  scroll-margin-top: 92px;
+}
+
 /* ── Shared editorial primitives ───────────── */
 .section-eyebrow {
   display: block;

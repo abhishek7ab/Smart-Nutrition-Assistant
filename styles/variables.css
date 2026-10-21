@@ -10,6 +10,9 @@
   --card-border:        #e8e4de;
   --card-shadow:        0 2px 12px rgba(0,0,0,0.06);
   --card-shadow-hover:  0 8px 32px rgba(0,0,0,0.12);
+  --header-bg:          rgba(255, 255, 255, 0.94);
+  --glass-bg:           rgba(255, 255, 255, 0.94);
+  --glass-border:       rgba(255, 255, 255, 0.6);
 
   /* ── Text Colours ─────────────────────────── */
   --text-main:          #1a1a1a;
@@ -81,38 +84,74 @@
   --radius-full:        9999px;
 }
 
-/* ── Dark Theme Override ─────────────────────── */
+/* ── Natural Dark Theme (Deep Botanical Slate & Warm Earth) ── */
 :root[data-theme="dark"],
+html[data-theme="dark"],
 html.theme-dark,
 body.theme-dark,
-.theme-dark {
-  --bg-color:           #0f1117;
-  --bg-secondary:       #161923;
-  --bg-tertiary:        #131620;
-  --card-bg:            #1a1d27;
-  --card-border:        rgba(255,255,255,0.07);
-  --card-shadow:        0 4px 20px rgba(0,0,0,0.4);
-  --card-shadow-hover:  0 8px 32px rgba(0,0,0,0.55);
-  --text-main:          #f1f3f5;
-  --text-body:          #d8dce2;
-  --text-muted:         #8b939e;
-  --text-light:         #5a6270;
-  --accent-green:       #22c55e;
-  --accent-green-dark:  #16a34a;
-  --accent-green-light: rgba(34,197,94,0.12);
-  --accent-green-mid:   rgba(34,197,94,0.2);
-  --accent-warm:        #f97316;
-  --accent-warm-light:  rgba(249,115,22,0.12);
-  --input-bg:           #0d0f17;
-  --input-border:       rgba(255,255,255,0.1);
-  --input-border-focus: #22c55e;
-  --inner-card-bg:      #12151f;
-  --inner-card-border:  rgba(255,255,255,0.05);
-  --track-bg:           rgba(255,255,255,0.08);
-  --track-bg-subtle:    rgba(255,255,255,0.03);
-  --border-subtle:      rgba(255,255,255,0.08);
-  --box-shadow:         0 4px 24px rgba(0,0,0,0.4);
-  --box-shadow-hover:   0 8px 32px rgba(0,0,0,0.55);
+.theme-dark,
+.app.theme-dark {
+  /* ── Core Backgrounds ──────────────────────── */
+  --bg-color:           #121614;  /* Deep soothing organic charcoal with forest undertone */
+  --bg-secondary:       #181e1a;  /* Warm rich secondary elevation */
+  --bg-tertiary:        #1f2622;  /* Slightly elevated contrast for subtle blocks */
+  --header-bg:          rgba(18, 22, 20, 0.94);
+  --card-bg:            #1a201c;  /* Warm earthy card background */
+  --card-border:        #29342c;  /* Organic mossy border */
+  --card-shadow:        0 4px 20px rgba(0, 0, 0, 0.45);
+  --card-shadow-hover:  0 8px 32px rgba(0, 0, 0, 0.6);
+  --glass-bg:           rgba(24, 30, 26, 0.88);
+  --glass-border:       rgba(255, 255, 255, 0.09);
+
+  /* ── Text Colours ─────────────────────────── */
+  --text-main:          #f4efe6;  /* Soft warm linen ivory — easy on the eyes */
+  --text-body:          #d5cec4;  /* Warm stone cream */
+  --text-muted:         #969f95;  /* Sage mist gray */
+  --text-light:         #6b756a;  /* Deep lichen slate */
+
+  /* ── Brand Greens (Natural Botanical) ──────── */
+  --accent-green:       #48bb78;  /* Fresh botanical green, high contrast and calm */
+  --accent-green-dark:  #38a169;  /* Deep pine green */
+  --accent-green-light: rgba(72, 187, 120, 0.14);
+  --accent-green-mid:   rgba(72, 187, 120, 0.28);
+
+  /* ── Warm & Supporting Earth Accents ───────── */
+  --accent-warm:        #e07a5f;  /* Terracotta clay */
+  --accent-warm-light:  rgba(224, 122, 95, 0.14);
+  --accent-amber:       #d4a34b;  /* Wildflower honey / turmeric */
+  --accent-amber-light: rgba(212, 163, 75, 0.14);
+  --accent-blue:        #4a90e2;  /* Clear mineral spring */
+  --accent-blue-light:  rgba(74, 144, 226, 0.14);
+  --accent-cyan:        #38a89d;
+  --accent-cyan-light:  rgba(56, 168, 157, 0.14);
+  --accent-orange:      #e07a5f;
+  --accent-orange-light:rgba(224, 122, 95, 0.14);
+  --accent-purple:      #8e7fb8;  /* Dried lavender */
+  --accent-purple-light:rgba(142, 127, 184, 0.14);
+  --accent-red:         #d15a50;
+
+  /* ── Data Visualisation Palette ───────────── */
+  --data-protein:       #48bb78;
+  --data-carbs:         #d4a34b;
+  --data-fats:          #9e8e81;
+  --data-water:         #4a90e2;
+  --data-purple:        #8e7fb8;
+  --data-orange:        #e07a5f;
+  --data-track:         rgba(255, 255, 255, 0.08);
+
+  /* ── Inputs & Surfaces ────────────────────── */
+  --input-bg:           #141916;
+  --input-border:       #2b362e;
+  --input-border-focus: #48bb78;
+  --inner-card-bg:      #151b18;
+  --inner-card-border:  #263129;
+
+  /* ── Track colors for progress bars ────────── */
+  --track-bg:           rgba(255, 255, 255, 0.08);
+  --track-bg-subtle:    rgba(255, 255, 255, 0.04);
+  --border-subtle:      #29342c;
+  --box-shadow:         0 4px 20px rgba(0, 0, 0, 0.45);
+  --box-shadow-hover:   0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
 /* ═══════════════════════════════════════════

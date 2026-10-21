@@ -31,7 +31,7 @@
   height: 42px;
   border-radius: var(--radius-md);
   background: var(--accent-blue-light);
-  border: 1px solid #d5e3f0;
+  border: 1px solid var(--card-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +73,7 @@
 .water-pct-badge.complete {
   background: var(--accent-green-light);
   border-color: var(--accent-green-mid);
-  color: var(--accent-green-dark);
+  color: var(--accent-green);
 }
 
 /* Layout */

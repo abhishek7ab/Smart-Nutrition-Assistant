@@ -16,7 +16,7 @@
   animation: fadeUp 0.3s ease both;
 }
 
-.meal-item:hover { border-color: #ded8cf; }
+.meal-item:hover { border-color: var(--accent-green-mid); }
 
 /* Meal header */
 .meal-header {
