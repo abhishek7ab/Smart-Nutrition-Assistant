@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./styles/index.css";
+import { t, setLang, dayShort } from "./i18n.js";
 import {
   generateClientSingleDayPlan,
   generateClientWeeklyPlan,
@@ -92,8 +93,8 @@ function BmiGaugeVisualizer({ bmi, category, catColor, tdee, waterLiters }) {
   return (
     <div className="bmi-gauge-card">
       <div className="bmi-gauge-header">
-        <span className="bmi-gauge-title">Live estimate</span>
-        <span className="bmi-cat-sub">{category}</span>
+        <span className="bmi-gauge-title">{t("Live estimate")}</span>
+        <span className="bmi-cat-sub">{t(category)}</span>
       </div>
 
       <div className="bmi-gauge-body">
@@ -130,27 +131,27 @@ function BmiGaugeVisualizer({ bmi, category, catColor, tdee, waterLiters }) {
 
           <div className="bmi-readout-center">
             <span className="bmi-val-big">{numericBmi}</span>
-            <span className="bmi-readout-unit">BMI index</span>
+            <span className="bmi-readout-unit">{t("BMI index")}</span>
           </div>
         </div>
 
         <div className="energy-flow-visualizer">
           <div className="energy-flow-step">
-            <span className="step-lbl">Est. maintenance</span>
+            <span className="step-lbl">{t("Est. maintenance")}</span>
             <span className="step-val">{tdee ? `${tdee} kcal` : "—"}</span>
           </div>
           <div className="energy-flow-step">
-            <span className="step-lbl">Daily hydration</span>
+            <span className="step-lbl">{t("Daily hydration")}</span>
             <span className="step-val">{waterLiters ? `${waterLiters} L` : "—"}</span>
           </div>
         </div>
       </div>
 
       <div className="bmi-gauge-legend">
-        <span><i className="bmi-dot" style={{ background: "#b8862e" }} /> Under 18.5</span>
-        <span><i className="bmi-dot" style={{ background: "#2e8b4f" }} /> 18.5–24.9 Healthy</span>
-        <span><i className="bmi-dot" style={{ background: "#c99a3a" }} /> 25–29.9 Over</span>
-        <span><i className="bmi-dot" style={{ background: "#b4443a" }} /> 30+ Obese</span>
+        <span><i className="bmi-dot" style={{ background: "#b8862e" }} /> {t("Under 18.5")}</span>
+        <span><i className="bmi-dot" style={{ background: "#2e8b4f" }} /> {t("18.5–24.9 Healthy")}</span>
+        <span><i className="bmi-dot" style={{ background: "#c99a3a" }} /> {t("25–29.9 Over")}</span>
+        <span><i className="bmi-dot" style={{ background: "#b4443a" }} /> {t("30+ Obese")}</span>
       </div>
     </div>
   );
@@ -188,16 +189,16 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
 
   // Active Center readout based on hover
   let centerNumber = target_calories;
-  let centerUnit = "kcal / day";
+  let centerUnit = t("kcal / day");
   if (hoveredMacro === "p") {
     centerNumber = `${p}g`;
-    centerUnit = `Protein (${pCal} kcal)`;
+    centerUnit = `${t("Protein")} (${pCal} ${t("kcal")})`;
   } else if (hoveredMacro === "c") {
     centerNumber = `${c}g`;
-    centerUnit = `Carbs (${cCal} kcal)`;
+    centerUnit = `${t("Carbs")} (${cCal} ${t("kcal")})`;
   } else if (hoveredMacro === "f") {
     centerNumber = `${f}g`;
-    centerUnit = `Fats (${fCal} kcal)`;
+    centerUnit = `${t("Fats")} (${fCal} ${t("kcal")})`;
   }
 
   // Calculate per-meal calorie shares
@@ -259,7 +260,7 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
           >
             <div className="pill-dot"></div>
             <div className="pill-info">
-              <span className="pill-title">Protein ({pPct}%)</span>
+              <span className="pill-title">{t("Protein")} ({pPct}%)</span>
               <strong>{p}g</strong>
             </div>
           </div>
@@ -270,7 +271,7 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
           >
             <div className="pill-dot"></div>
             <div className="pill-info">
-              <span className="pill-title">Carbohydrates ({cPct}%)</span>
+              <span className="pill-title">{t("Carbohydrates")} ({cPct}%)</span>
               <strong>{c}g</strong>
             </div>
           </div>
@@ -281,7 +282,7 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
           >
             <div className="pill-dot"></div>
             <div className="pill-info">
-              <span className="pill-title">Healthy Fats ({fPct}%)</span>
+              <span className="pill-title">{t("Healthy Fats")} ({fPct}%)</span>
               <strong>{f}g</strong>
             </div>
           </div>
@@ -291,8 +292,8 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
       {validMeals.length > 0 && (
         <div className="per-meal-budget-section">
           <div className="per-meal-budget-header">
-            <span>Calorie Budget by Meal</span>
-            <span>{target_calories} kcal target</span>
+            <span>{t("Calorie Budget by Meal")}</span>
+            <span>{target_calories} {t("kcal target")}</span>
           </div>
           <div className="per-meal-budget-bar">
             {validMeals.map((m, i) => {
@@ -318,7 +319,7 @@ function MacroDonutChart({ protein_g, carbs_g, fats_g, target_calories, meals = 
                   style={{ background: mealColors[i % mealColors.length] }}
                 />
                 <span>
-                  {(m.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "").slice(0, 16)} ({m.approx_calories} kcal)
+                  {(m.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "").slice(0, 16)} ({m.approx_calories} {t("kcal")})
                 </span>
               </div>
             ))}
@@ -345,9 +346,9 @@ function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
   return (
     <div className="weekly-trend-chart-card">
       <div className="weekly-trend-header">
-        <span className="weekly-trend-title">7-day calorie overview</span>
+        <span className="weekly-trend-title">{t("7-day calorie overview")}</span>
         <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>
-          Select a day to view its meals
+          {t("Select a day to view its meals")}
         </span>
       </div>
 
@@ -381,7 +382,7 @@ function WeeklyTrendVisualizer({ days, selectedDay, onSelectDay }) {
             key={day}
             className={`weekly-day-name-tag ${selectedDay === day ? "active" : ""}`}
           >
-            {day.slice(0, 3)}
+            {dayShort(day)}
           </span>
         ))}
       </div>
@@ -421,8 +422,8 @@ function MealTimelineVisualizer({ meals = [] }) {
   return (
     <div className="chrono-timeline-card">
       <div className="chrono-timeline-header">
-        <span className="chrono-title">Meal timing</span>
-        <span className="fasting-badge">About 13 hours overnight</span>
+        <span className="chrono-title">{t("Meal timing")}</span>
+        <span className="fasting-badge">{t("About 13 hours overnight")}</span>
       </div>
 
       <div className="chrono-track-wrap">
@@ -431,7 +432,7 @@ function MealTimelineVisualizer({ meals = [] }) {
           <div key={idx} className="chrono-milestone">
             <span className="chrono-node" />
             <span className="chrono-time">{it.time}</span>
-            <span className="chrono-slot-name">{it.slot}</span>
+            <span className="chrono-slot-name">{t(it.slot)}</span>
           </div>
         ))}
       </div>
@@ -471,9 +472,9 @@ function WaterTracker({ weight_kg }) {
         console.error(e);
       }
       if (updated >= targetMl && prev < targetMl) {
-        showToast("Daily hydration goal reached.");
+        showToast(t("Daily hydration goal reached."));
       } else if (delta > 0) {
-        showToast(`Logged ${delta} ml`);
+        showToast(t("Logged {n} ml", { n: delta }));
       }
       return updated;
     });
@@ -486,7 +487,7 @@ function WaterTracker({ weight_kg }) {
     } catch (e) {
       console.error(e);
     }
-    showToast("Tracker reset for today.");
+    showToast(t("Tracker reset for today."));
   }, [todayKey, showToast]);
 
   const pct = Math.min(100, Math.round((drankMl / targetMl) * 100));
@@ -500,12 +501,12 @@ function WaterTracker({ weight_kg }) {
         <div className="water-title-wrap">
           <div className="water-icon-circle"><Icon.droplet /></div>
           <div>
-            <h3>Daily hydration</h3>
-            <p className="water-subtitle">A simple fluid goal based on your body weight</p>
+            <h3>{t("Daily hydration")}</h3>
+            <p className="water-subtitle">{t("A simple fluid goal based on your body weight")}</p>
           </div>
         </div>
         <span className={`water-pct-badge ${pct >= 100 ? "complete" : ""}`}>
-          {pct}% of goal
+          {pct}{t("% of goal")}
         </span>
       </div>
 
@@ -514,15 +515,15 @@ function WaterTracker({ weight_kg }) {
         <div className="water-stats-col">
           <div className="water-metrics-tiles">
             <div className="water-metric-box">
-              <span className="water-metric-lbl">Target</span>
+              <span className="water-metric-lbl">{t("Target")}</span>
               <span className="water-metric-val">{targetLiters} L</span>
             </div>
             <div className="water-metric-box active-log">
-              <span className="water-metric-lbl">Logged</span>
+              <span className="water-metric-lbl">{t("Logged")}</span>
               <span className="water-metric-val">{loggedL} L</span>
             </div>
             <div className="water-metric-box">
-              <span className="water-metric-lbl">Remaining</span>
+              <span className="water-metric-lbl">{t("Remaining")}</span>
               <span className="water-metric-val">{remainingL} L</span>
             </div>
           </div>
@@ -551,9 +552,9 @@ function WaterTracker({ weight_kg }) {
           </div>
 
           <div className="water-reset-row">
-            <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>Quick add</span>
+            <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>{t("Quick add")}</span>
             <button className="water-reset-btn" type="button" onClick={resetWater}>
-              Reset
+              {t("Reset")}
             </button>
           </div>
         </div>
@@ -575,9 +576,9 @@ function KitchenCookingMode({ meal, onClose }) {
   const instructions = meal.instructions && meal.instructions.length > 0
     ? meal.instructions
     : [
-        "Prepare and wash all fresh whole-food ingredients thoroughly.",
-        "Cook over gentle heat with minimal cold-pressed oil or ghee until tender and aromatic.",
-        "Plate fresh and garnish with garden herbs."
+        t("Prepare and wash all fresh whole-food ingredients thoroughly."),
+        t("Cook over gentle heat with minimal cold-pressed oil or ghee until tender and aromatic."),
+        t("Plate fresh and garnish with garden herbs.")
       ];
 
   const totalSteps = instructions.length;
@@ -675,12 +676,12 @@ function KitchenCookingMode({ meal, onClose }) {
     <div className="kitchen-overlay" role="dialog" aria-modal="true" aria-label="Kitchen Cooking Mode">
       <header className="kitchen-header">
         <div className="kitchen-title-box">
-          <span className="kitchen-badge">🍳 Interactive Kitchen Mode</span>
+          <span className="kitchen-badge">{t("🍳 Interactive Kitchen Mode")}</span>
           <h1 className="kitchen-recipe-title">{meal.name}</h1>
         </div>
         <div className="kitchen-header-actions">
           <button className="btn-exit-kitchen" type="button" onClick={onClose}>
-            ✕ Exit Cooking Mode
+            {t("✕ Exit Cooking Mode")}
           </button>
         </div>
       </header>
@@ -693,11 +694,11 @@ function KitchenCookingMode({ meal, onClose }) {
         {/* Left Column: Prep Checklist */}
         <aside className="kitchen-ingredients-panel">
           <div className="kitchen-panel-header">
-            <h2 className="kitchen-panel-title">Mise en place</h2>
-            <span className="kitchen-ingr-count">{checkedCount} of {ingredientsList.length} ready</span>
+            <h2 className="kitchen-panel-title">{t("Mise en place")}</h2>
+            <span className="kitchen-ingr-count">{t("{a} of {b} ready", { a: checkedCount, b: ingredientsList.length })}</span>
           </div>
           <p style={{ fontSize: "0.76rem", color: "var(--text-light)", margin: "0" }}>
-            Tap ingredients as you prep or add them to the pan:
+            {t("Tap ingredients as you prep or add them to the pan:")}
           </p>
           <ul className="kitchen-checklist">
             {ingredientsList.map((ing, i) => {
@@ -727,7 +728,7 @@ function KitchenCookingMode({ meal, onClose }) {
           <div className="kitchen-step-card">
             <div className="kitchen-step-meta">
               <span className="kitchen-step-number-tag">
-                Step {currentStep + 1} of {totalSteps}
+                {t("Step {n} of {m}", { n: currentStep + 1, m: totalSteps })}
               </span>
               <div className="kitchen-step-dots">
                 {instructions.map((_, idx) => (
@@ -743,7 +744,7 @@ function KitchenCookingMode({ meal, onClose }) {
             </div>
 
             <p className="kitchen-step-instruction">
-              {instructions[currentStep]}
+              {t(instructions[currentStep])}
             </p>
 
             {/* Interactive Kitchen Timer Module */}
@@ -754,10 +755,10 @@ function KitchenCookingMode({ meal, onClose }) {
                 </div>
                 <div>
                   <div className={`kitchen-timer-display ${timerRunning ? "running" : timerEnded ? "ended" : ""}`}>
-                    {timerEnded ? "00:00 — Ready!" : formatTimer(timerSeconds)}
+                    {timerEnded ? t("00:00 — Ready!") : formatTimer(timerSeconds)}
                   </div>
                   <div style={{ fontSize: "0.68rem", color: "var(--text-light)", textTransform: "uppercase", letterSpacing: "0.06em", marginTop: "2px" }}>
-                    Kitchen Timer
+                    {t("Kitchen Timer")}
                   </div>
                 </div>
               </div>
@@ -771,10 +772,10 @@ function KitchenCookingMode({ meal, onClose }) {
 
               <div className="kitchen-timer-controls">
                 <button type="button" className="btn-timer-primary" onClick={toggleTimer}>
-                  {timerRunning ? "Pause" : timerSeconds > 0 ? "Resume" : "Start 5m"}
+                  {timerRunning ? t("Pause") : timerSeconds > 0 ? t("Resume") : t("Start 5m")}
                 </button>
                 {timerSeconds > 0 && (
-                  <button type="button" className="btn-timer-reset" onClick={resetTimer}>Reset</button>
+                  <button type="button" className="btn-timer-reset" onClick={resetTimer}>{t("Reset")}</button>
                 )}
               </div>
             </div>
@@ -788,7 +789,7 @@ function KitchenCookingMode({ meal, onClose }) {
               onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
               disabled={currentStep === 0}
             >
-              ← Previous step
+              {t("← Previous step")}
             </button>
 
             {currentStep < totalSteps - 1 ? (
@@ -797,7 +798,7 @@ function KitchenCookingMode({ meal, onClose }) {
                 className="btn-kitchen-next"
                 onClick={() => setCurrentStep((s) => Math.min(totalSteps - 1, s + 1))}
               >
-                Next step →
+                {t("Next step →")}
               </button>
             ) : (
               <button
@@ -805,7 +806,7 @@ function KitchenCookingMode({ meal, onClose }) {
                 className="btn-kitchen-done"
                 onClick={onClose}
               >
-                🎉 Meal complete! Enjoy
+                {t("🎉 Meal complete! Enjoy")}
               </button>
             )}
           </footer>
@@ -836,14 +837,14 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
         <div className="fridge-toolbar">
           <div className="fridge-toolbar-info">
             <Icon.notebook style={{ width: 18, height: 18, color: "var(--accent-green)" }} />
-            <span>Fridge-Ready Weekly Sheet (Formatted for Home Printing)</span>
+            <span>{t("Fridge-Ready Weekly Sheet (Formatted for Home Printing)")}</span>
           </div>
           <div className="fridge-toolbar-actions">
             <button className="btn-print-action" type="button" onClick={handlePrint}>
-              <Icon.print style={{ width: 16, height: 16 }} /> Print Sheet / Save PDF
+              <Icon.print style={{ width: 16, height: 16 }} /> {t("Print Sheet / Save PDF")}
             </button>
             <button className="btn-close-fridge" type="button" onClick={onClose}>
-              Close
+              {t("Close")}
             </button>
           </div>
         </div>
@@ -853,11 +854,11 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
           <header className="fridge-sheet-header">
             <div className="fridge-sheet-brand">
               <h2>Smart Nutrition Assistant</h2>
-              <p>Weekly Whole-Food Nourishment Protocol</p>
+              <p>{t("Weekly Whole-Food Nourishment Protocol")}</p>
             </div>
             <div className="fridge-sheet-meta">
-              <span className="fridge-meta-user">Prepared for: {plan.user_id || profile?.name || "Client"}</span>
-              <span className="fridge-meta-date">Date: {plan.date || new Date().toISOString().split("T")[0]} · Goal: {profile?.goal || "Health & Vitality"}</span>
+              <span className="fridge-meta-user">{t("Prepared for:")} {plan.user_id || profile?.name || "Client"}</span>
+              <span className="fridge-meta-date">{t("Date:")} {plan.date || new Date().toISOString().split("T")[0]} · {t("Goal:")} {t(profile?.goal || "Health & Vitality")}</span>
             </div>
           </header>
 
@@ -865,41 +866,41 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
           <div className="fridge-summary-strip">
             <div className="fridge-summary-col">
               <span className="fridge-summary-val">{plan.target_calories || 2100}</span>
-              <span className="fridge-summary-lbl">Daily kcal Target</span>
+              <span className="fridge-summary-lbl">{t("Daily kcal Target")}</span>
             </div>
             <div className="fridge-summary-col">
               <span className="fridge-summary-val">{plan.target_macros?.protein_g || 140}g</span>
-              <span className="fridge-summary-lbl">Protein Goal</span>
+              <span className="fridge-summary-lbl">{t("Protein Goal")}</span>
             </div>
             <div className="fridge-summary-col">
               <span className="fridge-summary-val">{plan.target_macros?.carbs_g || 210}g</span>
-              <span className="fridge-summary-lbl">Carbohydrates</span>
+              <span className="fridge-summary-lbl">{t("Carbohydrates")}</span>
             </div>
             <div className="fridge-summary-col">
               <span className="fridge-summary-val">{plan.target_macros?.fats_g || 55}g</span>
-              <span className="fridge-summary-lbl">Healthy Fats</span>
+              <span className="fridge-summary-lbl">{t("Healthy Fats")}</span>
             </div>
             <div className="fridge-summary-col">
               <span className="fridge-summary-val">3.0 L</span>
-              <span className="fridge-summary-lbl">Water (8 glasses)</span>
+              <span className="fridge-summary-lbl">{t("Water (8 glasses)")}</span>
             </div>
           </div>
 
           {/* Weekly 7-Day Table */}
           <h3 className="fridge-section-title">
-            <span>7-Day Meal Schedule</span>
-            <span style={{ fontSize: "0.74rem", fontWeight: 600, color: "#666" }}>Stick on fridge for quick daily reference</span>
+            <span>{t("7-Day Meal Schedule")}</span>
+            <span style={{ fontSize: "0.74rem", fontWeight: 600, color: "#666" }}>{t("Stick on fridge for quick daily reference")}</span>
           </h3>
 
           <div className="fridge-table-wrap">
             <table className="fridge-weekly-table">
               <thead>
                 <tr>
-                  <th style={{ width: "12%" }}>Day</th>
-                  <th style={{ width: "22%" }}>Breakfast</th>
-                  <th style={{ width: "22%" }}>Lunch</th>
-                  <th style={{ width: "22%" }}>Dinner</th>
-                  <th style={{ width: "22%" }}>Snack & Fuel</th>
+                  <th style={{ width: "12%" }}>{t("Day")}</th>
+                  <th style={{ width: "22%" }}>{t("Breakfast")}</th>
+                  <th style={{ width: "22%" }}>{t("Lunch")}</th>
+                  <th style={{ width: "22%" }}>{t("Dinner")}</th>
+                  <th style={{ width: "22%" }}>{t("Snack & Fuel")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -913,7 +914,7 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
                     const s = meals[3] || {};
                     return (
                       <tr key={dayName}>
-                        <td className="fridge-day-name">{dayName}</td>
+                        <td className="fridge-day-name">{t(dayName)}</td>
                         <td className="fridge-meal-cell">
                           <strong>{b.name || "—"}</strong>
                           <span>{b.approx_calories ? `${b.approx_calories} kcal` : ""}</span>
@@ -935,7 +936,7 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
                   })
                 ) : (
                   <tr>
-                    <td className="fridge-day-name">{plan.day || "Today"}</td>
+                    <td className="fridge-day-name">{t(plan.day || "Today")}</td>
                     {(plan.meals || []).map((m, idx) => (
                       <td key={idx} className="fridge-meal-cell">
                         <strong>{m.name}</strong>
@@ -950,8 +951,8 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
 
           {/* Categorized Grocery List with [ ] Tick Boxes */}
           <h3 className="fridge-section-title">
-            <span>Categorized Grocery Checklist</span>
-            <span style={{ fontSize: "0.74rem", fontWeight: 600, color: "#666" }}>Bring to market or check off in pantry</span>
+            <span>{t("Categorized Grocery Checklist")}</span>
+            <span style={{ fontSize: "0.74rem", fontWeight: 600, color: "#666" }}>{t("Bring to market or check off in pantry")}</span>
           </h3>
 
           <div className="fridge-grocery-grid">
@@ -975,8 +976,8 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
           </div>
 
           <footer className="fridge-sheet-footer">
-            <span>🌿 Whole-Food Nutrition · Verified against Mifflin-St Jeor metabolic formulas</span>
-            <span>Prep tip: Batch-cook grains and soak lentils on Sunday evening</span>
+            <span>{t("🌿 Whole-Food Nutrition · Verified against Mifflin-St Jeor metabolic formulas")}</span>
+            <span>{t("Prep tip: Batch-cook grains and soak lentils on Sunday evening")}</span>
           </footer>
         </article>
       </div>
@@ -1003,66 +1004,66 @@ function RecipeModal({ meal, onClose, onStartCooking }) {
       <div className="recipe-modal" onClick={(e) => e.stopPropagation()}>
         <div className="recipe-modal-header">
           <div className="recipe-title-group">
-            <span className="recipe-badge">{meal.difficulty || "Easy"}</span>
-            <h2>{meal.name}</h2>
+            <span className="recipe-badge">{t(meal.difficulty || "Easy")}</span>
+            <h2>{t(meal.name)}</h2>
           </div>
           <button className="close-btn" type="button" onClick={onClose}>✕</button>
         </div>
 
         <div className="recipe-meta-row">
           <div className="meta-item">
-            <span className="meta-label">Prep time</span>
+            <span className="meta-label">{t("Prep time")}</span>
             <strong>{meal.prep_time || "10 mins"}</strong>
           </div>
           <div className="meta-item">
-            <span className="meta-label">Cook time</span>
+            <span className="meta-label">{t("Cook time")}</span>
             <strong>{meal.cook_time || "15 mins"}</strong>
           </div>
           <div className="meta-item">
-            <span className="meta-label">Calories</span>
+            <span className="meta-label">{t("Calories")}</span>
             <strong>{meal.approx_calories} kcal</strong>
           </div>
           <div className="meta-item">
-            <span className="meta-label">Goal alignment</span>
+            <span className="meta-label">{t("Goal alignment")}</span>
             <strong>
               {meal._goal
                 ? meal._goal
                 : meal.macros && meal.macros.protein_g > meal.macros.carbs_g
-                ? "High protein"
+                ? t("High protein")
                 : meal.macros && meal.macros.carbs_g > (meal.macros.protein_g + meal.macros.fats_g)
-                ? "High carbohydrate"
-                : "Balanced macros"}
+                ? t("High carbohydrate")
+                : t("Balanced macros")}
             </strong>
           </div>
         </div>
 
         <div className="recipe-body">
           <div className="recipe-section">
-            <h3>Ingredients</h3>
+            <h3>{t("Ingredients")}</h3>
             <ul className="recipe-ingr-list">
               {meal.ingredients && meal.ingredients.map((ing, i) => (
                 <li key={i}>
                   <span className="bullet">✓</span>
-                  <span>{typeof ing === "object" ? (ing.name || ing.item || JSON.stringify(ing)) : String(ing)}</span>
+                  <span>{t(typeof ing === "object" ? (ing.name || ing.item || JSON.stringify(ing)) : String(ing))}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="recipe-section">
-            <h3>Method</h3>
+            <h3>{t("Method")}</h3>
             <ol className="cooking-steps-list">
               {meal.instructions && meal.instructions.length > 0 ? (
                 meal.instructions.map((step, idx) => (
                   <li key={idx} className="step-item">
                     <span className="step-num">{idx + 1}</span>
-                    <p className="step-text">{step}</p>
+                    <p className="step-text">{t(step)}</p>
                   </li>
                 ))
               ) : (
                 <li className="step-item">
                   <span className="step-num">1</span>
-                  <p className="step-text">Prepare and wash all ingredients freshly. Cook with minimal healthy cold-pressed oil or ghee.</p>
+                  <p className="step-text">{t("Prepare and wash all ingredients freshly. Cook with minimal healthy cold-pressed oil or ghee.")}</p>
                 </li>
               )}
             </ol>
@@ -1070,7 +1071,7 @@ function RecipeModal({ meal, onClose, onStartCooking }) {
 
           {meal.reason && (
             <div className="recipe-purpose-box">
-              <strong>Why this meal works:</strong> {typeof meal.reason === "object" ? JSON.stringify(meal.reason) : meal.reason}
+              <strong>{t("Why this meal works:")}</strong> {typeof meal.reason === "object" ? JSON.stringify(meal.reason) : meal.reason}
             </div>
           )}
         </div>
@@ -1086,9 +1087,9 @@ function RecipeModal({ meal, onClose, onStartCooking }) {
               }
             }}
           >
-            🍳 Start Kitchen Cooking Mode
+            {t("🍳 Start Kitchen Cooking Mode")}
           </button>
-          <button className="secondary-btn" type="button" onClick={onClose}>Close recipe</button>
+          <button className="secondary-btn" type="button" onClick={onClose}>{t("Close recipe")}</button>
         </div>
       </div>
     </div>
@@ -1110,7 +1111,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
   if (!plan || plan.error) {
     return plan && plan.error ? (
       <div className="result-card error">
-        <h2>We could not generate this plan</h2>
+        <h2>{t("We could not generate this plan")}</h2>
         <pre>{plan.error}</pre>
         {plan.raw && <pre>{plan.raw.slice(0, 500)}</pre>}
       </div>
@@ -1241,7 +1242,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
     });
 
     navigator.clipboard.writeText(output);
-    setCopyFeedback("Grocery list copied to your clipboard.");
+    setCopyFeedback(t("Grocery list copied to your clipboard."));
     setTimeout(() => setCopyFeedback(""), 4000);
   };
 
@@ -1253,25 +1254,25 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
       <div className="result-header">
         <div className="title-row">
           <div>
-            <h2>{isWeekly ? "Your 7-day nutrition plan" : "Your daily nutrition plan"}</h2>
-            <p className="plan-subtitle">Prepared for <b>{plan.user_id}</b> · {plan.date}</p>
+            <h2>{isWeekly ? t("Your 7-day nutrition plan") : t("Your daily nutrition plan")}</h2>
+            <p className="plan-subtitle">{t("Prepared for")} <b>{plan.user_id}</b> · {plan.date}</p>
           </div>
           <div className="action-buttons">
             <button
               className="icon-btn fridge-sheet-btn"
               type="button"
               onClick={() => onOpenFridgeSheet && onOpenFridgeSheet()}
-              title="View and print fridge-ready plan sheet with grocery checklist"
+              title={t("View and print fridge-ready plan sheet with grocery checklist")}
             >
-              <Icon.notebook /> Fridge Sheet
+              <Icon.notebook /> {t("Fridge Sheet")}
             </button>
             <button
               className="icon-btn print-btn"
               type="button"
               onClick={() => onOpenFridgeSheet ? onOpenFridgeSheet() : window.print()}
-              title="Print or save as PDF"
+              title={t("Print or save as PDF")}
             >
-              <Icon.print /> Print
+              <Icon.print /> {t("Print")}
             </button>
           </div>
         </div>
@@ -1279,7 +1280,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
         {/* Weekly Day Selector Pills */}
         {isWeekly && (
           <div className="day-selector-row">
-            <span className="day-selector-label">Day</span>
+            <span className="day-selector-label">{t("Day")}</span>
             <div className="day-pills">
               {daysList.map((day) => (
                 <button
@@ -1288,8 +1289,8 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                   className={`day-pill ${selectedDay === day ? "active" : ""}`}
                   onClick={() => setSelectedDay(day)}
                 >
-                  <span className="day-name">{day.slice(0, 3)}</span>
-                  <span className="day-cal">{plan.days[day]?.actual_calories || plan.days[day]?.target_calories} kcal</span>
+                  <span className="day-name">{dayShort(day)}</span>
+                  <span className="day-cal">{plan.days[day]?.actual_calories || plan.days[day]?.target_calories} {t("kcal")}</span>
                 </button>
               ))}
             </div>
@@ -1304,7 +1305,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
             aria-selected={activeTab === "plan"}
             onClick={() => setActiveTab("plan")}
           >
-            {isWeekly ? `${selectedDay}'s meals` : "Meals"}
+            {isWeekly ? `${selectedDay} · ${t("Meals")}` : t("Meals")}
           </button>
           <button
             className={`tab-btn ${activeTab === "grocery" ? "active" : ""}`}
@@ -1312,7 +1313,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
             aria-selected={activeTab === "grocery"}
             onClick={() => setActiveTab("grocery")}
           >
-            Grocery list
+            {t("Grocery list")}
           </button>
         </div>
       </div>
@@ -1331,7 +1332,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
           {/* Visual Donut Macro Chart & Metric Highlights */}
           <div className="macro-dashboard-grid">
             <div className="macro-chart-box-container">
-              <span className="dashboard-subheading">Calorie & macro distribution</span>
+              <span className="dashboard-subheading">{t("Calorie & macro distribution")}</span>
               <MacroDonutChart
                 protein_g={totalMacros.protein_g}
                 carbs_g={totalMacros.carbs_g}
@@ -1342,27 +1343,27 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
             </div>
 
             <div className="energy-stats-box">
-              <span className="dashboard-subheading">Energy & metabolic targets</span>
+              <span className="dashboard-subheading">{t("Energy & metabolic targets")}</span>
               <div className="stat-tiles">
                 <div className="stat-tile">
-                  <span className="stat-tile-label">Basal Metabolic Rate (BMR)</span>
+                  <span className="stat-tile-label">{t("Basal Metabolic Rate (BMR)")}</span>
                   <span className="stat-tile-val">{plan.bmr || 1550} kcal</span>
-                  <span className="stat-tile-desc">Calories burned at complete rest</span>
+                  <span className="stat-tile-desc">{t("Calories burned at complete rest")}</span>
                 </div>
                 <div className="stat-tile">
-                  <span className="stat-tile-label">Maintenance Energy (TDEE)</span>
+                  <span className="stat-tile-label">{t("Maintenance Energy (TDEE)")}</span>
                   <span className="stat-tile-val">{plan.tdee || 2150} kcal</span>
-                  <span className="stat-tile-desc">Total daily energy expenditure</span>
+                  <span className="stat-tile-desc">{t("Total daily energy expenditure")}</span>
                 </div>
                 <div className="stat-tile highlight">
-                  <span className="stat-tile-label">Target Intake</span>
+                  <span className="stat-tile-label">{t("Target Intake")}</span>
                   <span className="stat-tile-val">{targetCal} kcal</span>
-                  <span className="stat-tile-desc">Optimized for your fitness goal</span>
+                  <span className="stat-tile-desc">{t("Optimized for your fitness goal")}</span>
                 </div>
                 <div className="stat-tile">
-                  <span className="stat-tile-label">Plate Calories (from recipes)</span>
+                  <span className="stat-tile-label">{t("Plate Calories (from recipes)")}</span>
                   <span className="stat-tile-val">{currentDayData.actual_calories || currentMeals.reduce((s, m) => s + (m.approx_calories || 0), 0)} kcal</span>
-                  <span className="stat-tile-desc">Sum of catalog nutrition, not a TDEE split</span>
+                  <span className="stat-tile-desc">{t("Sum of catalog nutrition, not a TDEE split")}</span>
                 </div>
               </div>
             </div>
@@ -1375,24 +1376,24 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
           <div className="meals-list">
             {currentMeals.map((meal, idx) => {
               const lower = (meal.name || "").toLowerCase();
-              let slot = `Meal ${idx + 1}`;
+              let slot = t("Meal {n}", { n: idx + 1 });
               let cleanTitle = meal.name;
 
               if (lower.startsWith("breakfast")) {
-                slot = "Breakfast";
+                slot = t("Breakfast");
                 cleanTitle = meal.name.replace(/^breakfast[:\s-]*/i, "");
               } else if (lower.startsWith("lunch")) {
-                slot = "Lunch";
+                slot = t("Lunch");
                 cleanTitle = meal.name.replace(/^lunch[:\s-]*/i, "");
               } else if (lower.startsWith("dinner")) {
-                slot = "Dinner";
+                slot = t("Dinner");
                 cleanTitle = meal.name.replace(/^dinner[:\s-]*/i, "");
               } else if (lower.startsWith("snack")) {
-                slot = "Snack";
+                slot = t("Snack");
                 cleanTitle = meal.name.replace(/^snack[:\s-]*/i, "");
               } else {
-                const defaultSlots = ["Breakfast", "Lunch", "Dinner", "Snack"];
-                slot = defaultSlots[idx] || `Meal ${idx + 1}`;
+                const defaultSlots = [t("Breakfast"), t("Lunch"), t("Dinner"), t("Snack")];
+                slot = defaultSlots[idx] || t("Meal {n}", { n: idx + 1 });
               }
 
               // Compute macro ratio for this meal
@@ -1410,24 +1411,24 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                     <div className="meal-title-group">
                       <div className="meal-heading-wrapper">
                         <span className="meal-slot-tag">{slot}</span>
-                        <h3 className="meal-title">{cleanTitle}</h3>
+                        <h3 className="meal-title">{t(cleanTitle)}</h3>
                         <div className="meal-meta-tags">
-                          <span className="meal-tag">{meal.prep_time || "10 mins"} prep</span>
-                          <span className="meal-tag">{meal.cook_time || "15 mins"} cook</span>
-                          <span className="meal-tag difficulty">{meal.difficulty || "Easy"}</span>
+                          <span className="meal-tag">{meal.prep_time || "10 mins"} {t("prep")}</span>
+                          <span className="meal-tag">{meal.cook_time || "15 mins"} {t("cook")}</span>
+                          <span className="meal-tag difficulty">{t(meal.difficulty || "Easy")}</span>
                           {mP >= 28 && (
                             <span className="meal-highlight-badge badge-high-protein">
-                              High protein
+                              {t("High protein")}
                             </span>
                           )}
                           {mC >= 45 && (
                             <span className="meal-highlight-badge badge-high-fiber">
-                              Sustained energy
+                              {t("Sustained energy")}
                             </span>
                           )}
                           {(meal.prep_time || "").includes("5") && (
                             <span className="meal-highlight-badge badge-quick">
-                              Quick prep
+                              {t("Quick prep")}
                             </span>
                           )}
                         </div>
@@ -1435,7 +1436,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                     </div>
 
                     <div className="meal-header-actions">
-                      <span className="cal-badge">{meal.approx_calories} kcal</span>
+                      <span className="cal-badge">{meal.approx_calories} {t("kcal")}</span>
                       {!meal.unavailable && (
                         <>
                           <button
@@ -1443,7 +1444,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                             type="button"
                             onClick={() => setSelectedRecipe(meal)}
                           >
-                            Recipe
+                            {t("Recipe")}
                           </button>
                           <button
                             className="cook-now-btn"
@@ -1451,7 +1452,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                             onClick={() => onStartCooking && onStartCooking(meal)}
                             title="Start step-by-step kitchen cooking mode"
                           >
-                            🍳 Cook
+                            {t("🍳 Cook")}
                           </button>
                         </>
                       )}
@@ -1461,7 +1462,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                         onClick={() => handleSwapClick(idx, meal.name)}
                         disabled={swappingIdx === idx || meal.unavailable}
                       >
-                        {swappingIdx === idx ? "Swapping…" : "Swap"}
+                        {swappingIdx === idx ? t("Swapping…") : t("Swap")}
                       </button>
                     </div>
                   </div>
@@ -1479,7 +1480,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                   <div className="meal-body">
                     {meal.ingredients && meal.ingredients.length > 0 && (
                       <div className="ingr-block">
-                        <span className="sub-heading">Key ingredients</span>
+                        <span className="sub-heading">{t("Key ingredients")}</span>
                         <div className="ingr-chips-wrap">
                           {meal.ingredients.map((ing, i) => (
                             <span className="ingr-chip" key={i}>
@@ -1493,7 +1494,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
                     <div className="details-block">
                       {meal.reason && (
                         <div className="reason-box">
-                          <span className="label">Why this meal works</span>
+                          <span className="label">{t("Why this meal works")}</span>
                           <p className="reason-text">
                             {typeof meal.reason === "object" ? JSON.stringify(meal.reason) : meal.reason}
                           </p>
@@ -1502,9 +1503,9 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
 
                       {meal.macros && (
                         <div className="meal-mini-macros">
-                          <span className="macro-mini-pill p">Protein <b>{meal.macros.protein_g}g</b></span>
-                          <span className="macro-mini-pill c">Carbs <b>{meal.macros.carbs_g}g</b></span>
-                          <span className="macro-mini-pill f">Fats <b>{meal.macros.fats_g}g</b></span>
+                          <span className="macro-mini-pill p">{t("Protein")} <b>{meal.macros.protein_g}g</b></span>
+                          <span className="macro-mini-pill c">{t("Carbs")} <b>{meal.macros.carbs_g}g</b></span>
+                          <span className="macro-mini-pill f">{t("Fats")} <b>{meal.macros.fats_g}g</b></span>
                         </div>
                       )}
                     </div>
@@ -1518,11 +1519,11 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
         <div className="grocery-section">
           <div className="grocery-toolbar">
             <div>
-              <h3>{isWeekly ? "Weekly grocery list" : "Grocery list"}</h3>
-              <p className="grocery-subtitle">Everything you need for the meals in this plan</p>
+              <h3>{isWeekly ? t("Weekly grocery list") : t("Grocery list")}</h3>
+              <p className="grocery-subtitle">{t("Everything you need for the meals in this plan")}</p>
             </div>
             <button className="copy-grocery-btn" type="button" onClick={copyGroceryList}>
-              Copy list
+              {t("Copy list")}
             </button>
           </div>
 
@@ -1532,7 +1533,7 @@ function MealPlanDisplay({ plan, onSwapMeal, profile, onStartCooking, onOpenFrid
             {Object.entries(groceryCategories).map(([category, items]) =>
               items.length > 0 && (
                 <div key={category} className="grocery-card">
-                  <h4>{category}</h4>
+                  <h4>{t(category)}</h4>
                   <ul className="checklist">
                     {items.map((item, i) => {
                       const key = `${category}-${i}-${item}`;
@@ -1586,21 +1587,21 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
         <div className="hero-left-content">
           <div className="hero-eyebrow-pill">
             <Icon.leaf className="eyebrow-leaf" />
-            Whole-Food Clinical Nutrition
+            {t("Whole-Food Clinical Nutrition")}
           </div>
 
           <h1 className="hero-main-heading">
-            Nourishing real food, <span>scientifically tailored</span> to your body.
+            {t("Nourishing real food,")} <span>{t("scientifically tailored")}</span> {t("to your body.")}
           </h1>
 
           <p className="hero-subdescription">
-            Personalized daily and 7-day meal protocols designed for metabolic vitality, steady energy, and gut health — built around fresh, vibrant whole ingredients you actually love.
+            {t("Personalized daily and 7-day meal protocols designed for metabolic vitality, steady energy, and gut health — built around fresh, vibrant whole ingredients you actually love.")}
           </p>
 
           <ul className="hero-feature-list">
-            <li>Precision calorie, macro, and prebiotic fiber targets calculated from your biometrics</li>
-            <li>Varied 7-day whole-food meal schedules with step-by-step recipes and cooking times</li>
-            <li>Categorized fresh-produce grocery lists that make healthy shopping effortless</li>
+            <li>{t("Precision calorie, macro, and prebiotic fiber targets calculated from your biometrics")}</li>
+            <li>{t("Varied 7-day whole-food meal schedules with step-by-step recipes and cooking times")}</li>
+            <li>{t("Categorized fresh-produce grocery lists that make healthy shopping effortless")}</li>
           </ul>
 
           <div className="hero-actions-group">
@@ -1610,7 +1611,7 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
               onClick={onStartAssessment}
               id="hero-cta-assessment"
             >
-              Build my nutrition plan
+              {t("Build my nutrition plan")}
             </button>
 
             <button
@@ -1619,15 +1620,15 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
               onClick={onExploreDemo}
               id="hero-cta-demo"
             >
-              Explore sample plan
+              {t("Explore sample plan")}
             </button>
           </div>
-          <p className="hero-no-commitment">100% free & open. No credit card or account needed.</p>
+          <p className="hero-no-commitment">{t("100% free & open. No credit card or account needed.")}</p>
 
           <div className="hero-trust-row">
-            <span className="hero-trust-item">Mifflin-St Jeor metabolic formulas</span>
-            <span className="hero-trust-item">Zero ultra-processed filler</span>
-            <span className="hero-trust-item">Complete whole-food recipes</span>
+            <span className="hero-trust-item">{t("Mifflin-St Jeor metabolic formulas")}</span>
+            <span className="hero-trust-item">{t("Zero ultra-processed filler")}</span>
+            <span className="hero-trust-item">{t("Complete whole-food recipes")}</span>
           </div>
         </div>
 
@@ -1642,33 +1643,33 @@ function HeroSection({ onStartAssessment, onExploreDemo }) {
             <div className="hero-photo-tag-top">
               <span className="hero-organic-badge">
                 <Icon.leaf className="hero-badge-leaf" />
-                100% Whole Foods • High Vitality
+                {t("100% Whole Foods • High Vitality")}
               </span>
             </div>
             <div className="hero-floating-stats">
               <div className="hero-floating-header">
-                <span className="hero-floating-pill-label">Daily Nourishment Protocol</span>
-                <span className="hero-floating-micro-badge">Metabolic Balance</span>
+                <span className="hero-floating-pill-label">{t("Daily Nourishment Protocol")}</span>
+                <span className="hero-floating-micro-badge">{t("Metabolic Balance")}</span>
               </div>
               <div className="hero-floating-metrics-grid">
                 <div className="hero-stat-bubble">
                   <span className="hero-stat-bubble-val green">2,100</span>
-                  <span className="hero-stat-bubble-lbl">Energy (kcal)</span>
+                  <span className="hero-stat-bubble-lbl">{t("Energy (kcal)")}</span>
                 </div>
                 <div className="hero-stat-divider" />
                 <div className="hero-stat-bubble">
                   <span className="hero-stat-bubble-val">140g</span>
-                  <span className="hero-stat-bubble-lbl">Protein</span>
+                  <span className="hero-stat-bubble-lbl">{t("Protein")}</span>
                 </div>
                 <div className="hero-stat-divider" />
                 <div className="hero-stat-bubble">
                   <span className="hero-stat-bubble-val amber">38g</span>
-                  <span className="hero-stat-bubble-lbl">Prebiotic Fiber</span>
+                  <span className="hero-stat-bubble-lbl">{t("Prebiotic Fiber")}</span>
                 </div>
                 <div className="hero-stat-divider" />
                 <div className="hero-stat-bubble">
                   <span className="hero-stat-bubble-val blue">3.0 L</span>
-                  <span className="hero-stat-bubble-lbl">Hydration</span>
+                  <span className="hero-stat-bubble-lbl">{t("Hydration")}</span>
                 </div>
               </div>
             </div>
@@ -1753,10 +1754,10 @@ function DietaryArchetypeStrip({ selectedArchetype, onSelectArchetype }) {
                   <img src={arch.image} alt={arch.name} loading="lazy" />
                 </div>
                 <div className="archetype-card-body">
-                  <span className="archetype-guide-badge">Guide</span>
-                  <span className="archetype-circle-name">{arch.name}</span>
+                  <span className="archetype-guide-badge">{t("Guide")}</span>
+                  <span className="archetype-circle-name">{t(arch.name)}</span>
                   <span className="archetype-circle-split">{arch.macroSplit}</span>
-                  <p className="archetype-card-desc">{arch.desc}</p>
+                  <p className="archetype-card-desc">{t(arch.desc)}</p>
                 </div>
               </button>
             );
@@ -1778,57 +1779,57 @@ function EvidenceSection() {
             <img src="./assets/meal_prep.jpg" alt="Woman preparing healthy Indian meal" loading="lazy" />
             <div className="card-overlay" />
             <div className="card-label">
-              <div className="evidence-card-title">Fresh Meal Prep</div>
-              <div className="evidence-card-desc">Step-by-step easy home cooking</div>
+              <div className="evidence-card-title">{t("Fresh Meal Prep")}</div>
+              <div className="evidence-card-desc">{t("Step-by-step easy home cooking")}</div>
             </div>
           </div>
           <div className="evidence-img-card card-alt">
             <img src="./assets/hero_food.jpg" alt="Nutrient-dense meal spread" loading="lazy" />
             <div className="card-overlay" />
             <div className="card-label">
-              <div className="evidence-card-title">Nutrient-Dense</div>
-              <div className="evidence-card-desc">Whole foods rich in vitamins & minerals</div>
+              <div className="evidence-card-title">{t("Nutrient-Dense")}</div>
+              <div className="evidence-card-desc">{t("Whole foods rich in vitamins & minerals")}</div>
             </div>
           </div>
         </div>
 
         {/* Right Column */}
         <div className="evidence-content-col">
-          <div className="evidence-tag">About The Platform</div>
-          <h2 className="evidence-title">Precision Nutrition & Delicious Recipes Delivered</h2>
+          <div className="evidence-tag">{t("About The Platform")}</div>
+          <h2 className="evidence-title">{t("Precision Nutrition & Delicious Recipes Delivered")}</h2>
           <p className="evidence-lead">
-            We ease your everyday routine and make healthy eating delicious, affordable, and effortless. At Smart Nutrition, you can generate:
+            {t("We ease your everyday routine and make healthy eating delicious, affordable, and effortless. At Smart Nutrition, you can generate:")}
           </p>
 
           <ul className="evidence-checklist">
             <li className="evidence-check-item">
               <span className="evidence-check-icon">✓</span>
-              <span>Personalized Caloric Targets</span>
+              <span>{t("Personalized Caloric Targets")}</span>
             </li>
             <li className="evidence-check-item">
               <span className="evidence-check-icon">✓</span>
-              <span>Balanced Macronutrients</span>
+              <span>{t("Balanced Macronutrients")}</span>
             </li>
             <li className="evidence-check-item">
               <span className="evidence-check-icon">✓</span>
-              <span>7-Day Weekly Meal Plans</span>
+              <span>{t("7-Day Weekly Meal Plans")}</span>
             </li>
             <li className="evidence-check-item">
               <span className="evidence-check-icon">✓</span>
-              <span>Categorized Grocery Lists</span>
+              <span>{t("Categorized Grocery Lists")}</span>
             </li>
             <li className="evidence-check-item">
               <span className="evidence-check-icon">✓</span>
-              <span>Dynamic Hydration Goal</span>
+              <span>{t("Dynamic Hydration Goal")}</span>
             </li>
             <li className="evidence-check-item">
               <span className="evidence-check-icon">✓</span>
-              <span>100% Free Public Utility</span>
+              <span>{t("100% Free Public Utility")}</span>
             </li>
           </ul>
 
           <p className="evidence-footnote">
-            Our algorithm balances energy expenditure equations (Mifflin-St Jeor) with macronutrient density to ensure sustainable, long-term health and peak vitality.
+            {t("Our algorithm balances energy expenditure equations (Mifflin-St Jeor) with macronutrient density to ensure sustainable, long-term health and peak vitality.")}
           </p>
         </div>
       </section>
@@ -1837,17 +1838,17 @@ function EvidenceSection() {
       <div className="evidence-promo-banner">
         <div className="evidence-promo-card">
           <div className="evidence-promo-content">
-            <div className="promo-kicker">Weekly Planner</div>
-            <h3>Wish someone else would plan dinner?</h3>
+            <div className="promo-kicker">{t("Weekly Planner")}</div>
+            <h3>{t("Wish someone else would plan dinner?")}</h3>
             <p>
-              We’ve got you. Unlock personalized meal plans, complete recipe library with step-by-step cooking instructions, and categorized grocery lists that make healthy eating simple, enjoyable, and delicious.
+              {t("We’ve got you. Unlock personalized meal plans, complete recipe library with step-by-step cooking instructions, and categorized grocery lists that make healthy eating simple, enjoyable, and delicious.")}
             </p>
             <button
               type="button"
               className="btn-promo-cta"
               onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
             >
-              Generate my free plan
+              {t("Generate my free plan")}
             </button>
           </div>
           <div className="evidence-promo-photos">
@@ -1875,10 +1876,10 @@ function StepsSection({ onStep1Click }) {
   return (
     <section className="steps-workflow-section" id="how-it-works" aria-label="How it works">
       <div className="steps-header">
-        <span className="section-eyebrow">How it works</span>
-        <h2 className="section-title">A personalized plan in three steps</h2>
+        <span className="section-eyebrow">{t("How it works")}</span>
+        <h2 className="section-title">{t("A personalized plan in three steps")}</h2>
         <p className="steps-intro-text">
-          We calculate your metabolic requirements with precision, then translate them into meals you will actually look forward to.
+          {t("We calculate your metabolic requirements with precision, then translate them into meals you will actually look forward to.")}
         </p>
       </div>
 
@@ -1892,9 +1893,9 @@ function StepsSection({ onStep1Click }) {
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
         >
           <span className="step-numeral">01</span>
-          <h3 className="step-title-num">Enter your details</h3>
+          <h3 className="step-title-num">{t("Enter your details")}</h3>
           <p className="step-description-text">
-            Add your age, height, weight, activity level, and dietary preferences to the form below.
+            {t("Add your age, height, weight, activity level, and dietary preferences to the form below.")}
           </p>
         </div>
 
@@ -1906,9 +1907,9 @@ function StepsSection({ onStep1Click }) {
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
         >
           <span className="step-numeral">02</span>
-          <h3 className="step-title-num">We build your targets</h3>
+          <h3 className="step-title-num">{t("We build your targets")}</h3>
           <p className="step-description-text">
-            Your plan balances calories, protein, carbohydrates, and healthy fats around your goal.
+            {t("Your plan balances calories, protein, carbohydrates, and healthy fats around your goal.")}
           </p>
         </div>
 
@@ -1920,9 +1921,9 @@ function StepsSection({ onStep1Click }) {
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
         >
           <span className="step-numeral">03</span>
-          <h3 className="step-title-num">Cook, eat, and track</h3>
+          <h3 className="step-title-num">{t("Cook, eat, and track")}</h3>
           <p className="step-description-text">
-            Follow your daily meals, open step-by-step recipes, and log hydration as you go.
+            {t("Follow your daily meals, open step-by-step recipes, and log hydration as you go.")}
           </p>
         </div>
       </div>
@@ -1937,9 +1938,9 @@ function StepsSection({ onStep1Click }) {
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onStep1Click(); }}
       >
         <div className="single-promo-content">
-          <span className="promo-badge-tag">7-Day Variety</span>
-          <h3 className="promo-banner-title">Weekly Meal Planner</h3>
-          <p className="promo-banner-desc">7 days of varied, nutritionally balanced meal plans tailored to your unique body metrics.</p>
+          <span className="promo-badge-tag">{t("7-Day Variety")}</span>
+          <h3 className="promo-banner-title">{t("Weekly Meal Planner")}</h3>
+          <p className="promo-banner-desc">{t("7 days of varied, nutritionally balanced meal plans tailored to your unique body metrics.")}</p>
         </div>
         <button
           type="button"
@@ -1949,7 +1950,7 @@ function StepsSection({ onStep1Click }) {
             onStep1Click();
           }}
         >
-          Build 7-Day Plan →
+          {t("Build 7-Day Plan →")}
         </button>
       </div>
     </section>
@@ -2062,21 +2063,21 @@ function ProtocolMatrixShowcase({ onSelectRecipe }) {
   return (
     <section className="showcase-matrix-section" id="macro-matrix" aria-label="Popular Recipes">
       <div className="showcase-header">
-        <div className="showcase-subtitle-tag">From the recipe library</div>
-        <h2 className="showcase-main-title">Recipes worth cooking tonight</h2>
+        <div className="showcase-subtitle-tag">{t("From the recipe library")}</div>
+        <h2 className="showcase-main-title">{t("Recipes worth cooking tonight")}</h2>
         <p className="showcase-desc">
-          Balanced, everyday meals from the same library used to build your plan — with full ingredients and methods.
+          {t("Balanced, everyday meals from the same library used to build your plan — with full ingredients and methods.")}
         </p>
       </div>
 
       {/* Tabs — underline style */}
       <div className="showcase-tabs-row" role="tablist" aria-label="Recipe categories">
         {[
-          { id: "all", label: "All recipes" },
-          { id: "breakfast", label: "Breakfast" },
-          { id: "mains", label: "Mains" },
-          { id: "snacks", label: "Snacks" },
-          { id: "salads", label: "Salads" },
+          { id: "all", label: t("All recipes") },
+          { id: "breakfast", label: t("Breakfast") },
+          { id: "mains", label: t("Mains") },
+          { id: "snacks", label: t("Snacks") },
+          { id: "salads", label: t("Salads") },
         ].map(t => (
           <button
             key={t.id}
@@ -2099,20 +2100,20 @@ function ProtocolMatrixShowcase({ onSelectRecipe }) {
             </div>
             <div className="showcase-card-body">
               <div className="recipe-rating-row">
-                <span className="recipe-rating-num">{item.label}</span>
+                <span className="recipe-rating-num">{t(item.label)}</span>
               </div>
-              <h3 className="showcase-item-name">{item.title}</h3>
+              <h3 className="showcase-item-name">{t(item.title)}</h3>
               <div className="showcase-item-meta">
-                <span>{item.time}</span>
+                <span>{t(item.time)}</span>
                 <span className="meta-dot" />
-                <span>{item.difficulty}</span>
+                <span>{t(item.difficulty)}</span>
               </div>
               <button
                 type="button"
                 className="showcase-item-btn"
                 onClick={(e) => { e.stopPropagation(); onSelectRecipe(item.recipe); }}
               >
-                View recipe
+                {t("View recipe")}
               </button>
             </div>
           </div>
@@ -2125,7 +2126,7 @@ function ProtocolMatrixShowcase({ onSelectRecipe }) {
           className="btn-check-all-recipes"
           onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
         >
-          Build a plan with these recipes
+          {t("Build a plan with these recipes")}
         </button>
       </div>
     </section>
@@ -2143,48 +2144,48 @@ function InstitutionalFooter({ onNavigateSection, onSelectDiet, onShowLegalModal
               <Icon.leaf className="footer-brand-mark" />
               <span className="footer-brand-name">Smart<span>Nutrition</span></span>
             </div>
-            <p>Your free personal nutrition engine. Evidence-based meal plans, macro targets, and grocery lists — all in one place.</p>
+            <p>{t("Your free personal nutrition engine. Evidence-based meal plans, macro targets, and grocery lists — all in one place.")}</p>
           </div>
 
           <div>
-            <div className="footer-col-title">Platform</div>
+            <div className="footer-col-title">{t("Platform")}</div>
             <div className="footer-col-links">
-              <button type="button" onClick={() => onNavigateSection("hero")}>Home</button>
-              <button type="button" onClick={() => onNavigateSection("methodology")}>About Us</button>
-              <button type="button" onClick={() => onNavigateSection("macro-matrix")}>Recipes</button>
-              <button type="button" onClick={() => onNavigateSection("how-it-works")}>How It Works</button>
+              <button type="button" onClick={() => onNavigateSection("hero")}>{t("Home")}</button>
+              <button type="button" onClick={() => onNavigateSection("methodology")}>{t("About Us")}</button>
+              <button type="button" onClick={() => onNavigateSection("macro-matrix")}>{t("Recipes")}</button>
+              <button type="button" onClick={() => onNavigateSection("how-it-works")}>{t("How It Works")}</button>
             </div>
           </div>
 
           <div>
-            <div className="footer-col-title">Nutrition Plans</div>
+            <div className="footer-col-title">{t("Nutrition Plans")}</div>
             <div className="footer-col-links">
-              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>1-Day Plan</button>
-              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>7-Day Weekly Plan</button>
-              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>Grocery Lists</button>
-              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>Hydration Tracker</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>{t("1-Day Plan")}</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>{t("7-Day Weekly Plan")}</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>{t("Grocery Lists")}</button>
+              <button type="button" onClick={() => onNavigateSection("protocol-engine")}>{t("Hydration Tracker")}</button>
             </div>
           </div>
 
           <div>
-            <div className="footer-col-title">Diet Types</div>
+            <div className="footer-col-title">{t("Diet Types")}</div>
             <div className="footer-col-links">
-              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian vegetarian") : onNavigateSection("protocol-engine")}>Indian Vegetarian</button>
-              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian vegan") : onNavigateSection("protocol-engine")}>Vegan</button>
-              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian non-vegetarian") : onNavigateSection("protocol-engine")}>Non-Vegetarian</button>
-              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("balanced") : onNavigateSection("protocol-engine")}>Balanced</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian vegetarian") : onNavigateSection("protocol-engine")}>{t("Indian Vegetarian")}</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian vegan") : onNavigateSection("protocol-engine")}>{t("Vegan")}</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("indian non-vegetarian") : onNavigateSection("protocol-engine")}>{t("Non-Vegetarian")}</button>
+              <button type="button" onClick={() => onSelectDiet ? onSelectDiet("balanced") : onNavigateSection("protocol-engine")}>{t("Balanced")}</button>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom-row">
           <div className="footer-copyright">
-            © 2026 Smart Nutrition. All rights reserved.
+            {t("© 2026 Smart Nutrition. All rights reserved.")}
           </div>
           <div className="footer-links-row">
-            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("privacy")}>Privacy Policy</button>
-            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("terms")}>Terms of Service</button>
-            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("contact")}>Contact</button>
+            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("privacy")}>{t("Privacy Policy")}</button>
+            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("terms")}>{t("Terms of Service")}</button>
+            <button type="button" onClick={() => onShowLegalModal && onShowLegalModal("contact")}>{t("Contact")}</button>
           </div>
         </div>
       </div>
@@ -2226,16 +2227,16 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
   const cPct = Math.min(100, Math.round((eatenC / targetC) * 100));
   const fPct = Math.min(100, Math.round((eatenF / targetF) * 100));
 
-  const slotLabels = ["Breakfast", "Lunch", "Dinner", "Snack"];
+  const slotLabels = [t("Breakfast"), t("Lunch"), t("Dinner"), t("Snack")];
 
   return (
     <div className="calorie-tracker-card">
       <div className="calorie-tracker-header">
         <div className="calorie-tracker-heading">
-          <h3>Today&apos;s progress</h3>
-          <p>Select a meal to mark it eaten and update your totals.</p>
+          <h3>{t("Today's progress")}</h3>
+          <p>{t("Select a meal to mark it eaten and update your totals.")}</p>
         </div>
-        <span className={`calorie-pct-badge ${pct >= 100 ? "complete" : ""}`}>{pct}% eaten</span>
+        <span className={`calorie-pct-badge ${pct >= 100 ? "complete" : ""}`}>{pct}{t("% eaten")}</span>
       </div>
 
       <div className="calorie-progress-bar-track">
@@ -2244,16 +2245,16 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
 
       <div className="calorie-stats-row">
         <div className="calorie-stat-box">
-          <span className="calorie-stat-label">Target</span>
-          <span className="calorie-stat-val">{target} kcal</span>
+          <span className="calorie-stat-label">{t("Target")}</span>
+          <span className="calorie-stat-val">{target} {t("kcal")}</span>
         </div>
         <div className="calorie-stat-box">
-          <span className="calorie-stat-label">Eaten</span>
-          <span className="calorie-stat-val positive">{eaten} kcal</span>
+          <span className="calorie-stat-label">{t("Eaten")}</span>
+          <span className="calorie-stat-val positive">{eaten} {t("kcal")}</span>
         </div>
         <div className="calorie-stat-box">
-          <span className="calorie-stat-label">Remaining</span>
-          <span className="calorie-stat-val">{remaining} kcal</span>
+          <span className="calorie-stat-label">{t("Remaining")}</span>
+          <span className="calorie-stat-val">{remaining} {t("kcal")}</span>
         </div>
       </div>
 
@@ -2261,7 +2262,7 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
       <div className="macro-progress-tracker-grid">
         <div className="macro-prog-box">
           <div className="macro-prog-top">
-            <span className="macro-prog-label">Protein</span>
+            <span className="macro-prog-label">{t("Protein")}</span>
             <span className="macro-prog-nums">{eatenP} / {targetP}g ({pPct}%)</span>
           </div>
           <div className="macro-prog-track">
@@ -2271,7 +2272,7 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
 
         <div className="macro-prog-box">
           <div className="macro-prog-top">
-            <span className="macro-prog-label">Carbs</span>
+            <span className="macro-prog-label">{t("Carbs")}</span>
             <span className="macro-prog-nums">{eatenC} / {targetC}g ({cPct}%)</span>
           </div>
           <div className="macro-prog-track">
@@ -2281,7 +2282,7 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
 
         <div className="macro-prog-box">
           <div className="macro-prog-top">
-            <span className="macro-prog-label">Fats</span>
+            <span className="macro-prog-label">{t("Fats")}</span>
             <span className="macro-prog-nums">{eatenF} / {targetF}g ({fPct}%)</span>
           </div>
           <div className="macro-prog-track">
@@ -2302,8 +2303,8 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
               aria-pressed={isEaten}
             >
               <span className="calorie-meal-slot">{slotLabels[idx] || `Meal ${idx + 1}`}</span>
-              <span className="calorie-meal-name">{(meal.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, "")}</span>
-              <span className="calorie-meal-cal">{meal.approx_calories} kcal</span>
+              <span className="calorie-meal-name">{t((meal.name || "").replace(/^(breakfast|lunch|dinner|snack)[:\s-]*/i, ""))}</span>
+              <span className="calorie-meal-cal">{meal.approx_calories} {t("kcal")}</span>
               {isEaten && <span className="calorie-meal-check" />}
             </button>
           );
@@ -2378,11 +2379,11 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
         <header className="pantry-header">
           <div className="pantry-tag">
             <Icon.leaf style={{ width: 14, height: 14 }} />
-            Zero-Waste Kitchen & Pantry Matcher
+            {t("Zero-Waste Kitchen & Pantry Matcher")}
           </div>
-          <h2 className="pantry-title">What's in your fridge right now?</h2>
+          <h2 className="pantry-title">{t("What's in your fridge right now?")}</h2>
           <p className="pantry-description">
-            Select or type ingredients you already have at home. We'll cross-reference our whole-food catalog and surface delicious recipes you can cook immediately without an extra trip to the store.
+            {t("Select or type ingredients you already have at home. We'll cross-reference our whole-food catalog and surface delicious recipes you can cook immediately without an extra trip to the store.")}
           </p>
         </header>
 
@@ -2391,17 +2392,17 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
             <input
               type="text"
               className="pantry-text-input"
-              placeholder="e.g. sweet potato, bell pepper, mushrooms..."
+              placeholder={t("e.g. sweet potato, bell pepper, mushrooms...")}
               value={customInput}
               onChange={(e) => setCustomInput(e.target.value)}
             />
             <button className="btn-add-ingredient" type="submit">
-              + Add Ingredient
+              {t("+ Add Ingredient")}
             </button>
           </form>
 
           <div>
-            <div className="pantry-staples-label">Popular staple pantry items:</div>
+            <div className="pantry-staples-label">{t("Popular staple pantry items:")}</div>
             <div className="pantry-staple-chips" style={{ marginTop: 10 }}>
               {STAPLE_CHIPS.map((chip) => {
                 const isSelected = selectedPantry.includes(chip);
@@ -2412,7 +2413,7 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
                     className={`staple-chip ${isSelected ? "selected" : ""}`}
                     onClick={() => handleToggleStaple(chip)}
                   >
-                    {isSelected ? "✓" : "+"} {chip}
+                    {isSelected ? "✓" : "+"} {t(chip)}
                   </button>
                 );
               })}
@@ -2421,7 +2422,7 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
 
           {selectedPantry.length > 0 && (
             <div className="pantry-active-tags">
-              <span className="pantry-active-label">In your kitchen ({selectedPantry.length}):</span>
+              <span className="pantry-active-label">{t("In your kitchen ({n}):", { n: selectedPantry.length })}</span>
               {selectedPantry.map((item) => (
                 <span key={item} className="active-ingr-pill">
                   {item}
@@ -2440,7 +2441,7 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
                 className="btn-clear-pantry"
                 onClick={() => setSelectedPantry([])}
               >
-                Clear all
+                {t("Clear all")}
               </button>
             </div>
           )}
@@ -2451,10 +2452,10 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
           <div className="pantry-results-header" style={{ marginBottom: 18 }}>
             <span className="pantry-results-count">
               {matchedMeals.length > 0
-                ? `Showing top ${matchedMeals.length} whole-food recipes matching your pantry:`
+                ? t("Showing top {n} whole-food recipes matching your pantry:", { n: matchedMeals.length })
                 : selectedPantry.length === 0
-                ? "Select ingredients above to find matching meals."
-                : "No matching recipes found with these exact ingredients."}
+                ? t("Select ingredients above to find matching meals.")
+                : t("No matching recipes found with these exact ingredients.")}
             </span>
           </div>
 
@@ -2464,18 +2465,18 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
                 <article key={meal.name} className="pantry-meal-card">
                   <div className="pantry-meal-card-top">
                     <span className="pantry-match-badge">
-                      ✓ Matches {matchedCount} {matchedCount === 1 ? "item" : "items"}
+                      {matchedCount === 1 ? t("✓ Matches {n} item", { n: matchedCount }) : t("✓ Matches {n} items", { n: matchedCount })}
                     </span>
-                    <h3 className="pantry-meal-name">{meal.name}</h3>
+                    <h3 className="pantry-meal-name">{t(meal.name)}</h3>
                     <div className="pantry-meal-macros">
-                      <span><strong>{meal.approx_calories}</strong> kcal</span>
+                      <span><strong>{meal.approx_calories}</strong> {t("kcal")}</span>
                       <span>•</span>
-                      <span><strong>{meal.macros?.protein_g || 0}g</strong> protein</span>
+                      <span><strong>{meal.macros?.protein_g || 0}g</strong> {t("Protein")}</span>
                       <span>•</span>
                       <span>{meal.cook_time || "15 mins"}</span>
                     </div>
                     <div className="pantry-matched-ingrs-list">
-                      Found in recipe: <strong>{matchedTerms.join(", ")}</strong>
+                      {t("Found in recipe:")} <strong>{matchedTerms.join(", ")}</strong>
                     </div>
                   </div>
 
@@ -2485,14 +2486,14 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
                       className="btn-pantry-cook"
                       onClick={() => onStartCooking(meal)}
                     >
-                      🍳 Cook Now
+                      {t("🍳 Cook Now")}
                     </button>
                     <button
                       type="button"
                       className="btn-pantry-view"
                       onClick={() => onOpenRecipe(meal)}
                     >
-                      Recipe Details
+                      {t("Recipe Details")}
                     </button>
                   </div>
                 </article>
@@ -2500,7 +2501,7 @@ function PantryMatcher({ onOpenRecipe, onStartCooking }) {
             </div>
           ) : selectedPantry.length > 0 ? (
             <div className="pantry-empty-prompt">
-              Try clicking popular staples like <strong>Spinach</strong>, <strong>Paneer</strong>, or <strong>Oats</strong> above.
+              {t("Try clicking popular staples like")} <strong>{t("Spinach")}</strong>, <strong>{t("Paneer")}</strong>, {t("or")} <strong>{t("Oats")}</strong>.
             </div>
           ) : null}
         </div>
@@ -2533,7 +2534,16 @@ function App() {
   const [generatingType, setGeneratingType] = useState("1day");
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("Add your profile details to create a personalized, goal-based nutrition plan.");
+  const [lang, setLangState] = useState(() => {
+    try {
+      const saved = localStorage.getItem("smart_nutrition_lang");
+      if (saved === "mr" || saved === "en") return saved;
+    } catch {}
+    return "en";
+  });
+  setLang(lang); // set before child components render
+
+  const [statusMessage, setStatusMessage] = useState(t("Add your profile details to create a personalized, goal-based nutrition plan."));
   const [selectedArchetype, setSelectedArchetype] = useState("balanced");
   const [previewRecipe, setPreviewRecipe] = useState(null);
   const [navOpen, setNavOpen] = useState(false);
@@ -2569,6 +2579,17 @@ function App() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  useEffect(() => {
+    try {
+      localStorage.setItem("smart_nutrition_lang", lang);
+    } catch (e) {
+      console.error(e);
+    }
+    document.documentElement.setAttribute("lang", lang === "mr" ? "mr" : "en");
+  }, [lang]);
+
+  const toggleLang = () => setLangState((p) => (p === "en" ? "mr" : "en"));
+
   const handleSelectArchetype = (arch) => {
     setSelectedArchetype(arch.id);
     setForm((prev) => ({
@@ -2576,7 +2597,7 @@ function App() {
       diet: arch.dietVal,
       goal: arch.goalVal,
     }));
-    setStatusMessage(`Calibrated to ${arch.name} (${arch.macroSplit}). Ready to generate plan.`);
+    setStatusMessage(t("Calibrated to {name} ({split}). Ready to generate plan.", { name: t(arch.name), split: arch.macroSplit }));
     const el = document.getElementById("protocol-engine");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -2585,7 +2606,7 @@ function App() {
 
   const handleFooterSelectDiet = (dietValue) => {
     setForm((prev) => ({ ...prev, diet: dietValue }));
-    setStatusMessage(`Diet preference set to ${dietValue}. Ready to calculate plan.`);
+    setStatusMessage(t("Diet preference set to {diet}. Ready to calculate plan.", { diet: t(dietValue) }));
     const el = document.getElementById("protocol-engine");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -2595,18 +2616,18 @@ function App() {
   const handleShowLegalModal = (type) => {
     if (type === "privacy") {
       setLegalModal({
-        title: "Privacy Policy",
-        body: "Smart Nutrition values your complete personal privacy. All biometrics, calorie computations, and diet customizations are calculated directly in your browser or local environment. We do not sell, store, or transmit your physical metrics to external advertising networks."
+        title: t("Privacy Policy"),
+        body: t("Privacy Policy (body)")
       });
     } else if (type === "terms") {
       setLegalModal({
-        title: "Terms of Service",
-        body: "Smart Nutrition is an open clinical nutrition calculator intended for personal health, meal planning, and educational purposes. Metabolic targets utilize the Mifflin-St Jeor equation. Always consult a licensed dietitian or physician for specialized medical conditions."
+        title: t("Terms of Service"),
+        body: t("Terms of Service (body)")
       });
     } else if (type === "contact") {
       setLegalModal({
-        title: "Contact & Clinical Feedback",
-        body: "We welcome feedback from nutrition researchers, home cooks, and clinical practitioners. Reach out at clinical@smartnutrition.local or open an issue on our GitHub repository."
+        title: t("Contact & Clinical Feedback"),
+        body: t("Contact (body)")
       });
     }
   };
@@ -2647,7 +2668,7 @@ function App() {
   const resetForm = () => {
     setForm({ ...emptyForm });
     setMealPlan(null);
-    setStatusMessage("Form cleared. Start again with your latest profile details.");
+    setStatusMessage(t("Form cleared. Start again with your latest profile details."));
   };
 
   const loadDemoProfile = (autoGenerate = false) => {
@@ -2670,7 +2691,7 @@ function App() {
     if (autoGenerate) {
       handleGeneratePlan("1day", demo);
     } else {
-      setStatusMessage("Demo profile loaded. Choose a 1-day or 7-day plan below.");
+      setStatusMessage(t("Demo profile loaded. Choose a 1-day or 7-day plan below."));
     }
   };
 
@@ -2709,7 +2730,7 @@ function App() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (statusMessage) {
-      setStatusMessage("Add your profile details to create a personalized, goal-based nutrition plan.");
+      setStatusMessage(t("Add your profile details to create a personalized, goal-based nutrition plan."));
     }
   };
 
@@ -2759,20 +2780,20 @@ function App() {
     let firstMissingInputId = null;
 
     if (!activeForm.age) {
-      missingFields.push("Age");
+      missingFields.push(t("Age"));
       if (!firstMissingInputId) firstMissingInputId = "profile-age";
     }
     if (!activeForm.height_cm) {
-      missingFields.push(unitSystem === "metric" ? "Height (cm)" : "Height (inches)");
+      missingFields.push(unitSystem === "metric" ? t("Height (cm)") : t("Height (inches)"));
       if (!firstMissingInputId) firstMissingInputId = "profile-height";
     }
     if (!activeForm.weight_kg) {
-      missingFields.push(unitSystem === "metric" ? "Weight (kg)" : "Weight (lbs)");
+      missingFields.push(unitSystem === "metric" ? t("Weight (kg)") : t("Weight (lbs)"));
       if (!firstMissingInputId) firstMissingInputId = "profile-weight";
     }
 
     if (missingFields.length > 0) {
-      setStatusMessage(`Please enter your ${missingFields.join(", ")} before generating your meal plan.`);
+      setStatusMessage(t("Please enter your {fields} before generating your meal plan.", { fields: missingFields.join(", ") }));
       if (firstMissingInputId) {
         const el = document.getElementById(firstMissingInputId);
         if (el) {
@@ -2785,7 +2806,7 @@ function App() {
 
     setLoading(true);
     setGeneratingType(type);
-    setStatusMessage(type === "7day" ? "Generating full 7-day varied weekly nutrition plan..." : "Building your personalized daily nutrition plan...");
+    setStatusMessage(type === "7day" ? t("Generating full 7-day varied weekly nutrition plan...") : t("Building your personalized daily nutrition plan..."));
 
     const resolvedName = (activeForm.name || "").trim() || "You";
 
@@ -2841,7 +2862,7 @@ function App() {
       } catch (e) {
         console.error(e);
       }
-      setStatusMessage(type === "7day" ? "Your 7-day nutrition plan is ready." : "Your personalized daily nutrition plan is ready.");
+      setStatusMessage(type === "7day" ? t("Your 7-day nutrition plan is ready.") : t("Your personalized daily nutrition plan is ready."));
       setTimeout(() => {
         const resEl = document.getElementById("results-dashboard");
         if (resEl) {
@@ -2849,7 +2870,7 @@ function App() {
         }
       }, 100);
     } else {
-      setStatusMessage("Could not generate plan. Please verify your age, height, and weight inputs.");
+      setStatusMessage(t("Could not generate plan. Please verify your age, height, and weight inputs."));
     }
 
     setLoading(false);
@@ -2908,7 +2929,7 @@ function App() {
           return { ...prev, meals: newMeals };
         }
       });
-      setStatusMessage(`Meal swapped: ${newMeal.name}`);
+      setStatusMessage(t("Meal swapped: {name}", { name: newMeal.name }));
     }
   };
 
@@ -2931,11 +2952,11 @@ function App() {
             </button>
 
             <ul className="nav-links-list">
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("methodology"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>About</button></li>
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Meal plans</button></li>
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("macro-matrix"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Recipes</button></li>
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("pantry-matcher"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Pantry matcher</button></li>
-              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("how-it-works"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>How it works</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("methodology"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("About")}</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("Meal plans")}</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("macro-matrix"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("Recipes")}</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("pantry-matcher"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("Pantry matcher")}</button></li>
+              <li><button type="button" className="nav-link" onClick={() => { const el = document.getElementById("how-it-works"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("How it works")}</button></li>
             </ul>
 
             <div className="nav-action-matrix">
@@ -2947,10 +2968,19 @@ function App() {
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? <Icon.sun className="theme-icon" /> : <Icon.moon className="theme-icon" />}
-                <span className="theme-toggle-text">{theme === "dark" ? "Light" : "Dark"}</span>
+                <span className="theme-toggle-text">{theme === "dark" ? t("Light") : t("Dark")}</span>
               </button>
 
-              <button type="button" className="btn-primary-blueprint" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>Create my plan</button>
+              <button
+                type="button"
+                className="theme-toggle-btn"
+                onClick={toggleLang}
+                aria-label="Change language"
+              >
+                <span className="theme-toggle-text">{lang === "en" ? "मराठी" : "English"}</span>
+              </button>
+
+              <button type="button" className="btn-primary-blueprint" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("Create my plan")}</button>
 
               {/* Hamburger for mobile */}
               <button
@@ -2968,12 +2998,12 @@ function App() {
           {/* Mobile dropdown */}
           <nav className={`mobile-nav-dropdown ${navOpen ? "open" : ""}`} aria-label="Mobile navigation">
             {[
-              { label: "About", id: "methodology" },
-              { label: "Meal plans", id: "protocol-engine" },
-              { label: "Recipes", id: "macro-matrix" },
-              { label: "Pantry matcher", id: "pantry-matcher" },
-              { label: "How it works", id: "how-it-works" },
-              { label: "Create my plan", id: "protocol-engine" },
+              { label: t("About"), id: "methodology" },
+              { label: t("Meal plans"), id: "protocol-engine" },
+              { label: t("Recipes"), id: "macro-matrix" },
+              { label: t("Pantry matcher"), id: "pantry-matcher" },
+              { label: t("How it works"), id: "how-it-works" },
+              { label: t("Create my plan"), id: "protocol-engine" },
             ].map(({ label, id }) => (
               <button key={label} type="button" onClick={() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth" }); setNavOpen(false); }}>{label}</button>
             ))}
@@ -2984,7 +3014,16 @@ function App() {
                 setNavOpen(false);
               }}
             >
-              {theme === "dark" ? "☀️ Daylight mode" : "🌙 Natural dark mode"}
+              {theme === "dark" ? t("☀️ Daylight mode") : t("🌙 Natural dark mode")}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                toggleLang();
+                setNavOpen(false);
+              }}
+            >
+              {lang === "en" ? "🌐 मराठी" : "🌐 English"}
             </button>
           </nav>
         </header>
@@ -3044,16 +3083,16 @@ function App() {
           {/* Header Bar with Title and Quick Actions */}
           <div className="generator-header-bar">
             <div className="generator-title-group">
-              <span className="generator-eyebrow">Your plan</span>
-              <h2 className="generator-main-title">Calculate your nutrition plan</h2>
+              <span className="generator-eyebrow">{t("Your plan")}</span>
+              <h2 className="generator-main-title">{t("Calculate your nutrition plan")}</h2>
               <p className="generator-subtitle">
-                Add a few details and we will calculate your energy needs, macronutrient targets, and a day of meals built around them.
+                {t("Add a few details and we will calculate your energy needs, macronutrient targets, and a day of meals built around them.")}
               </p>
             </div>
 
             <div className="generator-actions">
               <button className="btn-demo-quick" type="button" onClick={() => loadDemoProfile(true)}>
-                Demo profile
+                {t("Demo profile")}
               </button>
               <button className="btn-reset-quick" type="button" onClick={resetForm}>
                 Reset
@@ -3063,9 +3102,9 @@ function App() {
                 className="btn-demo-quick"
                 type="button"
                 onClick={() => setShowHistory(!showHistory)}
-                title="View saved nutrition plans"
+                title={t("View saved nutrition plans")}
               >
-                Saved plans{history.length > 0 ? ` (${history.length})` : ""}
+                {t("Saved plans")}{history.length > 0 ? ` (${history.length})` : ""}
               </button>
             </div>
           </div>
@@ -3081,11 +3120,11 @@ function App() {
           {showHistory && (
             <div className="history-drawer">
               <div className="history-header">
-                <h3>Saved plans</h3>
+                <h3>{t("Saved plans")}</h3>
                 <button className="close-btn" type="button" onClick={() => setShowHistory(false)} aria-label="Close saved plans">×</button>
               </div>
               {history.length === 0 ? (
-                <p className="no-history">No saved plans yet. Generate your first plan to see it here.</p>
+                <p className="no-history">{t("No saved plans yet. Generate your first plan to see it here.")}</p>
               ) : (
                 <div className="history-list">
                   {history.map((h, i) => (
@@ -3096,7 +3135,7 @@ function App() {
                       onClick={() => {
                         setMealPlan(h);
                         setShowHistory(false);
-                        setStatusMessage(`Restored saved plan for ${h.user_id} (${h.date})`);
+                        setStatusMessage(t("Restored saved plan for {user} ({date})", { user: h.user_id, date: h.date }));
                         setTimeout(() => {
                           const resEl = document.getElementById("results-dashboard");
                           if (resEl) {
@@ -3107,9 +3146,9 @@ function App() {
                     >
                       <div>
                         <strong>{h.user_id}</strong>
-                        <span className="history-date">{h.is_weekly ? "7-day plan" : "1-day plan"} · {h.date}</span>
+                        <span className="history-date">{h.is_weekly ? t("7-day plan") : t("1-day plan")} · {h.date}</span>
                       </div>
-                      <span className="history-cal">{h.target_calories} kcal</span>
+                      <span className="history-cal">{h.target_calories} {t("kcal")}</span>
                     </button>
                   ))}
                 </div>
@@ -3126,11 +3165,11 @@ function App() {
             }}
           >
             <div className="field">
-              <label htmlFor="profile-name">Full name (optional)</label>
+              <label htmlFor="profile-name">{t("Full name (optional)")}</label>
               <input
                 id="profile-name"
                 name="name"
-                placeholder="e.g. Aarav Sharma (or leave blank for 'You')"
+                placeholder={t("e.g. Aarav Sharma (or leave blank for 'You')")}
                 value={form.name}
                 onChange={handleChange}
                 autoComplete="name"
@@ -3139,32 +3178,32 @@ function App() {
 
             <div className="field-row">
               <div className="field">
-                <label htmlFor="profile-age">Age</label>
+                <label htmlFor="profile-age">{t("Age")}</label>
                 <input
                   id="profile-age"
                   name="age"
                   type="number"
                   min={1}
                   max={120}
-                  placeholder="Years"
+                  placeholder={t("Years")}
                   value={form.age}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="field">
-                <label htmlFor="profile-sex">Sex</label>
+                <label htmlFor="profile-sex">{t("Sex")}</label>
                 <select id="profile-sex" name="sex" value={form.sex} onChange={handleChange}>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="male">{t("Male")}</option>
+                  <option value="female">{t("Female")}</option>
                 </select>
               </div>
               <div className="field">
-                <label htmlFor="profile-activity">Activity level</label>
+                <label htmlFor="profile-activity">{t("Activity level")}</label>
                 <select id="profile-activity" name="activity" value={form.activity} onChange={handleChange}>
-                  <option value="low">Low — mostly seated</option>
-                  <option value="medium">Moderate — 3–4 workouts</option>
-                  <option value="high">High — daily training</option>
+                  <option value="low">{t("Low — mostly seated")}</option>
+                  <option value="medium">{t("Moderate — 3–4 workouts")}</option>
+                  <option value="high">{t("High — daily training")}</option>
                 </select>
               </div>
             </div>
@@ -3172,9 +3211,9 @@ function App() {
             <div className="field-row">
               <div className="field">
                 <div className="field-label-row">
-                  <label htmlFor="profile-height">Height ({unitSystem === "metric" ? "cm" : "in"})</label>
+                  <label htmlFor="profile-height">{unitSystem === "metric" ? t("Height (cm)") : t("Height (inches)")}</label>
                   <button type="button" className="unit-toggle" onClick={toggleUnitSystem}>
-                    Use {unitSystem === "metric" ? "imperial" : "metric"}
+                    {unitSystem === "metric" ? t("Use imperial") : t("Use metric")}
                   </button>
                 </div>
                 <input
@@ -3183,38 +3222,38 @@ function App() {
                   type="number"
                   min={unitSystem === "metric" ? 50 : 20}
                   max={unitSystem === "metric" ? 250 : 98}
-                  placeholder={unitSystem === "metric" ? "Height in cm" : "Total inches"}
+                  placeholder={unitSystem === "metric" ? t("Height in cm") : t("Total inches")}
                   value={form.height_cm}
                   onChange={handleChange}
                   required
                 />
                 <span className="field-hint">
-                  {unitSystem === "metric" ? "Centimetres" : "Total inches, e.g. 70"}
+                  {unitSystem === "metric" ? t("Centimetres") : t("Total inches, e.g. 70")}
                 </span>
               </div>
               <div className="field">
-                <label htmlFor="profile-weight">Weight ({unitSystem === "metric" ? "kg" : "lb"})</label>
+                <label htmlFor="profile-weight">{unitSystem === "metric" ? t("Weight (kg)") : t("Weight (lbs)")}</label>
                 <input
                   id="profile-weight"
                   name="weight_kg"
                   type="number"
                   min={unitSystem === "metric" ? 20 : 44}
                   max={unitSystem === "metric" ? 600 : 1300}
-                  placeholder={unitSystem === "metric" ? "Weight in kg" : "Weight in pounds"}
+                  placeholder={unitSystem === "metric" ? t("Weight in kg") : t("Weight in pounds")}
                   value={form.weight_kg}
                   onChange={handleChange}
                   required
                 />
                 <span className="field-hint">
-                  {unitSystem === "metric" ? "Kilograms" : "Pounds"}
+                  {unitSystem === "metric" ? t("Kilograms") : t("Pounds")}
                 </span>
               </div>
               <div className="field">
-                <label htmlFor="profile-goal">Fitness goal</label>
+                <label htmlFor="profile-goal">{t("Fitness goal")}</label>
                 <select id="profile-goal" name="goal" value={form.goal} onChange={handleChange}>
-                  <option value="weight_loss">Weight loss — calorie deficit</option>
-                  <option value="muscle_gain">Muscle gain — lean surplus</option>
-                  <option value="maintain">Maintain weight</option>
+                  <option value="weight_loss">{t("Weight loss — calorie deficit")}</option>
+                  <option value="muscle_gain">{t("Muscle gain — lean surplus")}</option>
+                  <option value="maintain">{t("Maintain weight")}</option>
                 </select>
               </div>
             </div>
@@ -3232,25 +3271,25 @@ function App() {
 
             <div className="field-row fields-2">
               <div className="field">
-                <label htmlFor="profile-diet">Diet preference</label>
+                <label htmlFor="profile-diet">{t("Diet preference")}</label>
                 <select id="profile-diet" name="diet" value={form.diet} onChange={handleChange}>
-                  <option value="indian vegetarian">Indian vegetarian</option>
-                  <option value="indian vegan">Indian vegan (dairy-free)</option>
-                  <option value="indian eggetarian">Eggetarian</option>
-                  <option value="indian non-vegetarian">Indian non-vegetarian</option>
-                  <option value="balanced">Balanced (vegetarian and non-vegetarian)</option>
+                  <option value="indian vegetarian">{t("Indian vegetarian")}</option>
+                  <option value="indian vegan">{t("Indian vegan (dairy-free)")}</option>
+                  <option value="indian eggetarian">{t("Eggetarian")}</option>
+                  <option value="indian non-vegetarian">{t("Indian non-vegetarian")}</option>
+                  <option value="balanced">{t("Balanced (vegetarian and non-vegetarian)")}</option>
                 </select>
               </div>
               <div className="field">
-                <label htmlFor="profile-allergies">Allergies and exclusions</label>
+                <label htmlFor="profile-allergies">{t("Allergies and exclusions")}</label>
                 <input
                   id="profile-allergies"
                   name="allergies"
-                  placeholder="e.g. milk, peanuts, shellfish"
+                  placeholder={t("e.g. milk, peanuts, shellfish")}
                   value={form.allergies}
                   onChange={handleChange}
                 />
-                <span className="field-hint">Separate multiple items with commas.</span>
+                <span className="field-hint">{t("Separate multiple items with commas.")}</span>
               </div>
             </div>
 
@@ -3271,10 +3310,10 @@ function App() {
                 {loading && generatingType === "1day" ? (
                   <>
                     <span className="spinner"></span>
-                    <span>Generating daily plan…</span>
+                    <span>{t("Generating daily plan…")}</span>
                   </>
                 ) : (
-                  "Generate 1-day plan"
+                  t("Generate 1-day plan")
                 )}
               </button>
 
@@ -3287,10 +3326,10 @@ function App() {
                 {loading && generatingType === "7day" ? (
                   <>
                     <span className="spinner"></span>
-                    <span>Building weekly plan…</span>
+                    <span>{t("Building weekly plan…")}</span>
                   </>
                 ) : (
-                  "Generate 7-day plan"
+                  t("Generate 7-day plan")
                 )}
               </button>
             </div>
@@ -3324,10 +3363,10 @@ function App() {
             />
           ) : (
             <div className="empty-state">
-              <span className="section-eyebrow">Your plan</span>
-              <h2>Nutrition tailored to your everyday life</h2>
+              <span className="section-eyebrow">{t("Your plan")}</span>
+              <h2>{t("Nutrition tailored to your everyday life")}</h2>
               <p>
-                Add your details above to generate a daily or 7-day plan with practical recipes, clear macro targets, and a categorized grocery list.
+                {t("Add your details above to generate a daily or 7-day plan with practical recipes, clear macro targets, and a categorized grocery list.")}
               </p>
               {history.length > 0 && (
                 <div className="empty-history-action">
@@ -3342,26 +3381,26 @@ function App() {
                     }}
                   >
                     <Icon.notebook className="icon" />
-                    View saved plans ({history.length})
+                    {t("View saved plans")} ({history.length})
                   </button>
                 </div>
               )}
               <div className="empty-features">
                 <div className="feature-card">
-                  <h3>7-day weekly planner</h3>
-                  <p>Varied recipes from Monday to Sunday, built around your daily calorie target.</p>
+                  <h3>{t("7-day weekly planner")}</h3>
+                  <p>{t("Varied recipes from Monday to Sunday, built around your daily calorie target.")}</p>
                 </div>
                 <div className="feature-card">
-                  <h3>Macro breakdowns</h3>
-                  <p>A clear view of protein, carbohydrates, and fats for every plan.</p>
+                  <h3>{t("Macro breakdowns")}</h3>
+                  <p>{t("A clear view of protein, carbohydrates, and fats for every plan.")}</p>
                 </div>
                 <div className="feature-card">
-                  <h3>Step-by-step recipes</h3>
-                  <p>Prep time, cook time, ingredients, and concise methods for each meal.</p>
+                  <h3>{t("Step-by-step recipes")}</h3>
+                  <p>{t("Prep time, cook time, ingredients, and concise methods for each meal.")}</p>
                 </div>
                 <div className="feature-card">
-                  <h3>Hydration tracking</h3>
-                  <p>A personalized daily water goal with simple one-tap logging.</p>
+                  <h3>{t("Hydration tracking")}</h3>
+                  <p>{t("A personalized daily water goal with simple one-tap logging.")}</p>
                 </div>
               </div>
             </div>
