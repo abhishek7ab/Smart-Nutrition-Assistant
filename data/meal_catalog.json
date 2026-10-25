@@ -255,21 +255,22 @@
           "swaps": {}
         },
         {
-          "name": "Lunch: Rajma Masala with Quinoa & Steamed Beans",
+          "name": "Lunch: Rajma Masala with Brown Rice & Steamed Beans",
           "ingredients": [
             "1 cup cooked rajma",
-            "3/4 cup cooked quinoa",
-            "1 cup steamed beans & carrots",
-            "1 cup plain raita"
+            "3/4 cup cooked brown rice",
+            "1 cup steamed green beans or carrots",
+            "1/4 cup tomato-onion masala",
+            "1 tsp ghee"
           ],
-          "reason": "Fiber, magnesium, and plant protein.",
+          "reason": "High-fiber kidney beans with whole grains for steady energy and satiety.",
           "prep_time": "10 mins",
           "cook_time": "25 mins",
           "difficulty": "Medium",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Pressure-cook soaked rajma with onion-tomato masala until soft.",
+            "Steam brown rice and green beans separately.",
+            "Serve rajma over rice with a spoon of ghee."
           ],
           "nutrition": {
             "calories": 580,
@@ -412,20 +413,21 @@
           "swaps": {}
         },
         {
-          "name": "Lunch: Tofu Bhurji Bowl with Millet & Salad",
+          "name": "Lunch: Paneer Bhurji Bowl with Millet & Salad",
           "ingredients": [
-            "150g tofu bhurji",
+            "100g crumbled paneer bhurji",
             "3/4 cup cooked foxtail millet",
-            "1 cup mixed salad"
+            "1 cup cucumber-onion salad",
+            "1/2 tsp jeera"
           ],
-          "reason": "Dairy-free high-protein vegetarian lunch.",
+          "reason": "Quick high-protein paneer bhurji with mineral-rich millets.",
           "prep_time": "10 mins",
           "cook_time": "15 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Scramble crumbled paneer with onion, tomato, and spices.",
+            "Cook millet until fluffy.",
+            "Serve bhurji over millet with salad."
           ],
           "nutrition": {
             "calories": 530,
@@ -510,22 +512,21 @@
           "swaps": {}
         },
         {
-          "name": "Dinner: Grilled Tofu Stir Fry with Brown Rice",
+          "name": "Dinner: Paneer Stir Fry with Brown Rice",
           "ingredients": [
-            "150g firm tofu",
-            "1 cup broccoli",
-            "1/2 cup bell peppers",
-            "1/2 cup brown rice",
-            "1 tbsp sesame seeds"
+            "100g paneer cubes",
+            "2 cups stir-fried seasonal vegetables",
+            "3/4 cup cooked brown rice",
+            "1/2 tsp chaat masala or soy sauce"
           ],
-          "reason": "Low saturated fat and micronutrient-dense vegetables.",
+          "reason": "Protein-rich paneer with fiber-packed vegetables for steady overnight recovery.",
           "prep_time": "10 mins",
           "cook_time": "12 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Stir-fry seasonal vegetables on high heat.",
+            "Add paneer cubes and toss for 2 minutes.",
+            "Serve with warm brown rice."
           ],
           "nutrition": {
             "calories": 470,
@@ -604,20 +605,20 @@
           "swaps": {}
         },
         {
-          "name": "Dinner: Masoor Dal Tadka with Quinoa",
+          "name": "Dinner: Masoor Dal Tadka with Brown Rice",
           "ingredients": [
-            "1 cup masoor dal",
-            "3/4 cup quinoa",
-            "1 cup sauteed greens"
+            "1 cup masoor dal tadka",
+            "3/4 cup cooked brown rice",
+            "1/2 cup seasonal sabzi"
           ],
-          "reason": "Fast-cooking lentils with complete grain protein.",
+          "reason": "Easy-digesting lentils with iron and plant protein for a light dinner.",
           "prep_time": "10 mins",
           "cook_time": "18 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Pressure-cook masoor dal and finish with a jeera-garlic tadka.",
+            "Cook brown rice until fluffy.",
+            "Plate dal with rice and seasonal sabzi."
           ],
           "nutrition": {
             "calories": 440,
@@ -882,19 +883,20 @@
         {
           "name": "Breakfast: Tofu Scramble with Spinach & Toast",
           "ingredients": [
-            "150g firm tofu",
-            "1.5 cups spinach",
-            "2 slices whole grain sourdough",
-            "1 tbsp nutritional yeast"
+            "150g crumbled tofu",
+            "1 cup chopped spinach",
+            "2 slices whole wheat toast",
+            "1/4 tsp turmeric",
+            "1 tsp oil"
           ],
           "reason": "Complete amino acids without cholesterol.",
           "prep_time": "10 mins",
           "cook_time": "10 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Saute spinach, then add crumbled tofu with turmeric and salt.",
+            "Toast the bread slices.",
+            "Serve the scramble on toast."
           ],
           "nutrition": {
             "calories": 410,
@@ -913,22 +915,22 @@
           "swaps": {}
         },
         {
-          "name": "Breakfast: Protein Oatmeal with Chia, Almond Butter & Berries",
+          "name": "Breakfast: Peanut Butter Banana Oatmeal",
           "ingredients": [
-            "1 cup rolled oats",
-            "1.5 cups soy milk",
-            "1 tbsp chia",
-            "1 tbsp almond butter",
-            "1/2 cup blueberries"
+            "1/2 cup rolled oats",
+            "1 cup soya milk or water",
+            "1 tbsp peanut butter",
+            "1 ripe banana (sliced)",
+            "1/4 tsp cinnamon"
           ],
-          "reason": "Fiber plus plant fats for satiety.",
+          "reason": "Slow-release carbs with peanut protein for a filling plant-based start.",
           "prep_time": "10 mins",
           "cook_time": "8 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Cook oats in soya milk or water for 4-5 minutes.",
+            "Swirl in peanut butter and cinnamon.",
+            "Top with sliced banana."
           ],
           "nutrition": {
             "calories": 480,
@@ -937,7 +939,7 @@
             "fats_g": 16
           },
           "allergens": [
-            "nuts",
+            "peanut",
             "soy"
           ],
           "budget": "low",
@@ -1064,29 +1066,30 @@
           "swaps": {}
         },
         {
-          "name": "Breakfast: Soy Milk Smoothie with Tofu & Berries",
+          "name": "Breakfast: Banana Peanut Oats Smoothie",
           "ingredients": [
-            "1 cup unsweetened soy milk",
-            "80g silken tofu",
-            "1/2 cup berries",
-            "1 tbsp flaxseed"
+            "1 ripe banana",
+            "1 tbsp peanut butter",
+            "2 tbsp rolled oats",
+            "1 cup soya milk or chilled water",
+            "2 ice cubes (optional)"
           ],
-          "reason": "Drinkable 20g+ plant protein.",
+          "reason": "Blended oats and banana give steady carbs with peanut protein — ready in 2 minutes.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Blend banana, peanut butter, oats, and soya milk until smooth.",
+            "Pour and serve chilled."
           ],
           "nutrition": {
-            "calories": 320,
-            "protein_g": 22,
-            "carbs_g": 28,
-            "fats_g": 12
+            "calories": 300,
+            "protein_g": 12,
+            "carbs_g": 42,
+            "fats_g": 10
           },
           "allergens": [
+            "peanut",
             "soy"
           ],
           "budget": "low",
@@ -1098,22 +1101,22 @@
       ],
       "lunch": [
         {
-          "name": "Lunch: Chickpea Buddha Bowl with Tahini & Sweet Potato",
+          "name": "Lunch: Chana & Sweet Potato Bowl with Peanut Dressing",
           "ingredients": [
-            "1 cup roasted chickpeas",
-            "1/2 cup quinoa",
-            "1 cup sweet potato",
-            "kale",
-            "2 tbsp tahini dressing"
+            "1 cup boiled chickpeas",
+            "1/2 cup cooked brown rice",
+            "1 cup roasted sweet potato cubes",
+            "1 cup shredded cabbage",
+            "2 tbsp crushed roasted peanuts + lemon"
           ],
-          "reason": "Prebiotic fiber and sesame fats.",
+          "reason": "Fiber-rich chickpeas and sweet potato with a zesty peanut dressing keep energy stable.",
           "prep_time": "10 mins",
           "cook_time": "20 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Roast or pan-toss sweet potato cubes until tender.",
+            "Layer rice, chickpeas, sweet potato, and cabbage in a bowl.",
+            "Top with crushed peanuts, lemon, and chaat masala."
           ],
           "nutrition": {
             "calories": 610,
@@ -1122,30 +1125,31 @@
             "fats_g": 20
           },
           "allergens": [
-            "sesame"
+            "peanut"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
           "pcos_friendly": true,
           "swaps": {}
         },
         {
-          "name": "Lunch: Red Lentil Dal with Kale & Brown Rice",
+          "name": "Lunch: Red Lentil Dal with Spinach & Brown Rice",
           "ingredients": [
             "1 cup masoor dal",
-            "1 cup kale",
-            "3/4 cup brown rice",
-            "turmeric ginger"
+            "1 cup chopped spinach (palak)",
+            "3/4 cup cooked brown rice",
+            "1 tsp oil",
+            "1/4 tsp jeera"
           ],
-          "reason": "Easily digested legumes with folate.",
+          "reason": "Iron-rich lentils and spinach with whole grains for sustained afternoon energy.",
           "prep_time": "10 mins",
           "cook_time": "20 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Cook masoor dal until soft; add spinach in the last 5 minutes.",
+            "Finish with a jeera tadka.",
+            "Serve with brown rice."
           ],
           "nutrition": {
             "calories": 540,
@@ -1161,21 +1165,20 @@
           "swaps": {}
         },
         {
-          "name": "Lunch: Rajma Bowl with Quinoa (no raita)",
+          "name": "Lunch: Rajma Bowl with Brown Rice (no raita)",
           "ingredients": [
-            "1 cup rajma",
-            "3/4 cup quinoa",
-            "steamed beans",
-            "lemon"
+            "1 cup cooked rajma",
+            "3/4 cup cooked brown rice",
+            "1/4 cup onion-tomato masala",
+            "1/2 cup cucumber salad"
           ],
-          "reason": "Classic North Indian beans, dairy-free.",
+          "reason": "Kidney beans deliver plant protein and fiber; rice completes the meal.",
           "prep_time": "10 mins",
           "cook_time": "25 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Simmer soaked rajma with onion-tomato masala until tender.",
+            "Serve over brown rice with cucumber salad."
           ],
           "nutrition": {
             "calories": 560,
@@ -1314,21 +1317,21 @@
       ],
       "dinner": [
         {
-          "name": "Dinner: Black Bean & Sweet Potato Bowl with Guacamole",
+          "name": "Dinner: Rajma & Sweet Potato Bowl with Peanut Chutney",
           "ingredients": [
-            "1 cup black beans",
-            "1 roasted sweet potato",
-            "kale",
-            "2 tbsp guacamole"
+            "1 cup cooked rajma",
+            "1 cup roasted sweet potato cubes",
+            "1 cup steamed greens or cabbage",
+            "2 tbsp peanut chutney"
           ],
-          "reason": "Potassium and resistant starch.",
+          "reason": "Legume and tuber combo with healthy-fat peanut chutney for a hearty plant dinner.",
           "prep_time": "10 mins",
           "cook_time": "18 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Warm cooked rajma with a pinch of garam masala.",
+            "Roast sweet potato cubes until edges caramelize.",
+            "Serve together with a dollop of peanut chutney."
           ],
           "nutrition": {
             "calories": 490,
@@ -1336,7 +1339,9 @@
             "carbs_g": 72,
             "fats_g": 14
           },
-          "allergens": [],
+          "allergens": [
+            "peanut"
+          ],
           "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
@@ -1496,20 +1501,21 @@
           "swaps": {}
         },
         {
-          "name": "Dinner: Stuffed Zucchini with Lentils",
+          "name": "Dinner: Stuffed Capsicum with Lentils",
           "ingredients": [
-            "2 zucchini boats",
-            "3/4 cup cooked lentils",
-            "tomato herb sauce"
+            "2 bell peppers (capsicum)",
+            "3/4 cup cooked masoor dal",
+            "1/4 cup onion-tomato masala",
+            "30g grated carrot"
           ],
-          "reason": "High volume, modest calories.",
+          "reason": "Vitamin-C-rich capsicum stuffed with protein-packed lentils — colorful and filling.",
           "prep_time": "10 mins",
           "cook_time": "22 mins",
           "difficulty": "Medium",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Halve capsicums and remove seeds.",
+            "Stuff with spiced cooked lentils and top with grated carrot.",
+            "Bake or pan-cover on low heat for 15 minutes."
           ],
           "nutrition": {
             "calories": 340,
@@ -1527,30 +1533,27 @@
       ],
       "snack": [
         {
-          "name": "Snack: Roasted Edamame & Apple",
+          "name": "Snack: Roasted Chana & Apple",
           "ingredients": [
-            "1/2 cup roasted edamame",
-            "1 apple",
-            "green tea"
+            "1/2 cup roasted chana",
+            "1 medium apple",
+            "1/4 tsp black salt"
           ],
-          "reason": "Complete plant protein with pectin.",
+          "reason": "Crunchy roasted chana with fruit gives protein and fiber between meals.",
           "prep_time": "2 mins",
           "cook_time": "0 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Toss roasted chana with a pinch of black salt.",
+            "Serve with a whole apple."
           ],
           "nutrition": {
-            "calories": 230,
-            "protein_g": 14,
-            "carbs_g": 28,
-            "fats_g": 6
+            "calories": 250,
+            "protein_g": 11,
+            "carbs_g": 38,
+            "fats_g": 4
           },
-          "allergens": [
-            "soy"
-          ],
+          "allergens": [],
           "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
@@ -1589,29 +1592,31 @@
           "swaps": {}
         },
         {
-          "name": "Snack: Chia Pudding with Berries",
+          "name": "Snack: Peanut Butter Banana Toast",
           "ingredients": [
-            "3 tbsp chia",
-            "3/4 cup almond milk",
-            "1/2 cup berries"
+            "2 slices whole wheat toast",
+            "1.5 tbsp peanut butter",
+            "1 ripe banana (sliced)",
+            "1/4 tsp cinnamon"
           ],
-          "reason": "ALA omega-3 snack.",
+          "reason": "Quick plant-based toast with peanut protein and potassium-rich banana.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Toast the bread slices.",
+            "Spread peanut butter generously.",
+            "Layer banana slices and sprinkle cinnamon."
           ],
           "nutrition": {
-            "calories": 240,
-            "protein_g": 8,
-            "carbs_g": 22,
-            "fats_g": 12
+            "calories": 290,
+            "protein_g": 10,
+            "carbs_g": 42,
+            "fats_g": 10
           },
           "allergens": [
-            "nuts"
+            "gluten",
+            "peanut"
           ],
           "budget": "low",
           "cuisine": "global",
@@ -1775,21 +1780,21 @@
           "swaps": {}
         },
         {
-          "name": "Breakfast: Boiled Eggs, Avocado & Sourdough",
+          "name": "Breakfast: Boiled Eggs & Whole Wheat Toast",
           "ingredients": [
-            "3 soft-boiled eggs",
-            "1/2 avocado",
-            "2 slices sourdough",
-            "chia seeds"
+            "3 boiled eggs",
+            "2 slices whole wheat toast",
+            "1 ripe banana",
+            "1/4 tsp salt and black pepper"
           ],
-          "reason": "Monounsaturated fats with complete protein.",
+          "reason": "Complete protein from eggs with slow carbs to keep you full till lunch.",
           "prep_time": "10 mins",
           "cook_time": "7 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Boil eggs for 8-10 minutes.",
+            "Toast the bread slices.",
+            "Serve eggs on toast with a banana on the side."
           ],
           "nutrition": {
             "calories": 510,
@@ -1801,7 +1806,7 @@
             "egg",
             "gluten"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -1839,20 +1844,21 @@
           "swaps": {}
         },
         {
-          "name": "Breakfast: Greek Yogurt, Eggs & Berries",
+          "name": "Breakfast: Curd, Boiled Eggs & Seasonal Fruit",
           "ingredients": [
+            "1 cup thick curd",
             "2 boiled eggs",
-            "3/4 cup Greek yogurt",
-            "1/2 cup berries"
+            "1 bowl seasonal fruit (banana/papaya/apple)",
+            "1/4 tsp roasted jeera powder"
           ],
-          "reason": "Very high protein, modest carbs.",
+          "reason": "Probiotic curd with eggs and fruit for protein plus a gut-friendly start.",
           "prep_time": "5 mins",
           "cook_time": "0 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Boil eggs and halve them.",
+            "Season curd with roasted jeera powder.",
+            "Serve with a bowl of chopped seasonal fruit."
           ],
           "nutrition": {
             "calories": 360,
@@ -1861,8 +1867,8 @@
             "fats_g": 14
           },
           "allergens": [
-            "egg",
-            "dairy"
+            "dairy",
+            "egg"
           ],
           "budget": "low",
           "cuisine": "global",
@@ -1934,21 +1940,22 @@
           "swaps": {}
         },
         {
-          "name": "Breakfast: Smoked Fish & Cucumber Open Toast",
+          "name": "Breakfast: Masala Omelette with Whole Wheat Toast",
           "ingredients": [
-            "80g smoked rohu or salmon",
-            "1 slice sourdough",
-            "cucumber",
-            "lemon"
+            "3 eggs",
+            "1/4 cup finely chopped onion, tomato and green chilli",
+            "2 slices whole wheat toast",
+            "1 tsp oil",
+            "1/4 tsp red chilli powder"
           ],
-          "reason": "Omega-3 breakfast; skip if budget is tight.",
+          "reason": "High-bioavailability egg protein with vegetables for a quick, filling breakfast.",
           "prep_time": "10 mins",
           "cook_time": "5 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Whisk eggs with chopped vegetables and spices.",
+            "Cook into a thick omelette on medium heat.",
+            "Serve over toasted bread."
           ],
           "nutrition": {
             "calories": 330,
@@ -1957,10 +1964,10 @@
             "fats_g": 14
           },
           "allergens": [
-            "fish",
+            "egg",
             "gluten"
           ],
-          "budget": "high",
+          "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -1992,7 +1999,7 @@
             "fats_g": 14
           },
           "allergens": [],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2025,7 +2032,7 @@
             "gluten",
             "dairy"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2087,7 +2094,7 @@
           "allergens": [
             "fish"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2124,21 +2131,21 @@
           "swaps": {}
         },
         {
-          "name": "Lunch: Keema Matar with Jowar Roti",
+          "name": "Lunch: Chicken Keema Matar with Jowar Roti",
           "ingredients": [
-            "120g lean mutton or chicken keema",
-            "peas",
+            "120g lean chicken keema",
+            "1/2 cup green peas",
             "2 jowar rotis",
-            "salad"
+            "1 cup salad"
           ],
-          "reason": "Spiced mince with millet bread.",
+          "reason": "Lean chicken keema with peas delivers protein and iron with gluten-free rotis.",
           "prep_time": "10 mins",
           "cook_time": "20 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Brown chicken keema with onion-tomato masala.",
+            "Add peas and simmer for 10 minutes.",
+            "Serve with hot jowar rotis and salad."
           ],
           "nutrition": {
             "calories": 560,
@@ -2147,7 +2154,7 @@
             "fats_g": 22
           },
           "allergens": [],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2176,7 +2183,7 @@
             "fats_g": 16
           },
           "allergens": [],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2185,21 +2192,22 @@
       ],
       "dinner": [
         {
-          "name": "Dinner: Pan-Seared Salmon with Asparagus & Sweet Potato",
+          "name": "Dinner: Pan-Seared Fish with Green Beans & Sweet Potato",
           "ingredients": [
-            "180g salmon",
-            "asparagus",
-            "1/2 cup sweet potato",
-            "lemon"
+            "180g fish fillets (rohu/tilapia/basa)",
+            "1 cup green beans",
+            "1/2 cup roasted sweet potato",
+            "1 tsp oil",
+            "1/2 lemon"
           ],
-          "reason": "EPA/DHA dinner for recovery.",
+          "reason": "Affordable local fish gives lean protein and omega-3s for overnight muscle repair.",
           "prep_time": "10 mins",
           "cook_time": "12 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Season fish with salt, pepper, and lemon.",
+            "Pan-sear 3-4 minutes per side until flaky.",
+            "Serve with sauteed beans and roasted sweet potato."
           ],
           "nutrition": {
             "calories": 560,
@@ -2210,7 +2218,7 @@
           "allergens": [
             "fish"
           ],
-          "budget": "high",
+          "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2273,7 +2281,7 @@
             "fats_g": 12
           },
           "allergens": [],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2304,7 +2312,7 @@
           "allergens": [
             "fish"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2341,20 +2349,21 @@
           "swaps": {}
         },
         {
-          "name": "Dinner: Turkey or Chicken Mince Lettuce Wraps",
+          "name": "Dinner: Chicken Mince Lettuce Cups",
           "ingredients": [
-            "150g lean mince",
-            "lettuce cups",
-            "salsa"
+            "150g lean chicken mince",
+            "6-8 lettuce cups",
+            "1/4 cup onion-tomato salsa",
+            "1/2 tsp black pepper"
           ],
-          "reason": "Very low carb dinner.",
+          "reason": "Light high-protein dinner that keeps calories low and satiety high.",
           "prep_time": "10 mins",
           "cook_time": "12 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Saute chicken mince with pepper and salt until cooked.",
+            "Spoon mince into lettuce cups.",
+            "Top with onion-tomato salsa."
           ],
           "nutrition": {
             "calories": 340,
@@ -2363,7 +2372,7 @@
             "fats_g": 14
           },
           "allergens": [],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2435,21 +2444,20 @@
           "swaps": {}
         },
         {
-          "name": "Snack: Greek Yogurt Berry Parfait",
+          "name": "Snack: Curd, Fruit & Peanut Parfait",
           "ingredients": [
-            "1 cup Greek yogurt",
-            "1/2 cup berries",
-            "chia",
+            "1 cup thick curd",
+            "1/2 banana (sliced) + 1/4 cup pomegranate seeds",
+            "2 tbsp roasted peanuts (crushed)",
             "1 tsp honey"
           ],
-          "reason": "Casein snack; honey makes it less diabetes-friendly.",
+          "reason": "Protein and probiotics from curd with seasonal fruit and crunchy peanuts.",
           "prep_time": "3 mins",
           "cook_time": "0 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Layer curd and fruit in a glass.",
+            "Top with crushed peanuts and honey."
           ],
           "nutrition": {
             "calories": 250,
@@ -2458,7 +2466,8 @@
             "fats_g": 6
           },
           "allergens": [
-            "dairy"
+            "dairy",
+            "peanut"
           ],
           "budget": "low",
           "cuisine": "global",
@@ -2519,7 +2528,7 @@
             "fats_g": 4
           },
           "allergens": [],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2557,19 +2566,21 @@
           "swaps": {}
         },
         {
-          "name": "Snack: Tuna or Flaked Fish on Cucumber",
+          "name": "Snack: Spiced Flaked Fish on Cucumber",
           "ingredients": [
-            "80g canned tuna in water or flaked fish",
-            "cucumber rounds"
+            "80g boiled and flaked rohu or bangda",
+            "6-8 cucumber rounds",
+            "1/2 lemon",
+            "1/4 tsp black pepper and black salt"
           ],
-          "reason": "Omega-3 snack.",
+          "reason": "Lean local fish bites with hydrating cucumber — a light protein top-up.",
           "prep_time": "3 mins",
           "cook_time": "0 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Boil fish pieces and flake them.",
+            "Mix with lemon, pepper, and black salt.",
+            "Spoon onto cucumber rounds."
           ],
           "nutrition": {
             "calories": 150,
@@ -2580,7 +2591,7 @@
           "allergens": [
             "fish"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "global",
           "diabetes_friendly": true,
           "pcos_friendly": true,
@@ -2997,21 +3008,21 @@
           "swaps": {}
         },
         {
-          "name": "Lunch: Paneer & Egg Bowl with Quinoa",
+          "name": "Lunch: Paneer & Egg Bowl with Brown Rice",
           "ingredients": [
-            "80g paneer",
-            "2 eggs",
-            "1/2 cup quinoa",
-            "salad"
+            "80g paneer cubes",
+            "2 boiled eggs",
+            "1/2 cup cooked brown rice",
+            "1 cup salad"
           ],
-          "reason": "Very high protein; contains dairy.",
+          "reason": "Dual protein from paneer and eggs with whole grains for muscle repair.",
           "prep_time": "10 mins",
           "cook_time": "15 mins",
           "difficulty": "Easy",
           "instructions": [
-            "Prep ingredients as listed.",
-            "Cook using a small amount of oil or steam.",
-            "Serve immediately."
+            "Boil eggs and quarter them.",
+            "Lightly sear paneer cubes.",
+            "Serve over brown rice with salad."
           ],
           "nutrition": {
             "calories": 590,
@@ -3023,7 +3034,7 @@
             "egg",
             "dairy"
           ],
-          "budget": "medium",
+          "budget": "low",
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,

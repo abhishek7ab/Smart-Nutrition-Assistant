@@ -970,7 +970,7 @@ function PrintableFridgeSheet({ plan, profile, onClose }) {
                 </div>
               ))
             ) : (
-              <p style={{ fontSize: "0.82rem", color: "#666" }}>Standard whole-food staples: oats, quinoa, leafy greens, tomatoes, curd, paneer, and lentils.</p>
+              <p style={{ fontSize: "0.82rem", color: "#666" }}>Standard whole-food staples: oats, rice, millets, leafy greens, tomatoes, curd, paneer, and lentils.</p>
             )}
           </div>
 
@@ -1852,16 +1852,16 @@ function EvidenceSection() {
           </div>
           <div className="evidence-promo-photos">
             <div className="photo-thumb">
-              <img src="./assets/recipe_oatmeal.jpg" alt="Oatmeal bowl with fresh figs" loading="lazy" />
+              <img src="./assets/recipe_oatmeal.jpg" alt="Banana peanut oats bowl" loading="lazy" />
             </div>
             <div className="photo-thumb">
-              <img src="./assets/recipe_salad.jpg" alt="Arugula and tangerine salad" loading="lazy" />
+              <img src="./assets/recipe_salad.jpg" alt="Orange and peanut crunch salad" loading="lazy" />
             </div>
             <div className="photo-thumb">
-              <img src="./assets/recipe_salmon.jpg" alt="Herb grilled salmon with vegetables" loading="lazy" />
+              <img src="./assets/recipe_salmon.jpg" alt="Lime herb grilled fish with vegetables" loading="lazy" />
             </div>
             <div className="photo-thumb">
-              <img src="./assets/recipe_parfait.jpg" alt="Berry yogurt parfait" loading="lazy" />
+              <img src="./assets/recipe_parfait.jpg" alt="Banana pomegranate curd parfait" loading="lazy" />
             </div>
           </div>
         </div>
@@ -1961,92 +1961,92 @@ const SHOWCASE_PRODUCTS = [
   {
     id: "prod-1",
     category: ["all", "breakfast"],
-    title: "Fig & Berry Oatmeal Bowl",
+    title: "Banana Peanut Oats Bowl",
     img: "./assets/recipe_oatmeal.jpg",
     label: "Breakfast",
     calories: "380 kcal",
     time: "10 min",
     difficulty: "Easy",
     recipe: {
-      name: "Fresh Figs & Cinnamon Spiced Oats",
+      name: "Banana & Peanut Butter Oats",
       approx_calories: 380,
       prep_time: "5 mins",
       cook_time: "5 mins",
       difficulty: "Easy",
-      ingredients: ["1/2 cup Rolled Oats", "1 cup Almond Milk", "2 Fresh Figs (sliced)", "1 tbsp Chia Seeds", "1/2 tsp Ceylon Cinnamon"],
+      ingredients: ["1/2 cup Rolled Oats", "1 cup Milk (or water)", "1 Ripe Banana (sliced)", "1 tbsp Peanut Butter", "1/4 tsp Cinnamon"],
       instructions: [
-        "Simmer rolled oats in almond milk over medium heat for 4-5 minutes.",
-        "Stir in chia seeds and ground cinnamon.",
-        "Top with fresh sliced figs and serve warm."
+        "Simmer rolled oats in milk or water over medium heat for 4-5 minutes.",
+        "Stir in the peanut butter until it melts into the oats.",
+        "Top with sliced banana, sprinkle cinnamon, and serve warm."
       ]
     }
   },
   {
     id: "prod-2",
     category: ["all", "mains"],
-    title: "Lime & Herb Grilled Salmon",
+    title: "Lime & Herb Grilled Fish",
     img: "./assets/recipe_salmon.jpg",
     label: "Lunch",
     calories: "520 kcal",
     time: "15 min",
     difficulty: "Medium",
     recipe: {
-      name: "Lime & Herb Grilled Salmon Bowl",
+      name: "Lime & Herb Grilled Fish Bowl",
       approx_calories: 520,
       prep_time: "5 mins",
       cook_time: "10 mins",
       difficulty: "Medium",
-      ingredients: ["180g Fresh Salmon Fillet", "1 Fresh Lime", "1 cup Steamed Broccoli", "1/2 cup Quinoa", "1 tbsp Olive Oil"],
+      ingredients: ["180g Fish Fillets (Rohu/Tilapia/Basa)", "1 Fresh Lime", "1 cup Steamed Vegetables", "1/2 cup Cooked Rice", "1 tbsp Cooking Oil"],
       instructions: [
-        "Pan-sear salmon in olive oil for 4 minutes skin-side down.",
-        "Flip and squeeze fresh lime juice over the fillet.",
-        "Serve alongside warm tricolor quinoa and steamed broccoli."
+        "Rub the fish with lime juice, salt, pepper, and herbs; rest for 5 minutes.",
+        "Pan-sear in oil for 3-4 minutes per side until golden and flaky.",
+        "Serve alongside warm rice and steamed vegetables."
       ]
     }
   },
   {
     id: "prod-3",
     category: ["all", "snacks"],
-    title: "Berry Greek Yogurt Parfait",
+    title: "Banana Pomegranate Curd Parfait",
     img: "./assets/recipe_parfait.jpg",
     label: "Snack",
     calories: "320 kcal",
     time: "5 min",
     difficulty: "Easy",
     recipe: {
-      name: "Mixed Berry Greek Yogurt Parfait",
+      name: "Banana & Pomegranate Curd Parfait",
       approx_calories: 320,
       prep_time: "5 mins",
       cook_time: "0 mins",
       difficulty: "Easy",
-      ingredients: ["1 cup Plain Greek Yogurt", "1/2 cup Mixed Berries", "2 tbsp Walnuts", "1 tsp Raw Honey"],
+      ingredients: ["1 cup Thick Curd (or hung curd)", "1 Ripe Banana (sliced)", "1/4 cup Pomegranate Seeds", "2 tbsp Roasted Peanuts (crushed)", "1 tsp Honey"],
       instructions: [
-        "Layer Greek yogurt in a glass or bowl.",
-        "Add fresh blueberries, raspberries, and crushed walnuts.",
-        "Drizzle lightly with raw honey."
+        "Layer thick curd in a glass or bowl.",
+        "Add banana slices and pomegranate seeds.",
+        "Top with crushed roasted peanuts and drizzle honey."
       ]
     }
   },
   {
     id: "prod-4",
     category: ["all", "salads"],
-    title: "Tangerine Walnut Arugula Salad",
+    title: "Orange & Peanut Crunch Salad",
     img: "./assets/recipe_salad.jpg",
     label: "Dinner",
-    calories: "410 kcal",
+    calories: "310 kcal",
     time: "8 min",
     difficulty: "Easy",
     recipe: {
-      name: "Tangerine, Walnut & Arugula Salad",
-      approx_calories: 410,
+      name: "Orange, Carrot & Peanut Salad",
+      approx_calories: 310,
       prep_time: "8 mins",
       cook_time: "0 mins",
       difficulty: "Easy",
-      ingredients: ["2 Fresh Tangerines", "2 cups Baby Arugula", "1/4 cup Roasted Walnuts", "30g Crumbled Feta", "1 tbsp Balsamic Glaze"],
+      ingredients: ["1 Sweet Orange (segments)", "1 Grated Carrot", "1 Cucumber (chopped)", "2 tbsp Roasted Peanuts", "1/2 tsp Chaat Masala + Lemon Juice"],
       instructions: [
-        "Peel and segment fresh tangerines.",
-        "Toss baby arugula with walnuts and crumbled feta.",
-        "Top with tangerine segments and drizzle with balsamic glaze."
+        "Peel and segment the orange, reserving any juice.",
+        "Toss grated carrot and chopped cucumber with the reserved juice and chaat masala.",
+        "Top with orange segments and roasted peanuts, finish with a squeeze of lemon."
       ]
     }
   }
@@ -2317,7 +2317,7 @@ function CalorieTracker({ plan, eatenMeals, onToggleMeal, currentDay = "Monday" 
 // "What's in My Fridge?" Smart Pantry Matcher
 // ---------------------------------------------------------------------------
 const STAPLE_CHIPS = [
-  "Spinach", "Paneer", "Eggs", "Oats", "Curd", "Quinoa",
+  "Spinach", "Paneer", "Eggs", "Oats", "Curd", "Rice",
   "Chickpeas", "Chicken", "Tomatoes", "Tofu", "Lentils", "Cucumber"
 ];
 
