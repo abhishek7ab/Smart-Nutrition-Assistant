@@ -1,7 +1,8 @@
 {
     "name": "cdp2",
     "version": "1.0.0",
-    "description": "",
+    "description": "Smart Nutrition Assistant - Personalized meal planning application",
+    "homepage": "https://smart-nutrition-assistant.vercel.app/",
     "type": "commonjs",
     "scripts": {
         "start": "vite --port 1234 --open",

@@ -1,5 +1,9 @@
 # Smart Nutrition Assistant
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://smart-nutrition-assistant.vercel.app/)
+
+> 🌐 **Live Demo:** [https://smart-nutrition-assistant.vercel.app/](https://smart-nutrition-assistant.vercel.app/)
+
 Smart Nutrition Assistant is a web app that creates a personal meal plan from
 basic health and lifestyle information. Enter your age, height, weight,
 activity level, fitness goal, diet preference, and allergies. The app then
@@ -9,6 +13,11 @@ This project has two parts:
 
 - A React frontend for the form and meal-plan screens.
 - A FastAPI backend for calculations and meal-plan generation.
+
+## Live Demo
+
+Experience the live app deployed on Vercel:
+- **Production URL:** [https://smart-nutrition-assistant.vercel.app/](https://smart-nutrition-assistant.vercel.app/)
 
 ## What You Can Do
 
