@@ -8,9 +8,9 @@
 
 .grocery-toolbar {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 16px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--card-border);
@@ -60,8 +60,9 @@
 }
 
 .grocery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 26px;
 }
 
@@ -70,6 +71,8 @@
   border: none;
   border-radius: 0;
   padding: 0;
+  flex: 0 1 calc((100% - 52px) / 3);
+  min-width: 230px;
 }
 
 .grocery-card h4 {
