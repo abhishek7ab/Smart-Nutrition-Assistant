@@ -1,12 +1,12 @@
 /* styles/hero.css — Editorial hero: copy on the left, real food photography on the right */
 
 .hero-section {
-  max-width: 1180px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 80px 24px 72px;
+  padding: 44px 20px 36px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 64px;
+  gap: 36px;
   align-items: center;
 }
 
@@ -21,33 +21,33 @@
 .hero-eyebrow-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: var(--accent-green-light);
   border: 1px solid var(--accent-green-mid);
   color: var(--accent-green-dark);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 6px 14px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .eyebrow-leaf {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   color: var(--accent-green);
 }
 
 .hero-main-heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.05rem, 3.3vw, 3rem);
+  font-size: clamp(1.65rem, 2.3vw, 2.25rem);
   font-weight: 700;
   color: var(--text-main);
-  line-height: 1.16;
-  letter-spacing: -0.02em;
-  margin-bottom: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
 }
 
 .hero-main-heading span {
@@ -55,29 +55,29 @@
 }
 
 .hero-subdescription {
-  font-size: 1.06rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 24px;
-  max-width: 520px;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  max-width: 480px;
 }
 
 /* Green checkmark list */
 .hero-feature-list {
   list-style: none;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 8px;
 }
 
 .hero-feature-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 0.94rem;
+  gap: 9px;
+  font-size: 0.88rem;
   color: var(--text-body);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .hero-feature-list li::before {

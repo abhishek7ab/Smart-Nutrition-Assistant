@@ -1,38 +1,38 @@
 /* styles/protocol-grid.css — DietDoctor-style Recipe Cards with Real Photos */
 
 .showcase-matrix-section {
-  max-width: 1180px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 64px 24px;
+  padding: 44px 20px;
   border-top: 1px solid var(--card-border);
 }
 
 .showcase-header {
-  margin-bottom: 36px;
+  margin-bottom: 22px;
 }
 
 .showcase-subtitle-tag {
   color: var(--accent-green);
   font-weight: 700;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
 }
 
 .showcase-main-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .showcase-desc {
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
-  max-width: 560px;
-  line-height: 1.7;
+  max-width: 520px;
+  line-height: 1.55;
 }
 
 /* Underline tabs (DietDoctor-style) */

@@ -2586,6 +2586,7 @@ function App() {
       console.error(e);
     }
     document.documentElement.setAttribute("lang", lang === "mr" ? "mr" : "en");
+    document.documentElement.setAttribute("data-lang", lang === "mr" ? "mr" : "en");
   }, [lang]);
 
   const toggleLang = () => setLangState((p) => (p === "en" ? "mr" : "en"));
@@ -2971,14 +2972,25 @@ function App() {
                 <span className="theme-toggle-text">{theme === "dark" ? t("Light") : t("Dark")}</span>
               </button>
 
-              <button
-                type="button"
-                className="theme-toggle-btn"
-                onClick={toggleLang}
-                aria-label="Change language"
-              >
-                <span className="theme-toggle-text">{lang === "en" ? "मराठी" : "English"}</span>
-              </button>
+              {/* Language Switcher Pill */}
+              <div className="lang-switcher-pill" role="group" aria-label="Language selection">
+                <button
+                  type="button"
+                  className={`lang-btn ${lang === "en" ? "active" : ""}`}
+                  onClick={() => setLangState("en")}
+                  title="Switch to English"
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  className={`lang-btn ${lang === "mr" ? "active" : ""}`}
+                  onClick={() => setLangState("mr")}
+                  title="मराठी भाषेत वापरा"
+                >
+                  मराठी
+                </button>
+              </div>
 
               <button type="button" className="btn-primary-blueprint" onClick={() => { const el = document.getElementById("protocol-engine"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}>{t("Create my plan")}</button>
 

@@ -4,24 +4,24 @@
   background: var(--bg-secondary);
   border-top: 1px solid var(--card-border);
   border-bottom: 1px solid var(--card-border);
-  padding: 72px max(24px, calc((100% - 1180px) / 2));
+  padding: 44px max(20px, calc((100% - 1140px) / 2));
 }
 
 .steps-header {
-  max-width: 680px;
-  margin-bottom: 40px;
+  max-width: 640px;
+  margin-bottom: 24px;
 }
 
 .steps-header .section-title {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .steps-intro-text {
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
-  max-width: 620px;
-  line-height: 1.7;
-  margin-bottom: 44px;
+  max-width: 580px;
+  line-height: 1.55;
+  margin-bottom: 28px;
 }
 
 .steps-header .steps-intro-text {
@@ -31,15 +31,15 @@
 .steps-cards-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 44px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .step-flow-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 30px 26px;
+  padding: 22px 20px;
   cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--card-shadow);

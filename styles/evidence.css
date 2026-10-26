@@ -1,12 +1,12 @@
 /* styles/evidence.css — DietDoctor-style About Section with real photo */
 
 .evidence-split-section {
-  max-width: 1180px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 72px 24px;
+  padding: 44px 20px;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
-  gap: 64px;
+  gap: 36px;
   align-items: center;
 }
 
@@ -14,21 +14,21 @@
 .evidence-visual-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
 .evidence-img-card {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--card-shadow);
-  height: 280px;
+  height: 240px;
   background: var(--bg-secondary);
   border: 1px solid var(--card-border);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   text-align: center;
   position: relative;
   transition: box-shadow 0.25s ease, transform 0.25s ease;

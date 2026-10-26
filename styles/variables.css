@@ -1,5 +1,5 @@
 /* styles/variables.css — Clean Editorial White Theme (DietDoctor-inspired) */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&display=swap');
 
 :root {
   color-scheme: light;
@@ -69,12 +69,12 @@
   --box-shadow-hover:   0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
 
   /* ── Typography ───────────────────────────── */
-  --font-body:          'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
-  --font-heading:       'Merriweather', 'Noto Serif Devanagari', Georgia, 'Times New Roman', serif;
+  --font-body:          'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading:       'Merriweather', Georgia, 'Times New Roman', serif;
 
   /* ── Editorial Spacing Scale ───────────────── */
-  --section-pad-y:      88px;
-  --measure:            62ch;
+  --section-pad-y:      52px;
+  --measure:            58ch;
 
   /* ── Transitions ─────────────────────────── */
   --transition:         0.2s ease;
@@ -208,4 +208,13 @@ body.theme-dark,
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.96); }
   to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Devanagari / Marathi Font Support ────────── */
+:root[data-lang="mr"],
+html[lang="mr"],
+body[data-lang="mr"],
+.app[data-lang="mr"] {
+  --font-body: 'Mukta', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Mukta', 'Merriweather', Georgia, serif;
 }
