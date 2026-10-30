@@ -11,6 +11,7 @@ import pytest
 from models import Profile, SwapRequest
 from nutrition_engine import (
     calculate_macros,
+    calculate_bmi,
     compute_tdee_and_target,
     get_diet_pool_key,
     generate_single_day_plan,
@@ -347,3 +348,88 @@ class TestProfileValidation:
         p = Profile(name="X", age=25, sex="MALE", height_cm=175, weight_kg=70,
                     goal="maintain", diet="balanced", activity="medium")
         assert p.sex == "male"
+
+
+# ---------------------------------------------------------------------------
+# Indian Clinical & Regional Tests
+# ---------------------------------------------------------------------------
+
+class TestIndianContextFeatures:
+    def test_icmr_asian_indian_bmi_normal(self):
+        # 175cm, 68kg -> BMI ~22.2 -> Normal in ICMR (<23)
+        res = calculate_bmi(68.0, 175.0, standard="indian")
+        assert res["bmi"] == 22.2
+        assert "Normal" in res["category"]
+        assert "ICMR" in res["standard"]
+
+    def test_icmr_asian_indian_bmi_overweight(self):
+        # 175cm, 72kg -> BMI ~23.5 -> Overweight in ICMR (23-24.9)
+        res = calculate_bmi(72.0, 175.0, standard="indian")
+        assert res["bmi"] == 23.5
+        assert "Overweight" in res["category"]
+
+    def test_icmr_asian_indian_bmi_obese(self):
+        # 170cm, 75kg -> BMI ~26.0 -> Obese in ICMR (>=25)
+        res = calculate_bmi(75.0, 170.0, standard="indian")
+        assert res["bmi"] == 26.0
+        assert "Obese" in res["category"]
+
+    def test_jain_diet_pool_key(self):
+        assert get_diet_pool_key("jain") == "jain_veg"
+        assert get_diet_pool_key("Jain Vegetarian") == "jain_veg"
+
+    def test_vrat_fasting_diet_pool_key(self):
+        assert get_diet_pool_key("vrat") == "vrat_fasting"
+        assert get_diet_pool_key("Fasting / Navratri") == "vrat_fasting"
+
+    def test_jain_plan_generates_successfully(self):
+        profile = Profile(
+            name="Aarav Jain",
+            age=30,
+            sex="male",
+            height_cm=175.0,
+            weight_kg=70.0,
+            goal="maintain",
+            diet="jain vegetarian",
+            activity="medium",
+            allergies=[],
+        )
+        plan = generate_single_day_plan(profile)
+        assert len(plan["meals"]) == 4
+        assert plan["allergy_blocked_slots"] == 0
+        assert "bmi" in plan
+        assert "bmi_category" in plan
+
+    def test_vrat_fasting_plan_generates_successfully(self):
+        profile = Profile(
+            name="Pooja Sharma",
+            age=27,
+            sex="female",
+            height_cm=162.0,
+            weight_kg=58.0,
+            goal="weight_loss",
+            diet="vrat fasting",
+            activity="low",
+            allergies=[],
+        )
+        plan = generate_single_day_plan(profile)
+        assert len(plan["meals"]) == 4
+        assert plan["allergy_blocked_slots"] == 0
+
+    def test_regional_cuisine_preference(self):
+        profile = Profile(
+            name="Rahul Roy",
+            age=26,
+            sex="male",
+            height_cm=178.0,
+            weight_kg=72.0,
+            goal="maintain",
+            diet="indian vegetarian",
+            activity="medium",
+            cuisine="north_indian",
+            conditions=["diabetes", "hypertension"],
+        )
+        plan = generate_single_day_plan(profile)
+        assert len(plan["meals"]) == 4
+        assert plan["target_calories"] > 0
+

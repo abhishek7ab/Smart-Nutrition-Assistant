@@ -25,13 +25,14 @@ except Exception:
     RateLimitExceeded = Exception
     _rate_limit_exceeded_handler = None
 
+from pydantic import BaseModel
 from models import Profile, SwapRequest
 from nutrition_engine import (
     generate_single_day_plan,
     generate_weekly_plan,
     generate_meal_swap
 )
-from ai_service import generate_ai_plan
+from ai_service import generate_ai_plan, generate_ai_chat
 from plan_store import save_plan, list_plans, get_plan, init_db
 
 app = FastAPI(
@@ -108,6 +109,21 @@ def swap_meal_endpoint(request: Request, req: SwapRequest):
         return generate_meal_swap(req)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to swap meal: {str(e)}")
+
+
+class ChatRequest(BaseModel):
+    message: str
+    profile: Profile
+
+
+@app.post("/ai_chat")
+@limiter.limit("30/minute")
+def ai_chat_endpoint(request: Request, body: ChatRequest):
+    try:
+        reply = generate_ai_chat(body.message, body.profile)
+        return {"reply": reply}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to generate advice: {str(e)}")
 
 
 @app.get("/plans")

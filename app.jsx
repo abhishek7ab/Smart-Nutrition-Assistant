@@ -148,10 +148,10 @@ function BmiGaugeVisualizer({ bmi, category, catColor, tdee, waterLiters }) {
       </div>
 
       <div className="bmi-gauge-legend">
-        <span><i className="bmi-dot" style={{ background: "#b8862e" }} /> {t("Under 18.5")}</span>
-        <span><i className="bmi-dot" style={{ background: "#2e8b4f" }} /> {t("18.5–24.9 Healthy")}</span>
-        <span><i className="bmi-dot" style={{ background: "#c99a3a" }} /> {t("25–29.9 Over")}</span>
-        <span><i className="bmi-dot" style={{ background: "#b4443a" }} /> {t("30+ Obese")}</span>
+        <span><i className="bmi-dot" style={{ background: "#fbbf24" }} /> {t("<18.5 Under")}</span>
+        <span><i className="bmi-dot" style={{ background: "#10b981" }} /> {t("18.5–22.9 Healthy (ICMR)")}</span>
+        <span><i className="bmi-dot" style={{ background: "#f97316" }} /> {t("23–24.9 Over")}</span>
+        <span><i className="bmi-dot" style={{ background: "#ef4444" }} /> {t("25+ Obese")}</span>
       </div>
     </div>
   );
@@ -2735,6 +2735,14 @@ function App() {
     }
   };
 
+  const handleConditionToggle = (conditionId) => {
+    const current = Array.isArray(form.conditions) ? form.conditions : [];
+    const updated = current.includes(conditionId)
+      ? current.filter((c) => c !== conditionId)
+      : [...current, conditionId];
+    setForm({ ...form, conditions: updated });
+  };
+
   const calculateLiveMetrics = () => {
     let h = parseFloat(form.height_cm);
     let w = parseFloat(form.weight_kg);
@@ -2748,17 +2756,21 @@ function App() {
     }
 
     const bmi = (w / ((h / 100) * (h / 100))).toFixed(1);
-    let category = "Healthy Weight";
+    let category = "Healthy Weight (ICMR)";
     let catColor = "#10b981"; // emerald
 
+    // ICMR-NIN Asian-Indian BMI Classification (Thin-fat Indian phenotype)
     if (bmi < 18.5) {
       category = "Underweight";
       catColor = "#fbbf24";
-    } else if (bmi >= 25 && bmi < 29.9) {
-      category = "Overweight";
+    } else if (bmi >= 18.5 && bmi <= 22.9) {
+      category = "Healthy (ICMR Asian-Indian)";
+      catColor = "#10b981";
+    } else if (bmi >= 23.0 && bmi <= 24.9) {
+      category = "Overweight (Increased Risk)";
       catColor = "#f97316";
-    } else if (bmi >= 30) {
-      category = "Obese";
+    } else if (bmi >= 25.0) {
+      category = "Obese (High Risk)";
       catColor = "#ef4444";
     }
 
@@ -3286,6 +3298,8 @@ function App() {
                 <label htmlFor="profile-diet">{t("Diet preference")}</label>
                 <select id="profile-diet" name="diet" value={form.diet} onChange={handleChange}>
                   <option value="indian vegetarian">{t("Indian vegetarian")}</option>
+                  <option value="jain vegetarian">{t("Jain vegetarian (no onion, garlic, roots)")}</option>
+                  <option value="vrat fasting">{t("Vrat / Fasting friendly (Navratri/Ekadashi)")}</option>
                   <option value="indian vegan">{t("Indian vegan (dairy-free)")}</option>
                   <option value="indian eggetarian">{t("Eggetarian")}</option>
                   <option value="indian non-vegetarian">{t("Indian non-vegetarian")}</option>
@@ -3302,6 +3316,65 @@ function App() {
                   onChange={handleChange}
                 />
                 <span className="field-hint">{t("Separate multiple items with commas.")}</span>
+              </div>
+            </div>
+
+            <div className="field-row fields-2">
+              <div className="field">
+                <label htmlFor="profile-cuisine">{t("Regional Indian Cuisine")}</label>
+                <select id="profile-cuisine" name="cuisine" value={form.cuisine || "any"} onChange={handleChange}>
+                  <option value="any">{t("All Regional & Pan-Indian Cuisines")}</option>
+                  <option value="north_indian">{t("North Indian (Roti, Dal, Paneer, Rajma)")}</option>
+                  <option value="south_indian">{t("South Indian (Idli, Dosa, Sambar, Ragi)")}</option>
+                  <option value="west_indian">{t("West Indian (Bhakri, Thepla, Dhokla, Usal)")}</option>
+                  <option value="east_indian">{t("East Indian (Rice, Rohu Fish, Posto, Dalma)")}</option>
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="profile-budget">{t("Budget / Ingredient Style")}</label>
+                <select id="profile-budget" name="budget" value={form.budget || "medium"} onChange={handleChange}>
+                  <option value="low">{t("Desi Staples / Pocket-friendly (Sattu, Chana, Millets)")}</option>
+                  <option value="medium">{t("Moderate (Fresh Daily Produce & Paneer)")}</option>
+                  <option value="high">{t("Premium (Seeds, Nuts, Organic Produce)")}</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="field-row" style={{ marginTop: "4px" }}>
+              <div className="field" style={{ width: "100%" }}>
+                <label>{t("Health Focus & Conditions (ICMR Targeted)")}</label>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                  {[
+                    { id: "diabetes", label: t("Diabetes / Pre-diabetes (Low GI)") },
+                    { id: "pcos", label: t("PCOS / Hormonal Balance") },
+                    { id: "hypertension", label: t("Hypertension (Low Sodium)") },
+                    { id: "thyroid", label: t("Thyroid Support") },
+                    { id: "fatty_liver", label: t("Fatty Liver Care") },
+                  ].map((cond) => {
+                    const active = (form.conditions || []).includes(cond.id);
+                    return (
+                      <button
+                        key={cond.id}
+                        type="button"
+                        onClick={() => handleConditionToggle(cond.id)}
+                        style={{
+                          padding: "6px 12px",
+                          borderRadius: "16px",
+                          border: active ? "1.5px solid #10b981" : "1px solid #cbd5e1",
+                          background: active ? "#ecfdf5" : "#ffffff",
+                          color: active ? "#065f46" : "#334155",
+                          fontWeight: active ? "600" : "400",
+                          fontSize: "13px",
+                          cursor: "pointer",
+                          transition: "all 0.15s ease",
+                        }}
+                      >
+                        {active ? "✓ " : "+ "}
+                        {cond.label}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 

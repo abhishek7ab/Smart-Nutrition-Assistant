@@ -102,12 +102,15 @@ def _apply_preferences(pool: List[Dict], profile: Profile) -> Tuple[List[Dict], 
     filtered = list(pool)
 
     cuisine = (profile.cuisine or "any").lower()
-    if cuisine in ("indian", "global"):
-        preferred = [m for m in filtered if (m.get("cuisine") or "indian") == cuisine]
+    if cuisine in ("indian", "global", "north_indian", "south_indian", "east_indian", "west_indian"):
+        preferred = [
+            m for m in filtered
+            if (m.get("cuisine") or "indian") == cuisine or (m.get("cuisine") == "indian" and "indian" in cuisine)
+        ]
         if preferred:
             filtered = preferred
-        else:
-            warnings.append(f"No {cuisine} recipes left in this slot; using other cuisines.")
+        elif cuisine != "any":
+            warnings.append(f"No specific {cuisine.replace('_', ' ').title()} recipes left in this slot; using other suitable recipes.")
 
     budget = (profile.budget or "medium").lower()
     if budget == "low":
@@ -130,6 +133,24 @@ def _apply_preferences(pool: List[Dict], profile: Profile) -> Tuple[List[Dict], 
             filtered = preferred
         else:
             warnings.append("No PCOS-tagged meals remained; showing other allergy-safe options.")
+    if "hypertension" in conditions:
+        preferred = [m for m in filtered if m.get("hypertension_friendly", True)]
+        if preferred:
+            filtered = preferred
+        else:
+            warnings.append("No hypertension-tagged meals remained; showing other allergy-safe options.")
+    if "thyroid" in conditions:
+        preferred = [m for m in filtered if m.get("thyroid_friendly", True)]
+        if preferred:
+            filtered = preferred
+        else:
+            warnings.append("No thyroid-tagged meals remained; showing other allergy-safe options.")
+    if "fatty_liver" in conditions:
+        preferred = [m for m in filtered if m.get("fatty_liver_friendly", True)]
+        if preferred:
+            filtered = preferred
+        else:
+            warnings.append("No fatty-liver-tagged meals remained; showing other allergy-safe options.")
 
     return filtered, warnings
 
@@ -198,8 +219,58 @@ def compute_tdee_and_target(profile: Profile):
     return int(bmr), int(tdee), target_cal
 
 
+def calculate_bmi(weight_kg: float, height_cm: float, standard: str = "indian") -> Dict[str, Any]:
+    """Calculate BMI and category using ICMR-NIN Asian-Indian or WHO standards."""
+    if height_cm <= 0 or weight_kg <= 0:
+        return {
+            "bmi": 0.0,
+            "category": "Unknown",
+            "standard": standard,
+            "healthy_range": "18.5 - 22.9",
+        }
+    height_m = height_cm / 100.0
+    bmi = round(weight_kg / (height_m * height_m), 1)
+
+    std = (standard or "indian").lower()
+    if std in ("indian", "asian", "icmr", "south_asian"):
+        # ICMR-NIN & WHO South Asian Consensus Cutoffs (Asian Indian phenotype)
+        if bmi < 18.5:
+            category = "Underweight"
+        elif bmi <= 22.9:
+            category = "Normal / Healthy"
+        elif bmi <= 24.9:
+            category = "Overweight (Increased Risk)"
+        else:
+            category = "Obese (High Risk)"
+        healthy_range = "18.5 - 22.9"
+        standard_label = "ICMR-NIN Asian Indian"
+    else:
+        # Standard WHO Cutoffs
+        if bmi < 18.5:
+            category = "Underweight"
+        elif bmi < 25.0:
+            category = "Normal"
+        elif bmi < 30.0:
+            category = "Overweight"
+        else:
+            category = "Obese"
+        healthy_range = "18.5 - 24.9"
+        standard_label = "WHO Global"
+
+    return {
+        "bmi": bmi,
+        "category": category,
+        "standard": standard_label,
+        "healthy_range": healthy_range,
+    }
+
+
 def get_diet_pool_key(diet: str) -> str:
     d = (diet or "").lower()
+    if "jain" in d:
+        return "jain_veg"
+    if "vrat" in d or "fasting" in d:
+        return "vrat_fasting"
     if "vegan" in d:
         return "vegan"
     if "non" in d or "chicken" in d or "fish" in d or "meat" in d:
@@ -299,6 +370,7 @@ def generate_single_day_plan(profile: Profile, day_name: str = "Today", day_offs
     actual_macros = _sum_macros(meals)
     actual_calories = sum(int(m.get("approx_calories") or 0) for m in meals)
     blocked = sum(1 for m in meals if m.get("unavailable"))
+    bmi_info = calculate_bmi(profile.weight_kg, profile.height_cm, standard="indian")
 
     return {
         "day": day_name,
@@ -310,6 +382,10 @@ def generate_single_day_plan(profile: Profile, day_name: str = "Today", day_offs
         "actual_calories": actual_calories,
         "target_macros": target_macros,
         "total_macros": actual_macros,
+        "bmi": bmi_info["bmi"],
+        "bmi_category": bmi_info["category"],
+        "bmi_standard": bmi_info["standard"],
+        "healthy_weight_range_bmi": bmi_info["healthy_range"],
         "meals": meals,
         "warnings": warnings,
         "allergy_blocked_slots": blocked,
@@ -331,11 +407,11 @@ def _categorize_ingredients(ingredients: List[str]) -> Dict[str, List[str]]:
         if key in seen:
             continue
         seen.add(key)
-        if any(w in key for w in ("paneer", "curd", "egg", "tofu", "chicken", "salmon", "yogurt", "milk", "soya", "fish", "tuna", "keema", "mutton")):
+        if any(w in key for w in ("paneer", "curd", "egg", "tofu", "chicken", "salmon", "yogurt", "milk", "soya", "fish", "tuna", "keema", "mutton", "sattu", "chaas", "buttermilk", "chhena", "besan")):
             categorized["Proteins & Dairy"].append(text)
-        elif any(w in key for w in ("rice", "quinoa", "roti", "paratha", "oats", "sourdough", "chilla", "dal", "rajma", "lentil", "sprout", "khichdi", "idli", "dosa", "millet", "poha")):
+        elif any(w in key for w in ("rice", "quinoa", "roti", "paratha", "oats", "sourdough", "chilla", "dal", "rajma", "lentil", "sprout", "khichdi", "idli", "dosa", "millet", "poha", "ragi", "jowar", "bajra", "dalia", "kuttu", "singhara", "sabudana", "makhana", "thepla", "bhakri")):
             categorized["Grains & Staples"].append(text)
-        elif any(w in key for w in ("spinach", "cucumber", "tomato", "onion", "broccoli", "carrot", "beans", "mushroom", "pepper", "salad", "palak", "kale", "apple", "guava", "berries")):
+        elif any(w in key for w in ("spinach", "cucumber", "tomato", "onion", "broccoli", "carrot", "beans", "mushroom", "pepper", "salad", "palak", "kale", "apple", "guava", "berries", "methi", "bhindi", "lauki", "tinda", "amla", "gourd", "baingan")):
             categorized["Vegetables & Greens"].append(text)
         else:
             categorized["Pantry & Seasonings"].append(text)
@@ -358,6 +434,7 @@ def generate_weekly_plan(profile: Profile) -> Dict[str, Any]:
             all_ingredients.extend(meal.get("ingredients") or [])
 
     bmr, tdee, target_cal = compute_tdee_and_target(profile)
+    bmi_info = calculate_bmi(profile.weight_kg, profile.height_cm, standard="indian")
     unique_warnings = list(dict.fromkeys(warnings))
 
     return {
@@ -368,6 +445,10 @@ def generate_weekly_plan(profile: Profile) -> Dict[str, Any]:
         "target_calories": target_cal,
         "target_macros": calculate_macros(target_cal, profile.goal, profile.conditions),
         "total_macros": weekly_days["Monday"]["total_macros"],
+        "bmi": bmi_info["bmi"],
+        "bmi_category": bmi_info["category"],
+        "bmi_standard": bmi_info["standard"],
+        "healthy_weight_range_bmi": bmi_info["healthy_range"],
         "is_weekly": True,
         "days": weekly_days,
         "active_day": "Monday",

@@ -5,8 +5,22 @@ from typing import List
 _GOALS = {"weight_loss", "muscle_gain", "maintain"}
 _ACTIVITY = {"low", "medium", "high"}
 _BUDGETS = {"low", "medium", "high"}
-_CUISINES = {"indian", "global", "any"}
-_CONDITIONS = {"diabetes", "pcos"}
+_CUISINES = {
+    "indian",
+    "global",
+    "any",
+    "north_indian",
+    "south_indian",
+    "east_indian",
+    "west_indian",
+}
+_CONDITIONS = {
+    "diabetes",
+    "pcos",
+    "hypertension",
+    "thyroid",
+    "fatty_liver",
+}
 
 
 class Profile(BaseModel):

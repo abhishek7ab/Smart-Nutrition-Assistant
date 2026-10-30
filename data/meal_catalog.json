@@ -30,10 +30,13 @@
             "dairy"
           ],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "north_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Breakfast: Vegetable Oats Upma with Peanuts & Sprouts",
@@ -62,10 +65,13 @@
             "nuts"
           ],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "south_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Breakfast: Paneer Stuffed Multigrain Paratha with Curd",
@@ -95,10 +101,13 @@
             "gluten"
           ],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "north_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Breakfast: Poha with Peas, Peanuts & Lemon",
@@ -130,7 +139,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Breakfast: Besan Chilla with Mint & Tomato Salsa",
@@ -157,10 +169,13 @@
           },
           "allergens": [],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "north_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Breakfast: Idli with Sambar & Coconut Chutney",
@@ -186,10 +201,13 @@
           },
           "allergens": [],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "south_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Breakfast: Ragi Dosa with Mixed Vegetable Sambar",
@@ -215,9 +233,48 @@
           },
           "allergens": [],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "south_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
+        },
+        {
+          "name": "Breakfast: High-Protein Sattu Paratha with Mint Curd & Pickle",
+          "ingredients": [
+            "2 sattu stuffed whole wheat parathas (roasted gram powder)",
+            "1/2 cup fresh curd",
+            "1 tbsp mint chutney",
+            "pickle"
+          ],
+          "reason": "Traditional Bihari power-breakfast providing 26g of plant protein, complex carbs, and sustained energy.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Mix roasted sattu with roasted cumin, onion, lemon juice, and kalonji.",
+            "Stuff in whole wheat dough and roast on tawa with a light brush of ghee.",
+            "Serve with mint curd."
+          ],
+          "nutrition": {
+            "calories": 440,
+            "protein_g": 26,
+            "carbs_g": 54,
+            "fats_g": 12
+          },
+          "allergens": [
+            "dairy",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
           "swaps": {}
         }
       ],
@@ -252,7 +309,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Lunch: Rajma Masala with Brown Rice & Steamed Beans",
@@ -282,10 +342,13 @@
             "dairy"
           ],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "north_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Lunch: Soya Chunk Matar Curry with Rotis & Salad",
@@ -320,7 +383,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Lunch: Palak Dal with Bajra Roti & Salad",
@@ -346,10 +412,13 @@
           },
           "allergens": [],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "north_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Lunch: Chole with Brown Rice & Kachumber",
@@ -379,7 +448,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Lunch: Vegetable Khichdi with Kadhi",
@@ -410,7 +482,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Lunch: Paneer Bhurji Bowl with Millet & Salad",
@@ -442,7 +517,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         }
       ],
       "dinner": [
@@ -474,10 +552,13 @@
             "gluten"
           ],
           "budget": "low",
-          "cuisine": "indian",
+          "cuisine": "north_indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Dinner: Moong Dal Khichdi with Baingan Bharta & Curd",
@@ -509,7 +590,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Dinner: Paneer Stir Fry with Brown Rice",
@@ -541,7 +625,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Dinner: Lauki Chana Dal with Jowar Roti",
@@ -570,7 +657,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Dinner: Stuffed Capsicum with Paneer & Millet",
@@ -602,7 +692,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Dinner: Masoor Dal Tadka with Brown Rice",
@@ -631,7 +724,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Dinner: Vegetable Daliya with Sprouts Raita",
@@ -662,7 +758,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         }
       ],
       "snack": [
@@ -694,7 +793,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Snack: Roasted Makhana & Almonds",
@@ -725,7 +827,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Snack: Low-fat Curd with Flaxseed & Cucumber",
@@ -756,7 +861,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Snack: Roasted Chana & Guava",
@@ -784,7 +892,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Snack: Buttermilk & Roasted Foxnuts",
@@ -814,7 +925,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Snack: Cucumber Hung-Curd Dip with Carrot Sticks",
@@ -845,7 +959,10 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
-          "swaps": {}
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
         },
         {
           "name": "Snack: Masala Corn & Lemon",
@@ -874,6 +991,45 @@
           "cuisine": "indian",
           "diabetes_friendly": false,
           "pcos_friendly": false,
+          "swaps": {},
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true
+        },
+        {
+          "name": "Snack: Desi Roasted Makhana & Peanut Bhel",
+          "ingredients": [
+            "30g foxnuts (makhana)",
+            "15g roasted peanuts",
+            "lemon juice",
+            "chaat masala",
+            "roasted cumin"
+          ],
+          "reason": "Low glycemic index, rich in magnesium, calcium, and antioxidants.",
+          "prep_time": "5 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Dry roast makhana in a drop of ghee until crunchy.",
+            "Toss with roasted peanuts, chaat masala, and a squeeze of fresh lemon."
+          ],
+          "nutrition": {
+            "calories": 210,
+            "protein_g": 8,
+            "carbs_g": 24,
+            "fats_g": 9
+          },
+          "allergens": [
+            "nuts",
+            "peanut"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
           "swaps": {}
         }
       ]
@@ -3503,6 +3659,626 @@
           "cuisine": "indian",
           "diabetes_friendly": true,
           "pcos_friendly": true,
+          "swaps": {}
+        }
+      ]
+    },
+    "jain_veg": {
+      "breakfast": [
+        {
+          "name": "Breakfast: Jain Moong Dal Chilla with Fresh Mint Chutney & Curd",
+          "ingredients": [
+            "2 moong dal chillas (no onion/garlic)",
+            "60g fresh paneer filling",
+            "1 tbsp mint-coriander chutney",
+            "1 cup fresh curd"
+          ],
+          "reason": "High-protein, gut-friendly Jain breakfast with probiotics and clean bioavailable protein.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Grind soaked moong dal with green chillies and salt.",
+            "Pour on pan, stuff with crumbled paneer, fold and serve with curd."
+          ],
+          "nutrition": {
+            "calories": 410,
+            "protein_g": 27,
+            "carbs_g": 36,
+            "fats_g": 13
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Jain Besan Pudla with Curd & Coriander Chutney",
+          "ingredients": [
+            "2 besan chillas (with ajwain, tomato, capsicum)",
+            "1 cup low-fat curd",
+            "green chutney"
+          ],
+          "reason": "Rich in soluble fiber and zinc, gentle on digestion without allium irritants.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Whisk besan with water, carom seeds, chopped tomatoes, and capsicum.",
+            "Cook both sides until golden. Serve with curd."
+          ],
+          "nutrition": {
+            "calories": 370,
+            "protein_g": 20,
+            "carbs_g": 45,
+            "fats_g": 11
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "west_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Jain Ragi Dosa with Coconut Chutney",
+          "ingredients": [
+            "2 ragi dosas (finger millet)",
+            "2 tbsp fresh coconut chutney (no garlic)",
+            "1 cup warm milk or spiced chaas"
+          ],
+          "reason": "Super rich in calcium and dietary fiber, ideal for bone density and blood sugar stability.",
+          "prep_time": "10 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Mix ragi flour with rice flour, curd, and green chillies.",
+            "Make crisp dosas and serve with fresh coconut chutney."
+          ],
+          "nutrition": {
+            "calories": 390,
+            "protein_g": 14,
+            "carbs_g": 58,
+            "fats_g": 11
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "south_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Jain Methi Thepla with Homemade Chhena & Curd",
+          "ingredients": [
+            "2 fresh methi theplas",
+            "60g homemade paneer/chhena",
+            "1/2 cup fresh dahi"
+          ],
+          "reason": "Methi leaves provide galactomannan to curb glucose spikes, paired with lean protein.",
+          "prep_time": "15 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Knead whole wheat flour with chopped methi, turmeric, and curd.",
+            "Roast thin theplas and serve with fresh chhena."
+          ],
+          "nutrition": {
+            "calories": 420,
+            "protein_g": 22,
+            "carbs_g": 50,
+            "fats_g": 14
+          },
+          "allergens": [
+            "dairy",
+            "gluten"
+          ],
+          "budget": "low",
+          "cuisine": "west_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lunch: Jain Paneer Matar Curry with Whole Wheat Phulkas & Steamed Rice",
+          "ingredients": [
+            "100g paneer in tomato-hing gravy",
+            "1/2 cup green peas",
+            "2 whole wheat phulkas",
+            "1/2 cup steamed rice",
+            "cucumber slices"
+          ],
+          "reason": "Balanced Jain thali offering complete protein, complex carbs, and essential micronutrients.",
+          "prep_time": "15 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Cook paneer and peas in a tomato-ginger-cumin puree with Indian spices.",
+            "Serve with warm phulkas and steamed rice."
+          ],
+          "nutrition": {
+            "calories": 530,
+            "protein_g": 28,
+            "carbs_g": 62,
+            "fats_g": 17
+          },
+          "allergens": [
+            "dairy",
+            "gluten"
+          ],
+          "budget": "medium",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Jain Yellow Moong Dal Khichdi with Baingan Bharta & Curd",
+          "ingredients": [
+            "1 bowl moong dal rice khichdi (1:1 ratio)",
+            "1 bowl roasted eggplant bharta (tomato base, no onion/garlic)",
+            "1 cup dahi"
+          ],
+          "reason": "Gentle, complete protein source with bioavailable amino acids and gut-soothing spices.",
+          "prep_time": "10 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Pressure cook yellow moong dal and rice with turmeric and salt.",
+            "Tempering with ghee, cumin seeds, and asafoetida.",
+            "Serve with curd."
+          ],
+          "nutrition": {
+            "calories": 490,
+            "protein_g": 22,
+            "carbs_g": 70,
+            "fats_g": 12
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Jain Rajma Curry with Brown Rice & Steamed French Beans",
+          "ingredients": [
+            "1.5 cups kidney beans (tomato-amchur base)",
+            "1 cup cooked brown rice",
+            "1 cup steamed french beans"
+          ],
+          "reason": "High-fiber pulse powerhouse providing magnesium, iron, and slow-burning carbohydrates.",
+          "prep_time": "15 mins",
+          "cook_time": "25 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Cook soaked rajma with tomato puree, dry mango powder, and garam masala.",
+            "Serve over brown rice."
+          ],
+          "nutrition": {
+            "calories": 510,
+            "protein_g": 24,
+            "carbs_g": 78,
+            "fats_g": 8
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Dinner: Jain Palak Paneer with Multigrain Phulkas",
+          "ingredients": [
+            "100g fresh paneer cubes",
+            "2 cups blanched spinach puree",
+            "2 multigrain phulkas",
+            "tomato salad"
+          ],
+          "reason": "Iron-rich, low-glycemic dinner with wholesome greens and muscle-repairing casein protein.",
+          "prep_time": "15 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Simmer spinach puree with green chillies, ginger, and paneer.",
+            "Serve hot with soft multigrain phulkas."
+          ],
+          "nutrition": {
+            "calories": 460,
+            "protein_g": 26,
+            "carbs_g": 42,
+            "fats_g": 18
+          },
+          "allergens": [
+            "dairy",
+            "gluten"
+          ],
+          "budget": "medium",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Dinner: Jain Chana Dal with Jowar Roti & Cucumber Kachumber",
+          "ingredients": [
+            "1 cup thick chana dal (cumin-turmeric tadka)",
+            "2 jowar rotis (sorghum)",
+            "1 bowl cucumber-tomato kachumber with lemon"
+          ],
+          "reason": "Gluten-free, high-calcium millet dinner promoting restful sleep and stable overnight glycemic control.",
+          "prep_time": "15 mins",
+          "cook_time": "20 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Prepare jowar rotis by hand-patting with warm water.",
+            "Serve with seasoned chana dal and fresh kachumber."
+          ],
+          "nutrition": {
+            "calories": 450,
+            "protein_g": 21,
+            "carbs_g": 68,
+            "fats_g": 9
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "west_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "snack": [
+        {
+          "name": "Snack: Roasted Makhana & Almond Trail Mix",
+          "ingredients": [
+            "35g foxnuts (makhana)",
+            "12 almonds",
+            "black salt",
+            "roasted cumin"
+          ],
+          "reason": "Nutrient-dense Jain snack rich in antioxidants, healthy fats, and cellular protection.",
+          "prep_time": "5 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Roast makhana and almonds with a pinch of black pepper and rock salt."
+          ],
+          "nutrition": {
+            "calories": 220,
+            "protein_g": 7,
+            "carbs_g": 22,
+            "fats_g": 11
+          },
+          "allergens": [
+            "nuts"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Jain Masala Chaas with Roasted Cumin & Fresh Mint",
+          "ingredients": [
+            "1.5 cups fresh churned buttermilk",
+            "crushed mint leaves",
+            "roasted cumin powder",
+            "black salt"
+          ],
+          "reason": "Natural hydration, zero fat, packed with probiotics and electrolytes for gut microbiome health.",
+          "prep_time": "5 mins",
+          "cook_time": "0 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Blend curd with cold water, roasted jeera, and mint. Serve chilled."
+          ],
+          "nutrition": {
+            "calories": 95,
+            "protein_g": 6,
+            "carbs_g": 9,
+            "fats_g": 3
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        }
+      ]
+    },
+    "vrat_fasting": {
+      "breakfast": [
+        {
+          "name": "Breakfast: Kuttu (Buckwheat) Chilla with Mint Chutney & Curd",
+          "ingredients": [
+            "2 kuttu ka atta chillas",
+            "1/2 cup fresh dahi with sendha namak",
+            "vrat-friendly mint-coriander chutney"
+          ],
+          "reason": "Gluten-free pseudocereal packed with rutin, magnesium, and slow-burning energy for fasting.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Whisk buckwheat flour with grated bottle gourd, green chillies, and sendha namak.",
+            "Cook on tawa with a drop of ghee."
+          ],
+          "nutrition": {
+            "calories": 380,
+            "protein_g": 16,
+            "carbs_g": 52,
+            "fats_g": 11
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Breakfast: Sabudana Thalipeeth with Peanut-Curd Chutney",
+          "ingredients": [
+            "2 soaked sabudana & boiled potato flatbreads",
+            "1/4 cup roasted peanut powder",
+            "fresh curd with rock salt"
+          ],
+          "reason": "Classic fasting meal rich in sustained energy and monounsaturated fatty acids.",
+          "prep_time": "15 mins",
+          "cook_time": "12 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Mash soaked sago with boiled potato, crushed peanuts, and cumin.",
+            "Pat on a damp cloth, cook on tawa until crisp."
+          ],
+          "nutrition": {
+            "calories": 420,
+            "protein_g": 12,
+            "carbs_g": 64,
+            "fats_g": 13
+          },
+          "allergens": [
+            "dairy",
+            "nuts",
+            "peanut"
+          ],
+          "budget": "low",
+          "cuisine": "west_indian",
+          "diabetes_friendly": false,
+          "pcos_friendly": false,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": false,
+          "swaps": {}
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lunch: Samak Ke Chawal (Barnyard Millet) Khichdi with Dahi & Cucumber",
+          "ingredients": [
+            "1 bowl samak rice & roasted peanut khichdi",
+            "1 cup fresh curd",
+            "cucumber slices with sendha namak and lemon"
+          ],
+          "reason": "Barnyard millet is exceptionally high in iron and fiber, ideal for diabetic-safe fasting.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Saute cumin and green chillies in ghee, add barnyard millet and water.",
+            "Simmer until fluffy and serve with dahi."
+          ],
+          "nutrition": {
+            "calories": 460,
+            "protein_g": 15,
+            "carbs_g": 68,
+            "fats_g": 13
+          },
+          "allergens": [
+            "dairy",
+            "nuts",
+            "peanut"
+          ],
+          "budget": "low",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Lunch: Singhara (Water Chestnut) Paratha with Paneer Bhurji & Curd",
+          "ingredients": [
+            "2 water chestnut flour parathas",
+            "80g fresh paneer bhurji (jeera and sendha namak)",
+            "1 cup fresh curd"
+          ],
+          "reason": "High potassium and low-calorie fasting staple providing muscle satiety and electrolyte balance.",
+          "prep_time": "15 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Medium",
+          "instructions": [
+            "Knead singhara flour with warm water and a pinch of rock salt.",
+            "Roll carefully and cook. Serve with fresh paneer bhurji."
+          ],
+          "nutrition": {
+            "calories": 490,
+            "protein_g": 25,
+            "carbs_g": 48,
+            "fats_g": 21
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "medium",
+          "cuisine": "north_indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Dinner: Light Samak Rice Pulao with Lauki Raita",
+          "ingredients": [
+            "1 cup samak rice with cumin, black pepper & paneer cubes",
+            "1 bowl grated bottle gourd (lauki) raita with sendha namak"
+          ],
+          "reason": "Light, cooling, and restorative dinner for fasting days, promoting recovery and calm sleep.",
+          "prep_time": "10 mins",
+          "cook_time": "15 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Cook barnyard millet with diced paneer and cumin.",
+            "Mix steamed lauki in fresh curd with roasted jeera powder."
+          ],
+          "nutrition": {
+            "calories": 430,
+            "protein_g": 18,
+            "carbs_g": 56,
+            "fats_g": 14
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        }
+      ],
+      "snack": [
+        {
+          "name": "Snack: Roasted Makhana in Cow Ghee with Rock Salt",
+          "ingredients": [
+            "40g foxnuts (makhana)",
+            "1 tsp pure cow ghee",
+            "sendha namak (rock salt)",
+            "freshly ground black pepper"
+          ],
+          "reason": "The gold-standard Ayurvedic fasting snack: zero cholesterol, high calcium and renal-supportive.",
+          "prep_time": "3 mins",
+          "cook_time": "5 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Heat ghee in a pan, toss makhana on low heat until crisp. Season with rock salt and black pepper."
+          ],
+          "nutrition": {
+            "calories": 190,
+            "protein_g": 5,
+            "carbs_g": 26,
+            "fats_g": 7
+          },
+          "allergens": [
+            "dairy"
+          ],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
+          "swaps": {}
+        },
+        {
+          "name": "Snack: Sweet Potato (Shakarkandi) Chaat with Pomegranate & Lemon",
+          "ingredients": [
+            "150g boiled sweet potato cubes",
+            "2 tbsp pomegranate pearls",
+            "lemon juice",
+            "sendha namak",
+            "roasted cumin"
+          ],
+          "reason": "Rich in beta-carotene (Vitamin A), complex fiber, and potassium without blood pressure spikes.",
+          "prep_time": "10 mins",
+          "cook_time": "10 mins",
+          "difficulty": "Easy",
+          "instructions": [
+            "Boil, peel, and cube sweet potato. Toss with lemon juice, sendha namak, and pomegranate."
+          ],
+          "nutrition": {
+            "calories": 180,
+            "protein_g": 3,
+            "carbs_g": 41,
+            "fats_g": 1
+          },
+          "allergens": [],
+          "budget": "low",
+          "cuisine": "indian",
+          "diabetes_friendly": true,
+          "pcos_friendly": true,
+          "hypertension_friendly": true,
+          "thyroid_friendly": true,
+          "fatty_liver_friendly": true,
           "swaps": {}
         }
       ]
