@@ -3340,10 +3340,10 @@ function App() {
               </div>
             </div>
 
-            <div className="field-row" style={{ marginTop: "4px" }}>
+            <div className="field-row fields-full" style={{ gridColumn: "1 / -1", marginTop: "6px" }}>
               <div className="field" style={{ width: "100%" }}>
                 <label>{t("Health Focus & Conditions (ICMR Targeted)")}</label>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                <div className="condition-chips-wrap">
                   {[
                     { id: "diabetes", label: t("Diabetes / Pre-diabetes (Low GI)") },
                     { id: "pcos", label: t("PCOS / Hormonal Balance") },
@@ -3357,20 +3357,10 @@ function App() {
                         key={cond.id}
                         type="button"
                         onClick={() => handleConditionToggle(cond.id)}
-                        style={{
-                          padding: "6px 12px",
-                          borderRadius: "16px",
-                          border: active ? "1.5px solid #10b981" : "1px solid #cbd5e1",
-                          background: active ? "#ecfdf5" : "#ffffff",
-                          color: active ? "#065f46" : "#334155",
-                          fontWeight: active ? "600" : "400",
-                          fontSize: "13px",
-                          cursor: "pointer",
-                          transition: "all 0.15s ease",
-                        }}
+                        className={`condition-chip-btn ${active ? "active" : ""}`}
                       >
-                        {active ? "✓ " : "+ "}
-                        {cond.label}
+                        <span className="condition-chip-icon">{active ? "✓" : "+"}</span>
+                        <span>{cond.label}</span>
                       </button>
                     );
                   })}

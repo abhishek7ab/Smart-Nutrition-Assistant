@@ -247,6 +247,56 @@
 
 .unit-toggle:hover { color: var(--accent-green-dark); }
 
+/* ── Health Focus & Condition Chips ───────────────────── */
+.field-row.fields-full {
+  grid-template-columns: 1fr;
+}
+
+.condition-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.condition-chip-btn {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-body);
+  padding: 8px 16px;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.84rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition, 0.2s ease);
+  user-select: none;
+  font-family: inherit;
+}
+
+.condition-chip-btn:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+  background: var(--accent-green-light);
+}
+
+.condition-chip-btn.active {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(46, 139, 79, 0.25);
+}
+
+.condition-chip-icon {
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1;
+}
+
 /* ── Action Buttons ───────────────────── */
 .btn-actions-row {
   display: grid;
